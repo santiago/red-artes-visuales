@@ -1,0 +1,106 @@
+// ============= UTILS ==============
+corner-each(tl, tr, br, bl)
+  -moz-border-radius-topleft tl
+  -webkit-border-top-left-radius tl
+  border-top-left-radius tl
+
+  -moz-border-radius-topright tr
+  -webkit-border-top-right-radius tr
+  border-top-right-radius tr
+
+  -moz-border-radius-bottomleft bl
+  -webkit-border-bottom-left-radius bl
+  border-bottom-left-radius bl
+
+  -moz-border-radius-bottomright br
+  -webkit-border-bottom-right-radius br
+  border-bottom-right-radius br
+
+corner(px)
+  corner-each(px,px,px,px)
+
+corner-top(px)
+  corner-each(px,px,0,0)
+
+corner-bottom(px)
+  corner-each(0,0,px,px)
+
+corner-left(px)
+  corner-each(px,0,0,px)
+
+corner-right(px)
+  corner-each(0,px,px,0)
+
+// ============= UTILS ==============
+
+*
+  margin: 0
+  padding: 0
+
+a
+  text-decoration: none
+
+li
+  display: block
+
+body
+  font-family: "Lucida Grande",Arial,Helvetica,Verdana,sans-serif
+  overflow: auto 
+  background-color: #DDDDDD
+
+.ajaxloader
+  width: 16px
+  height: 16px
+  background: url(/images/ajax-loader.gif) 0 0 no-repeat
+
+label
+  display: inline-block
+  width: 200px
+
+.element *
+  vertical-align: middle
+
+#submit
+  width: 80px
+  margin-left: 425px 
+  border-radius: 3px
+  background-color: #EEE
+  color: red
+  font-weight: bold
+
+#submit:hover
+  background-color: red
+  color: white
+
+input
+  display: inline-block
+  margin: 10px 0
+  height: 32px
+  border: 1px solid black
+  width: 300px
+
+textarea
+  display: inline-block
+  margin: 10px 0
+  width: 300px
+  height: 80px  
+
+select
+  display: inline-block
+  margin: 10px 0
+  width: 300px
+
+form
+  box-shadow: 10px 10px 5px #888888
+  background-color: white
+  padding: 20px 25px 0 25px
+  width: 600px
+  margin: auto
+  border: 1px solid black
+  border-radius: 15px
+
+form h1
+  padding-bottom: 25px
+
+#wrapper
+  margin: 20px 0 20px 0
