@@ -1,3 +1,4 @@
+
 module.exports = {
     Equipamientos: [
     {
@@ -32,6 +33,39 @@ module.exports = {
         boletin         :  '',
         medios_comunit  :  '',
         emailing        :  ''
+    }
+    ],
+    Participantes: [
+    {
+	nombre          :  'Juan Alberto Castaño',
+	edad            :  '11-12',
+	comuna          :  'Belén',
+	barrio          :  'Conquistadores',
+	estrato         :  '4',
+	fotos           :  '',
+	videos          :  '',
+	familiar        :  'Padres separados',
+	vive_con_otro   :  '',
+	poblacion       :  'LGTBI',
+	padres          :  'Ama de casa',
+	observaciones   :  ''
+    }
+    ],
+    Talleres : [
+    {
+	nombre          :  'Circuit Bending',
+	creativos       :  '',
+	equipamiento    :  '',
+	participantes   :  '',
+	descripcion     :  'Noise Noise!',
+	objetivos       :  '',
+	metodologia     :  'Recorrido',
+	habilidades     :  'Reflexión',
+	resultados      :  'Muy buenos',
+	autoeval_creativo : '',
+	observ_externas : '',
+	fotos           :  '',
+	videos          : ''
     }
     ]
 }
