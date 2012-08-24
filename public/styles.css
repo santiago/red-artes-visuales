@@ -22,8 +22,13 @@ label {
   display: inline-block;
   width: 200px;
 }
-.element * {
+.element *,
+.evaluacion * {
   vertical-align: middle;
+}
+.evaluacion input {
+  display: inline-block;
+  width: 20px;
 }
 #submit {
   width: 80px;
@@ -55,7 +60,8 @@ select {
   margin: 10px 0;
   width: 300px;
 }
-form {
+form,
+#lista_evaluacion {
   box-shadow: 10px 10px 5px #888;
   background-color: #fff;
   padding: 20px 25px 0 25px;

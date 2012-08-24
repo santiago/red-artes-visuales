@@ -52,7 +52,10 @@ describe('Equipamientos', function() {
 
         it('should GET by query', function(done) {
             request
-                .get(host+'/equipamientos.json?q=')
+                .get(host+'/equipamientos.json')
+                .send({
+                    nombre: 'Casa Tres Patios'
+                })
                 .end(function(res) {
                     res.should.be.json;
                     res.body.should.have.length(1);
@@ -62,6 +65,17 @@ describe('Equipamientos', function() {
         })
         
         it('should POST', function(done) {
+            var data = fixtures.Equipamientos[0];
+            data.nombre = 'Casa 3 Patios';
+            request
+                .post(host+'/equipamientos.json')
+                .send(data)
+                .end(function(res) {
+                    res.should.be.json;
+                    res.body.should.have.length(1);
+                    res.body[0]._id.toString().should.equal(id);
+                    done();
+                })
             done()
         })
         

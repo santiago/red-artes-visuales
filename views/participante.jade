@@ -58,7 +58,7 @@
 
     .element
       label Situación familiar:
-      select(name="situacion", multiple="multiple")
+      select(name="situacion")
         each familiar in familiaridades
           - var select=null; 
           - if (familiar == model.familiar) select='selected';
@@ -74,7 +74,7 @@
 
     .element
       label Padres:
-      select(name="padres", multiple="multiple")
+      select(name="padres")
         each p in padres
           - var select=null; 
           - if (p == model.padres) select='selected';
@@ -85,4 +85,6 @@
       textarea(name="observaciones")
 
     .element
-      input(id = "submit", name="submit", type = "submit",value="Envia"):w
+      input(id = "submit", name="submit", type = "submit",value="Envia")
+
+
