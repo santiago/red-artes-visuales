@@ -86,16 +86,16 @@ var TallerBase = new Schema({
 mongoose.model('TallerBase', TallerBase);
 
 var Taller = new Schema({
-  , creativos       :  { type: Array }
+    creativos       :  { type: Array }
   , equipamiento    :  { type: String }
   , participantes   :  { type: Array }
   , resultados      :  { type: String }
   , autoeval_creativo : { type: String }
   , observ_externas : { type: String }
-  , fotos           :  { type: Array}
+  , fotos           :  { type: Array }
   , videos          : { type: Array }
 });
-mongoose.model('Taller', Taller);  
+mongoose.model('Taller', Taller);
 
 var Usuario = new Schema({
     email           : { type: String },

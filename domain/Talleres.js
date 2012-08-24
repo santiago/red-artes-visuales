@@ -79,12 +79,15 @@ function Service(app) {
     /*
      * HTML
      */
-    app.get('/talleres/new', getTalleres, function(req, res) {
-        res.render('taller', {
+    app.get('/talleres/new', function(req, res) {
+	res.render('taller', {
             locals: {
-                // talleres: req.talleres
+		model: {
+                    metodologia: ['Recorrido'],
+                    habilidades: ['Una Habilidad']
+		}
             }
-        });
+	});
     });
     
     app.get('/talleres/:id', getTalleres, function(req, res) {

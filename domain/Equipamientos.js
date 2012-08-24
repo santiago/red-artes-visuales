@@ -79,11 +79,16 @@ function Service(app) {
     /*
      * HTML
      */
-    app.get('/equipamientos/new', getEquipamientos, function(req, res) {
-        res.render('equipamiento', {
+    app.get('/equipamientos', getEquipamientos, function(req, res) {
+        res.render('equipamientos', {
             locals: {
-                // equipamientos: req.equipamientos
+                equipamientos: req.equipamientos
             }
+        });
+    });
+
+    app.get('/equipamientos/new', getEquipamientos, function(req, res) {
+        res.render('forms/equipamiento', {
         });
     });
     

@@ -41,17 +41,8 @@ app.configure('production', function(){
 });
 
 
-
-app.get('/talleres/new', function(req, res) {
-    res.render('taller', {
-        locals: {
-          model: {
-                metodologia: ['Recorrido'],
-                habilidades: ['Una Habilidad']
-          }
-            //equipamientos: req.equipamientos
-        }
-    });
+app.get('/', function(req, res) {
+    res.render('index');
 });
 
 // Initialize Domain
