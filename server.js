@@ -58,6 +58,7 @@ app.get('/talleres/new', function(req, res) {
 require('./domain/Equipamientos')(app)
 require('./domain/Participantes')(app)
 require('./domain/Talleres')(app)
+require('./domain/Evaluaciones')(app)
 
 // App starts here
 // Only listen on $ node app.js

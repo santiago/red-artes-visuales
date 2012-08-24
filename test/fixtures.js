@@ -67,5 +67,15 @@ module.exports = {
 	fotos           :  '',
 	videos          : ''
     }
+    ],
+    Evaluaciones : [
+    {
+	participante    :  'Pepito Bandolero',
+	creativo        :  'Ese man',
+	fecha           :  '',
+	taller          :  '',
+	habilidades     :  'Reconocer el contexto familiar',
+	valor           :  ''
+    }
     ]
 }
