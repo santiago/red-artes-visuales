@@ -24,19 +24,19 @@
 
     .element
       label Comuna:
-        select(name="comuna")
-          each comuna in comunas
-            - var select=null; 
-            // - if (comuna == model.comuna) select='selected';
-            option(value=#{comuna}, selected=#{select}) #{comuna}
+      select(name="comuna")
+        each comuna in comunas
+          - var select=null; 
+          // - if (comuna == model.comuna) select='selected';
+          option(value=#{comuna}, selected=#{select}) #{comuna}
 
     .element
       label Barrio:
-        select(name="barrio")
-          each barrio in barrios
-            - var select=null; 
-            // - if (barrio == model.barrio) select='selected';
-            option(value=#{barrio}, selected=#{select}) #{barrio}
+      select(name="barrio")
+        each barrio in barrios
+          - var select=null; 
+          // - if (barrio == model.barrio) select='selected';
+          option(value=#{barrio}, selected=#{select}) #{barrio}
 
     .element
       label Contacto:
@@ -52,8 +52,10 @@
 
     .element
       label Experiencia:
-      input(name="experiencia", id="experiencia", type="radio", value="Si", checked="checked" )
-      input(name="experiencia", id="experiencia", type="radio", value="No" )
+      input.radio(name="experiencia", id="experiencia", type="radio", value="Si", checked="checked" ) 
+      | Si
+      input.radio(name="experiencia", id="experiencia", type="radio", value="No" ) 
+      | No
 
     .element
       label Otros Talleres:
@@ -71,13 +73,6 @@
           // - if (otro == model.tipo) select='selected';
           option(value=#{tipo}, selected=#{select}) #{tipo}
 
-    .element
-      label Espacios disponibles:
-      select(name="espacios", multiple="multiple")
-        each espacio in espacios
-          - var select=null; 
-          // - if (espacio == model.espacio) select='selected';
-          option(value=#{espacio}, selected=#{select}) #{espacio}
 
     .element
       label Espacios disponibles:
@@ -89,13 +84,17 @@
 
     .element
       label Tienen locker?:
-      input(name="locker", id="locker", type="radio", value="Si", checked="checked")
-      input(name="locker", id="locker", type="radio", value="No")
+      input.radio(name="locker", id="locker", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="locker", id="locker", type="radio", value="No")
+      |No
 
     .element
       label Baños cerca?:
-      input(name="locker", id="locker", type="radio", value="Si", checked="checked")
-      input(name="locker", id="locker", type="radio", value="No")
+      input.radio(name="locker", id="locker", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="locker", id="locker", type="radio", value="No")
+      |No
       
     .element
       label Equipos electrónicos disponibles:
@@ -115,19 +114,26 @@
       
     .element
       label Seguridad:
-      input(name="locker", id="locker", type="radio", value="Alta", checked="checked")
-      input(name="locker", id="locker", type="radio", value="Media")
-      input(name="locker", id="locker", type="radio", value="Baja")
-    
+      input.radio(name="locker", id="locker", type="radio", value="Alta", checked="checked")
+      |Alta
+      input.radio(name="locker", id="locker", type="radio", value="Media")
+      |Media
+      input.radio(name="locker", id="locker", type="radio", value="Baja")
+      |Baja
+ 
     .element
       label Fronteras invisibles:
-      input(name="locker", id="locker", type="radio", value="Si", checked="checked")
-      input(name="locker", id="locker", type="radio", value="No")
+      input.radio(name="fronteras", id="fronteras", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="fronteras", id="fronteras", type="radio", value="No")
+      |No
       
     .element
       label Zona:
-      input(name="locker", id="locker", type="radio", value="Urban", checked="checked")
-      input(name="locker", id="locker", type="radio", value="Rural")
+      input.radio(name="zona", id="zona", type="radio", value="Urban", checked="checked")
+      |Urban
+      input.radio(name="zona", id="zona", type="radio", value="Rural")
+      |Rural
       
     .element
       label Como llegar?:
@@ -135,54 +141,80 @@
       
     .element
       label Web:
-      input(name="web", id="web", type="text" )
+      input.radio(name="web", id="web", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="web", id="web", type="radio", value="No")
+      |No
       
     .element
       label Facebook:
-      input(name="fb", id="fb", type="text" )
+      input.radio(name="fb", id="fb", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="fb", id="fb", type="radio", value="No")
+      |No
       
     .element
       label Twitter:
-      input(name="twitter", id="twitter", type="text", value="@" )
+      input.radio(name="twitter", id="twitter", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="twitter", id="twitter", type="radio", value="No")
+      |No
       
     .element
       label Blog:
-      input(name="blog", id="blog", type="text" )
+      input.radio(name="blog", id="blog", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="blog", id="blog", type="radio", value="No")
+      |No
   
     .element
       label Newsletter?:
-      input(name="newsletter", id="newsletter", type="radio", value="Si", checked="True")
-      input(name="newsletter", id="newsletter", type="radio", value="No")
+      input.radio(name="newsletter", id="newsletter", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="newsletter", id="newsletter", type="radio", value="No")
+      |No
 
     .element
       label Cartelera?:
-      input(name="cartelera", id="cartelera", type="radio", value="Si", checked="True")
-      input(name="cartelera", id="cartelera", type="radio", value="No")
+      input.radio(name="cartelera", id="cartelera", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="cartelera", id="cartelera", type="radio", value="No")
+      |No
 
     .element
       label Telefono Info?:
-      input(name="telefono_info", id="telefono_info", type="radio", value="Si", checked="True")
-      input(name="telefono_info", id="telefono_info", type="radio", value="No")
+      input.radio(name="tel_info", id="tel_info", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="tel_info", id="tel_info", type="radio", value="No")
+      |No
 
     .element
       label Perifonía?:
-      input(name="perifonia", id="perifonia", type="radio", value="Si", checked="True")
-      input(name="perifonia", id="perifonia", type="radio", value="No")
+      input.radio(name="perifonia", id="perifonia", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="perifonia", id="perifonia", type="radio", value="No")
+      |No
 
     .element
       label Boletín?:
-      input(name="boletin", id="boletin", type="radio", value="Si", checked="True")
-      input(name="boletin", id="boletin", type="radio", value="No")
+      input.radio(name="boletin", id="boletin", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="boletin", id="boletin", type="radio", value="No")
+      |No
 
     .element
       label Medios comunitarios?:
-      input(name="medios_comunit", id="medios_comunit", type="radio", value="Si", checked="True")
-      input(name="medios_comunit", id="medios_comunit", type="radio", value="No")
+      input.radio(name="comun_media", id="comun_media", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="comun_media", id="comun_media", type="radio", value="No")
+      |No
 
     .element
       label E-mailing?:
-      input(name="emailing", id="emailing", type="radio", value="Si", checked="True")
-      input(name="emailing", id="emailing", type="radio", value="No")
+      input.radio(name="emailing", id="emailing", type="radio", value="Si", checked="checked")
+      |Si
+      input.radio(name="emailing", id="emaling", type="radio", value="No")
+      |No
 
     .element
       input(id = "submit", name="submit", type = "submit", value="Envia")
