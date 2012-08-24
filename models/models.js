@@ -76,15 +76,19 @@ var Participante = new Schema({
 });
 mongoose.model('Participante', Participante);  
 
-var Taller = new Schema({
+var TallerBase = new Schema({
     nombre          :  { type: String, default: 'Nombre' }
-  , creativos       :  { type: Array }
-  , equipamiento    :  { type: String }
-  , participantes   :  { type: Array }
   , descripcion     :  { type: String }
   , objetivos       :  { type: String }
   , metodologia     :  { type: String, enum: metodologias }
   , habilidades     :  { type: String, enum: habilidades }
+});
+mongoose.model('TallerBase', TallerBase);
+
+var Taller = new Schema({
+  , creativos       :  { type: Array }
+  , equipamiento    :  { type: String }
+  , participantes   :  { type: Array }
   , resultados      :  { type: String }
   , autoeval_creativo : { type: String }
   , observ_externas : { type: String }
