@@ -11,7 +11,7 @@ var db = app.db;
 
 describe('Equipamientos', function() {
     describe('ReST', function() {
-        var id = '123';
+        var id;
         var Equipamiento = db.model('Equipamiento');
         
         before(function(done) {
@@ -59,6 +59,7 @@ describe('Equipamientos', function() {
                 .end(function(res) {
                     res.should.be.json;
                     res.body.should.have.length(1);
+                    res.body[0].nombre.should.equal('Casa Tres Patios');
                     res.body[0]._id.toString().should.equal(id);
                     done();
                 })
@@ -66,25 +67,33 @@ describe('Equipamientos', function() {
         
         it('should POST', function(done) {
             var data = fixtures.Equipamientos[0];
-            data.nombre = 'Casa 3 Patios';
             request
-                .post(host+'/equipamientos.json')
+                .post(host+'/equipamientos')
                 .send(data)
                 .end(function(res) {
                     res.should.be.json;
-                    res.body.should.have.length(1);
-                    res.body[0]._id.toString().should.equal(id);
+                    res.body.nombre.should.equal(data.nombre);
                     done();
                 })
-            done()
         })
         
         it('should PUT', function(done) {
-            done()
+            request
+                .put(host+'/equipamientos/'+id)
+                .send({ contacto: 'Tony' })
+                .end(function(res) {
+                    res.should.be.json;
+                    done();
+                })
         })
 
         it('should DELETE', function(done) {
-            done()
+            request
+                .del(host+'/equipamientos/'+id)
+                .end(function(res) {
+                    res.should.be.json;
+                    done();
+                })
         })
     })
 })

@@ -13,7 +13,7 @@ var edades = ['7-8', '9-10', '11-12', '13-14', '15-16'];
 var habilidades = ['Reflexión', 'Creatividad', 'Capacidad de escucha', 'Compromiso', 'Pensamiento critico', 'Tolerancia', 'Honestidad', 'Participación', 'Reconocer el contexto social', 'Reconocer el contexto familiar', 'Reconocer el context geográfico', 'Respeto', 'Confianza', 'Construcción colectiva', 'Aceptación del otro', 'Capacidad de expresión', 'Trabajo en equipo'];
 var comunas = ['Aranjuez','Belén','Buenos Aires','Castilla','Doce de Octubre','El Poblado','Guayabal','La América','La Candelaria','Laureles','Manrique','Popular','Robledo','San Javier','Santa Cruz', 'Villa Hermosa'];
 var barrios = ['Conquistadores','Colores','Laureles','Robledo'];
-var equipamientos = ["Casa Tres Patios","EscuelaX", 'TallerZ','ImaginaLab'];
+var equipamientos = ["Casa Tres Patios", "EscuelaX", 'TallerZ','ImaginaLab'];
 var estratos = ['1','2','3','4','5','6'];
 var roles = ['creativo','administrador','participante','colaborador','visitante'];
 

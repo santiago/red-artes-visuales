@@ -38,13 +38,18 @@ function Service(app) {
         var data = req.body;
         var id = req.params.id;
         Equipamiento.update({ _id: id }, data, function(err, r) {
+            if (err) {
+                res.error = true;
+            }
             next();
         });
     }
 
     function delEquipamientos(req, res, next) {
         var id = req.params.id;
-        Equipamiento.findByIdAndRemove(id, function(err) {
+        Equipamiento.findByIdAndRemove(id, function(err, r) {
+            console.log(err);
+            console.log(r);
             next();
         });
     }
@@ -59,7 +64,19 @@ function Service(app) {
     app.get('/equipamientos/:id.json', getEquipamientos, function(req, res) {
         res.send(req.equipamiento);
     });
+    
+    app.post('/equipamientos', postEquipamientos, function(req, res) {
+        res.send(req.equipamiento, 201);
+    });
 
+    app.put('/equipamientos/:id', putEquipamientos, function(req, res) {
+        if (req.error) res.send({ 'error': true }, 500);
+        else res.send({ 'ok': true });
+    });
+
+    app.del('/equipamientos/:id', delEquipamientos, function(req, res) {
+        res.send({ 'ok': true });
+    });
 
     /*
      * HTML
@@ -78,18 +95,6 @@ function Service(app) {
                 equipamiento: req.equipamiento
             }
         });
-    });
-
-    app.post('/equipamientos', postEquipamientos, function(req, res) {
-        res.send(req.equipamiento);
-    });
-
-    app.put('/equipamientos/:id', putEquipamientos, function(req, res) {
-        res.send({ 'ok': true });
-    });
-
-    app.del('/equipamientos/:id', delEquipamientos, function(req, res) {
-        res.send({ 'ok': true });
     });
 }
 

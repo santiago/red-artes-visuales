@@ -13,12 +13,12 @@
     "jade": "0.26.3",	
     "stylus": "0.28.2",
     "socket.io": "0.9.6",
-    "mongoose": "2.7.2",
     "everyauth": "0.2.32",
     "gzippo": "0.1.7"
   },
   "devDependencies": {
     "mocha": "1.4.0",
-    "superagent": "0.8.1"
+    "superagent": "0.8.1",
+    "should": "1.1.0"
   }
 }
