@@ -8,6 +8,18 @@ html
     title Red Artes Visuales
   body
     .root-wrapper
-      != body
+      article#main
+        header
+          span.logo
+          ul.main_menu
+            li.menu_item
+              a#equip(href='#') Equipamientos
+            li.menu_item
+              a#taller(href='#') Talleres 
+            li.menu_item
+              a#consult(href='#') Consultas 
+
+        section.content
+          != body
     script(type="text/javascript", src="/javascripts/thirdparty/jquery/jquery-1.7.min.js")
     script(type="text/javascript", src="/javascripts/thirdparty/jquery.jgrowl_minimized.js")

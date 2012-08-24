@@ -1,0 +1,36 @@
+#filtros
+  ul.consultas
+    li
+      a(href='#',id=filtros_talleres) Talleres
+    li
+      a(href='#',id=filtros_) Equipamientos
+    li
+      a(href='#',id=filtros_participantes) Participantes
+
+  .tabs_container
+    .tab_content#talleres
+      partial('partials/select',{name: f_equips, options: equipamientos })
+      partial('partials/select',{name: f_comunas, options: })
+      partial('partials/select',{name: f_creativos, options: creativos })
+      partial('partials/select',{name: f_barrios, options: barrios })
+      partial('partials/select',{name: f_metodos, options: metodos })
+      partial('partials/select',{name: f_habilidades, options: habilidades})
+
+    .tab_content#equip
+      partial('partials/select',{name: f_comunas, options: comunas })
+      partial('partials/select',{name: f_barrios, options: barrios})
+      partial('partials/select',{name: f_creativos, options: creativos})
+      partial('partials/select',{name: f_tipos, options: tipos })
+      partial('partials/select',{name: f_zonas, options: zonas })
+
+    .tab_content#participantes
+      partial('partials/select',{name: f_edades, options: edades })
+      partial('partials/select',{name: f_barrios, options: barrios })
+      partial('partials/select',{name: f_estratos, options: estratos })
+      partial('partials/select',{name: f_comunas, options: comunas })
+
+    button(id='filtrar')
+
+    .resultado_status
+
+    .resultado

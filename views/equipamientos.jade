@@ -1,0 +1,8 @@
+#equipamientos
+  .list_header
+    h1 Listado equipamientos 
+    a(href="/equipamientos/new") Crear equipamiento 
+
+  .list_body
+    ul.listado
+      partial('partials/lista_equipamientos',{equipamientos: equipamientos})

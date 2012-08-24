@@ -1,0 +1,9 @@
+#talleres
+  .list_header
+    h1 Listado talleres
+    a(href="/talleres/new") Crear taller
+
+  .list_body
+    ul.listado
+      partial('partials/lista_talleres',{talleres: talleres})
+

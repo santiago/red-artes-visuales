@@ -1,0 +1,55 @@
+-var metodologias = ['Sensibilización', 'Recorrido', 'Dinámica', 'Juego', 'Técnicas creativas', 'Presentación de referentes', 'Experimentación materiales' , 'Visitas', 'Investigación', 'Intercambios', 'Otro'];
+-var habilidades = ['Reflexión', 'Creatividad', 'Capacidad de escucha', 'Compromiso', 'Pensamiento critico', 'Tolerancia', 'Honestidad', 'Participación', 'Reconocer el contexto social', 'Reconocer el contexto familiar', 'Reconocer el context geográfico', 'Respeto', 'Confianza', 'Construcción colectiva', 'Aceptación del otro', 'Capacidad de expresión', 'Trabajo en equipo'];
+
+#wrapper
+  form#taller
+    h1 Talleres creativos
+
+    .element
+      label Nombre actividad: 
+      input(name = "nombre", id = "nombre", type = "text")
+
+    .element
+      label Descripción: 
+      textarea(name = "desc")
+
+    .element
+      label Objetivos: 
+      textarea(name = "objetivos")
+
+    .element
+      label Metodologia: 
+      select(name = "metodologias", multiple = "multiple")
+        each metod in metodologias 
+          - var select = null; 
+          - if (metod == model.metodologias) select = 'selected';
+          option(value = #{metod}, selected = #{select}) #{metod}
+
+    .element
+      label Habilidades: 
+      select(name = "habilidades", multiple = "multiple")
+        each habilidad in habilidades 
+          - var select = null; 
+          - if (habilidad == model.habilidades) select = 'selected';
+          option(value = #{habilidad}, selected = #{select}) #{habilidad}
+
+    .element
+      label Resultados generales: 
+      textarea(name = "resultados")
+
+    .element
+      label Autoevaluación del creativo: 
+      textarea(name = "autoeval_creativo")
+
+    .element
+      label Observaciones externas: 
+      textarea(name = "observ_externas")
+
+    .element
+      label Fotos:
+
+    .element
+      label Videos:
+
+    .element
+      input(id = "submit", name="submit", type = "submit",value="Envia")

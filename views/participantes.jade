@@ -1,0 +1,9 @@
+#participantes
+  .list_header
+    h1 Listado participantes
+    a(href="/participantes/new") Crear participante 
+
+  .list_body
+    ul.listado
+      partial('partials/lista_participantes',{participantes: participantes})
+
