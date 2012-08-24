@@ -48,8 +48,6 @@ function Service(app) {
     function delEquipamientos(req, res, next) {
         var id = req.params.id;
         Equipamiento.findByIdAndRemove(id, function(err, r) {
-            console.log(err);
-            console.log(r);
             next();
         });
     }
