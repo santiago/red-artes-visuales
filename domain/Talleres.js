@@ -79,8 +79,16 @@ function Service(app) {
     /*
      * HTML
      */
+    app.get('/talleres', getTalleres, function(req, res) {
+	res.render('talleres', {
+            locals: {
+		talleres: req.talleres
+            }
+	});
+    });
+
     app.get('/talleres/new', function(req, res) {
-	res.render('taller', {
+	res.render('forms/taller', {
             locals: {
 		model: {
                     metodologia: ['Recorrido'],
