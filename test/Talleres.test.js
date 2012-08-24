@@ -9,14 +9,14 @@ var app = require('../server');
 var db = app.db;
 
 
-describe('Equipamientos', function() {
+describe('Talleres', function() {
     describe('ReST', function() {
         var id;
-        var Equipamiento = db.model('Equipamiento');
+        var Taller = db.model('Taller');
         
         before(function(done) {
-            fixtures.Equipamientos.forEach(function(r) {
-                (new Equipamiento(r)).save(function(err, data) {
+            fixtures.Talleres.forEach(function(r) {
+                (new Taller(r)).save(function(err, data) {
                     id = data._id.toString();
                     done();
                 });
@@ -24,15 +24,16 @@ describe('Equipamientos', function() {
         })
         
         after(function(done) {
-            Equipamiento.remove({}, function() {
+            Taller.remove({}, function() {
                 done();
             });
         })
 
         it('should GET by id', function(done) {
             request
-                .get(host+'/equipamientos/'+id+'.json')
+                .get(host+'/talleres/'+id+'.json')
                 .end(function(res) {
+		    console.log(res.body._id);
                     res.body._id.toString().should.equal(id);
                     res.should.be.json;
                     done();
@@ -41,7 +42,7 @@ describe('Equipamientos', function() {
         
         it('should GET all', function(done) {
             request
-                .get(host+'/equipamientos.json')
+                .get(host+'/talleres.json')
                 .end(function(res) {
                     res.should.be.json;
                     res.body.should.have.length(1);
@@ -52,23 +53,23 @@ describe('Equipamientos', function() {
 
         it('should GET by query', function(done) {
             request
-                .get(host+'/equipamientos.json')
+                .get(host+'/talleres.json')
                 .send({
-                    nombre: 'Casa Tres Patios'
+                    nombre: 'Circuit Bending'
                 })
                 .end(function(res) {
                     res.should.be.json;
                     res.body.should.have.length(1);
-                    res.body[0].nombre.should.equal('Casa Tres Patios');
+                    res.body[0].nombre.should.equal('Circuit Bending');
                     res.body[0]._id.toString().should.equal(id);
                     done();
                 })
         })
         
         it('should POST', function(done) {
-            var data = fixtures.Equipamientos[0];
+            var data = fixtures.Talleres[0];
             request
-                .post(host+'/equipamientos')
+                .post(host+'/talleres')
                 .send(data)
                 .end(function(res) {
                     res.should.be.json;
@@ -79,8 +80,8 @@ describe('Equipamientos', function() {
         
         it('should PUT', function(done) {
             request
-                .put(host+'/equipamientos/'+id)
-                .send({ contacto: 'Tony' })
+                .put(host+'/talleres/'+id)
+                .send({ objetivos: 'Pasarla bien' })
                 .end(function(res) {
                     res.should.be.json;
                     done();
@@ -89,7 +90,7 @@ describe('Equipamientos', function() {
 
         it('should DELETE', function(done) {
             request
-                .del(host+'/equipamientos/'+id)
+                .del(host+'/talleres/'+id)
                 .end(function(res) {
                     res.should.be.json;
                     done();
