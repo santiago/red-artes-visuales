@@ -1,4 +1,12 @@
-article#taller_base
+article#taller
+  .list_header
+    a#listar(href="/talleres", class='#{articulo == 'Talleres' ? "activo" : null }') 
+      | Talleres
+      span.mask
+    a#crear(href="/talleres/new", class='#{articulo == 'FormTaller' ? "activo" : null }') 
+      | Crear Taller 
+      span.mask
+
   form
     ul
       li
@@ -37,14 +45,3 @@ article#taller_base
       li
         .element
           button OK
-
-
-      .ejecucion
-        h3 Equipamientos
-        button(id="ejecuta_taller",value="Ejecutar taller")
-
-      .lista_equipamientos
-        ul.listado_ejecucion
-          partial('partials/lista_taller_equip.jade')
-
-      .lista_terminados

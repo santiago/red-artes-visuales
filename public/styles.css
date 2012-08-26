@@ -223,7 +223,7 @@ equip_barrio {
   padding: 10px;
 }
 article#equipamiento form,
-article#taller_base form {
+article#taller form {
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
   border-top-left-radius: 0;
@@ -238,20 +238,22 @@ article#taller_base form {
   border-bottom-right-radius: 15px;
 }
 article#equipamiento form ul,
-article#taller_base form ul {
+article#taller form ul {
   padding: 10px;
 }
 article#equipamientos,
 article#equipamiento,
 article#talleres,
-article#taller_base {
+article#taller_base,
+article#taller {
   width: 800px;
   margin: auto;
 }
 article#equipamientos .list_header span.mask,
 article#equipamiento .list_header span.mask,
 article#talleres .list_header span.mask,
-article#taller_base .list_header span.mask {
+article#taller_base .list_header span.mask,
+article#taller .list_header span.mask {
   height: 6px;
   background: #fff;
   position: absolute;
@@ -262,7 +264,8 @@ article#taller_base .list_header span.mask {
 article#equipamientos .list_header a,
 article#equipamiento .list_header a,
 article#talleres .list_header a,
-article#taller_base .list_header a {
+article#taller_base .list_header a,
+article#taller .list_header a {
   padding: 10px;
   background-color: #fff;
   -moz-border-radius-topleft: 15px;
@@ -281,7 +284,8 @@ article#taller_base .list_header a {
 article#equipamientos .list_header a.activo,
 article#equipamiento .list_header a.activo,
 article#talleres .list_header a.activo,
-article#taller_base .list_header a.activo {
+article#taller_base .list_header a.activo,
+article#taller .list_header a.activo {
   color: #ed008c;
   font-weight: 900;
   box-shadow: 0px 0px 5px #666;
@@ -290,7 +294,8 @@ article#taller_base .list_header a.activo {
 article#equipamientos .list_header a.activo span.mask,
 article#equipamiento .list_header a.activo span.mask,
 article#talleres .list_header a.activo span.mask,
-article#taller_base .list_header a.activo span.mask {
+article#taller_base .list_header a.activo span.mask,
+article#taller .list_header a.activo span.mask {
   display: block;
 }
 article#equipamientos .list_header a#crear,
@@ -309,8 +314,41 @@ article#equipamientos .list_header a#listar span.mask,
 article#equipamiento .list_header a#listar span.mask {
   width: 143px;
 }
+article#equipamientos .equip_item,
+article#equipamiento .equip_item {
+  margin-top: 10px;
+  border-bottom: 1px solid #eee;
+}
+article#equipamientos .equip_item p,
+article#equipamiento .equip_item p {
+  font-size: 12px;
+}
+article#equipamientos .equip_item a.nombre,
+article#equipamiento .equip_item a.nombre {
+  font-size: 14px;
+  font-weight: 900;
+}
+article#taller .list_header a#crear,
+article#talleres .list_header a#crear {
+  float: right;
+}
+article#taller .list_header a#crear span.mask,
+article#talleres .list_header a#crear span.mask {
+  width: 118px;
+}
+article#taller .list_header a#listar,
+article#talleres .list_header a#listar {
+  float: left;
+}
+article#taller .list_header a#listar span.mask,
+article#talleres .list_header a#listar span.mask {
+  width: 86px;
+}
 article#equipamientos .list_body,
-article#equipamiento .list_body {
+article#equipamiento .list_body,
+article#taller .list_body,
+article#talleres .list_body {
+  min-height: 60px;
   width: 100%;
   float: left;
   -moz-border-radius-topleft: 0;
@@ -329,25 +367,13 @@ article#equipamiento .list_body {
   background: #fff;
 }
 article#equipamientos .list_body ul,
-article#equipamiento .list_body ul {
+article#equipamiento .list_body ul,
+article#taller .list_body ul,
+article#talleres .list_body ul {
   padding: 10px;
   width: 97.5%;
   float: left;
   clear: left;
-}
-article#equipamientos .equip_item,
-article#equipamiento .equip_item {
-  margin-top: 10px;
-  border-bottom: 1px solid #eee;
-}
-article#equipamientos .equip_item p,
-article#equipamiento .equip_item p {
-  font-size: 12px;
-}
-article#equipamientos .equip_item a.nombre,
-article#equipamiento .equip_item a.nombre {
-  font-size: 14px;
-  font-weight: 900;
 }
 .ejecucion,
 .ejecucion#ejecuta_taller {

@@ -1,13 +1,13 @@
 article#talleres
   .list_header
-    a#listar(href="/talleres", class='#{articulo == 'Talleres' ? "activo" : null }') 
+    a#listar(href="/talleres", class='#{articulo == "talleres" ? "activo" : null }') 
       | Talleres
       span.mask
-    a#crear(href="/talleres/new", class='#{articulo == 'FormTalleres' ? "activo" : null }') 
+    a#crear(href="/talleres/new", class='#{articulo == "taller" ? "activo" : null }') 
       | Crear Taller 
       span.mask
 
   .list_body
     ul.listado
-      partial('partials/lista_talleres', { talleres: talleres })
+      !=partial('partials/lista_talleres', { talleres: talleres })
 

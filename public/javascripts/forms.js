@@ -63,7 +63,7 @@ var TallerBaseForm= new FormValidator($("#newmap"),
 				      }
 				     );
 
-var TallerForm= new FormValidator($("#newmap"),
+var TallerBaseForm= new FormValidator($("#taller form"),
 	{
 	    'nombre': {
 		'find': 'input[name=name]',

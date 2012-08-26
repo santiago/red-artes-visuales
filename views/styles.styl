@@ -210,13 +210,13 @@ li.menu_item
     margin: 0 30px 10px
     padding: 10px
 
-article#equipamiento, article#taller_base
+article#equipamiento, article#taller
   form
     corner-bottom(15px)
     ul
       padding: 10px
 
-article#equipamientos, article#equipamiento, article#talleres, article#taller_base
+article#equipamientos, article#equipamiento, article#talleres, article#taller_base, article#taller
   width: 800px
   margin: auto
 
@@ -252,9 +252,36 @@ article#equipamientos, article#equipamiento
       &#listar
         float: left
         span.mask
-          width: 143px        
+          width: 143px
 
+  .equip_item
+    margin-top: 10px
+    border-bottom: 1px solid #EEE
+    p
+      font-size: 12px
+    a
+      &.nombre
+        font-size: 14px
+        font-weight: 900
+
+article#taller, article#talleres
+  .list_header
+    a
+      &#crear
+        float: right
+        span.mask
+          width: 118px
+
+      &#listar
+        float: left
+        span.mask
+          width: 86px
+
+
+
+article#equipamientos, article#equipamiento, article#taller, article#talleres
   .list_body
+    min-height: 60px
     width: 100%
     float: left
     corner-each(0, 0, 15px, 15px)
@@ -266,15 +293,6 @@ article#equipamientos, article#equipamiento
       float: left
       clear: left
 
-  .equip_item
-    margin-top: 10px
-    border-bottom: 1px solid #EEE
-    p
-      font-size: 12px
-    a
-      &.nombre
-        font-size: 14px
-        font-weight: 900
 
 .ejecucion
 
