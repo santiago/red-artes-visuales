@@ -1,40 +1,37 @@
--var metodologias = ['Sensibilización', 'Recorrido', 'Dinámica', 'Juego', 'Técnicas creativas', 'Presentación de referentes', 'Experimentación materiales' , 'Visitas', 'Investigación', 'Intercambios', 'Otro'];
--var habilidades = ['Reflexión', 'Creatividad', 'Capacidad de escucha', 'Compromiso', 'Pensamiento critico', 'Tolerancia', 'Honestidad', 'Participación', 'Reconocer el contexto social', 'Reconocer el contexto familiar', 'Reconocer el context geográfico', 'Respeto', 'Confianza', 'Construcción colectiva', 'Aceptación del otro', 'Capacidad de expresión', 'Trabajo en equipo'];
-
-#wrapper
-  form#taller_base
+article#taller_base
+  form
     h1 Taller  
 
     .element
       label Nombre actividad: 
-      input(name = "nombre", id = "nombre", type = "text")
+      input(name="nombre", type = "text")
 
     .element
       label Descripción: 
-      textarea(name = "desc")
+      textarea(name="desc")
 
     .element
       label Objetivos: 
-      textarea(name = "objetivos")
+      textarea(name="objetivos")
 
     .element
       label Metodologia: 
       select(name = "metodologias", multiple = "multiple")
-        each metod in metodologias 
+        each metod in params.metodologias 
           - var select = null; 
-          - if (metod == model.metodologias) select = 'selected';
+          // - if (metod == model.metodologias) select = 'selected';
           option(value = #{metod}, selected = #{select}) #{metod}
 
     .element
       label Habilidades: 
       select(name = "habilidades", multiple = "multiple")
-        each habilidad in habilidades 
+        each habilidad in params.habilidades 
           - var select = null; 
-          - if (habilidad == model.habilidades) select = 'selected';
+          // - if (habilidad == model.habilidades) select = 'selected';
           option(value = #{habilidad}, selected = #{select}) #{habilidad}
 
     .element
-      input(id = "submit", name="submit", type = "submit",value="Envia")
+      button OK
 
 
     .ejecucion

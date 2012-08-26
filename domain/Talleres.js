@@ -89,12 +89,9 @@ function Service(app) {
     });
 
     app.get('/talleres/new', function(req, res) {
-	res.render('forms/taller', {
+	res.render('forms/taller_base', {
             locals: {
-		model: {
-                    metodologia: ['Recorrido'],
-                    habilidades: ['Una Habilidad']
-		},
+		params: app.params,
 		articulo: 'FormTaller'
             }
 	});

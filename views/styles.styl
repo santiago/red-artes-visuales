@@ -117,25 +117,23 @@ form, #lista_evaluacion
 form h1
   padding-bottom: 25px
 
-#wrapper
-  margin: 20px 0 20px 0
-
 #main
   margin: 4px 0 20px 
   padding: 20px
+  header
+    width: 800px    
+    margin: auto
 
-header
-  border: 1px solid #edeaec 
-  padding: 20px;
-
-span.logo
-  margin: 0
+    span.logo
+      float: left
+      margin: 0
 
 ul.main_menu
   list-style-type: none
   text-align: center
   display: inline-block
   margin-left: 80px
+  margin-top: 20px
 
 li.menu_item
   display: inline
@@ -144,6 +142,7 @@ li.menu_item
 .content
   padding: 10px 20px 10px 20px;
   border-radius: 10px;
+  clear: left
 
 .list_header
   margin: 10px 0 10px 0;
@@ -169,6 +168,7 @@ li.menu_item
 #consultas
   width: 800px
   margin: auto
+  margin-top: 10px
   ul
     float: left
     li
@@ -216,13 +216,12 @@ article#equipamiento
     ul
       padding: 10px
 
-article#equipamientos, article#equipamiento
+article#equipamientos, article#equipamiento, article#talleres, article#taller_base
   width: 800px
   margin: auto
 
   .list_header
     span.mask
-      width: 86px
       height: 6px
       background: white
       position: absolute
@@ -233,7 +232,18 @@ article#equipamientos, article#equipamiento
       padding: 10px
       background-color: white
       corner-top(15px)
+      &.activo
+        color: #ed008c
+        font-weight: 900
+        box-shadow: 0px 0px 5px #666
+        position: relative
+        span.mask
+          display: block
 
+
+article#equipamientos, article#equipamiento
+  .list_header
+    a
       &#crear
         float: right
         span.mask
@@ -242,15 +252,7 @@ article#equipamientos, article#equipamiento
       &#listar
         float: left
         span.mask
-          width: 143px
-      &.activo
-        color: #ed008c
-        font-weight: 900
-        box-shadow: 0px 0px 5px #666
-        position: relative
-        span.mask
-          display: block
-        
+          width: 143px        
 
   .list_body
     width: 100%

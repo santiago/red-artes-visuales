@@ -1,7 +1,11 @@
 article#talleres
   .list_header
-    h1 Listado talleres
-    a(href="/talleres/new") Crear taller
+    a#listar(href="/talleres", class='#{articulo == 'Talleres' ? "activo" : null }') 
+      | Talleres
+      span.mask
+    a#crear(href="/talleres/new", class='#{articulo == 'FormTalleres' ? "activo" : null }') 
+      | Crear Taller 
+      span.mask
 
   .list_body
     ul.listado
