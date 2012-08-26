@@ -16,8 +16,8 @@ article#taller
 
       li
         .element
-          label Descripción: 
-          textarea(name="desc")
+          label Descripci&oacute;n: 
+          textarea(name="descripcion")
 
       li
         .element
@@ -26,23 +26,29 @@ article#taller
 
       li
         .element_checkbox_label
-          label Metodologia: 
-          .element_checkbox
+          label Metodolog&iacute;a: 
+          .options
+            -var i = 0
             each metod in params.metodologias 
-              - var select = null; 
+              - var select = null
               // - if (metod == model.metodologias) select = 'selected';
-              input(name="metod",type="checkbox",value="#{metod}",selected='#{select}')
-              label.radio_text #{metod}
+              .option(class='#{i%3 == 0 ? "row" : "" }')
+                input(name="metodologia[]", type="checkbox", value="#{metod}", selected='#{select}')
+                label.radio_text #{metod}
+              -i++
 
       li
         .element_checkbox_label
           label Habilidades: 
-          .element_checkbox
+          .options
+            -var i = 0
             each habilidad in params.habilidades 
               - var select = null; 
               // - if (habilidad == model.habilidades) select = 'selected';
-              input(name="habilidad",type="checkbox",value="#{habilidad}",selected='#{select}')
-              label.radio_text #{habilidad}
+              .option(class='#{i%3 == 0 ? "row" : "" }')
+                input(name="habilidad",type="checkbox",value="#{habilidad}",selected='#{select}')
+                label.radio_text #{habilidad}
+              -i++
 
       li
         .element

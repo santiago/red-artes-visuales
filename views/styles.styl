@@ -57,17 +57,36 @@ body
   height: 16px
   background: url(/images/ajax-loader.gif) 0 0 no-repeat
 
-label
-  display: inline-block
-  width: 200px
+form li
+  margin-bottom: 10px
 
 .element *, .evaluacion *
   vertical-align: middle
 
 .element_checkbox_label
-  vertical-align: middle
-  width: 200px
+  width: 100%
+  .row
+    clear: left
+
+  .options
+    border: 1px solid #AAA
+    padding: 10px
+    float: left
+    .option
+      float: left
+  label
+    float: left
+  .option
+    padding-bottom: 5px
+    label, input
+      float: left
+    input
+      margin-right: 3px
+
+
+label
   display: inline-block
+  width: 200px
 
 .element_checkbox
   display: inline-block
@@ -103,11 +122,10 @@ label.radio_sino
 label.radio_text
   margin-right: 10px
   margin-left: 2px
-  width: 50px
+  width: 100px
 
 input[type=text]
   display: inline-block
-  margin: 10px 0
   height: 32px
   border: 1px solid black
   width: 300px
@@ -238,6 +256,10 @@ article#equipamiento, article#taller
     corner-bottom(15px)
     ul
       padding: 10px
+    li
+      clear: left
+      float: left
+      margin-bottom: 10px
 
 article#equipamientos, article#equipamiento, article#talleres, article#taller_base, article#taller
   width: 800px
@@ -270,7 +292,7 @@ article#equipamientos, article#equipamiento
       &#crear
         float: right
         span.mask
-          width: 170px
+          width: 183px
 
       &#listar
         float: left
@@ -299,8 +321,6 @@ article#taller, article#talleres
         float: left
         span.mask
           width: 86px
-
-
 
 article#equipamientos, article#equipamiento, article#taller, article#talleres
   .list_body

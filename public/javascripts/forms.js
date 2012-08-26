@@ -49,24 +49,23 @@ FormValidator.prototype.getValidData= function(opts) {
     }
     return data;
 };
-    
-var TallerBaseForm= new FormValidator($("#newmap"),
-				      {
-					  'nombre': {
-					      'find': 'input[name=name]',
-					      'validate': ['presence']
-					  },
-					  'descripcion': {
-					      'find': 'textarea[name=description]',
-					      'validate': ['presence']
-					  }
-				      }
-				     );
 
 var TallerBaseForm= new FormValidator($("#taller form"),
 	{
 	    'nombre': {
 		'find': 'input[name=name]',
+		'validate': ['presence']
+	    },
+	    'descripcion': {
+		'find': 'textarea[name=descripcion]',
+		'validate': ['presence']
+	    },
+	    'objetivos': {
+		'find': 'textarea[name=objetivos]',
+		'validate': ['presence']
+	    },
+	    'metodologia': {
+		'find': '[name="metodologia[]:checked"]',
 		'validate': ['presence']
 	    },
 	    'descripcion': {

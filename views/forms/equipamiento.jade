@@ -73,12 +73,15 @@ article#equipamiento
       li
         .element_checkbox_label
           label Otros Talleres:
-          .element_checkbox
+          .options
+            -var i = 0
             each otro in params.otros_talleres
-              - var select=null; 
+              -var select=null; 
               // - if (otro == model.otros_talleres) select='selected';
-              input(name="otros",type="checkbox",value="#{otro}",selected='#{select}') 
-              label.radio_text #{otro} 
+              .option(class='#{i%3 == 0 ? "row" : "" }')
+                input(name="otros",type="checkbox",value="#{otro}",selected='#{select}') 
+                label.radio_text #{otro}
+              -i++
 
       li
         .element
@@ -92,12 +95,15 @@ article#equipamiento
       li
         .element_checkbox_label
           label Espacios disponibles:
-          .element_checkbox
+          .options
+            -var i = 0
             each espacio in params.espacios
-              - var select=null; 
+              - var select=null
               // - if (espacio == model.espacio) select='selected';
-              input(name="espacios",type="checkbox",value="#{espacio}",selected='#{select}') 
-              label.radio_text #{espacio} 
+              .option
+                input(name="espacios", type="checkbox", value="#{espacio}", selected='#{select}') 
+                label.radio_text #{espacio} 
+              -i++
 
       li
         .element
@@ -128,12 +134,15 @@ article#equipamiento
       li
         .element_checkbox_label
           label Edades:
-          .element_checkbox
+          .options
+            -var i=0
             each edad in params.edades
               - var select=null; 
               // - if (edad == model.edad) select='selected';
-              input(name="edades",type="checkbox",value="#{edad}",selected='#{select}') 
-              label.radio_text #{edad} 
+              .option(class='#{i%3 == 0 ? "row" : "" }')
+                input(name="edades",type="checkbox",value="#{edad}",selected='#{select}') 
+                label.radio_text #{edad} 
+              -i++
 
       li
         .element
@@ -163,7 +172,7 @@ article#equipamiento
       
       li
         .element
-          label Como llegar?:
+          label C&oacute;mo llegar:
           textarea(name="como_llegar")
 
       li
@@ -188,7 +197,7 @@ article#equipamiento
   
       li
         .element
-          label Newsletter?:
+          label Newsletter:
           input(name="newsletter", type="radio", value="Si")
           label.radio_sino Si
           input(name="newsletter", type="radio", value="No")
@@ -196,7 +205,7 @@ article#equipamiento
 
       li
         .element
-          label Cartelera?:
+          label Cartelera:
           input(name="cartelera", type="radio", value="Si")
           label.radio_sino Si
           input(name="cartelera", type="radio", value="No")
@@ -204,7 +213,7 @@ article#equipamiento
 
       li
         .element
-          label Telefono Info?:
+          label Tel&eacute;fono Info:
           input(name="telefono_info", type="radio", value="Si")
           label.radio_sino Si
           input(name="telefono_info", type="radio", value="No")
@@ -212,7 +221,7 @@ article#equipamiento
 
       li
         .element
-          label Perifonía?:
+          label Perifon&iacute;a:
           input(name="perifonia", type="radio", value="Si")
           label.radio_sino Si
           input(name="perifonia", type="radio", value="No")
@@ -220,7 +229,7 @@ article#equipamiento
 
       li
         .element
-          label Boletín?:
+          label Bolet&iacute;n:
           input(name="boletin", type="radio", value="Si")
           label.radio_sino Si
           input(name="boletin", type="radio", value="No")
@@ -228,7 +237,7 @@ article#equipamiento
 
       li
         .element
-          label Medios comunitarios?:
+          label Medios comunitarios:
           input(name="medios_comun", type="radio", value="Si")
           label.radio_sino Si
           input(name="medios_comun", type="radio", value="No")
@@ -236,7 +245,7 @@ article#equipamiento
 
       li
         .element
-          label E-mailing?:
+          label E-mailing:
           input(name="emailing", type="radio", value="Si")
           label.radio_sino Si
           input(name="emailing", type="radio", value="No")
