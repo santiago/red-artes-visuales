@@ -22,18 +22,43 @@ body {
   height: 16px;
   background: url("/images/ajax-loader.gif") 0 0 no-repeat;
 }
-label {
-  display: inline-block;
-  width: 200px;
+form li {
+  margin-bottom: 10px;
 }
 .element *,
 .evaluacion * {
   vertical-align: middle;
 }
 .element_checkbox_label {
-  vertical-align: middle;
-  width: 200px;
+  width: 100%;
+}
+.element_checkbox_label .row {
+  clear: left;
+}
+.element_checkbox_label .options {
+  border: 1px solid #aaa;
+  padding: 10px;
+  float: left;
+}
+.element_checkbox_label .options .option {
+  float: left;
+}
+.element_checkbox_label label {
+  float: left;
+}
+.element_checkbox_label .option {
+  padding-bottom: 5px;
+}
+.element_checkbox_label .option label,
+.element_checkbox_label .option input {
+  float: left;
+}
+.element_checkbox_label .option input {
+  margin-right: 3px;
+}
+label {
   display: inline-block;
+  width: 200px;
 }
 .element_checkbox {
   display: inline-block;
@@ -69,11 +94,10 @@ label.radio_sino {
 label.radio_text {
   margin-right: 10px;
   margin-left: 2px;
-  width: 50px;
+  width: 100px;
 }
 input[type=text] {
   display: inline-block;
-  margin: 10px 0;
   height: 32px;
   border: 1px solid #000;
   width: 300px;
@@ -264,6 +288,12 @@ article#equipamiento form ul,
 article#taller form ul {
   padding: 10px;
 }
+article#equipamiento form li,
+article#taller form li {
+  clear: left;
+  float: left;
+  margin-bottom: 10px;
+}
 article#equipamientos,
 article#equipamiento,
 article#talleres,
@@ -327,7 +357,7 @@ article#equipamiento .list_header a#crear {
 }
 article#equipamientos .list_header a#crear span.mask,
 article#equipamiento .list_header a#crear span.mask {
-  width: 170px;
+  width: 183px;
 }
 article#equipamientos .list_header a#listar,
 article#equipamiento .list_header a#listar {

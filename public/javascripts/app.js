@@ -18,6 +18,7 @@ jQuery(document).ready(function($) {
 	for(var model in models) {
 	    Domain[model] = {
 		find: function() {
+		    $.get(models[model].resource);
 		},
 		create: function(data, callback) {
 		    $.post(models[model].resource, data, callback);
