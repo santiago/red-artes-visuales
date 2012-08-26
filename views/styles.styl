@@ -64,6 +64,15 @@ label
 .element *, .evaluacion *
   vertical-align: middle
 
+.element_checkbox_label
+  vertical-align: middle
+  width: 200px
+  display: inline-block
+
+.element_checkbox
+  display: inline-block
+  width: 300px
+
 .evaluacion input
   display: inline-block;
   width: 20px;
@@ -81,8 +90,20 @@ label
   color: white
 
 input[type=radio]
-  float: left
   padding: 5px
+
+input[type=checkbox]
+  padding: 5px
+
+label.radio_sino
+  margin-right: 10px
+  margin-left: 2px
+  width: 10px
+
+label.radio_text
+  margin-right: 10px
+  margin-left: 2px
+  width: 50px
 
 input[type=text]
   display: inline-block
@@ -105,6 +126,7 @@ textarea
 select
   display: inline-block
   width: 300px
+  margin: 10px 0 10px;
 
 form, #lista_evaluacion
   box-shadow: 0px 0px 5px #666
@@ -113,6 +135,7 @@ form, #lista_evaluacion
   margin: auto
   float: left
   corner(15px)
+  font-size: 0.8em
 
 form h1
   padding-bottom: 25px
@@ -247,7 +270,7 @@ article#equipamientos, article#equipamiento
       &#crear
         float: right
         span.mask
-          width: 183px
+          width: 170px
 
       &#listar
         float: left
