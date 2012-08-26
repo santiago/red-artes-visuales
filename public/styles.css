@@ -1,3 +1,4 @@
+§,
 * {
   margin: 0;
   padding: 0;
@@ -401,4 +402,16 @@ article#talleres .list_body ul {
 .ejecucion,
 .ejecucion#ejecuta_taller {
   float: right;
+}
+.resultado_area {
+  width: 100%;
+  clear: both;
+  padding-top: 10px;
+}
+.resultado_status {
+  display: none;
+  margin: 10px 30px 0 10px;
+  font-size: 10px;
+  border-top: 1px solid #00adef;
+  padding-top: 10px;
 }
