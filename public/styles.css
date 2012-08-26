@@ -222,7 +222,8 @@ equip_barrio {
   margin: 0 30px 10px;
   padding: 10px;
 }
-article#equipamiento form {
+article#equipamiento form,
+article#taller_base form {
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
   border-top-left-radius: 0;
@@ -236,7 +237,8 @@ article#equipamiento form {
   -webkit-border-bottom-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
-article#equipamiento form ul {
+article#equipamiento form ul,
+article#taller_base form ul {
   padding: 10px;
 }
 article#equipamientos,

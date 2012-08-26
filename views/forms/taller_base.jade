@@ -1,45 +1,50 @@
 article#taller_base
   form
-    h1 Taller  
+    ul
+      li
+        .element
+          label Nombre actividad: 
+          input(name="nombre", type = "text")
 
-    .element
-      label Nombre actividad: 
-      input(name="nombre", type = "text")
+      li
+        .element
+          label Descripción: 
+          textarea(name="desc")
 
-    .element
-      label Descripción: 
-      textarea(name="desc")
+      li
+        .element
+          label Objetivos: 
+          textarea(name="objetivos")
 
-    .element
-      label Objetivos: 
-      textarea(name="objetivos")
+      li
+        .element
+          label Metodologia: 
+          select(name = "metodologias", multiple = "multiple")
+            each metod in params.metodologias 
+              - var select = null; 
+              // - if (metod == model.metodologias) select = 'selected';
+              option(value = #{metod}, selected = #{select}) #{metod}
 
-    .element
-      label Metodologia: 
-      select(name = "metodologias", multiple = "multiple")
-        each metod in params.metodologias 
-          - var select = null; 
-          // - if (metod == model.metodologias) select = 'selected';
-          option(value = #{metod}, selected = #{select}) #{metod}
+      li
+        .element
+          label Habilidades: 
+          select(name = "habilidades", multiple = "multiple")
+            each habilidad in params.habilidades 
+              - var select = null; 
+              // - if (habilidad == model.habilidades) select = 'selected';
+              option(value = #{habilidad}, selected = #{select}) #{habilidad}
 
-    .element
-      label Habilidades: 
-      select(name = "habilidades", multiple = "multiple")
-        each habilidad in params.habilidades 
-          - var select = null; 
-          // - if (habilidad == model.habilidades) select = 'selected';
-          option(value = #{habilidad}, selected = #{select}) #{habilidad}
-
-    .element
-      button OK
+      li
+        .element
+          button OK
 
 
-    .ejecucion
-      h3 Equipamientos
-      button(id="ejecuta_taller",value="Ejecutar taller")
+      .ejecucion
+        h3 Equipamientos
+        button(id="ejecuta_taller",value="Ejecutar taller")
 
-    .lista_equipamientos
-      ul.listado_ejecucion
-        partial('partials/lista_taller_equip.jade')
+      .lista_equipamientos
+        ul.listado_ejecucion
+          partial('partials/lista_taller_equip.jade')
 
-    .lista_terminados
+      .lista_terminados
