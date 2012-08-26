@@ -27,25 +27,25 @@ article#equipamiento
       li
         .element
           label Ubicación:
-          input(name="ubicacion", type="text")
+          input(name="ubiFacion", type="text")
 
       li
         .element
           label Comuna:
-            select(name="comuna")
-              each comuna in params.comunas
-                - var select=null; 
-                // - if (comuna == model.comuna) select='selected';
-                option(value='#{comuna}', selected='#{select}') #{comuna}
+          select(name="comuna")
+            each comuna in params.comunas
+              - var select=null; 
+              // - if (comuna == model.comuna) select='selected';
+              option(value='#{comuna}', selected='#{select}') #{comuna}
 
       li
         .element
           label Barrio:
-            select(name="barrio")
-              each barrio in params.barrios
-                - var select=null; 
-                // - if (barrio == model.barrio) select='selected';
-                option(value='#{barrio}', selected='#{select}') #{barrio}
+          select(name="barrio")
+            each barrio in params.barrios
+              - var select=null; 
+              // - if (barrio == model.barrio) select='selected';
+              option(value='#{barrio}', selected='#{select}') #{barrio}
 
       li
         .element
@@ -66,16 +66,19 @@ article#equipamiento
         .element
           label Experiencia:
           input(name="experiencia", type="radio", value="Si" )
+          label.radio_sino Si
           input(name="experiencia", type="radio", value="No" )
+          label.radio_sino No
 
       li
-        .element
+        .element_checkbox_label
           label Otros Talleres:
-          select(name="otros_talleres", multiple="multiple")
+          .element_checkbox
             each otro in params.otros_talleres
               - var select=null; 
               // - if (otro == model.otros_talleres) select='selected';
-              option(value='#{otro}', selected='#{select}') #{otro}
+              input(name="otros",type="checkbox",value="#{otro}",selected='#{select}') 
+              label.radio_text #{otro} 
 
       li
         .element
@@ -87,25 +90,30 @@ article#equipamiento
               option(value='#{tipo}', selected='#{select}') #{tipo}
 
       li
-        .element
+        .element_checkbox_label
           label Espacios disponibles:
-          select(name="espacios", multiple="multiple")
+          .element_checkbox
             each espacio in params.espacios
               - var select=null; 
               // - if (espacio == model.espacio) select='selected';
-              option(value='#{espacio}', selected='#{select}') #{espacio}
+              input(name="espacios",type="checkbox",value="#{espacio}",selected='#{select}') 
+              label.radio_text #{espacio} 
 
       li
         .element
           label Tienen locker?:
           input(name="locker", id="locker", type="radio", value="Si")
+          label.radio_sino Si
           input(name="locker", id="locker", type="radio", value="No")
+          label.radio_sino No
 
       li
         .element
           label Baños cerca?:
           input(name="banos", type="radio", value="Si")
+          label.radio_sino Si
           input(name="banos", type="radio", value="No")
+          label.radio_sino No
 
       li
         .element
@@ -118,32 +126,40 @@ article#equipamiento
           input(name="horario", type="text" )
 
       li
-        .element
+        .element_checkbox_label
           label Edades:
-          select(name="edades", multiple="multiple")
+          .element_checkbox
             each edad in params.edades
               - var select=null; 
               // - if (edad == model.edad) select='selected';
-              option(value='#{edad}', selected='#{select}') #{edad}
+              input(name="edades",type="checkbox",value="#{edad}",selected='#{select}') 
+              label.radio_text #{edad} 
 
       li
         .element
           label Seguridad:
           input(name="seguridad", type="radio", value="Alta")
+          label.radio_text Alta 
           input(name="seguridad", type="radio", value="Media")
+          label.radio_text Media
           input(name="seguridad", type="radio", value="Baja")
+          label.radio_text Baja 
     
       li
         .element
           label Fronteras invisibles:
           input(name="fronteras", type="radio", value="Si")
+          label.radio_sino Si
           input(name="fronteras", type="radio", value="No")
+          label.radio_sino No
       
       li
         .element
           label Zona:
           input(name="zona", type="radio", value="Urbana")
+          label.radio_text Urbana 
           input(name="zona", type="radio", value="Rural")
+          label.radio_text Rural
       
       li
         .element
@@ -174,43 +190,57 @@ article#equipamiento
         .element
           label Newsletter?:
           input(name="newsletter", type="radio", value="Si")
+          label.radio_sino Si
           input(name="newsletter", type="radio", value="No")
+          label.radio_sino No
 
       li
         .element
           label Cartelera?:
           input(name="cartelera", type="radio", value="Si")
+          label.radio_sino Si
           input(name="cartelera", type="radio", value="No")
+          label.radio_sino No
 
       li
         .element
           label Telefono Info?:
           input(name="telefono_info", type="radio", value="Si")
+          label.radio_sino Si
           input(name="telefono_info", type="radio", value="No")
+          label.radio_sino No
 
       li
         .element
           label Perifonía?:
           input(name="perifonia", type="radio", value="Si")
+          label.radio_sino Si
           input(name="perifonia", type="radio", value="No")
+          label.radio_sino No
 
       li
         .element
           label Boletín?:
           input(name="boletin", type="radio", value="Si")
+          label.radio_sino Si
           input(name="boletin", type="radio", value="No")
+          label.radio_sino No
 
       li
         .element
           label Medios comunitarios?:
           input(name="medios_comun", type="radio", value="Si")
+          label.radio_sino Si
           input(name="medios_comun", type="radio", value="No")
+          label.radio_sino No
 
       li
         .element
           label E-mailing?:
           input(name="emailing", type="radio", value="Si")
+          label.radio_sino Si
           input(name="emailing", type="radio", value="No")
+          label.radio_sino No
 
       li
         .element

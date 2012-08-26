@@ -25,22 +25,24 @@ article#taller
           textarea(name="objetivos")
 
       li
-        .element
+        .element_checkbox_label
           label Metodologia: 
-          select(name = "metodologias", multiple = "multiple")
+          .element_checkbox
             each metod in params.metodologias 
               - var select = null; 
               // - if (metod == model.metodologias) select = 'selected';
-              option(value = #{metod}, selected = #{select}) #{metod}
+              input(name="metod",type="checkbox",value="#{metod}",selected='#{select}')
+              label.radio_text #{metod}
 
       li
-        .element
+        .element_checkbox_label
           label Habilidades: 
-          select(name = "habilidades", multiple = "multiple")
+          .element_checkbox
             each habilidad in params.habilidades 
               - var select = null; 
               // - if (habilidad == model.habilidades) select = 'selected';
-              option(value = #{habilidad}, selected = #{select}) #{habilidad}
+              input(name="habilidad",type="checkbox",value="#{habilidad}",selected='#{select}')
+              label.radio_text #{habilidad}
 
       li
         .element

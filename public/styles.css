@@ -30,6 +30,15 @@ label {
 .evaluacion * {
   vertical-align: middle;
 }
+.element_checkbox_label {
+  vertical-align: middle;
+  width: 200px;
+  display: inline-block;
+}
+.element_checkbox {
+  display: inline-block;
+  width: 300px;
+}
 .evaluacion input {
   display: inline-block;
   width: 20px;
@@ -47,8 +56,20 @@ label {
   color: #fff;
 }
 input[type=radio] {
-  float: left;
   padding: 5px;
+}
+input[type=checkbox] {
+  padding: 5px;
+}
+label.radio_sino {
+  margin-right: 10px;
+  margin-left: 2px;
+  width: 10px;
+}
+label.radio_text {
+  margin-right: 10px;
+  margin-left: 2px;
+  width: 50px;
 }
 input[type=text] {
   display: inline-block;
@@ -71,6 +92,7 @@ textarea {
 select {
   display: inline-block;
   width: 300px;
+  margin: 10px 0 10px;
 }
 form,
 #lista_evaluacion {
@@ -91,6 +113,7 @@ form,
   -moz-border-radius-bottomright: 15px;
   -webkit-border-bottom-right-radius: 15px;
   border-bottom-right-radius: 15px;
+  font-size: 0.8em;
 }
 form h1 {
   padding-bottom: 25px;
@@ -304,7 +327,7 @@ article#equipamiento .list_header a#crear {
 }
 article#equipamientos .list_header a#crear span.mask,
 article#equipamiento .list_header a#crear span.mask {
-  width: 183px;
+  width: 170px;
 }
 article#equipamientos .list_header a#listar,
 article#equipamiento .list_header a#listar {
