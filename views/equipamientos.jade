@@ -1,8 +1,12 @@
-#equipamientos
+article#equipamientos
   .list_header
-    h1 Listado equipamientos 
-    a(href="/equipamientos/new") Crear equipamiento 
+    a#listar(href="/equipamientos", class='#{articulo == 'Equipamientos' ? "activo" : null }') 
+      | Equipamientos
+      span.mask
+    a#crear(href="/equipamientos/new", class='#{articulo == 'FormEquipamiento' ? "activo" : null }') 
+      | Crear equipamiento 
+      span.mask
 
   .list_body
     ul.listado
-      partial('partials/lista_equipamientos', { equipamientos: equipamientos })
+      !=partial('partials/lista_equipamientos', { equipamientos: equipamientos })

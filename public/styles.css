@@ -46,7 +46,11 @@ label {
   background-color: #f00;
   color: #fff;
 }
-input {
+input[type=radio] {
+  float: left;
+  padding: 5px;
+}
+input[type=text] {
   display: inline-block;
   margin: 10px 0;
   height: 32px;
@@ -61,18 +65,27 @@ textarea {
 }
 select {
   display: inline-block;
-  margin: 10px 0;
   width: 300px;
 }
 form,
 #lista_evaluacion {
-  box-shadow: 10px 10px 5px #888;
+  box-shadow: 0px 0px 5px #666;
   background-color: #fff;
-  padding: 20px 25px 0 25px;
-  width: 600px;
+  width: 800px;
   margin: auto;
-  border: 1px solid #000;
-  border-radius: 15px;
+  float: left;
+  -moz-border-radius-topleft: 15px;
+  -webkit-border-top-left-radius: 15px;
+  border-top-left-radius: 15px;
+  -moz-border-radius-topright: 15px;
+  -webkit-border-top-right-radius: 15px;
+  border-top-right-radius: 15px;
+  -moz-border-radius-bottomleft: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  -moz-border-radius-bottomright: 15px;
+  -webkit-border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 form h1 {
   padding-bottom: 25px;
@@ -95,12 +108,10 @@ li.menu_item {
   display: inline;
   padding: 0.5em 1em;
 }
-li.menu_item a,
 .content {
   padding: 10px 20px 10px 20px;
   border-radius: 10px;
 }
-#talleres,
 .list_header {
   margin: 10px 0 10px 0;
 }
@@ -127,4 +138,190 @@ equip_ubicacion,
 equip_comuna,
 equip_barrio {
   font-size: 0.8em;
+}
+#consultas {
+  width: 800px;
+  margin: auto;
+}
+#consultas ul {
+  float: left;
+}
+#consultas ul li {
+  float: left;
+}
+#consultas ul li a {
+  padding: 10px;
+  float: left;
+}
+#consultas .tabs_container {
+  float: left;
+  clear: left;
+  background: #fff;
+  width: 800px;
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-topright: 15px;
+  -webkit-border-top-right-radius: 15px;
+  border-top-right-radius: 15px;
+  -moz-border-radius-bottomleft: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  -moz-border-radius-bottomright: 15px;
+  -webkit-border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 0px 5px #666;
+}
+#consultas .tab_content {
+  padding: 10px;
+}
+#consultas .opciones span.mask {
+  width: 86px;
+  height: 6px;
+  background: #fff;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+#consultas .opciones li {
+  position: relative;
+}
+#consultas .opciones li a.activo {
+  background: #fff;
+  -moz-border-radius-topleft: 15px;
+  -webkit-border-top-left-radius: 15px;
+  border-top-left-radius: 15px;
+  -moz-border-radius-topright: 15px;
+  -webkit-border-top-right-radius: 15px;
+  border-top-right-radius: 15px;
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+  color: #ed008c;
+  font-weight: 900;
+  box-shadow: 0px 0px 5px #666;
+}
+#consultas button#buscar {
+  float: right;
+  margin: 0 30px 10px;
+  padding: 10px;
+}
+article#equipamiento form {
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-topright: 0;
+  -webkit-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  -moz-border-radius-bottomleft: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  -moz-border-radius-bottomright: 15px;
+  -webkit-border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+article#equipamiento form ul {
+  padding: 10px;
+}
+article#equipamientos,
+article#equipamiento {
+  width: 800px;
+  margin: auto;
+}
+article#equipamientos .list_header span.mask,
+article#equipamiento .list_header span.mask {
+  width: 86px;
+  height: 6px;
+  background: #fff;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  display: none;
+}
+article#equipamientos .list_header a,
+article#equipamiento .list_header a {
+  padding: 10px;
+  background-color: #fff;
+  -moz-border-radius-topleft: 15px;
+  -webkit-border-top-left-radius: 15px;
+  border-top-left-radius: 15px;
+  -moz-border-radius-topright: 15px;
+  -webkit-border-top-right-radius: 15px;
+  border-top-right-radius: 15px;
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+article#equipamientos .list_header a#crear,
+article#equipamiento .list_header a#crear {
+  float: right;
+}
+article#equipamientos .list_header a#crear span.mask,
+article#equipamiento .list_header a#crear span.mask {
+  width: 183px;
+}
+article#equipamientos .list_header a#listar,
+article#equipamiento .list_header a#listar {
+  float: left;
+}
+article#equipamientos .list_header a#listar span.mask,
+article#equipamiento .list_header a#listar span.mask {
+  width: 143px;
+}
+article#equipamientos .list_header a.activo,
+article#equipamiento .list_header a.activo {
+  color: #ed008c;
+  font-weight: 900;
+  box-shadow: 0px 0px 5px #666;
+  position: relative;
+}
+article#equipamientos .list_header a.activo span.mask,
+article#equipamiento .list_header a.activo span.mask {
+  display: block;
+}
+article#equipamientos .list_body,
+article#equipamiento .list_body {
+  width: 100%;
+  float: left;
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-topright: 0;
+  -webkit-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  -moz-border-radius-bottomleft: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  -moz-border-radius-bottomright: 15px;
+  -webkit-border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 0px 5px #666;
+  background: #fff;
+}
+article#equipamientos .list_body ul,
+article#equipamiento .list_body ul {
+  padding: 10px;
+  width: 97.5%;
+  float: left;
+  clear: left;
+}
+article#equipamientos .equip_item,
+article#equipamiento .equip_item {
+  margin-top: 10px;
+  border-bottom: 1px solid #eee;
+}
+article#equipamientos .equip_item p,
+article#equipamiento .equip_item p {
+  font-size: 12px;
+}
+article#equipamientos .equip_item a.nombre,
+article#equipamiento .equip_item a.nombre {
+  font-size: 14px;
+  font-weight: 900;
 }

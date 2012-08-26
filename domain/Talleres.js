@@ -82,7 +82,8 @@ function Service(app) {
     app.get('/talleres', getTalleres, function(req, res) {
 	res.render('talleres', {
             locals: {
-		talleres: req.talleres
+		talleres: req.talleres,
+		articulo: 'Talleres',
             }
 	});
     });
@@ -93,7 +94,8 @@ function Service(app) {
 		model: {
                     metodologia: ['Recorrido'],
                     habilidades: ['Una Habilidad']
-		}
+		},
+		articulo: 'FormTaller'
             }
 	});
     });

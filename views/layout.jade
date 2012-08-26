@@ -10,6 +10,7 @@ html
     .root-wrapper
       article#main
         header
+          input(type='hidden', name='articulo', value='#{articulo}')
           span.logo
           ul.main_menu
             li.menu_item
@@ -23,3 +24,5 @@ html
           != body
     script(type="text/javascript", src="/javascripts/thirdparty/jquery/jquery-1.7.min.js")
     script(type="text/javascript", src="/javascripts/thirdparty/jquery.jgrowl_minimized.js")
+    script(type="text/javascript", src="/javascripts/forms.js")
+    script(type="text/javascript", src="/javascripts/app.js")

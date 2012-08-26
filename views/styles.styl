@@ -80,7 +80,11 @@ label
   background-color: red
   color: white
 
-input
+input[type=radio]
+  float: left
+  padding: 5px
+
+input[type=text]
   display: inline-block
   margin: 10px 0
   height: 32px
@@ -95,17 +99,15 @@ textarea
 
 select
   display: inline-block
-  margin: 10px 0
   width: 300px
 
 form, #lista_evaluacion
-  box-shadow: 10px 10px 5px #888888
+  box-shadow: 0px 0px 5px #666
   background-color: white
-  padding: 20px 25px 0 25px
-  width: 600px
+  width: 800px
   margin: auto
-  border: 1px solid black
-  border-radius: 15px
+  float: left
+  corner(15px)
 
 form h1
   padding-bottom: 25px
@@ -128,14 +130,10 @@ li.menu_item
   display: inline
   padding: .5em 1em
 
-li.menu_item a
-
 .content
   padding: 10px 20px 10px 20px;
   border-radius: 10px;
 
-#talleres
-  
 .list_header
   margin: 10px 0 10px 0;
 
@@ -156,3 +154,111 @@ li.menu_item a
 
 .taller_fecha, taller_equip, equip_ubicacion,equip_comuna,equip_barrio
   font-size: 0.8em;
+
+#consultas
+  width: 800px
+  margin: auto
+  ul
+    float: left
+    li
+      float: left
+      a
+        padding: 10px
+        float: left
+
+  .tabs_container
+    float: left
+    clear: left
+    background: white
+    width: 800px
+    corner-each(0, 15px, 15px, 15px)
+    box-shadow: 0px 0px 5px #666
+  .tab_content
+    padding: 10px
+
+  .opciones
+    span.mask
+      width: 86px
+      height: 6px
+      background: white
+      position: absolute
+      bottom: -5px
+      left: 0
+    li
+      position: relative
+      a
+        &.activo
+          background: white
+          corner-top(15px)
+          color: #ed008c
+          font-weight: 900
+          box-shadow: 0px 0px 5px #666
+
+  button#buscar
+    float: right
+    margin: 0 30px 10px
+    padding: 10px
+
+article#equipamiento
+  form
+    corner-bottom(15px)
+    ul
+      padding: 10px
+
+article#equipamientos, article#equipamiento
+  width: 800px
+  margin: auto
+
+  .list_header
+    span.mask
+      width: 86px
+      height: 6px
+      background: white
+      position: absolute
+      bottom: -5px
+      left: 0
+      display: none
+    a
+      padding: 10px
+      background-color: white
+      corner-top(15px)
+
+      &#crear
+        float: right
+        span.mask
+          width: 183px
+
+      &#listar
+        float: left
+        span.mask
+          width: 143px
+      &.activo
+        color: #ed008c
+        font-weight: 900
+        box-shadow: 0px 0px 5px #666
+        position: relative
+        span.mask
+          display: block
+        
+
+  .list_body
+    width: 100%
+    float: left
+    corner-each(0, 0, 15px, 15px)
+    box-shadow: 0px 0px 5px #666
+    background: white
+    ul
+      padding: 10px
+      width: 97.5%
+      float: left
+      clear: left
+
+  .equip_item
+    margin-top: 10px
+    border-bottom: 1px solid #EEE
+    p
+      font-size: 12px
+    a
+      &.nombre
+        font-size: 14px
+        font-weight: 900

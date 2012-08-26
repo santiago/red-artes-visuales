@@ -45,7 +45,6 @@ function Service(app) {
         });
     }
 
-
     function delParticipantes(req, res, next) {
         var id = req.params.id;
         Participante.findByIdAndRemove(id, function(err, r) {

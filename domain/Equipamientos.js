@@ -82,6 +82,7 @@ function Service(app) {
     app.get('/equipamientos', getEquipamientos, function(req, res) {
         res.render('equipamientos', {
             locals: {
+		articulo: 'Equipamientos',
                 equipamientos: req.equipamientos
             }
         });
@@ -89,6 +90,10 @@ function Service(app) {
 
     app.get('/equipamientos/new', getEquipamientos, function(req, res) {
         res.render('forms/equipamiento', {
+            locals: {
+		articulo: 'FormEquipamiento',
+		params: app.params
+	    }
         });
     });
     

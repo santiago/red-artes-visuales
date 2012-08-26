@@ -1,4 +1,6 @@
 jQuery.ready(function($) {
+    var articulo = $('input[name=articulo]');
+
     var FormValidator= function($ctx, fields) {
 	this.fields= fields;
 	this.valid= false;
@@ -102,5 +104,22 @@ jQuery.ready(function($) {
 		}
 	    }
 	}
-    }
+    };
+
+    var Consultas = function() {
+	var $el = $('article#consultas');
+
+	// Tabs
+	$el.find('.opciones li a').click(function(e) {
+	    e.preventDefault();
+	    $(this).blur();
+	    
+	    var opcion = $(this).attr('id');
+
+	    $el.find('.tab_content').hide();
+	    $el.find('.tab_content#'+opcion).show();
+	});
+    };
+
+    console.log('article');
 })

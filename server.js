@@ -3,7 +3,10 @@ var env = process.env.NODE_ENV || 'development';
 var express = require('express');
 var stylus = require('stylus');
 var app = module.exports = express.createServer();
+var params = require('./params');
+
 app.db = require('./models/models');
+app.params = params;
 
 // Configuration
 function compile(str, path) {
@@ -42,7 +45,11 @@ app.configure('production', function(){
 
 
 app.get('/', function(req, res) {
-    res.render('index');
+    if (req.session.user) {
+    	res.redirect('/equipamientos');
+    } else {
+	res.render('index');
+    }
 });
 
 // Initialize Domain
@@ -50,6 +57,7 @@ require('./domain/Equipamientos')(app)
 require('./domain/Participantes')(app)
 require('./domain/Talleres')(app)
 require('./domain/Evaluaciones')(app)
+require('./domain/Consultas')(app)
 
 // App starts here
 // Only listen on $ node app.js
