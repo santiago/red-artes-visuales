@@ -8,77 +8,89 @@ article#participante
           label Nombre completo:      
           input(name="nombre",id="nombre", type="text")
 
-    .element
-      label Edad:
-      select(name="edad")
-        each edad in edades
-          - var select=null; 
-          - if (edad == model.edad) select='selected';
-          option(value=#{edad}, selected=#{select}) #{edad}
-
-    .element
-      label Comuna:
-      select(name="comuna")
-        each comuna in comunas
-          - var select=null; 
-          - if (comuna == model.comuna) select='selected';
-          option(value=#{comuna}, selected=#{select}) #{comuna}
-
-    .element
-      label Barrio:
-      select(name="barrio")
-        each barrio in barrios
-          - var select=null; 
-          - if (barrio == model.barrio) select='selected';
-          option(value=#{barrio}, selected=#{select}) #{barrio}
-
-    .element
-      label Estrato:
-      select(name="estrato")
-        each estrato in estratos
-          - var select=null; 
-          - if (estrato == model.estrato) select='selected';
-          option(value=#{estrato}, selected=#{select}) #{estrato}
-
-    .element
-      label Fotos:
-
-    .element
-      label Videos:
-
-    .element
-      label Contacto:
-      input(name="contacto", id="contacto", type="text" )
-
-    .element
-      label Situación familiar:
-      select(name="situacion")
-        each familiar in familiaridades
-          - var select=null; 
-          - if (familiar == model.familiar) select='selected';
-          option(value=#{familiar}, selected=#{select}) #{familiar}
-
-    .element
-      label Población:
-      select(name="poblacion")
-        each poblacion in poblacional
-          - var select=null; 
-          - if (poblacion == model.poblacion) select='selected';
-          option(value=#{poblacion}, selected=#{select}) #{poblacion}
-
-    .element
-      label Padres:
-      select(name="padres")
-        each p in padres
-          - var select=null; 
-          - if (p == model.padres) select='selected';
-          option(value=#{p}, selected=#{select}) #{p}
-
-    .element
-      label Observaciones:
-      textarea(name="observaciones")
-
-    .element
-      input(id = "submit", name="submit", type = "submit",value="Envia")
+      li
+        .element
+          label Edad:
+          select(name="edad")
+            each edad in edades
+              - var select=null; 
+              - if (edad == model.edad) select='selected';
+              option(value=#{edad}, selected=#{select}) #{edad}
+  
+      li
+        .element
+          label Comuna:
+          select(name="comuna")
+            each comuna in comunas
+              - var select=null; 
+              - if (comuna == model.comuna) select='selected';
+              option(value=#{comuna}, selected=#{select}) #{comuna}
+  
+      li
+        .element
+          label Barrio:
+          select(name="barrio")
+            each barrio in barrios
+              - var select=null; 
+              - if (barrio == model.barrio) select='selected';
+              option(value=#{barrio}, selected=#{select}) #{barrio}
+  
+      li
+        .element
+          label Estrato:
+          select(name="estrato")
+            each estrato in estratos
+              - var select=null; 
+              - if (estrato == model.estrato) select='selected';
+              option(value=#{estrato}, selected=#{select}) #{estrato}
+  
+      li
+        .element
+          label Fotos:
+  
+      li
+        .element
+          label Videos:
+  
+      li
+        .element
+          label Contacto:
+          input(name="contacto", id="contacto", type="text" )
+  
+      li
+        .element
+          label Situación familiar:
+          select(name="situacion")
+            each familiar in familiaridades
+              - var select=null; 
+              - if (familiar == model.familiar) select='selected';
+              option(value=#{familiar}, selected=#{select}) #{familiar}
+  
+      li
+        .element
+          label Población:
+          select(name="poblacion")
+            each poblacion in poblacional
+              - var select=null; 
+              - if (poblacion == model.poblacion) select='selected';
+              option(value=#{poblacion}, selected=#{select}) #{poblacion}
+  
+      li
+        .element
+          label Padres:
+          select(name="padres")
+            each p in padres
+              - var select=null; 
+              - if (p == model.padres) select='selected';
+              option(value=#{p}, selected=#{select}) #{p}
+  
+      li
+        .element
+          label Observaciones:
+          textarea(name="observaciones")
+  
+      li
+        .element
+          input(id = "submit", name="submit", type = "submit",value="Envia")
 
 
