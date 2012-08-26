@@ -2,8 +2,8 @@
 -var habilidades = ['Reflexión', 'Creatividad', 'Capacidad de escucha', 'Compromiso', 'Pensamiento critico', 'Tolerancia', 'Honestidad', 'Participación', 'Reconocer el contexto social', 'Reconocer el contexto familiar', 'Reconocer el context geográfico', 'Respeto', 'Confianza', 'Construcción colectiva', 'Aceptación del otro', 'Capacidad de expresión', 'Trabajo en equipo'];
 
 #wrapper
-  form#taller
-    h1 Talleres creativos
+  form#taller_base
+    h1 Taller  
 
     .element
       label Nombre actividad: 
@@ -34,22 +34,15 @@
           option(value = #{habilidad}, selected = #{select}) #{habilidad}
 
     .element
-      label Resultados generales: 
-      textarea(name = "resultados")
-
-    .element
-      label Autoevaluación del creativo: 
-      textarea(name = "autoeval_creativo")
-
-    .element
-      label Observaciones externas: 
-      textarea(name = "observ_externas")
-
-    .element
-      label Fotos:
-
-    .element
-      label Videos:
-
-    .element
       input(id = "submit", name="submit", type = "submit",value="Envia")
+
+
+    .ejecucion
+      h3 Equipamientos
+      button(id="ejecuta_taller",value="Ejecutar taller")
+
+    .lista_equipamientos
+      ul.listado_ejecucion
+        partial('partials/lista_taller_equip.jade')
+
+    .lista_terminados
