@@ -1,18 +1,12 @@
--var edades = ['7-8', '9-10', '11-12', '13-14', '15-16'];
--var comunas = ['Aranjuez','Belén','Buenos Aires','Castilla','Doce de Octubre','El Poblado','Guayabal','La América','La Candelaria','Laureles','Manrique','Popular','Robledo','San Javier','Santa Cruz', 'Villa Hermosa'];
--var barrios = ['Conquistadores','Colores','Laureles','Robledo'];
--var estratos = ['1','2','3','4','5','6'];
--var familiaridades = ['Padres casados', 'Padres separados', 'Monoparental', 'Huérfano', 'Vive con otro familiar'];
--var poblacional = ['En condición de calle', 'LGTBI', 'Indígena', 'Afro-colombiana', 'Desplazada', 'Con discapacidad', 'ROM'];
--var padres = ['Alfabetizados', 'Empleados', 'Ama de casa'];
-
-#wrapper
-  form#participante
+article#participante
+  form
     h1 Registro participante
     
-    .element
-      label Nombre completo:      
-      input(name="nombre",id="nombre", type="text")
+    ul
+      li
+        .element
+          label Nombre completo:      
+          input(name="nombre",id="nombre", type="text")
 
     .element
       label Edad:
