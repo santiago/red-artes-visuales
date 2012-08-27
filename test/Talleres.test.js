@@ -10,6 +10,11 @@ var db = app.db;
 
 
 describe('Talleres', function() {
+    describe('TallerBase', function() {
+	describe('ReST', function() {
+	})
+    })
+    
     describe('ReST', function() {
         var id;
         var Taller = db.model('Taller');

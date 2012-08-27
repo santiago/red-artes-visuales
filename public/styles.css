@@ -56,6 +56,7 @@ form li {
 }
 .element_checkbox_label .option input {
   margin-right: 3px;
+  margin-top: 4px;
 }
 label {
   display: inline-block;
@@ -180,13 +181,6 @@ li.menu_item {
 }
 .list_header a {
   float: right;
-}
-.taller_item:hover,
-equip_item:hover {
-  background-color: #00adef;
-  border-left: 1px solid #edeaec;
-  border-right: 1px solid #edeaec;
-  cursor: pointer;
 }
 .taller_nombre,
 equip_nombre,
@@ -406,29 +400,53 @@ article#consultas .equip_item a.nombre {
   font-size: 14px;
   font-weight: 900;
 }
-article#taller .list_header a#crear,
-article#talleres .list_header a#crear,
 article#participante .list_header a#crear,
 article#participantes .list_header a#crear {
   float: right;
 }
-article#taller .list_header a#crear span.mask,
-article#talleres .list_header a#crear span.mask,
 article#participante .list_header a#crear span.mask,
 article#participantes .list_header a#crear span.mask {
   width: 118px;
 }
-article#taller .list_header a#listar,
-article#talleres .list_header a#listar,
 article#participante .list_header a#listar,
 article#participantes .list_header a#listar {
   float: left;
 }
-article#taller .list_header a#listar span.mask,
-article#talleres .list_header a#listar span.mask,
 article#participante .list_header a#listar span.mask,
 article#participantes .list_header a#listar span.mask {
   width: 86px;
+}
+article#taller .list_header a#crear,
+article#talleres .list_header a#crear {
+  float: right;
+}
+article#taller .list_header a#crear span.mask,
+article#talleres .list_header a#crear span.mask {
+  width: 118px;
+}
+article#taller .list_header a#listar,
+article#talleres .list_header a#listar {
+  float: left;
+}
+article#taller .list_header a#listar span.mask,
+article#talleres .list_header a#listar span.mask {
+  width: 86px;
+}
+article#taller .taller_item,
+article#talleres .taller_item {
+  margin-top: 10px;
+  border-bottom: 1px solid #eee;
+}
+article#taller .taller_item p,
+article#talleres .taller_item p,
+article#taller .taller_item .descripcion,
+article#talleres .taller_item .descripcion {
+  font-size: 12px;
+}
+article#taller .taller_item a.nombre,
+article#talleres .taller_item a.nombre {
+  font-size: 14px;
+  font-weight: 900;
 }
 span.mask_detalle {
   width: 113px;

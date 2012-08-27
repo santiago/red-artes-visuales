@@ -82,6 +82,7 @@ form li
       float: left
     input
       margin-right: 3px
+      margin-top: 4px
 
 
 label
@@ -195,12 +196,6 @@ li.menu_item
 .list_header a
   float: right;
 
-.taller_item:hover, equip_item:hover
-  background-color: #00adef
-  border-left: 1px solid #edeaec
-  border-right: 1px solid #edeaec
-  cursor: pointer
-
 .taller_nombre, equip_nombre,taller_equipamiento
   font-size: 1.2em
   font-weight: bold
@@ -312,7 +307,7 @@ article#equipamientos, article#equipamiento, article#consultas
         font-size: 14px
         font-weight: 900
 
-article#taller, article#talleres, article#participante,article#participantes
+article#participante, article#participantes
   .list_header
     a
       &#crear
@@ -324,6 +319,30 @@ article#taller, article#talleres, article#participante,article#participantes
         float: left
         span.mask
           width: 86px
+
+article#taller, article#talleres
+  .list_header
+    a
+      &#crear
+        float: right
+        span.mask
+          width: 118px
+
+      &#listar
+        float: left
+        span.mask
+          width: 86px
+
+  .taller_item
+    margin-top: 10px
+    border-bottom: 1px solid #EEE
+    p, .descripcion
+      font-size: 12px
+    a
+      &.nombre
+        font-size: 14px
+        font-weight: 900
+
 
 span.mask_detalle
   width: 113px

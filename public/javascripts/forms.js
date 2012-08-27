@@ -71,7 +71,7 @@ var TallerBaseForm= new FormValidator($("article#taller form"),
 		'find': 'textarea[name=objetivos]',
 		'validate': ['presence']
 	    },
-	    'metodologia': {
+	    'metodologias': {
 		'find': '[name="metodologias[]"]',
 		'val': function() {
 		    var data = [];
