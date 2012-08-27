@@ -59,7 +59,17 @@ function Service(app) {
             next();
         });
     }
-
+/*
+    app.get(/equipamientos/,function(req,res,next) {
+      if (!app.everyauth.loggedIn) {
+      console.log("_________________________________");
+       res.redirect('/login');
+   } else {
+    console.log("alskdjföalskdfjö");
+    next();
+  }
+});
+*/
     /*
      * JSON
      */

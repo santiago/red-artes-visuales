@@ -120,6 +120,8 @@ jQuery(document).ready(function($) {
 	FormParticipante: function() {
 	}
     };
-
-    Paginas[articulo]();
+    try {
+      Paginas[articulo]();
+    } catch (err) {
+    }
 })

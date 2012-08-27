@@ -10,7 +10,8 @@ html
     .root-wrapper
       article#main
         header
-          input(type='hidden', name='articulo', value='#{articulo}')
+          - if ( typeof articulo != 'undefined')
+            input(type='hidden', name='articulo', value='#{articulo}')
           span.logo
             img(src="/images/logoRAV_header.png")
 
@@ -21,6 +22,9 @@ html
               a#talleres(href='/talleres') Talleres 
             li.menu_item
               a#consultas(href='/consultas') Consultas 
+            - if (everyauth.loggedIn)
+              li.menu_item
+                a#logout(href='/logout') Logout
 
         section.content
           != body

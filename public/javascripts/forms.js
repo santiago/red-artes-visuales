@@ -64,6 +64,18 @@ FormValidator.prototype.getValidData= function(opts) {
     return data;
 };
 
+var LoginForm = new FormValidator($("article#login form"), {
+  'email': {
+    'find': 'input[name=email]',
+    'validate': ['presence','email']
+  },
+  'contrasena': {
+    'find': 'input[name=contrasena]',
+    'validate': ['presence']
+  }
+});
+
+
 var AdminCreativoForm = new FormValidator($("article#creativo form"), {
     'nombre' : {
       'find': 'input[name=nombre]',
@@ -74,7 +86,11 @@ var AdminCreativoForm = new FormValidator($("article#creativo form"), {
       'validate': ['presence','email']
     },
     'telefono': {
-      'find:': 'input[name=telefono]',
+      'find': 'input[name=telefono]',
+      'validate': ['presence']
+    },
+    'cedula': {
+      'find': 'input[name=cedula]',
       'validate': ['presence']
     },
     'titulo': {

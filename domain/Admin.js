@@ -1,5 +1,6 @@
 function Service(app) {
     var Creativo = app.db.model('Creativo');
+    var Usuario = app.db.model('Usuario');
     
     function getCreativos(req, res, next) {
         console.log("************"); 
@@ -31,14 +32,24 @@ function Service(app) {
     }
 
     function postCreativos(req, res, next) {
+        var crypto = require('crypto');
+        var crypt_key = app.crypt_key;
         var data = req.body;
         var model = new Creativo(data);
-        model.save(function(err, r) {
+        var default_passwd = req.body.cedula;
+        var hashed_default_passwd = crypto.createHmac('sha1', crypt_key).update(default_passwd).digest('hex');
+        var user = new Usuario({email: req.body.email,rol:'creativo',cedula: req.body.cedula,contrasena: hashed_default_passwd});
+        user.save(function(err, u) {
+          if (err) {
+            throw err;
+          }
+          model.save(function(err, r) {
             if (err) {
               throw err;
             }
             req.creativo = r;
             next();
+          });
         });
     }
 

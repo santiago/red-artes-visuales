@@ -1,3 +1,19 @@
-#login
-  input(name="email", type="text")
-  input(name="passwd", type="password")
+- if ('undefined' !== typeof errors && errors.length)
+  ul#errors
+    - each error in errors
+      li.error= error
+
+article#login
+  .login
+    form(action="/login",method="POST")
+      .element
+        label Email:
+        input(name="email",type="text")
+     
+      .element
+        label Contraseña:
+        input(name="password", type="password")
+ 
+      .element
+        button(id="submit") Acceder
+   

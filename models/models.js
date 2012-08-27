@@ -85,6 +85,7 @@ mongoose.model('Taller', Taller);
 
 var Usuario = new Schema({
     email           : { type: String },
+    cedula          : { type: String },
     contrasena      : { type: String },
     rol             : { type: String, enum: params.roles }
 });
