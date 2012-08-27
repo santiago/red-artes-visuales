@@ -1,3 +1,4 @@
-select(name=#{name})
+select(name='#{name}')
+  option(value='') 
   each option in options
-    option(value=#{option}) #{option}
+    option(value='#{option}') #{option}

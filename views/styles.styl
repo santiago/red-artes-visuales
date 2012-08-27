@@ -32,7 +32,7 @@ corner-right(px)
   corner-each(0,px,px,0)
 
 // ============= UTILS ==============
-
+§
 *
   margin: 0
   padding: 0
@@ -98,16 +98,17 @@ label
   width: 20px;
 
 #submit
-  width: 80px
-  margin-left: 425px 
+  margin-left: 200px 
   border-radius: 3px
-  background-color: #EEE
-  color: red
+  background-color: #DDD
+  color: #00adef
   font-weight: bold
+  padding: 10px
+  width: 100px
 
 #submit:hover
-  background-color: red
-  color: white
+  background-color: #00adef
+  color: white 
 
 input[type=radio]
   padding: 5px
@@ -199,12 +200,13 @@ li.menu_item
   background-color: #00adef
   border-left: 1px solid #edeaec
   border-right: 1px solid #edeaec
+  cursor: pointer
 
 .taller_nombre, equip_nombre,taller_equipamiento
   font-size: 1.2em
   font-weight: bold
 
-.taller_fecha, taller_equip, equip_ubicacion,equip_comuna,equip_barrio
+.taller_descripcion, .taller_objetivos, taller_equip, equip_ubicacion,equip_comuna,equip_barrio
   font-size: 0.8em;
 
 #consultas
@@ -252,7 +254,7 @@ li.menu_item
     margin: 0 30px 10px
     padding: 10px
 
-article#equipamiento, article#taller
+article#equipamiento,article#taller,article#participante
   form
     corner-bottom(15px)
     ul
@@ -262,7 +264,7 @@ article#equipamiento, article#taller
       float: left
       margin-bottom: 10px
 
-article#equipamientos, article#equipamiento, article#talleres, article#taller_base, article#taller
+article#equipamientos, article#equipamiento, article#talleres, article#taller_base, article#taller, article#participante,article#participantes
   width: 800px
   margin: auto
 
@@ -287,7 +289,7 @@ article#equipamientos, article#equipamiento, article#talleres, article#taller_ba
           display: block
 
 
-article#equipamientos, article#equipamiento
+article#equipamientos, article#equipamiento, article#consultas
   .list_header
     a
       &#crear
@@ -301,6 +303,7 @@ article#equipamientos, article#equipamiento
           width: 143px
 
   .equip_item
+    margin-left: 10px
     margin-top: 10px
     border-bottom: 1px solid #EEE
     p
@@ -310,7 +313,7 @@ article#equipamientos, article#equipamiento
         font-size: 14px
         font-weight: 900
 
-article#taller, article#talleres
+article#taller, article#talleres, article#participante,article#participantes
   .list_header
     a
       &#crear
@@ -323,7 +326,16 @@ article#taller, article#talleres
         span.mask
           width: 86px
 
-article#equipamientos, article#equipamiento, article#taller, article#talleres
+span.mask_detalle
+  width: 113px
+  background: white;
+  height: 6px;
+  background: white;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+
+article#equipamientos, article#equipamiento, article#taller, article#talleres,article#participantes
   .list_body
     min-height: 60px
     width: 100%
@@ -338,8 +350,115 @@ article#equipamientos, article#equipamiento, article#taller, article#talleres
       clear: left
 
 
+article .list_body .item
+  padding: 20px
+  display: inline-block
+  
+  h1
+    margin-bottom: 10px
+  .fecha
+    font-size: 0.85em
+  .equipamiento
+    margin-top: 2px
+  .metodologias
+    display: inline-block
+    margin-top: 20px
+    ul
+      border: 1px solid black
+  .habilidades
+    margin-top: 20px
+    ul
+      border: 1px solid black
+
+.navegacion_interna
+  ul
+    height: 39px
+    width: 90%
+    padding: 10px 10px 0 10px !important
+    display: inline-block
+  li
+    display: inline-block
+    margin: 0 10px 0 10px
+
+.navegacion_interna.list_header
+  a
+    background-color: #00adef !important
+    color: white
+  a:hover
+    color: #ed008c
+  a.internal_right_tab
+    background-color: #ED008C !important
+    margin-left: 81px
+  a.internal_right_tab:hover
+    background-color: #DDD !important
+    color: #ed008c
+
 .ejecucion
 
-.ejecucion#ejecuta_taller
+.ejecucion#ejecuta_taller,.internal_right_tab 
   float: right
 
+.resultado_area
+  width: 100% 
+  clear: both
+  padding-top: 10px
+  
+.resultado_status
+  display: none
+  margin: 10px 30px 0 10px
+  font-size: 10px
+  border-top: 1px solid #00adef
+  padding-top: 10px
+
+.listado_participantes
+  padding: 0px
+  width: 756px
+  display: inline-block
+  margin: 0 20px 20px 20px
+  border: 1px solid #00adef
+  corner(3px)
+
+.participante_item
+  width: 100%
+  display: inline-block
+
+.participante_image
+  margin-right: 10px
+  vertical-align: middle
+  display: inline-block
+
+.participante_nombre
+  margin-right: 10px
+  vertical-align: middle
+
+.participante_info
+  vertical-align: middle
+  height: 100%
+  display: inline-block
+
+.participante_info:hover
+  background-color: #00adef
+
+.participante_edad
+  font-size: 0.8em
+
+#agrega_participantes_dialog
+  display: none
+  position: absolute
+  top: 650px
+  right: 220px
+  width: 480px  
+  border: 1px solid #00adef
+  background-color: white
+  z-index: 999
+
+.crea_nuevo_participante
+  margin: 10px 20px 5px 20px 
+  #crea_nuevo_part
+    width: 100%
+    color: white
+    background-color: #00adef
+    padding: 10px
+
+.participantes_all
+  padding: 20px

@@ -1,9 +1,13 @@
-#participantes
+article#participantes
   .list_header
-    h1 Listado participantes
-    a(href="/participantes/new") Crear participante 
+    a#listar(href="/participantes", class='#{articulo == 'Participantes' ? "activo" : null }')
+      | Participantes
+      span.mask
+    a#crear(href="/participantes/new", class='#{articulo == 'FormParticipante' ? "activo" : null }')
+      | Crear Participante 
+      span.mask
 
   .list_body
     ul.listado
-      partial('partials/lista_participantes',{participantes: participantes})
+      !=partial('partials/lista_participantes',{participantes: participantes})
 

@@ -1,18 +1,50 @@
-#taller
-  h1.nombre
-  .fecha
-  .equipamiento
+-var participantes = [{nombre: 'pablo',edad: '7'},{nombre: 'anita',edad:'8'},{nombre:'rosa',edad:'9'}];
 
-  .metodologias
-
-  .habilidades
-
-
-  .navegacion_interna
-    ul
-      li General
-      li Participantes
-      li Evaluacion & Resultados
-      li Fotos / Videos
+article#taller
+  .list_header
+    a#listar.activo Detalle taller
+      span.mask_detalle
+  .list_body
+    .item
+       h1.nombre Creación de videos
+       .fecha  Fecha: 30 Agosto 2012
+       .equipamiento Equipamiento: 
+          a(href="#") ImaginaLab
   
-  .informacion
+       .metodologias Metodologias
+         ul
+           li Sensibilización
+           li Recorrido
+           li Dinámica
+           li Juego
+           li Técnicas creativas
+           li Presentación de referentes
+  
+       .habilidades Habilidades
+         ul
+           li Reflexión
+           li Creatividad
+           li Capacidad de escucha
+           li Compromiso
+           li Pensamiento critico
+        
+
+
+    .navegacion_interna.list_header
+      ul
+        li 
+          a(href="#") Participantes
+        li 
+          a(href="#") Evaluacion & Resultados
+        li 
+          a(href="#") Fotos / Videos
+        li
+          a(href="#", id="agrega_part", class="internal_right_tab") Agregar participante
+      #agrega_participantes_dialog
+        .crea_nuevo_participante
+          button(id='crea_nuevo_part') Crear participante
+        .participantes_all
+  
+    .listado_participantes
+      ul
+        !=partial('partials/lista_participantes',{ participantes: participantes})

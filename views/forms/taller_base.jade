@@ -1,13 +1,13 @@
 article#taller
   .list_header
-    a#listar(href="/talleres", class='#{articulo == 'Talleres' ? "activo" : null }') 
+    a#listar(href="/talleres", class='#{articulo == "Talleres" ? "activo" : null }') 
       | Talleres
       span.mask
-    a#crear(href="/talleres/new", class='#{articulo == 'FormTaller' ? "activo" : null }') 
+    a#crear(href="/talleres/new", class='#{articulo == "FormTaller" ? "activo" : null }') 
       | Crear Taller 
       span.mask
 
-  form
+  form(action="/talleres",method="post")
     ul
       li
         .element
@@ -33,7 +33,7 @@ article#taller
               - var select = null
               // - if (metod == model.metodologias) select = 'selected';
               .option(class='#{i%3 == 0 ? "row" : "" }')
-                input(name="metodologias[]", type="checkbox", value="#{metod}", selected='#{select}')
+                input(name="metodologia[]", type="checkbox", value="#{metod}", selected='#{select}')
                 label.radio_text #{metod}
               -i++
 
@@ -52,4 +52,4 @@ article#taller
 
       li
         .element
-          button OK
+          input(id = "submit", type = "submit",value="Envia")

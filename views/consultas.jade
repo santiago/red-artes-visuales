@@ -12,59 +12,72 @@ article#consultas
     .tab_content#talleres
       .filtro
         label Equipamiento
-        select(name='f_equipamientos')
+        select(name='f_equipamientos_tall')
+          option(value='')
           each equip in equipamientos
-            option(value=#{equip._id}) #{equip.nombre}
+            option(value='#{equip._id}') #{equip.nombre}
 
       .filtro
         label Comuna
-        !=partial('partials/select', { name: 'f_comunas', options: params.comunas })
+        !=partial('partials/select', { name: 'f_comunas_tall', options: params.comunas })
 
-      // !=partial('partials/select', { name: 'f_creativos', options: params.creativos })
+      .filtro
+        label Creativo
+        // !=partial('partials/select_id', { name: 'f_creativos_tall', options: params.creativos })
 
       .filtro
         label Barrio
-        !=partial('partials/select', { name: 'f_barrios', options: params.barrios })
+        !=partial('partials/select', { name: 'f_barrios_tall', options: params.barrios })
 
-      // !=partial('partials/select', { name: 'f_metodos', options: params.metodos })
-      // !=partial('partials/select', { name: 'f_habilidades', options: params.habilidades})
+      .filtro
+        label Metodologia 
+        !=partial('partials/select', { name: 'f_metodos_tall', options: params.metodologias })
+
+      .filtro
+        label Habilidades 
+        !=partial('partials/select', { name: 'f_habilidades_tall', options: params.habilidades})
 
     .tab_content#equipamientos(style='display:none;')
       .filtro
         label Comuna
-        !=partial('partials/select', { name: 'f_comunas', options: params.comunas })
+        !=partial('partials/select', { name: 'f_comunas_equip', options: params.comunas })
 
       .filtro
         label Barrio
-        !=partial('partials/select', { name: 'f_barrios', options: params.barrios})
+        !=partial('partials/select', { name: 'f_barrios_equip', options: params.barrios })
 
-      // !=partial('partials/select', { name: 'f_creativos', options: params.creativos})
+      .filtro
+        label Creativo
+        // !=partial('partials/select_id', { name: 'f_creativos_equip', options: params.creativos })
 
       .filtro
         label Tipo
-        !=partial('partials/select', { name: 'f_tipos', options: params.tipos })
+        !=partial('partials/select', { name: 'f_tipos_equip', options: params.tipos })
 
-      // !=partial('partials/select', { name: 'f_zonas', options: params.zonas })
+      .filtro
+        label Zonas
+        !=partial('partials/select', { name: 'f_zonas_equip', options: params.zonas })
 
     .tab_content#participantes(style='display:none;')
       .filtro
         label Edad
-        !=partial('partials/select', { name: 'f_edades', options: params.edades })
+        !=partial('partials/select', { name: 'f_edades_part', options: params.edades })
 
       .filtro
         label Barrio
-        !=partial('partials/select', { name: 'f_barrios', options: params.barrios })
+        !=partial('partials/select', { name: 'f_barrios_part', options: params.barrios })
 
       .filtro
         label Estrato
-        !=partial('partials/select', { name: 'f_estratos', options: params.estratos })
+        !=partial('partials/select', { name: 'f_estratos_part', options: params.estratos })
 
       .filtro
         label Comuna
-        !=partial('partials/select', { name: 'f_comunas', options: params.comunas })
+        !=partial('partials/select', { name: 'f_comunas_part', options: params.comunas })
 
     button#buscar Buscar
 
-    .resultado_status
+    .resultado_area
+      .resultado_status
 
-    .resultado
+      .resultado

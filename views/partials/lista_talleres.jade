@@ -1,6 +1,6 @@
 each taller in talleres
   li
-    .taller_item#id
+    .taller_item(id='#{taller._id}')
       .taller_nombre #{taller.nombre}
-      .taller_fecha  #{taller.fecha}
-      .taller_equip  #{taller.equipamiento}
+      .taller_descripcion #{taller.descripcion}
+      .taller_objetivos #{taller.objetivos}

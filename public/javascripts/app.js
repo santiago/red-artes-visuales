@@ -37,6 +37,8 @@ jQuery(document).ready(function($) {
 
     // Páginas
     var Paginas = {
+    Taller: function() {
+    },
 	Equipamientos: function() {
 	},
 

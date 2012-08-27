@@ -2,9 +2,14 @@ function Service(app) {
     var Equipamiento = app.db.model('Equipamiento');
     
     function getEquipamientos(req, res, next) {
+        console.log("************"); 
+        console.log(req.query);
         var query = (function() {
             if (req.params.id) {
                 return { _id: req.params.id }
+            }
+            if (req.query) {
+              return req.query;
             }
             return {};
         })();
@@ -87,6 +92,17 @@ function Service(app) {
             }
         });
     });
+
+    app.get('/consultas/equipamientos', getEquipamientos, function(req, res) {
+        res.render('partials/lista_equipamientos', {
+            layout: false,
+            locals: {
+            		articulo: 'Equipamientos',
+                equipamientos: req.equipamientos
+            }
+        });
+    });
+
 
     app.get('/equipamientos/new', getEquipamientos, function(req, res) {
         res.render('forms/equipamiento', {

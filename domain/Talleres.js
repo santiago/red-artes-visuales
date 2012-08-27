@@ -30,8 +30,11 @@ function Service(app) {
         var data = req.body;
         var model = new TallerBase(data);
         model.save(function(err, r) {
-            req.taller = r;
-            next();
+          if (err) {
+            throw err;
+          }
+          req.taller = r;
+          next();
         });
     }
 
@@ -81,12 +84,25 @@ function Service(app) {
      * HTML
      */
     app.get('/talleres', getTalleres, function(req, res) {
-	res.render('talleres', {
-            locals: {
-		talleres: req.talleres,
-		articulo: 'Talleres'
-            }
-	});
+      TallerBase.find({}, function(err,talleres) {
+        console.log(talleres.length)
+	  res.render('talleres', {
+              locals: {
+		  talleres: talleres,
+		  articulo: 'Talleres'
+              }
+	  });
+      });
+    });
+
+    app.get('/consultas/talleres', getTalleres, function(req, res) {
+	    res.render('partials/lista_talleres', {
+            layout: false,
+		locals: {
+		    talleres: req.talleres,
+		    articulo: 'Talleres'
+		}
+	    });
     });
 
     app.get('/talleres/new', function(req, res) {
@@ -101,6 +117,7 @@ function Service(app) {
     app.get('/talleres/:id', getTalleres, function(req, res) {
         res.render('taller', {
             locals: {
+                articulo: "Taller",
                 taller: req.taller
             }
         });

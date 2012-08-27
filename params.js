@@ -40,5 +40,7 @@ module.exports = {
     metodologias: ['Sensibilización', 'Recorrido', 'Dinámica', 'Juego', 
 		   'Técnicas creativas', 'Presentación de referentes', 
 		   'Experimentación materiales' , 'Visitas', 'Investigación', 
-		   'Intercambios', 'Otro']
+		   'Intercambios', 'Otro'],
+
+    zonas: ['Urbano','Rural']
 }
