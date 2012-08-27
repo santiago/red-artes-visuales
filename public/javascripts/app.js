@@ -107,7 +107,7 @@ jQuery(document).ready(function($) {
     function res(data) {
       console.log(data);
     }
-    var $el = $('#creativo form");
+    var $el = $('#creativo form');
     $el.find('button').click(function(e) {
       e.preventDefault();
       var data = AdminCreativoForm.getValidData();
@@ -115,7 +115,7 @@ jQuery(document).ready(function($) {
         $.post('/admin/creativos', data, res);
       }
     });  
-  }
+  },
 
 	FormParticipante: function() {
 	}

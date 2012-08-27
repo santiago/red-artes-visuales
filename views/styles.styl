@@ -248,7 +248,7 @@ li.menu_item
     margin: 0 30px 10px
     padding: 10px
 
-article#equipamiento,article#taller,article#participante
+article#equipamiento,article#taller,article#participante,article#creativo
   form
     corner-bottom(15px)
     ul
@@ -258,7 +258,7 @@ article#equipamiento,article#taller,article#participante
       float: left
       margin-bottom: 10px
 
-article#equipamientos, article#equipamiento, article#talleres, article#taller_base, article#taller, article#participante,article#participantes
+article#equipamientos, article#equipamiento, article#talleres, article#taller_base, article#taller, article#participante,article#participantes,article#creativos,article#creativo
   width: 800px
   margin: auto
 
@@ -307,7 +307,8 @@ article#equipamientos, article#equipamiento, article#consultas
         font-size: 14px
         font-weight: 900
 
-article#participante, article#participantes
+
+article#taller, article#talleres,article#creativo,article#creativos
   .list_header
     a
       &#crear
@@ -320,20 +321,7 @@ article#participante, article#participantes
         span.mask
           width: 86px
 
-article#taller, article#talleres
-  .list_header
-    a
-      &#crear
-        float: right
-        span.mask
-          width: 118px
-
-      &#listar
-        float: left
-        span.mask
-          width: 86px
-
-  .taller_item
+  .taller_item, .creativo_item
     margin-top: 10px
     border-bottom: 1px solid #EEE
     p, .descripcion
@@ -353,7 +341,7 @@ span.mask_detalle
   bottom: -5px;
   left: 0;
 
-article#equipamientos, article#equipamiento, article#taller, article#talleres,article#participantes
+article#equipamientos, article#equipamiento, article#taller, article#talleres,article#participantes,article#creativos
   .list_body
     min-height: 60px
     width: 100%

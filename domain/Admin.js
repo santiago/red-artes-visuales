@@ -23,7 +23,7 @@ function Service(app) {
         }
         // Find by All
         else {
-            Creativos.find(query, function(err, records) {
+            Creativo.find(query, function(err, records) {
                 req.creativos = records;
                 next();
             });
@@ -109,7 +109,7 @@ function Service(app) {
 
 
     app.get('/admin/creativos/new', getCreativos, function(req, res) {
-        res.render('/admin/creativo', {
+        res.render('admin/creativo', {
             locals: {
           		articulo: 'FormCreativo',
 		          params: app.params
@@ -117,10 +117,10 @@ function Service(app) {
         });
     });
     
-    app.get('/equipamientos/:id', getEquipamientos, function(req, res) {
-        res.render('equipamiento', {
+    app.get('/admin/creativos/:id', getCreativos, function(req, res) {
+        res.render('admin/creativo', {
             locals: {
-                equipamiento: req.equipamiento
+                creativo: req.creativo
             }
         });
     });
