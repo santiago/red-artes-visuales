@@ -95,6 +95,15 @@ function Service(app) {
       });
     });
 
+    app.get('/talleres/taller/new', function(req, res) {
+      res.render('forms/taller', {
+        locals: {
+          params: app.params,
+          articulo: 'FormTaller'
+        }
+      });
+    }); 
+
     app.get('/consultas/talleres', getTalleres, function(req, res) {
 	    res.render('partials/lista_talleres', {
             layout: false,
