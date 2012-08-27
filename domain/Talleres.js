@@ -80,26 +80,37 @@ function Service(app) {
      * HTML
      */
     app.get('/talleres', getTalleres, function(req, res) {
-	res.render('talleres', {
+	    res.render('talleres', {
             locals: {
-		talleres: req.talleres,
-		articulo: 'Talleres',
+		  talleres: req.talleres,
+		  articulo: 'Talleres',
             }
-	});
+	    });
+    });
+
+    app.get('/consultas/talleres', getTalleres, function(req, res) {
+	    res.render('partials/lista_talleres', {
+            layout: false,
+            locals: {
+		  talleres: req.talleres,
+		  articulo: 'Talleres',
+            }
+	    });
     });
 
     app.get('/talleres/new', function(req, res) {
-	res.render('forms/taller_base', {
+	    res.render('forms/taller_base', {
             locals: {
-		params: app.params,
-		articulo: 'FormTaller'
+		  params: app.params,
+		  articulo: 'FormTaller'
             }
-	});
+	    });
     });
     
     app.get('/talleres/:id', getTalleres, function(req, res) {
         res.render('taller', {
             locals: {
+                articulo: "Taller",
                 taller: req.taller
             }
         });

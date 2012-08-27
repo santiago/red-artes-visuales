@@ -13,6 +13,7 @@ article#consultas
       .filtro
         label Equipamiento
         select(name='f_equipamientos_tall')
+          option(value='')
           each equip in equipamientos
             option(value='#{equip._id}') #{equip.nombre}
 

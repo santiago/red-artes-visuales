@@ -286,7 +286,7 @@ article#equipamientos, article#equipamiento, article#talleres, article#taller_ba
           display: block
 
 
-article#equipamientos, article#equipamiento
+article#equipamientos, article#equipamiento, article#consultas
   .list_header
     a
       &#crear
@@ -300,6 +300,7 @@ article#equipamientos, article#equipamiento
           width: 143px
 
   .equip_item
+    margin-left: 10px
     margin-top: 10px
     border-bottom: 1px solid #EEE
     p
@@ -337,6 +338,32 @@ article#equipamientos, article#equipamiento, article#taller, article#talleres
       clear: left
 
 
+article .list_body .item
+  padding: 20px
+  display: inline-block
+  
+  h1
+    margin-bottom: 10px
+  .fecha
+    font-size: 0.85em
+  .equipamiento
+    margin-top: 2px
+  .metodologias
+    display: inline-block
+    margin-top: 20px
+    ul
+      border: 1px solid black
+  .habilidades
+    margin-top: 20px
+    ul
+      border: 1px solid black
+
+.navegacion_interna
+  ul
+    display: inline-block
+  li
+    display: inline-block
+    margin: 0 10px 0 10px
 .ejecucion
 
 .ejecucion#ejecuta_taller
@@ -353,3 +380,14 @@ article#equipamientos, article#equipamiento, article#taller, article#talleres
   font-size: 10px
   border-top: 1px solid #00adef
   padding-top: 10px
+
+.listado_participantes
+  display: inline-block
+  padding: 20px
+  margin: 20px
+  border: 1px solid black
+  corner(3px)
+
+.participante_item
+  width: 100%
+  display: inline-block

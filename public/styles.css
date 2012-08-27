@@ -353,32 +353,40 @@ article#taller .list_header a.activo span.mask {
   display: block;
 }
 article#equipamientos .list_header a#crear,
-article#equipamiento .list_header a#crear {
+article#equipamiento .list_header a#crear,
+article#consultas .list_header a#crear {
   float: right;
 }
 article#equipamientos .list_header a#crear span.mask,
-article#equipamiento .list_header a#crear span.mask {
+article#equipamiento .list_header a#crear span.mask,
+article#consultas .list_header a#crear span.mask {
   width: 183px;
 }
 article#equipamientos .list_header a#listar,
-article#equipamiento .list_header a#listar {
+article#equipamiento .list_header a#listar,
+article#consultas .list_header a#listar {
   float: left;
 }
 article#equipamientos .list_header a#listar span.mask,
-article#equipamiento .list_header a#listar span.mask {
+article#equipamiento .list_header a#listar span.mask,
+article#consultas .list_header a#listar span.mask {
   width: 143px;
 }
 article#equipamientos .equip_item,
-article#equipamiento .equip_item {
+article#equipamiento .equip_item,
+article#consultas .equip_item {
+  margin-left: 10px;
   margin-top: 10px;
   border-bottom: 1px solid #eee;
 }
 article#equipamientos .equip_item p,
-article#equipamiento .equip_item p {
+article#equipamiento .equip_item p,
+article#consultas .equip_item p {
   font-size: 12px;
 }
 article#equipamientos .equip_item a.nombre,
-article#equipamiento .equip_item a.nombre {
+article#equipamiento .equip_item a.nombre,
+article#consultas .equip_item a.nombre {
   font-size: 14px;
   font-weight: 900;
 }
@@ -429,6 +437,39 @@ article#talleres .list_body ul {
   float: left;
   clear: left;
 }
+article .list_body .item {
+  padding: 20px;
+  display: inline-block;
+}
+article .list_body .item h1 {
+  margin-bottom: 10px;
+}
+article .list_body .item .fecha {
+  font-size: 0.85em;
+}
+article .list_body .item .equipamiento {
+  margin-top: 2px;
+}
+article .list_body .item .metodologias {
+  display: inline-block;
+  margin-top: 20px;
+}
+article .list_body .item .metodologias ul {
+  border: 1px solid #000;
+}
+article .list_body .item .habilidades {
+  margin-top: 20px;
+}
+article .list_body .item .habilidades ul {
+  border: 1px solid #000;
+}
+.navegacion_interna ul {
+  display: inline-block;
+}
+.navegacion_interna li {
+  display: inline-block;
+  margin: 0 10px 0 10px;
+}
 .ejecucion,
 .ejecucion#ejecuta_taller {
   float: right;
@@ -444,4 +485,26 @@ article#talleres .list_body ul {
   font-size: 10px;
   border-top: 1px solid #00adef;
   padding-top: 10px;
+}
+.listado_participantes {
+  display: inline-block;
+  padding: 20px;
+  margin: 20px;
+  border: 1px solid #000;
+  -moz-border-radius-topleft: 3px;
+  -webkit-border-top-left-radius: 3px;
+  border-top-left-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -webkit-border-top-right-radius: 3px;
+  border-top-right-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.participante_item {
+  width: 100%;
+  display: inline-block;
 }

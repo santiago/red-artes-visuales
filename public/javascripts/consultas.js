@@ -26,13 +26,18 @@ jQuery(document).ready(function($) {
     $.each(filtros, function() {
       var e = document.getElementsByName(this)[0];
       var valor_filtro = e.options[e.selectedIndex].value;
-      query_string += this + '=' + valor_filtro + '&';
+      if (valor_filtro == '') {
+        return true;
+      }
+      var db_key = this.split("_");
+      query_string += db_key[1].slice(0,-1) + '=' + valor_filtro + '&';
     });
 
     //cut the last &    
     query_string = query_string.slice(0, -1);
+    alert(query_string);
     //do the query
-    $.get('/' + activo + '?' + query_string, function(e) {
+    $.get('/consultas/' + activo + '?' + query_string, function(e) {
       $($('.resultado_status')[0]).show();
       $('.resultado_status')[0].innerHTML = "Resultado de la búsqueda: ";
       $('.resultado')[0].innerHTML = e;
