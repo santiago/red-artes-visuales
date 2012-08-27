@@ -34,6 +34,9 @@ function Service(app) {
         var data = req.body;
         var model = new Equipamiento(data);
         model.save(function(err, r) {
+            if (err) {
+              throw err;
+            }
             req.equipamiento = r;
             next();
         });
@@ -85,9 +88,10 @@ function Service(app) {
      * HTML
      */
     app.get('/equipamientos', getEquipamientos, function(req, res) {
+        console.log('###########-/equipamientos-#########');
         res.render('equipamientos', {
             locals: {
-		articulo: 'Equipamientos',
+		            articulo: 'Equipamientos',
                 equipamientos: req.equipamientos
             }
         });

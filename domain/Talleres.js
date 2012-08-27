@@ -98,6 +98,15 @@ function Service(app) {
       });
     });
 
+    app.get('/talleres/taller/new', function(req, res) {
+      res.render('forms/taller', {
+        locals: {
+          params: app.params,
+          articulo: 'FormTaller'
+        }
+      });
+    }); 
+
     app.get('/consultas/talleres', getTalleres, function(req, res) {
 	    res.render('partials/lista_talleres', {
             layout: false,
@@ -110,10 +119,10 @@ function Service(app) {
 
     app.get('/talleres/new', function(req, res) {
 	    res.render('forms/taller_base', {
-            locals: {
-		  params: app.params,
-		  articulo: 'FormTaller'
-            }
+        locals: {
+		      params: app.params,
+		      articulo: 'FormTaller'
+        }
 	    });
     });
     

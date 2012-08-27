@@ -540,7 +540,11 @@ article .list_body .item .habilidades ul {
   border-top: 1px solid #00adef;
   padding-top: 10px;
 }
-.listado_participantes {
+.listado {
+  margin-left: 10px;
+}
+.listado_participantes,
+.listado_talleres_equipamientos {
   padding: 0px;
   width: 756px;
   display: inline-block;
@@ -604,4 +608,7 @@ article .list_body .item .habilidades ul {
 }
 .participantes_all {
   padding: 20px;
+}
+#instancia_taller {
+  margin-left: 370px;
 }

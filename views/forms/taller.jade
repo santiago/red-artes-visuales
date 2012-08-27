@@ -1,5 +1,13 @@
 article#taller
-  form
+  .list_header
+    a#listar(href="/talleres", class='#{articulo == "Talleres" ? "activo" : null }')
+      | Talleres
+      span.mask
+    a#crear(href="/talleres/taller/new", class='#{articulo == "FormTaller" ? "activo" : null }')
+      | Crear Taller
+      span.mask
+
+  form(action="/talleres/taller",method="post")
     ul
       li
         .element
@@ -62,4 +70,4 @@ article#taller
 
       li
         .element
-          input(id = "submit", name="submit", type = "submit",value="Envia")
+          input(id = "submit",type = "submit",value="Envia")

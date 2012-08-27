@@ -27,7 +27,7 @@ var Equipamiento = new Schema({
   , banos           :  { type: Boolean }
   , e_equipos       :  { type: String }
   , horario         :  { type: String }
-  , edades          :  { type: String, enum: params.edades }
+  , edades          :  { type: Array }
   , seguridad       :  { type: String, enum: ['Alta', 'Media', 'Baja'] }
   , fronteras       :  { type: Boolean }
   , zona            :  { type: String, enum: ['Urbana', 'Rural'] }

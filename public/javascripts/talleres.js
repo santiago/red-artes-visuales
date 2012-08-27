@@ -11,4 +11,7 @@ jQuery(document).ready(function($) {
   $('#crea_nuevo_part').click(function(e) {
     window.location = '/participantes/new';  
   });
+  $('#instancia_taller').click(function(e) {
+    window.location = '/talleres/taller/new';
+  });
 });

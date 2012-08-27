@@ -46,9 +46,15 @@ app.configure('production', function(){
 
 app.get('/', function(req, res) {
     if (req.session.user) {
+      console.log('redirecting..................');
     	res.redirect('/equipamientos');
     } else {
-	res.render('index');
+      console.log('rendering index..................');
+	    res.render('index', {
+        locals:{
+          articulo: 'None'
+        }
+      });
     }
 });
 

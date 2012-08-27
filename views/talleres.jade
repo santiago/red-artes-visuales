@@ -11,3 +11,16 @@ article#talleres
     ul.listado
       !=partial('partials/lista_talleres', { talleres: talleres })
 
+    .navegacion_interna.list_header
+      ul
+        li 
+          a(href="#") Equipamientos
+        li
+          a(href="#") Terminados
+        li
+          a(href="#",id="instancia_taller", class="internal_right_tab") Ejecuta taller
+
+
+    .listado_talleres_equipamientos
+      ul
+       !=partial('partials/lista_taller_equip',{talleres:talleres})

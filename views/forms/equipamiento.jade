@@ -8,7 +8,7 @@ article#equipamiento
       | Crear equipamiento 
       span.mask
 
-  form
+  form(action="/equipamientos",method="post")
     ul
       li
         -if(edit)
@@ -253,4 +253,4 @@ article#equipamiento
 
       li
         .element
-          button OK
+          input(id="submit",type="submit",value="Envia")
