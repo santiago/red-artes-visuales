@@ -27,7 +27,7 @@ article#equipamiento
       li
         .element
           label Ubicación:
-          input(name="ubiFacion", type="text")
+          input(name="ubicacion", type="text")
 
       li
         .element
@@ -79,7 +79,7 @@ article#equipamiento
               -var select=null; 
               // - if (otro == model.otros_talleres) select='selected';
               .option(class='#{i%3 == 0 ? "row" : "" }')
-                input(name="otros",type="checkbox",value="#{otro}",selected='#{select}') 
+                input(name="otros[]", type="checkbox", value="#{otro}", selected='#{select}') 
                 label.radio_text #{otro}
               -i++
 
@@ -101,7 +101,7 @@ article#equipamiento
               - var select=null
               // - if (espacio == model.espacio) select='selected';
               .option
-                input(name="espacios", type="checkbox", value="#{espacio}", selected='#{select}') 
+                input(name="espacios[]", type="checkbox", value="#{espacio}", selected='#{select}') 
                 label.radio_text #{espacio} 
               -i++
 
@@ -140,7 +140,7 @@ article#equipamiento
               - var select=null; 
               // - if (edad == model.edad) select='selected';
               .option(class='#{i%3 == 0 ? "row" : "" }')
-                input(name="edades",type="checkbox",value="#{edad}",selected='#{select}') 
+                input(name="edades[]",type="checkbox",value="#{edad}",selected='#{select}') 
                 label.radio_text #{edad} 
               -i++
 

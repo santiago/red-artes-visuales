@@ -5,6 +5,7 @@ var FormValidator= function($ctx, fields) {
 };
 
 FormValidator.prototype.validate= function(opts) {
+    var self = this;
     var exclude= opts.exclude||[];
     var validators= {
 	'presence': function(val) {
@@ -18,7 +19,13 @@ FormValidator.prototype.validate= function(opts) {
     this.$ctx.find(".error").remove();
     var fields= this.fields;
     for(var f in fields) {
-	var val= this.$ctx.find(fields[f].find).val() || '';
+	var val= (function() {
+	    if (typeof fields[f].val == 'function')
+		return fields[f].val();
+	    else
+		return self.$ctx.find(fields[f].find).val() || '';
+	})();
+
 	if(fields[f].validate && fields[f].validate.length) {
 	    for(var i in fields[f].validate) {
 		if(exclude.indexOf(f) > -1) {
@@ -50,10 +57,10 @@ FormValidator.prototype.getValidData= function(opts) {
     return data;
 };
 
-var TallerBaseForm= new FormValidator($("#taller form"),
+var TallerBaseForm= new FormValidator($("article#taller form"),
 	{
 	    'nombre': {
-		'find': 'input[name=name]',
+		'find': 'input[name=nombre]',
 		'validate': ['presence']
 	    },
 	    'descripcion': {
@@ -65,11 +72,25 @@ var TallerBaseForm= new FormValidator($("#taller form"),
 		'validate': ['presence']
 	    },
 	    'metodologia': {
-		'find': '[name="metodologia[]:checked"]',
+		'find': '[name="metodologias[]"]',
+		'val': function() {
+		    var data = [];
+		    $('[name="metodologias[]"]:checked').each(function() {
+			data.push($(this).val());
+		    });
+		    return data;
+		},
 		'validate': ['presence']
 	    },
-	    'descripcion': {
-		'find': 'textarea[name=description]',
+	    'habilidades': {
+		'find': '[name="habilidades[]"]',
+		'val': function() {
+		    var data = [];
+		    $('[name="habilidades[]"]:checked').each(function() {
+			data.push($(this).val());
+		    });
+		    return data;
+		},
 		'validate': ['presence']
 	    }
 	}
@@ -111,7 +132,14 @@ var EquipamientoForm = new FormValidator(
 	    'validate': ['presence']
 	},
 	'otros_talleres': {
-	    'find': 'select[name=otros_talleres] option:selected',
+	    'find': '[name="otros[]"]',
+	    'val': function() {
+		var data = [];
+		$('[name="otros[]"]:checked').each(function() {
+		    data.push($(this).val());
+		});
+		return data;
+	    },
 	    'validate': ['presence']
 	},
 	'tipo': {
@@ -119,7 +147,14 @@ var EquipamientoForm = new FormValidator(
 	    'validate': ['presence']
 	},
 	'espacios': {
-	    'find': 'select[name=espacios] option:selected',
+	    'find': '[name="espacios[]"]',
+	    'val': function() {
+		var data = [];
+		$('[name="espacios[]"]:checked').each(function() {
+		    data.push($(this).val());
+		});
+		return data;
+	    },
 	    'validate': ['presence']
 	},
 	'locker': {
@@ -139,7 +174,14 @@ var EquipamientoForm = new FormValidator(
 	    'validate': ['presence']
 	},
 	'edades': {
-	    'find': 'select[name=edades] option:selected',
+	    'find': '[name="edades[]"]',
+	    'val': function() {
+		var data = [];
+		$('[name="edades[]"]:checked').each(function() {
+		    data.push($(this).val());
+		});
+		return data;
+	    },
 	    'validate': ['presence']
 	},
 	'seguridad': {
