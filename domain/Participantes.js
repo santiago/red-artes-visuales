@@ -91,7 +91,14 @@ function Service(app) {
         });
     });
 
-
+    app.get('/participantes',getParticipantes, function(req, res) {
+      res.render('participantes', {
+        locals: {
+          articulo: "Participantes",
+          participantes: req.participantes
+        }
+      });
+    });
 
     app.get('/participantes/new', getParticipantes, function(req, res) {
         res.render('forms/participante', {

@@ -399,19 +399,23 @@ article#consultas .equip_item a.nombre {
   font-weight: 900;
 }
 article#taller .list_header a#crear,
-article#talleres .list_header a#crear {
+article#talleres .list_header a#crear,
+article#participante .list_header a#crear {
   float: right;
 }
 article#taller .list_header a#crear span.mask,
-article#talleres .list_header a#crear span.mask {
+article#talleres .list_header a#crear span.mask,
+article#participante .list_header a#crear span.mask {
   width: 118px;
 }
 article#taller .list_header a#listar,
-article#talleres .list_header a#listar {
+article#talleres .list_header a#listar,
+article#participante .list_header a#listar {
   float: left;
 }
 article#taller .list_header a#listar span.mask,
-article#talleres .list_header a#listar span.mask {
+article#talleres .list_header a#listar span.mask,
+article#participante .list_header a#listar span.mask {
   width: 86px;
 }
 span.mask_detalle {
