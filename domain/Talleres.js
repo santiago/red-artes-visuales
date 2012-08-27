@@ -1,5 +1,6 @@
 function Service(app) {
     var Taller = app.db.model('Taller');
+    var TallerBase = app.db.model('TallerBase');
     
     function getTalleres(req, res, next) {
         var query = (function() {
@@ -11,14 +12,14 @@ function Service(app) {
         
         // Find by Id
         if (query._id) {
-            Taller.findOne(query, function(err, r) {
+            TallerBase.findOne(query, function(err, r) {
                 req.taller = r;
                 next();
             });
         }
         // Find by All
         else {
-            Taller.find(query, function(err, records) {
+            TallerBase.find(query, function(err, records) {
                 req.talleres = records;
                 next();
             });
@@ -27,7 +28,7 @@ function Service(app) {
 
     function postTalleres(req, res, next) {
         var data = req.body;
-        var model = new Taller(data);
+        var model = new TallerBase(data);
         model.save(function(err, r) {
             req.taller = r;
             next();
@@ -83,7 +84,7 @@ function Service(app) {
 	res.render('talleres', {
             locals: {
 		talleres: req.talleres,
-		articulo: 'Talleres',
+		articulo: 'Talleres'
             }
 	});
     });

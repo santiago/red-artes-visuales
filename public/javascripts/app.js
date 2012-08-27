@@ -86,15 +86,18 @@ jQuery(document).ready(function($) {
 	},
 
 	FormTaller: function() {
+	    // Callback par atender el response
+	    function res(data) {
+		console.log(data);
+	    }
+
 	    var $el = $("#taller form");
 	    $el.find('button').click(function(e) {
 		e.preventDefault();
 
 		var data= TallerBaseForm.getValidData();
-		console.log(data);
 		if (data) {
-		    console.log(data);
-		    // $.post('/equipamientos', data, res);
+		    $.post('/talleres', data, res);
 		}
 	    });
 	},

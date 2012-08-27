@@ -55,6 +55,7 @@ form li {
 }
 .element_checkbox_label .option input {
   margin-right: 3px;
+  margin-top: 4px;
 }
 label {
   display: inline-block;
