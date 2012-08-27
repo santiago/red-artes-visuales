@@ -6,7 +6,7 @@ article#participante
     a#crear(href="/participantes/new", class='#{articulo == "FormParticipante" ? "activo" : null}')
       | Crear Participante
 
-    form
+    form(action="/participantes",method="post")
       ul
         li
           .element
@@ -19,8 +19,8 @@ article#participante
             select(name="edad")
               each edad in params.edades
                 - var select=null; 
-              //- if (edad == model.edad) select='selected';
-                option(value=#{edad}, selected=#{select}) #{edad}
+                //- if (edad == model.edad) select='selected';
+                option(value='#{edad}', selected='#{select}') #{edad}
     
         li
           .element
@@ -29,7 +29,7 @@ article#participante
               each comuna in params.comunas
                 - var select=null; 
                 //- if (comuna == model.comuna) select='selected';
-                option(value=#{comuna}, selected=#{select}) #{comuna}
+                option(value='#{comuna}', selected='#{select}') #{comuna}
     
         li
           .element
@@ -38,7 +38,7 @@ article#participante
               each barrio in params.barrios
                 - var select=null; 
                 //- if (barrio == model.barrio) select='selected';
-                option(value=#{barrio}, selected=#{select}) #{barrio}
+                option(value='#{barrio}', selected='#{select}') #{barrio}
     
         li
           .element
@@ -47,7 +47,7 @@ article#participante
               each estrato in params.estratos
                 - var select=null; 
                 //- if (estrato == model.estrato) select='selected';
-                option(value=#{estrato}, selected=#{select}) #{estrato}
+                option(value='#{estrato}', selected='#{select}') #{estrato}
     
         li
           .element
@@ -69,7 +69,7 @@ article#participante
               each familiar in params.familiaridades
                 - var select=null; 
                 //- if (familiar == model.familiar) select='selected';
-                option(value=#{familiar}, selected=#{select}) #{familiar}
+                option(value='#{familiar}', selected='#{select}') #{familiar}
     
         li
           .element
@@ -78,7 +78,7 @@ article#participante
               each poblacion in params.poblacional
                 - var select=null; 
                 //- if (poblacion == model.poblacion) select='selected';
-                option(value=#{poblacion}, selected=#{select}) #{poblacion}
+                option(value='#{poblacion}', selected='#{select}') #{poblacion}
     
         li
           .element
@@ -87,7 +87,7 @@ article#participante
               each p in params.padres
                 - var select=null; 
                 //- if (p == model.padres) select='selected';
-                option(value=#{p}, selected=#{select}) #{p}
+                option(value='#{p}', selected='#{select}') #{p}
     
         li
           .element

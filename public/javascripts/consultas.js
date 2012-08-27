@@ -35,7 +35,7 @@ jQuery(document).ready(function($) {
 
     //cut the last &    
     query_string = query_string.slice(0, -1);
-    alert(query_string);
+    //alert(query_string);
     //do the query
     $.get('/consultas/' + activo + '?' + query_string, function(e) {
       $($('.resultado_status')[0]).show();

@@ -1,5 +1,6 @@
 function Service(app) {
     var Taller = app.db.model('Taller');
+    var TallerBase = app.db.model('TallerBase');
     
     function getTalleres(req, res, next) {
         var query = (function() {
@@ -11,14 +12,14 @@ function Service(app) {
         
         // Find by Id
         if (query._id) {
-            Taller.findOne(query, function(err, r) {
+            TallerBase.findOne(query, function(err, r) {
                 req.taller = r;
                 next();
             });
         }
         // Find by All
         else {
-            Taller.find(query, function(err, records) {
+            TallerBase.find(query, function(err, records) {
                 req.talleres = records;
                 next();
             });
@@ -27,10 +28,15 @@ function Service(app) {
 
     function postTalleres(req, res, next) {
         var data = req.body;
-        var model = new Taller(data);
+        var model = new TallerBase(data);
+        console.log("Saving taller base");
+        console.log(data);
         model.save(function(err, r) {
-            req.taller = r;
-            next();
+          if (err) {
+            throw err;
+          }
+          req.taller = r;
+          next();
         });
     }
 
@@ -64,6 +70,7 @@ function Service(app) {
     });
     
     app.post('/talleres', postTalleres, function(req, res) {
+        console.log("******************");
         res.send(req.taller, 201);
     });
 
@@ -80,20 +87,23 @@ function Service(app) {
      * HTML
      */
     app.get('/talleres', getTalleres, function(req, res) {
-	    res.render('talleres', {
-            locals: {
-		  talleres: req.talleres,
-		  articulo: 'Talleres',
-            }
-	    });
+      TallerBase.find({}, function(err,talleres) {
+        console.log(talleres.length)
+	      res.render('talleres', {
+              locals: {
+		            talleres: talleres,
+		            articulo: 'Talleres',
+              }
+	      });
+      });
     });
 
     app.get('/consultas/talleres', getTalleres, function(req, res) {
 	    res.render('partials/lista_talleres', {
             layout: false,
             locals: {
-		  talleres: req.talleres,
-		  articulo: 'Talleres',
+        		  talleres: req.talleres,
+		          articulo: 'Talleres',
             }
 	    });
     });

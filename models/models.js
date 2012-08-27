@@ -66,8 +66,8 @@ var TallerBase = new Schema({
     nombre          :  { type: String, default: 'Nombre' }
   , descripcion     :  { type: String }
   , objetivos       :  { type: String }
-  , metodologia     :  { type: String, enum: params.metodologias }
-  , habilidades     :  { type: String, enum: params.habilidades }
+  , metodologia     :  { type: Array }
+  , habilidades     :  { type: Array }
 });
 mongoose.model('TallerBase', TallerBase);
 

@@ -70,15 +70,16 @@ label {
   width: 20px;
 }
 #submit {
-  width: 80px;
-  margin-left: 425px;
+  margin-left: 200px;
   border-radius: 3px;
-  background-color: #eee;
-  color: #f00;
+  background-color: #ddd;
+  color: #00adef;
   font-weight: bold;
+  padding: 10px;
+  width: 100px;
 }
 #submit:hover {
-  background-color: #f00;
+  background-color: #00adef;
   color: #fff;
 }
 input[type=radio] {
@@ -185,6 +186,7 @@ equip_item:hover {
   background-color: #00adef;
   border-left: 1px solid #edeaec;
   border-right: 1px solid #edeaec;
+  cursor: pointer;
 }
 .taller_nombre,
 equip_nombre,
@@ -192,7 +194,8 @@ taller_equipamiento {
   font-size: 1.2em;
   font-weight: bold;
 }
-.taller_fecha,
+.taller_descripcion,
+.taller_objetivos,
 taller_equip,
 equip_ubicacion,
 equip_comuna,
@@ -303,7 +306,8 @@ article#equipamiento,
 article#talleres,
 article#taller_base,
 article#taller,
-article#participante {
+article#participante,
+article#participantes {
   width: 800px;
   margin: auto;
 }
@@ -312,7 +316,8 @@ article#equipamiento .list_header span.mask,
 article#talleres .list_header span.mask,
 article#taller_base .list_header span.mask,
 article#taller .list_header span.mask,
-article#participante .list_header span.mask {
+article#participante .list_header span.mask,
+article#participantes .list_header span.mask {
   height: 6px;
   background: #fff;
   position: absolute;
@@ -325,7 +330,8 @@ article#equipamiento .list_header a,
 article#talleres .list_header a,
 article#taller_base .list_header a,
 article#taller .list_header a,
-article#participante .list_header a {
+article#participante .list_header a,
+article#participantes .list_header a {
   padding: 10px;
   background-color: #fff;
   -moz-border-radius-topleft: 15px;
@@ -346,7 +352,8 @@ article#equipamiento .list_header a.activo,
 article#talleres .list_header a.activo,
 article#taller_base .list_header a.activo,
 article#taller .list_header a.activo,
-article#participante .list_header a.activo {
+article#participante .list_header a.activo,
+article#participantes .list_header a.activo {
   color: #ed008c;
   font-weight: 900;
   box-shadow: 0px 0px 5px #666;
@@ -357,7 +364,8 @@ article#equipamiento .list_header a.activo span.mask,
 article#talleres .list_header a.activo span.mask,
 article#taller_base .list_header a.activo span.mask,
 article#taller .list_header a.activo span.mask,
-article#participante .list_header a.activo span.mask {
+article#participante .list_header a.activo span.mask,
+article#participantes .list_header a.activo span.mask {
   display: block;
 }
 article#equipamientos .list_header a#crear,
@@ -400,22 +408,26 @@ article#consultas .equip_item a.nombre {
 }
 article#taller .list_header a#crear,
 article#talleres .list_header a#crear,
-article#participante .list_header a#crear {
+article#participante .list_header a#crear,
+article#participantes .list_header a#crear {
   float: right;
 }
 article#taller .list_header a#crear span.mask,
 article#talleres .list_header a#crear span.mask,
-article#participante .list_header a#crear span.mask {
+article#participante .list_header a#crear span.mask,
+article#participantes .list_header a#crear span.mask {
   width: 118px;
 }
 article#taller .list_header a#listar,
 article#talleres .list_header a#listar,
-article#participante .list_header a#listar {
+article#participante .list_header a#listar,
+article#participantes .list_header a#listar {
   float: left;
 }
 article#taller .list_header a#listar span.mask,
 article#talleres .list_header a#listar span.mask,
-article#participante .list_header a#listar span.mask {
+article#participante .list_header a#listar span.mask,
+article#participantes .list_header a#listar span.mask {
   width: 86px;
 }
 span.mask_detalle {
@@ -430,7 +442,8 @@ span.mask_detalle {
 article#equipamientos .list_body,
 article#equipamiento .list_body,
 article#taller .list_body,
-article#talleres .list_body {
+article#talleres .list_body,
+article#participantes .list_body {
   min-height: 60px;
   width: 100%;
   float: left;
@@ -452,7 +465,8 @@ article#talleres .list_body {
 article#equipamientos .list_body ul,
 article#equipamiento .list_body ul,
 article#taller .list_body ul,
-article#talleres .list_body ul {
+article#talleres .list_body ul,
+article#participantes .list_body ul {
   padding: 10px;
   width: 97.5%;
   float: left;
@@ -560,7 +574,6 @@ article .list_body .item .habilidades ul {
 }
 .participante_info {
   vertical-align: middle;
-  width: 90%;
   height: 100%;
   display: inline-block;
 }
@@ -569,4 +582,26 @@ article .list_body .item .habilidades ul {
 }
 .participante_edad {
   font-size: 0.8em;
+}
+#agrega_participantes_dialog {
+  display: none;
+  position: absolute;
+  top: 650px;
+  right: 220px;
+  width: 480px;
+  border: 1px solid #00adef;
+  background-color: #fff;
+  z-index: 999;
+}
+.crea_nuevo_participante {
+  margin: 10px 20px 5px 20px;
+}
+.crea_nuevo_participante #crea_nuevo_part {
+  width: 100%;
+  color: #fff;
+  background-color: #00adef;
+  padding: 10px;
+}
+.participantes_all {
+  padding: 20px;
 }

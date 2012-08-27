@@ -80,24 +80,27 @@ function Service(app) {
     /*
      * HTML
      */
+    app.get('/participantes',getParticipantes, function(req, res) {
+      Participante.find({}, function(err, participantes) {
+        console.log(participantes.length);
+        res.render('participantes', {
+          locals: {
+            articulo: "Participantes",
+            participantes: participantes
+          }
+        });
+      });
+    });
+
 
     app.get('/consultas/participantes', getParticipantes, function(req, res) {
-        res.render('lista_participantes', {
+        res.render('partials/lista_participantes', {
             layout: false,
             locals: {
                 articulo: 'Participantes',
                 participantes: req.participantes
             }
         });
-    });
-
-    app.get('/participantes',getParticipantes, function(req, res) {
-      res.render('participantes', {
-        locals: {
-          articulo: "Participantes",
-          participantes: req.participantes
-        }
-      });
     });
 
     app.get('/participantes/new', getParticipantes, function(req, res) {
