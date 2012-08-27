@@ -64,6 +64,7 @@ require('./domain/Participantes')(app)
 require('./domain/Talleres')(app)
 require('./domain/Evaluaciones')(app)
 require('./domain/Consultas')(app)
+require('./domain/Admin')(app)
 
 // App starts here
 // Only listen on $ node app.js
