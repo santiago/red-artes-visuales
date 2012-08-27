@@ -1,7 +1,6 @@
 jQuery(document).ready(function($) {
     var articulo = $('input[name=articulo]').val();
 
-
     var Domain = function() {
 	var models = {
 	    Equipamiento: {
@@ -76,12 +75,6 @@ jQuery(document).ready(function($) {
 		console.log(data);
 	    }
 
-	    // Tabs
-	    $el.find('.list_header a').click(function(e) {
-		$el.find('.list_header a').removeClass('activo');
-		$(this).addClass('activo');
-	    });
-
 	    // Collect and Validate data
 	    var $el = $("#equipamiento form");
 	    $el.find('button').click(function(e) {
@@ -95,6 +88,17 @@ jQuery(document).ready(function($) {
 	},
 
 	FormTaller: function() {
+	    var $el = $("#taller form");
+	    $el.find('button').click(function(e) {
+		e.preventDefault();
+
+		var data= TallerBaseForm.getValidData();
+		console.log(data);
+		if (data) {
+		    console.log(data);
+		    // $.post('/equipamientos', data, res);
+		}
+	    });
 	},
 
 	FormParticipante: function() {

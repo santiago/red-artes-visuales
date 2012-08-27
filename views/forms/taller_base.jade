@@ -33,7 +33,7 @@ article#taller
               - var select = null
               // - if (metod == model.metodologias) select = 'selected';
               .option(class='#{i%3 == 0 ? "row" : "" }')
-                input(name="metodologia[]", type="checkbox", value="#{metod}", selected='#{select}')
+                input(name="metodologias[]", type="checkbox", value="#{metod}", selected='#{select}')
                 label.radio_text #{metod}
               -i++
 
@@ -46,7 +46,7 @@ article#taller
               - var select = null; 
               // - if (habilidad == model.habilidades) select = 'selected';
               .option(class='#{i%3 == 0 ? "row" : "" }')
-                input(name="habilidad",type="checkbox",value="#{habilidad}",selected='#{select}')
+                input(name="habilidades[]", type="checkbox", value="#{habilidad}", selected='#{select}')
                 label.radio_text #{habilidad}
               -i++
 
