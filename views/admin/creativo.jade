@@ -6,7 +6,7 @@ article#creativo
     a#crear(href="/admin/creativo/new", class='#{articulo == "FormCreativo" ? "activo" : null}')
       | Crear Creativo
 
-    form(action="/admin/creativo",method="post")
+    form
       ul
         li
           .element
@@ -32,10 +32,8 @@ article#creativo
           .element
             label direccion
             textarea(name = "desc")
- 
- 
         li
           .element
-            input(id = "submit", name="submit", type = "submit",value="Envia")
+            button(id = "submit") OK
 
 

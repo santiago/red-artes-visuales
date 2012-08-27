@@ -64,6 +64,29 @@ FormValidator.prototype.getValidData= function(opts) {
     return data;
 };
 
+var AdminCreativoForm = new FormValidator($("article#creativo form"), {
+    'nombre' : {
+      'find': 'input[name=nombre]',
+      'validate': ['presence']
+    },
+    'email' : {
+      'find': 'input[name=email]',
+      'validate': ['presence','email']
+    },
+    'telefono': {
+      'find:': 'input[name=telefono]',
+      'validate': ['presence']
+    },
+    'titulo': {
+      'find': 'input[name=titulo]',
+      'validate': ['presence']
+    },
+    'direccion': {
+      'find': 'textarea[name=desc]',
+      'validate': ['presence']
+    } 
+});
+
 var TallerBaseForm= new FormValidator($("article#taller form"),
 	{
 	    'nombre': {

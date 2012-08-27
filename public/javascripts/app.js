@@ -103,6 +103,20 @@ jQuery(document).ready(function($) {
 	    });
 	},
 
+  FormCreativo: function() {
+    function res(data) {
+      console.log(data);
+    }
+    var $el = $('#creativo form');
+    $el.find('button').click(function(e) {
+      e.preventDefault();
+      var data = AdminCreativoForm.getValidData();
+      if (data) {
+        $.post('/admin/creativos', data, res);
+      }
+    });  
+  },
+
 	FormParticipante: function() {
 	}
     };

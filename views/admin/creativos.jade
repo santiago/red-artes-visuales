@@ -1,0 +1,13 @@
+article#creativos
+  .list_header
+    a#listar(href="/admin/creativos", class='#{articulo == 'Creativos' ? "activo" : null }')
+      | Creativos
+      span.mask
+    a#crear(href="/admin/creativos/new", class='#{articulo == 'FormCreativo' ? "activo" : null }')
+      | Crear Creativo
+      span.mask
+
+  .list_body
+    ul.listado
+      !=partial('admin/lista_creativos',{creativos: creativos})
+
