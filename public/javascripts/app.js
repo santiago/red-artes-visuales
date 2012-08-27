@@ -96,7 +96,6 @@ jQuery(document).ready(function($) {
 	    var $el = $("#taller form");
 	    $el.find('button').click(function(e) {
 		e.preventDefault();
-
 		var data= TallerBaseForm.getValidData();
 		if (data) {
 		    $.post('/talleres', data, res);
