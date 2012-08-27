@@ -85,7 +85,7 @@ function Service(app) {
         res.render('lista_participantes', {
             layout: false,
             locals: {
-    articulo: 'Participantes',
+                articulo: 'Participantes',
                 participantes: req.participantes
             }
         });
@@ -94,8 +94,10 @@ function Service(app) {
 
 
     app.get('/participantes/new', getParticipantes, function(req, res) {
-        res.render('participante', {
+        res.render('forms/participante', {
             locals: {
+              params: app.params,
+              articulo: 'FormParticipante'
                 // equipamientos: req.equipamientos
             }
         });

@@ -1,9 +1,9 @@
 article#taller
   .list_header
-    a#listar(href="/talleres", class='#{articulo == 'Talleres' ? "activo" : null }') 
+    a#listar(href="/talleres", class='#{articulo == "Talleres" ? "activo" : null }') 
       | Talleres
       span.mask
-    a#crear(href="/talleres/new", class='#{articulo == 'FormTaller' ? "activo" : null }') 
+    a#crear(href="/talleres/new", class='#{articulo == "FormTaller" ? "activo" : null }') 
       | Crear Taller 
       span.mask
 
