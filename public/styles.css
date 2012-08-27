@@ -448,6 +448,10 @@ article#talleres .taller_item a.nombre {
   font-size: 14px;
   font-weight: 900;
 }
+article#taller .taller_item a#ver-equipamientos,
+article#talleres .taller_item a#ver-equipamientos {
+  font-size: 11px;
+}
 span.mask_detalle {
   width: 113px;
   background: #fff;
@@ -489,6 +493,10 @@ article#participantes .list_body ul {
   width: 97.5%;
   float: left;
   clear: left;
+}
+article#talleres .list_body ul {
+  padding: 10px 20px;
+  width: 95%;
 }
 article .list_body .item {
   padding: 20px;

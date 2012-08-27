@@ -1,18 +1,16 @@
-function Service(app) {
-    var Equipamiento = app.db.model('Equipamiento');
-    
-    function getEquipamientos(req, res, next) {
-        console.log("************"); 
-        console.log(req.query);
-        var query = (function() {
+var Equipamiento;
+
+var filters = {
+    get: function(req, res, next) {
+	var query = (function() {
             if (req.params.id) {
-                return { _id: req.params.id }
+		return { _id: req.params.id }
             }
             if (req.query) {
-              return req.query;
+		return req.query;
             }
             return {};
-        })();
+	})();
         
         // Find by Id
         if (query._id) {
@@ -28,9 +26,9 @@ function Service(app) {
                 next();
             });
         }
-    }
+    },
 
-    function postEquipamientos(req, res, next) {
+    post: function(req, res, next) {
         var data = req.body;
         var model = new Equipamiento(data);
         model.save(function(err, r) {
@@ -40,9 +38,9 @@ function Service(app) {
             req.equipamiento = r;
             next();
         });
-    }
+    },
 
-    function putEquipamientos(req, res, next) {
+    put: function(req, res, next) {
         var data = req.body;
         var id = req.params.id;
         Equipamiento.update({ _id: id }, data, function(err, r) {
@@ -51,44 +49,47 @@ function Service(app) {
             }
             next();
         });
-    }
+    },
 
-    function delEquipamientos(req, res, next) {
+    del: function(req, res, next) {
         var id = req.params.id;
         Equipamiento.findByIdAndRemove(id, function(err, r) {
             next();
         });
     }
+}
+
+function Service(app) {
+    Equipamiento = app.db.model('Equipamiento');
 
     /*
      * JSON
      */
-    app.get('/equipamientos.json', getEquipamientos, function(req, res) {
+    app.get('/equipamientos.json', filters.get, function(req, res) {
         res.send(req.equipamientos);
     });
     
-    app.get('/equipamientos/:id.json', getEquipamientos, function(req, res) {
+    app.get('/equipamientos/:id.json', filters.get, function(req, res) {
         res.send(req.equipamiento);
     });
     
-    app.post('/equipamientos', postEquipamientos, function(req, res) {
+    app.post('/equipamientos', filters.post, function(req, res) {
         res.send(req.equipamiento, 201);
     });
 
-    app.put('/equipamientos/:id', putEquipamientos, function(req, res) {
+    app.put('/equipamientos/:id', filters.put, function(req, res) {
         if (req.error) res.send({ 'error': true }, 500);
         else res.send({ 'ok': true });
     });
 
-    app.del('/equipamientos/:id', delEquipamientos, function(req, res) {
+    app.del('/equipamientos/:id', filters.del, function(req, res) {
         res.send({ 'ok': true });
     });
 
     /*
      * HTML
      */
-    app.get('/equipamientos', getEquipamientos, function(req, res) {
-        console.log('###########-/equipamientos-#########');
+    app.get('/equipamientos', filters.get, function(req, res) {
         res.render('equipamientos', {
             locals: {
 		            articulo: 'Equipamientos',
@@ -97,7 +98,7 @@ function Service(app) {
         });
     });
 
-    app.get('/consultas/equipamientos', getEquipamientos, function(req, res) {
+    app.get('/consultas/equipamientos', filters.get, function(req, res) {
         res.render('partials/lista_equipamientos', {
             layout: false,
             locals: {
@@ -107,8 +108,7 @@ function Service(app) {
         });
     });
 
-
-    app.get('/equipamientos/new', getEquipamientos, function(req, res) {
+    app.get('/equipamientos/new', filters.get, function(req, res) {
         res.render('forms/equipamiento', {
             locals: {
 		articulo: 'FormEquipamiento',
@@ -117,7 +117,7 @@ function Service(app) {
         });
     });
     
-    app.get('/equipamientos/:id', getEquipamientos, function(req, res) {
+    app.get('/equipamientos/:id', filters.get, function(req, res) {
         res.render('equipamiento', {
             locals: {
                 equipamiento: req.equipamiento
@@ -127,3 +127,4 @@ function Service(app) {
 }
 
 module.exports = Service;
+module.exports.filters = filters;

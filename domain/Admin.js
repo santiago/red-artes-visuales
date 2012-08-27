@@ -117,13 +117,13 @@ function Service(app) {
         });
     });
     
-    app.get('/equipamientos/:id', getEquipamientos, function(req, res) {
-        res.render('equipamiento', {
-            locals: {
-                equipamiento: req.equipamiento
-            }
-        });
-    });
+    // app.get('/equipamientos/:id', getEquipamientos, function(req, res) {
+    //     res.render('equipamiento', {
+    //         locals: {
+    //             equipamiento: req.equipamiento
+    //         }
+    //     });
+    // });
 }
 
 module.exports = Service;

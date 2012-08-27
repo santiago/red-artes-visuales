@@ -3,3 +3,11 @@ each taller in talleres
     .taller_item(id='#{taller._id}')
       a.nombre(href='#') #{taller.nombre}
       .descripcion #{taller.descripcion}
+      a(href='#')#ver-equipamientos Ver equipamientos
+    
+      #equipamientos
+       .list_body
+         ul
+           !=partial('partials/lista_equipamientos', { equipamientos: equipamientos })
+        
+        

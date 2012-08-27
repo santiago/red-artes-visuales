@@ -1,8 +1,7 @@
-function Service(app) {
-    var Taller = app.db.model('Taller');
-    var TallerBase = app.db.model('TallerBase');
-    
-    function getTalleres(req, res, next) {
+var Taller, TallerBase;
+
+var filtros = {
+    get: function(req, res, next) {
         var query = (function() {
             if (req.params.id) {
                 return { _id: req.params.id }
@@ -24,9 +23,9 @@ function Service(app) {
                 next();
             });
         }
-    }
+    },
 
-    function postTalleres(req, res, next) {
+    post: function(req, res, next) {
         var data = req.body;
         var model = new TallerBase(data);
         model.save(function(err, r) {
@@ -36,9 +35,9 @@ function Service(app) {
           req.taller = r;
           next();
         });
-    }
+    },
 
-    function putTalleres(req, res, next) {
+    put: function(req, res, next) {
         var data = req.body;
         var id = req.params.id;
         Taller.update({ _id: id }, data, function(err, r) {
@@ -47,43 +46,50 @@ function Service(app) {
             }
             next();
         });
-    }
+    },
 
-    function delTalleres(req, res, next) {
+    del: function(req, res, next) {
         var id = req.params.id;
         Taller.findByIdAndRemove(id, function(err, r) {
             next();
         });
     }
+};
+
+function Service(app) {
+    Taller = app.db.model('Taller');
+    TallerBase = app.db.model('TallerBase');
+    
+    var Equipamientos = require('Equipamientos').filters;
 
     /*
      * JSON
      */
-    app.get('/talleres.json', getTalleres, function(req, res) {
+    app.get('/talleres.json', filtros.get, function(req, res) {
         res.send(req.talleres);
     });
     
-    app.get('/talleres/:id.json', getTalleres, function(req, res) {
+    app.get('/talleres/:id.json', filtros.get, function(req, res) {
         res.send(req.taller);
     });
     
-    app.post('/talleres', postTalleres, function(req, res) {
+    app.post('/talleres', filtros.post, function(req, res) {
         res.send(req.taller, 201);
     });
 
-    app.put('/talleres/:id', putTalleres, function(req, res) {
+    app.put('/talleres/:id', filtros.put, function(req, res) {
         if (req.error) res.send({ 'error': true }, 500);
         else res.send({ 'ok': true });
     });
 
-    app.del('/talleres/:id', delTalleres, function(req, res) {
+    app.del('/talleres/:id', filtros.del, function(req, res) {
         res.send({ 'ok': true });
     });
 
     /*
      * HTML
      */
-    app.get('/talleres', getTalleres, function(req, res) {
+    app.get('/talleres', filtros.get, Equipamientos.get, function(req, res) {
       TallerBase.find({}, function(err,talleres) {
         console.log(talleres.length)
 	  res.render('talleres', {
@@ -104,7 +110,7 @@ function Service(app) {
       });
     }); 
 
-    app.get('/consultas/talleres', getTalleres, function(req, res) {
+    app.get('/consultas/talleres', filtros.get, function(req, res) {
 	    res.render('partials/lista_talleres', {
             layout: false,
 		locals: {
@@ -123,7 +129,7 @@ function Service(app) {
 	});
     });
     
-    app.get('/talleres/:id', getTalleres, function(req, res) {
+    app.get('/talleres/:id', filtros.get, function(req, res) {
         res.render('taller', {
             locals: {
                 articulo: "Taller",
