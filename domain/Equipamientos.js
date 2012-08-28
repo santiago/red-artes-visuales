@@ -118,9 +118,12 @@ function Service(app) {
     });
     
     app.get('/equipamientos/:id', filters.get, function(req, res) {
+        console.log(req.equipamiento);
         res.render('equipamiento', {
             locals: {
-                equipamiento: req.equipamiento
+                equipamiento: req.equipamiento,
+                params: app.params,
+                articulo: 'Equipamientos'
             }
         });
     });
