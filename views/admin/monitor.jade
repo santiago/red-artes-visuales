@@ -9,11 +9,12 @@ article#monitor
       - var cnt=0; 
       each taller_base in taller_bases
         .taller_item
-        .taller_name: #{taller_base.nombre} 
-        - if (talleres_info_provided[cnt] {
-          .ok
-            img(src="ok.png")
-        - } else {
-          .nok
-            img(src="nok.png")
-        - }
+        .taller_name #{taller_base.nombre} 
+        .taller_img
+          - if (talleres_info_provided[cnt]) {
+            .ok
+              img(src="/images/ok.png")
+          - } else {
+            .nok
+              img(src="/images/nok.png")
+          - }

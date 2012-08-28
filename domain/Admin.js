@@ -1,6 +1,9 @@
 function Service(app) {
     var Creativo = app.db.model('Creativo');
     var Usuario = app.db.model('Usuario');
+    var TallerBase = app.db.model('TallerBase');
+    var Taller = app.db.model('Taller');
+    var Evaluacion = app.db.model('Evaluacion');
     
     function getCreativos(req, res, next) {
         console.log("************"); 
@@ -48,9 +51,17 @@ function Service(app) {
           next();
         });
       } else {
-        TallerBase.find(query, function(err, records) {
-          req.taller_bases = records;
-          next();
+        Taller.find(query, function(err, talleres) {
+          req.talleres = talleres;
+          var id_array = new Array();
+          req.talleres.forEach(function(item,index) {
+            id_array[index] = item.actividad_id;
+          });
+          TallerBase.find({'_id': { $in: id_array}}, function(err, records) {
+            req.taller_bases = records;
+            checkInfoProvided(req.taller_bases, req);
+            next();
+          });
         });
       }
     }
@@ -58,7 +69,9 @@ function Service(app) {
     function checkInfoProvided(taller_bases, req) {
       var info_provided = new Array();
       for (var i=0; i<taller_bases.length; i++) {
+        info_provided[i] = i%2;
       }
+      req.talleres_info_provided = info_provided;
     }   
 
     function postCreativos(req, res, next) {
