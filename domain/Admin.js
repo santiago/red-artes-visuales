@@ -30,6 +30,36 @@ function Service(app) {
             });
         }
     }
+  
+    function getTaller_Bases(req,res,next) {
+      var query = (function() {
+        if (req.params.id) {
+          return {_id: req.params.id}
+        }
+        if (req.query) {
+          return req.query;
+        }
+        return{};
+      })();
+
+      if(query._id) {
+        TallerBase.findOne(query, function(err, r) {
+          req.taller_base = record;
+          next();
+        });
+      } else {
+        TallerBase.find(query, function(err, records) {
+          req.taller_bases = records;
+          next();
+        });
+      }
+    }
+
+    function checkInfoProvided(taller_bases, req) {
+      var info_provided = new Array();
+      for (var i=0; i<taller_bases.length; i++) {
+      }
+    }   
 
     function postCreativos(req, res, next) {
         var crypto = require('crypto');
@@ -135,6 +165,15 @@ function Service(app) {
             }
         });
     });
+
+    app.get('/admin/monitor',getTaller_Bases, function(req,res) {
+      res.render('admin/monitor', {
+        locals: {
+          taller_bases: req.taller_bases,
+          talleres_info_provided: req.talleres_info_provided
+        }
+      });
+    }); 
 }
 
 module.exports = Service;

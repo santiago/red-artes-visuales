@@ -1,0 +1,19 @@
+article#monitor
+  .list_header
+    a#listar(href="/admin/monitor", class='activo')
+      | Monitor
+      span.mask
+      
+  .list_body
+    ul.listado
+      - var cnt=0; 
+      each taller_base in taller_bases
+        .taller_item
+        .taller_name: #{taller_base.nombre} 
+        - if (talleres_info_provided[cnt] {
+          .ok
+            img(src="ok.png")
+        - } else {
+          .nok
+            img(src="nok.png")
+        - }
