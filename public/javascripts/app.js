@@ -59,6 +59,9 @@ jQuery(document).ready(function($) {
 		$(this).closest('.taller_item')
 		    .find('.cerrar-equipamientos')
 		    .show()
+
+		var taller_base = $(this).closest('.taller_item').attr('id');
+		$el.find('.equipamientosTaller').load('/talleres/'+taller_base+'/talleres');
 	    });
 
 	    $el.find('.cerrar-equipamientos').click(function(e) {
@@ -138,7 +141,10 @@ jQuery(document).ready(function($) {
 		var equip = $('select option:selected').val();
 		var fecha = $('#fecha').val().split('/');
 		if (fecha) {
-		    fecha = new Date(parseInt(fecha[2]),parseInt(fecha[0]),parseInt(fecha[1]));
+		    console.log(fecha);
+		    fecha = new Date(parseInt(fecha[2]),
+				     parseInt(fecha[0].replace(/^0/,''))-1,
+				     parseInt(fecha[1].replace(/^0/,'')))
 		    fecha = fecha.getTime();
 		}
 
@@ -152,8 +158,7 @@ jQuery(document).ready(function($) {
 
 		if(fecha && equip) {
 		    $.post('/talleres/'+taller_id, { equipamiento: equip, fecha: fecha }, function(taller) {
-			console.log(taller);
-			// location.href= '/talleres/'+taller_id+'/taller/'+taller._id;
+			location.href= '/talleres/'+taller_id+'/taller/'+taller._id;
 		    });
 		}
 	    });

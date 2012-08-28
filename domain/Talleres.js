@@ -65,9 +65,15 @@ var filtros = {
 	});
     },
 
+    getTalleres: function(req, res, next) {
+	Taller.find({ actividad_id: req.params.base_id }, function(err, data) {
+	    req.talleres = data;
+	    next();
+	});
+    },
+
     postTaller: function(req, res, next) {
 	req.creativo = '71381688';
-	console.log(req.body)
 	var fecha = parseInt(req.body.fecha);
 	var taller = new Taller({
 	    actividad_id: req.params.taller_id,
@@ -108,8 +114,8 @@ function Service(app) {
     });
     
     // Crear un Taller desde un TallerBase
-    app.post('/talleres/:base_id', filtros.postTaller, function(req, res) {
-	res.send(req.taller_base);
+    app.post('/talleres/:taller_id', filtros.postTaller, function(req, res) {
+	res.send(req.taller);
     });
 
     app.post('/talleres', filtros.post, function(req, res) {
@@ -131,8 +137,19 @@ function Service(app) {
     app.get('/talleres', filtros.get, Equipamientos.get, function(req, res) {
 	res.render('talleres', {
             locals: {
-		equipamientosTaller: [],
-		talleres: req.talleres_base,
+		talleres: [],
+		talleres_base: req.talleres_base,
+		articulo: 'Talleres'
+            }
+	});
+    });
+
+    app.get('/talleres', filtros.get, Equipamientos.get, function(req, res) {
+	console.log(req.talleres_base);
+	res.render('talleres', {
+            locals: {
+		talleres: [],
+		talleres_base: req.talleres_base,
 		articulo: 'Talleres'
             }
 	});
@@ -145,6 +162,14 @@ function Service(app) {
 		taller: req.taller_base,
 		equipamientos: req.equipamientos,
 		articulo: 'FormTaller'
+            }
+	});
+    }); 
+
+    app.get('/talleres/:base_id/talleres', filtros.getTalleres, function(req, res) {
+	res.render('lista_tallerbase_talleres', {
+            locals: {
+		talleres: req.talleres
             }
 	});
     }); 
