@@ -1,50 +1,79 @@
-article#taller
+// I will fix this name later
+article#taller.nobase
+  input#taller_id(type='hidden', value='#{taller.id}')
+
   .list_header
-    a#listar(href="/talleres", class='#{articulo == "Talleres" ? "activo" : null }')
+    a.activo#listar(href="/talleres", class='#{articulo == "Talleres" ? "activo" : null }')
+      | #{taller.nombre}
+      span.mask
+    a#crear(href='/talleres')
       | Talleres
       span.mask
-    a#crear(href="/talleres/taller/new", class='#{articulo == "FormTaller" ? "activo" : null }')
-      | Crear Taller
-      span.mask
 
-  form(action="/talleres/taller",method="post")
+  form
     ul
       li
         .element
           label Nombre actividad: 
-          input(name="nombre", type="text")
+          input(name="nombre", type="text", value='#{taller.nombre}', readonly='readonly')
 
       li
         .element
           label Descripción: 
-          textarea(name = "desc")
+          textarea(name="desc", readonly='readonly') #{taller.descripcion}
 
       li
         .element
+          label Equipamiento:
+          select(name="equipamiento")
+            each equip in equipamientos
+              option(value='#{equip._id}') #{equip.nombre}
+
+      li
+        .element
+          label Fecha:
+          input#fecha(type='text')
+
+      li
+        .element
+          button#submit Enviar
+
+    ul(style='display:none;')
+      li
+        .element
           label Objetivos: 
-          textarea(name = "objetivos")
+          textarea(name="objetivos", readonly='readonly') #{taller.objetivos})
 
       li
         .element_checkbox_label
-          label Metodologia: 
-          .element_checkbox 
+          label Metodolog&iacute;as: 
+          .options
+            -var i=0
             each metod in params.metodologias 
-              - var select = null; 
-              // - if (metod == model.metodologias) select = 'selected';
-              input(name="metod",type="checkbox",value="#{metod}",selected='#{select}')
-              label.radio_text #{metod}
+              - var checked = undefined; 
+              .option(class='#{i%3 == 0 ? "row" : "" }')
+                - if (taller.metodologias.indexOf(metod) > -1) 
+                  input(name="metod", type="checkbox", value="#{metod}", checked='#{checked}', disabled='disabled')
+                - else
+                  input(name="metod", type="checkbox", value="#{metod}", disabled='disabled')
+                label.radio_text #{metod}
+              -i++
 
 
       li
         .element_checkbox_label
           label Habilidades: 
-          .element_checkbox 
-            each habilidad in params.habilidades 
-              - var select = null; 
-              // - if (habilidad == model.habilidades) select = 'selected';
-              input(name="habilidad",type="checkbox",value="#{habilidad}",selected='#{select}')
-              label.radio_text #{habilidad}
-
+          .options
+            -var i=0
+            each h in params.habilidades 
+              - var checked = undefined; 
+              .option(class='#{i%3 == 0 ? "row" : "" }')
+                - if (taller.habilidades.indexOf(h) > -1) 
+                  input(name="metod", type="checkbox", value="#{h}", checked='#{checked}', disabled='disabled')
+                - else
+                  input(name="metod", type="checkbox", value="#{h}", disabled='disabled')
+                label.radio_text #{h}
+              -i++
       li
         .element
           label Resultados generales: 
@@ -67,7 +96,3 @@ article#taller
       li
         .element
           label Videos:
-
-      li
-        .element
-          input(id = "submit",type = "submit",value="Envia")

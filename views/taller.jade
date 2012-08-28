@@ -1,5 +1,4 @@
 -var participantes = [{nombre: 'pablo',edad: '7'},{nombre: 'anita',edad:'8'},{nombre:'rosa',edad:'9'}];
-
 article#taller
   .list_header
     a#listar.activo Detalle taller
@@ -7,7 +6,8 @@ article#taller
   .list_body
     .item
        h1.nombre #{taller.nombre}
-       .fecha  Fecha: 30 Agosto 2012
+       -console.log(taller)
+       .fecha  #{taller.fecha}
        p En &nbsp;
        a(href="#") ImaginaLab
   
@@ -29,6 +29,7 @@ article#taller
            li Compromiso
            li Pensamiento critico
 
+  .hidden(style='display:none;')
     .navegacion_interna.list_header
       ul
         li 

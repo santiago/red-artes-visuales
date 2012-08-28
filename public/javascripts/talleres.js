@@ -1,7 +1,4 @@
 jQuery(document).ready(function($) {
-  $('.taller_item').click(function(e) {
-    window.location = '/talleres/'+this.id; 
-  });
   $('#agrega_part').click(function(e) {
     $.get('/consultas/participantes',function(e) {
       $('#agrega_participantes_dialog').show();

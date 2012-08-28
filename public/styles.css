@@ -70,7 +70,8 @@ label {
   display: inline-block;
   width: 20px;
 }
-#submit {
+#submit,
+.submit {
   margin-left: 200px;
   border-radius: 3px;
   background-color: #ddd;
@@ -79,7 +80,8 @@ label {
   padding: 10px;
   width: 100px;
 }
-#submit:hover {
+#submit:hover,
+.submit:hover {
   background-color: #00adef;
   color: #fff;
 }
@@ -375,6 +377,18 @@ article#creativos .list_header a.activo span.mask,
 article#creativo .list_header a.activo span.mask {
   display: block;
 }
+article#taller.nobase .list_header a#crear {
+  float: right;
+}
+article#taller.nobase .list_header a#crear span.mask {
+  width: 183px;
+}
+article#taller.nobase .list_header a#listar {
+  float: left;
+}
+article#taller.nobase .list_header a#listar span.mask {
+  width: 124px;
+}
 article#equipamientos .list_header a#crear,
 article#equipamiento .list_header a#crear,
 article#consultas .list_header a#crear {
@@ -476,10 +490,6 @@ article#creativo .creativo_item a.nombre,
 article#creativos .creativo_item a.nombre {
   font-size: 14px;
   font-weight: 900;
-}
-article#taller .taller_item a#ver-equipamientos,
-article#talleres .taller_item a#ver-equipamientos {
-  font-size: 11px;
 }
 span.mask_detalle {
   width: 113px;
@@ -668,4 +678,43 @@ article .list_body .item .habilidades ul {
 }
 #instancia_taller {
   margin-left: 370px;
+}
+#talleres .list_body li {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+#talleres .equipamientosTaller .list_body {
+  box-shadow: 0px 0px 0px #fff;
+  border: 1px solid #aaa;
+  -moz-border-radius-topleft: 3px;
+  -webkit-border-top-left-radius: 3px;
+  border-top-left-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -webkit-border-top-right-radius: 3px;
+  border-top-right-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+#talleres .equipamientosTaller .list_body .vacio {
+  color: #666;
+  font-style: italic;
+  margin-top: 12px;
+  float: left;
+}
+#talleres a.ver-equipamientos,
+#talleres a.cerrar-equipamientos {
+  font-size: 11px;
+}
+#talleres a.cerrar-equipamientos {
+  color: #ed008c;
+}
+#talleres .submit {
+  float: right;
+  width: auto;
+  cursor: pointer;
 }

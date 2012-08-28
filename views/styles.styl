@@ -97,7 +97,7 @@ label
   display: inline-block;
   width: 20px;
 
-#submit
+#submit, .submit
   margin-left: 200px 
   border-radius: 3px
   background-color: #DDD
@@ -106,7 +106,7 @@ label
   padding: 10px
   width: 100px
 
-#submit:hover
+#submit:hover, .submit:hover
   background-color: #00adef
   color: white 
 
@@ -283,6 +283,19 @@ article#equipamientos, article#equipamiento, article#talleres, article#taller_ba
           display: block
 
 
+article#taller.nobase
+  .list_header
+    a
+      &#crear
+        float: right
+        span.mask
+          width: 183px
+
+      &#listar
+        float: left
+        span.mask
+          width: 124px
+
 article#equipamientos, article#equipamiento, article#consultas
   .list_header
     a
@@ -330,8 +343,6 @@ article#taller, article#talleres,article#creativo,article#creativos
       &.nombre
         font-size: 14px
         font-weight: 900
-    a#ver-equipamientos
-      font-size: 11px
 
 span.mask_detalle
   width: 113px
@@ -481,3 +492,30 @@ article .list_body .item
 
 #instancia_taller
   margin-left:370px
+
+#talleres
+  .list_body
+    li
+      float: left
+      width: 100%
+      margin-bottom: 10px
+  .equipamientosTaller
+    .list_body
+      box-shadow: 0px 0px 0px #FFF
+      border: 1px solid #AAA
+      corner(3px)
+      .vacio
+        color: #666
+        font-style: italic
+        margin-top: 12px
+        float: left
+    
+  a.ver-equipamientos, a.cerrar-equipamientos
+    font-size: 11px
+  a.cerrar-equipamientos
+    color: #ed008c
+
+  .submit
+    float: right
+    width: auto
+    cursor: pointer

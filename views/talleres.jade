@@ -3,24 +3,10 @@ article#talleres
     a#listar(href="/talleres", class='#{articulo == 'Talleres' ? "activo" : null }') 
       | Talleres
       span.mask
-    a#crear(href="/talleres/new", class='#{articulo == 'FormTaller' ? "activo" : null }') 
+    a#crear(href="/talleres/new", class='#{articulo == 'FormTallerBase' ? "activo" : null }') 
       | Crear Taller 
       span.mask
 
   .list_body
     ul
       !=partial('partials/lista_talleres', { talleres: talleres })
-
-    .navegacion_interna.list_header
-      ul
-        li 
-          a(href="#") Equipamientos
-        li
-          a(href="#") Terminados
-        li
-          a(href="#",id="instancia_taller", class="internal_right_tab") Ejecuta taller
-
-
-    .listado_talleres_equipamientos
-      ul
-       !=partial('partials/lista_taller_equip',{talleres:talleres})

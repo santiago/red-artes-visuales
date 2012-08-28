@@ -1,13 +1,17 @@
 each taller in talleres
   li
     .taller_item(id='#{taller._id}')
-      a.nombre(href='#') #{taller.nombre}
+      a.nombre(href='/talleres/#{taller._id}') #{taller.nombre}
       .descripcion #{taller.descripcion}
-      a(href='#')#ver-equipamientos Ver equipamientos
+      a.ver-equipamientos(href='#') Ver equipamientos
+      a.cerrar-equipamientos(href='#', style='display:none;') Cerrar equipamientos
     
-      #equipamientos
-       .list_body
-         ul
-           !=partial('partials/lista_equipamientos', { equipamientos: equipamientos })
-        
-        
+      .equipamientosTaller(style='display:none;')
+        .list_body
+          ul
+            -if(equipamientosTaller.length)
+              each n in equipamientosTaller
+                li
+            -else
+              p.vacio No se han creado equipamientos para este taller
+              button.submit Agregar Equipamiento

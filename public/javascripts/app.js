@@ -37,12 +37,51 @@ jQuery(document).ready(function($) {
 
     // Páginas
     var Paginas = {
-    Taller: function() {
-    },
+	Taller: function() {
+	},
+
 	Equipamientos: function() {
 	},
 
 	Talleres: function() {
+	    var $el = $('article#talleres');
+
+	    $el.find('.ver-equipamientos').click(function(e) {
+		e.preventDefault();
+		$(this).blur();
+
+		$(this).closest('.taller_item')
+		    .find('.equipamientosTaller')
+  		    .first()
+                    .slideDown('fast');
+
+		$(this).hide();
+		$(this).closest('.taller_item')
+		    .find('.cerrar-equipamientos')
+		    .show()
+	    });
+
+	    $el.find('.cerrar-equipamientos').click(function(e) {
+		e.preventDefault();
+		$(this).blur();
+
+		$(this).closest('.taller_item')
+		    .find('.equipamientosTaller')
+  		    .first()
+                    .slideUp('fast');
+
+		$(this).hide();
+		$(this).closest('.taller_item')
+		    .find('.ver-equipamientos')
+		    .show();
+	    });
+
+	    $("button.submit").click(function(e) {
+		e.preventDefault();
+		$(this).blur();
+		var id = $(this).closest('.taller_item').attr('id');
+		location.href = '/talleres/'+id+'/new';
+	    });
 	},
 
 	Consultas: function() {
@@ -88,6 +127,39 @@ jQuery(document).ready(function($) {
 	},
 
 	FormTaller: function() {
+	    var taller_id = $('#taller_id').val();
+
+	    $('#fecha').datepicker();
+
+	    $('button').click(function(e) {
+		e.preventDefault();
+		$(this).blur();
+
+		var equip = $('select option:selected').val();
+		var fecha = $('#fecha').val().split('/');
+		if (fecha) {
+		    fecha = new Date(parseInt(fecha[2]),parseInt(fecha[0]),parseInt(fecha[1]));
+		    fecha = fecha.getUTCDate.getTime();
+		}
+
+		if(!equip) {
+		    $(this).parent().before("<p class='error'>* debe seleccionar un equipamiento</p>");
+		}
+
+		if(!fecha) {
+		    $(this).parent().before("<p class='error'>* debe seleccionar una fecha</p>");
+		}
+
+		if(fecha && equip) {
+		    $.post('/talleres/'+taller_id, { equipamiento: equip, fecha: fecha }, function(taller) {
+			console.log(taller);
+			location.href= '/talleres/'+taller_id+'/taller/'+taller._id;
+		    });
+		}
+	    });
+	},
+
+	FormTallerBase: function() {
 	    // Callback par atender el response
 	    function res(data) {
 		console.log(data);
@@ -103,19 +175,19 @@ jQuery(document).ready(function($) {
 	    });
 	},
 
-  FormCreativo: function() {
-    function res(data) {
-      console.log(data);
-    }
-    var $el = $('#creativo form');
-    $el.find('button').click(function(e) {
-      e.preventDefault();
-      var data = AdminCreativoForm.getValidData();
-      if (data) {
-        $.post('/admin/creativos', data, res);
-      }
-    });  
-  },
+	FormCreativo: function() {
+	    function res(data) {
+		console.log(data);
+	    }
+	    var $el = $('#creativo form');
+	    $el.find('button').click(function(e) {
+		e.preventDefault();
+		var data = AdminCreativoForm.getValidData();
+		if (data) {
+		    $.post('/admin/creativos', data, res);
+		}
+	    });  
+	},
 
 	FormParticipante: function() {
 	}
@@ -123,3 +195,5 @@ jQuery(document).ready(function($) {
 
     Paginas[articulo]();
 })
+
+
