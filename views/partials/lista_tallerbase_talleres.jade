@@ -4,8 +4,10 @@
       each taller in talleres
         li
           .taller_item(id='#{taller._id}')
-            a.nombre(href='/talleres/#{base_id}/talleres/#{taller._id}') #{taller.equipamiento_nombre}
+            a.nombre(href='/talleres/#{base_id}/taller/#{taller._id}') #{taller.equipamiento_nombre}
             p.fecha #{taller.fecha.toDateString()}
+
+      button.submit Agregar Equipamiento
     -else
       p.vacio No se han creado equipamientos para este taller
       button.submit Agregar Equipamiento
