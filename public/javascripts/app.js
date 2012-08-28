@@ -157,8 +157,10 @@ jQuery(document).ready(function($) {
 		}
 
 		if(fecha && equip) {
-		    $.post('/talleres/'+taller_id, { equipamiento: equip, fecha: fecha }, function(taller) {
-			location.href= '/talleres/'+taller_id+'/taller/'+taller._id;
+		    var equip_nombre = $('select option:selected').first().text();
+		    $.post('/talleres/'+taller_id, { equipamiento_id: equip, fecha: fecha, equipamiento_nombre: equip_nombre }, function(taller) {
+			console.log(taller)
+			// location.href= '/talleres/'+taller_id+'/taller/'+taller._id;
 		    });
 		}
 	    });

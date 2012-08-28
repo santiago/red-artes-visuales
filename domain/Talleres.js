@@ -79,13 +79,14 @@ var filtros = {
 	    actividad_id: req.params.taller_id,
 	    fecha: fecha,
 	    creativos: [],
-	    equipamiento    :  req.body.equipamiento,
-	    participantes   :  [], 
-	    resultados      :  '', 
+	    equipamiento_id:  req.body.equipamiento_id,
+	    equipamiento_nombre:  req.body.equipamiento_nombre,
+	    participantes:  [], 
+	    resultados:  '', 
 	    autoeval_creativo: '', 
-	    observ_externas :  '', 
-	    fotos           :  [], 
-	    videos          :  []
+	    observ_externas:  '', 
+	    fotos:  [], 
+	    videos:  []
 	});
 	taller.creativos.push(req.creativo);
 
@@ -167,10 +168,12 @@ function Service(app) {
     }); 
 
     app.get('/talleres/:base_id/talleres', filtros.getTalleres, function(req, res) {
-	res.render('lista_tallerbase_talleres', {
+	res.render('partials/lista_tallerbase_talleres', {
             locals: {
-		talleres: req.talleres
-            }
+		talleres: req.talleres,
+		base_id: req.params.base_id
+            },
+	    layout: false
 	});
     }); 
 

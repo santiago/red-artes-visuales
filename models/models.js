@@ -75,7 +75,8 @@ var Taller = new Schema({
     actividad_id    :  { type: String, index: true }
   , fecha           :  { type: Date }
   , creativos       :  { type: Array }
-  , equipamiento    :  { type: String }
+  , equipamiento_id    :  { type: String }
+  , equipamiento_nombre    :  { type: String }
   , participantes   :  { type: Array }
   , resultados      :  { type: String }
   , autoeval_creativo: { type: String }
