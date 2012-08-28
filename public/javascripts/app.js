@@ -61,7 +61,7 @@ jQuery(document).ready(function($) {
 		$el.find('.tab_content#'+opcion).show();
 		
 		$(this).closest('li').prepend($mask);
-		$mask.css({ width: $(this).closest('li').width() });
+		// $mask.css({ width: $(this).closest('li').width() });
 	    });
 	},
 
