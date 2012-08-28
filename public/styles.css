@@ -101,6 +101,11 @@ label.radio_text {
   margin-left: 2px;
   width: 100px;
 }
+label.radio_eval {
+  margin-right: 10px;
+  margin-left: 2px;
+  width: 50px;
+}
 input[type=text],
 input[type=password] {
   display: inline-block;
@@ -273,7 +278,8 @@ equip_barrio {
 article#equipamiento form,
 article#taller form,
 article#participante form,
-article#creativo form {
+article#creativo form,
+article#evaluacion form {
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
   border-top-left-radius: 0;
@@ -290,13 +296,15 @@ article#creativo form {
 article#equipamiento form ul,
 article#taller form ul,
 article#participante form ul,
-article#creativo form ul {
+article#creativo form ul,
+article#evaluacion form ul {
   padding: 10px;
 }
 article#equipamiento form li,
 article#taller form li,
 article#participante form li,
-article#creativo form li {
+article#creativo form li,
+article#evaluacion form li {
   clear: left;
   float: left;
   margin-bottom: 10px;
@@ -309,7 +317,9 @@ article#taller,
 article#participante,
 article#participantes,
 article#creativos,
-article#creativo {
+article#creativo,
+article#monitor,
+article#evaluacion {
   width: 800px;
   margin: auto;
 }
@@ -321,7 +331,9 @@ article#taller .list_header span.mask,
 article#participante .list_header span.mask,
 article#participantes .list_header span.mask,
 article#creativos .list_header span.mask,
-article#creativo .list_header span.mask {
+article#creativo .list_header span.mask,
+article#monitor .list_header span.mask,
+article#evaluacion .list_header span.mask {
   height: 6px;
   background: #fff;
   position: absolute;
@@ -337,7 +349,9 @@ article#taller .list_header a,
 article#participante .list_header a,
 article#participantes .list_header a,
 article#creativos .list_header a,
-article#creativo .list_header a {
+article#creativo .list_header a,
+article#monitor .list_header a,
+article#evaluacion .list_header a {
   padding: 10px;
   background-color: #fff;
   -moz-border-radius-topleft: 15px;
@@ -361,7 +375,9 @@ article#taller .list_header a.activo,
 article#participante .list_header a.activo,
 article#participantes .list_header a.activo,
 article#creativos .list_header a.activo,
-article#creativo .list_header a.activo {
+article#creativo .list_header a.activo,
+article#monitor .list_header a.activo,
+article#evaluacion .list_header a.activo {
   color: #ed008c;
   font-weight: 900;
   box-shadow: 0px 0px 5px #666;
@@ -375,7 +391,9 @@ article#taller .list_header a.activo span.mask,
 article#participante .list_header a.activo span.mask,
 article#participantes .list_header a.activo span.mask,
 article#creativos .list_header a.activo span.mask,
-article#creativo .list_header a.activo span.mask {
+article#creativo .list_header a.activo span.mask,
+article#monitor .list_header a.activo span.mask,
+article#evaluacion .list_header a.activo span.mask {
   display: block;
 }
 article#taller.nobase .list_header a#crear {
@@ -431,35 +449,41 @@ article#consultas .equip_item a.nombre {
 article#taller .list_header a#crear,
 article#talleres .list_header a#crear,
 article#creativo .list_header a#crear,
-article#creativos .list_header a#crear {
+article#creativos .list_header a#crear,
+article#monitor .list_header a#crear {
   float: right;
 }
 article#taller .list_header a#crear span.mask,
 article#talleres .list_header a#crear span.mask,
 article#creativo .list_header a#crear span.mask,
-article#creativos .list_header a#crear span.mask {
+article#creativos .list_header a#crear span.mask,
+article#monitor .list_header a#crear span.mask {
   width: 118px;
 }
 article#taller .list_header a#listar,
 article#talleres .list_header a#listar,
 article#creativo .list_header a#listar,
-article#creativos .list_header a#listar {
+article#creativos .list_header a#listar,
+article#monitor .list_header a#listar {
   float: left;
 }
 article#taller .list_header a#listar span.mask,
 article#talleres .list_header a#listar span.mask,
 article#creativo .list_header a#listar span.mask,
-article#creativos .list_header a#listar span.mask {
+article#creativos .list_header a#listar span.mask,
+article#monitor .list_header a#listar span.mask {
   width: 86px;
 }
 article#taller .taller_item,
 article#talleres .taller_item,
 article#creativo .taller_item,
 article#creativos .taller_item,
+article#monitor .taller_item,
 article#taller .creativo_item,
 article#talleres .creativo_item,
 article#creativo .creativo_item,
-article#creativos .creativo_item {
+article#creativos .creativo_item,
+article#monitor .creativo_item {
   margin-top: 10px;
   border-bottom: 1px solid #eee;
 }
@@ -467,28 +491,34 @@ article#taller .taller_item p,
 article#talleres .taller_item p,
 article#creativo .taller_item p,
 article#creativos .taller_item p,
+article#monitor .taller_item p,
 article#taller .creativo_item p,
 article#talleres .creativo_item p,
 article#creativo .creativo_item p,
 article#creativos .creativo_item p,
+article#monitor .creativo_item p,
 article#taller .taller_item .descripcion,
 article#talleres .taller_item .descripcion,
 article#creativo .taller_item .descripcion,
 article#creativos .taller_item .descripcion,
+article#monitor .taller_item .descripcion,
 article#taller .creativo_item .descripcion,
 article#talleres .creativo_item .descripcion,
 article#creativo .creativo_item .descripcion,
-article#creativos .creativo_item .descripcion {
+article#creativos .creativo_item .descripcion,
+article#monitor .creativo_item .descripcion {
   font-size: 12px;
 }
 article#taller .taller_item a.nombre,
 article#talleres .taller_item a.nombre,
 article#creativo .taller_item a.nombre,
 article#creativos .taller_item a.nombre,
+article#monitor .taller_item a.nombre,
 article#taller .creativo_item a.nombre,
 article#talleres .creativo_item a.nombre,
 article#creativo .creativo_item a.nombre,
-article#creativos .creativo_item a.nombre {
+article#creativos .creativo_item a.nombre,
+article#monitor .creativo_item a.nombre {
   font-size: 14px;
   font-weight: 900;
 }
@@ -506,7 +536,10 @@ article#equipamiento .list_body,
 article#taller .list_body,
 article#talleres .list_body,
 article#participantes .list_body,
-article#creativos .list_body {
+article#creativos .list_body,
+article#monitor .list_body,
+article#evaluacion .list_body,
+article#evaluacion .list_body {
   min-height: 60px;
   width: 100%;
   float: left;
@@ -530,7 +563,10 @@ article#equipamiento .list_body ul,
 article#taller .list_body ul,
 article#talleres .list_body ul,
 article#participantes .list_body ul,
-article#creativos .list_body ul {
+article#creativos .list_body ul,
+article#monitor .list_body ul,
+article#evaluacion .list_body ul,
+article#evaluacion .list_body ul {
   padding: 10px;
   width: 97.5%;
   float: left;
@@ -732,4 +768,44 @@ article .list_body .item .habilidades ul {
 #logout {
   float: right;
   font-size: 0.8em;
+}
+.taller_img img {
+  width: 50px;
+}
+.info {
+  padding: 4px;
+  border: 1px solid #00adef;
+  margin: 30px;
+}
+.info h1 {
+  display: inline-block;
+}
+.info p {
+  display: inline-block;
+  margin-left: 15px;
+}
+.info .taller_name {
+  font-weight: bold;
+  font-size: 16px;
+}
+.info .participante_name {
+  font-weight: bold;
+}
+.evaluaciones {
+  padding: 25px;
+}
+.eval_header {
+  display: inline-block;
+  margin-left: 180px;
+  margin-top: 20px;
+}
+.eval_header p {
+  float: left;
+  text-align: center;
+  width: 45px;
+  margin-right: 22px;
+  margin-left: 16px;
+  font-size: 12px;
+  color: #ed008c;
+  font-weight: bold;
 }

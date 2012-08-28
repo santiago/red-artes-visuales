@@ -105,12 +105,12 @@ var Creativo = new Schema({
 mongoose.model('Creativo', Creativo);  
 
 var Evaluacion = new Schema({
-    participante    :  { type: String }
-  , creativo        :  { type: String }
+    participante_id :  { type: String }
+  , creativo_id     :  { type: String }
   , fecha           :  { type: Date }
-  , taller          :  { type: String }
-  , habilidades     :  { type: String, enum : params.habilidades }
-  , valor           :  { type: String }
+  , taller_id       :  { type: String, index: true }
+  , habilidades     :  { type: Array }
+  , valores         :  { type: Array }
 });
 mongoose.model('Evaluacion', Evaluacion);  
 

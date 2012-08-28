@@ -1,5 +1,9 @@
 function Service(app) {
     var Evaluacion = app.db.model('Evaluacion');
+    var Taller= app.db.model('Taller');
+    var TallerBase= app.db.model('TallerBase');
+    var Participante = app.db.model('Participante');
+    var Creativo = app.db.model('Creativo');
     
     function getEvaluaciones(req, res, next) {
         var query = (function() {
@@ -27,7 +31,29 @@ function Service(app) {
 
     function postEvaluaciones(req, res, next) {
         var data = req.body;
-        var model = new Evaluacion(data);
+        console.log(data);
+        var model = new Evaluacion();
+        model.participante_id = data.p_id;
+        model.creativo_id = data.creativo_id;
+        model.fecha = data.fecha;
+        model.taller_id = data.taller_id;
+        var habilidades_cnt = app.params.habilidades.length;
+        model.habilidades = new Array(habilidades_cnt);
+        model.valores = new Array(habilidades_cnt);
+        var cnt = 0;
+        for (var key in data) {
+          console.log("++++++++++++");
+          console.log(key);
+          console.log(key.substring(0,2));
+          if (key.substring(0,2) == 'i_') {
+            console.log("-----------+");
+            var obj = data[key];
+            var hab = key.substring(2);
+            model.habilidades[cnt] = hab;
+            model.valores[cnt] = obj;
+            cnt++;
+          }
+        }
         model.save(function(err, r) {
             req.evaluacion = r;
             next();
@@ -80,11 +106,31 @@ function Service(app) {
      * HTML
      */
     app.get('/evaluaciones/new', getEvaluaciones, function(req, res) {
-        res.render('evaluacion', {
-            locals: {
-                // evaluaciones: req.evaluaciones
-            }
-        });
+        var taller_id = req.query['taller'];
+        console.log(taller_id);
+        var participante_id = req.query['p'];
+        //debug
+        var participante_id = "503b0a155531839027000001";
+        Taller.findById(taller_id, function(err, taller) {
+          console.log(taller);
+          TallerBase.findById(taller.actividad_id, function(err, taller_base) {
+            Creativo.find({email: app.login_email}, function(err, creativo) { 
+              console.log(creativo);
+              Participante.findOne({_id: participante_id}, function(err, participante) {
+                res.render('forms/eval_participante', {
+                  locals: {
+                    taller_base: taller_base,
+                    params: app.params,
+                    participante: participante,
+                    creativo: creativo[0],
+                    taller: taller,
+                    articulo: 'FormEvaluacion'
+                  }
+                });
+              });
+            });
+          });
+        });    
     });
     
     app.get('/evaluaciones/:id', getEvaluaciones, function(req, res) {
