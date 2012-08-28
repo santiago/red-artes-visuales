@@ -51,12 +51,12 @@ app.configure(function(){
     // Keep this as last one
     this.use(this.router);
     this.use(function(req, res, next){
-      res.render('error', { status: 404, error_text: '404', url: req.url });
+      res.render('error', { status: 404, error_text: '404 Pagina no encontrada en el sistema', url: req.url });
     });
     this.use(function(err, req, res, next){
       res.render('error', {
         status: err.status || 500
-      , error_text: '500'
+      , error_text: '500 Error interno en el sistema'
       ,   error: err
     });
 });
