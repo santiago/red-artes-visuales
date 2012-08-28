@@ -139,7 +139,7 @@ jQuery(document).ready(function($) {
 		var fecha = $('#fecha').val().split('/');
 		if (fecha) {
 		    fecha = new Date(parseInt(fecha[2]),parseInt(fecha[0]),parseInt(fecha[1]));
-		    fecha = fecha.getUTCDate.getTime();
+		    fecha = fecha.getTime();
 		}
 
 		if(!equip) {
@@ -153,7 +153,7 @@ jQuery(document).ready(function($) {
 		if(fecha && equip) {
 		    $.post('/talleres/'+taller_id, { equipamiento: equip, fecha: fecha }, function(taller) {
 			console.log(taller);
-			location.href= '/talleres/'+taller_id+'/taller/'+taller._id;
+			// location.href= '/talleres/'+taller_id+'/taller/'+taller._id;
 		    });
 		}
 	    });

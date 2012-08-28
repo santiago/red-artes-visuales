@@ -67,11 +67,11 @@ var filtros = {
 
     postTaller: function(req, res, next) {
 	req.creativo = '71381688';
-
-	var fecha = req.body.fecha;
+	console.log(req.body)
+	var fecha = parseInt(req.body.fecha);
 	var taller = new Taller({
 	    actividad_id: req.params.taller_id,
-	    fecha: req.body.fecha,
+	    fecha: fecha,
 	    creativos: [],
 	    equipamiento    :  req.body.equipamiento,
 	    participantes   :  [], 

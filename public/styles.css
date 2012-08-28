@@ -1,0 +1,735 @@
+§,
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: #00adef;
+}
+a:hover {
+  color: #ed008c;
+}
+li {
+  display: block;
+}
+body {
+  font-family: "Lucida Grande", Arial, Helvetica, Verdana, sans-serif;
+  overflow: auto;
+  background-color: #ddd;
+}
+.ajaxloader {
+  width: 16px;
+  height: 16px;
+  background: url("/images/ajax-loader.gif") 0 0 no-repeat;
+}
+form li {
+  margin-bottom: 10px;
+}
+.element *,
+.evaluacion * {
+  vertical-align: middle;
+}
+.element_checkbox_label {
+  width: 100%;
+}
+.element_checkbox_label .row {
+  clear: left;
+}
+.element_checkbox_label .options {
+  border: 1px solid #aaa;
+  padding: 10px;
+  float: left;
+}
+.element_checkbox_label .options .option {
+  float: left;
+}
+.element_checkbox_label label {
+  float: left;
+}
+.element_checkbox_label .option {
+  padding-bottom: 5px;
+}
+.element_checkbox_label .option label,
+.element_checkbox_label .option input {
+  float: left;
+}
+.element_checkbox_label .option input {
+  margin-right: 3px;
+  margin-top: 4px;
+}
+label {
+  display: inline-block;
+  width: 200px;
+}
+.element_checkbox {
+  display: inline-block;
+  width: 300px;
+}
+.evaluacion input {
+  display: inline-block;
+  width: 20px;
+}
+#submit,
+.submit {
+  margin-left: 200px;
+  border-radius: 3px;
+  background-color: #ddd;
+  color: #00adef;
+  font-weight: bold;
+  padding: 10px;
+  width: 100px;
+}
+#submit:hover,
+.submit:hover {
+  background-color: #00adef;
+  color: #fff;
+}
+input[type=radio] {
+  padding: 5px;
+}
+input[type=checkbox] {
+  padding: 5px;
+}
+label.radio_sino {
+  margin-right: 10px;
+  margin-left: 2px;
+  width: 10px;
+}
+label.radio_text {
+  margin-right: 10px;
+  margin-left: 2px;
+  width: 100px;
+}
+input[type=text],
+input[type=password] {
+  display: inline-block;
+  height: 32px;
+  border: 1px solid #000;
+  width: 300px;
+}
+input.radio {
+  height: 12px;
+  width: 50px;
+  text-align: left;
+}
+textarea {
+  display: inline-block;
+  margin: 10px 0;
+  width: 300px;
+  height: 80px;
+}
+select {
+  display: inline-block;
+  width: 300px;
+  margin: 10px 0 10px;
+}
+form,
+#lista_evaluacion {
+  box-shadow: 0px 0px 5px #666;
+  background-color: #fff;
+  width: 800px;
+  margin: auto;
+  float: left;
+  -moz-border-radius-topleft: 15px;
+  -webkit-border-top-left-radius: 15px;
+  border-top-left-radius: 15px;
+  -moz-border-radius-topright: 15px;
+  -webkit-border-top-right-radius: 15px;
+  border-top-right-radius: 15px;
+  -moz-border-radius-bottomleft: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  -moz-border-radius-bottomright: 15px;
+  -webkit-border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  font-size: 0.8em;
+}
+form h1 {
+  padding-bottom: 25px;
+}
+#main {
+  margin: 4px 0 20px;
+  padding: 20px;
+}
+#main header {
+  width: 800px;
+  margin: auto;
+}
+#main header span.logo {
+  float: left;
+  margin: 0;
+}
+ul.main_menu {
+  list-style-type: none;
+  text-align: center;
+  display: inline-block;
+  margin-left: 80px;
+  margin-top: 20px;
+}
+li.menu_item {
+  display: inline;
+  padding: 0.5em 1em;
+}
+.content {
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  clear: left;
+}
+.list_header {
+  margin: 10px 0 10px 0;
+}
+.list_header h1 {
+  float: left;
+}
+.list_header a {
+  float: right;
+}
+.taller_nombre,
+equip_nombre,
+taller_equipamiento {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.taller_descripcion,
+.taller_objetivos,
+taller_equip,
+equip_ubicacion,
+equip_comuna,
+equip_barrio {
+  font-size: 0.8em;
+}
+#consultas {
+  width: 800px;
+  margin: auto;
+  margin-top: 10px;
+}
+#consultas ul {
+  float: left;
+}
+#consultas ul li {
+  float: left;
+}
+#consultas ul li a {
+  padding: 10px;
+  float: left;
+}
+#consultas .tabs_container {
+  float: left;
+  clear: left;
+  background: #fff;
+  width: 800px;
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-topright: 15px;
+  -webkit-border-top-right-radius: 15px;
+  border-top-right-radius: 15px;
+  -moz-border-radius-bottomleft: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  -moz-border-radius-bottomright: 15px;
+  -webkit-border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 0px 5px #666;
+}
+#consultas .tab_content {
+  padding: 10px;
+}
+#consultas .opciones span.mask {
+  width: 86px;
+  height: 6px;
+  background: #fff;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+#consultas .opciones li {
+  position: relative;
+}
+#consultas .opciones li a.activo {
+  background: #fff;
+  -moz-border-radius-topleft: 15px;
+  -webkit-border-top-left-radius: 15px;
+  border-top-left-radius: 15px;
+  -moz-border-radius-topright: 15px;
+  -webkit-border-top-right-radius: 15px;
+  border-top-right-radius: 15px;
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+  color: #ed008c;
+  font-weight: 900;
+  box-shadow: 0px 0px 5px #666;
+}
+#consultas button#buscar {
+  float: right;
+  margin: 0 30px 10px;
+  padding: 10px;
+}
+article#equipamiento form,
+article#taller form,
+article#participante form,
+article#creativo form {
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-topright: 0;
+  -webkit-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  -moz-border-radius-bottomleft: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  -moz-border-radius-bottomright: 15px;
+  -webkit-border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+article#equipamiento form ul,
+article#taller form ul,
+article#participante form ul,
+article#creativo form ul {
+  padding: 10px;
+}
+article#equipamiento form li,
+article#taller form li,
+article#participante form li,
+article#creativo form li {
+  clear: left;
+  float: left;
+  margin-bottom: 10px;
+}
+article#equipamientos,
+article#equipamiento,
+article#talleres,
+article#taller_base,
+article#taller,
+article#participante,
+article#participantes,
+article#creativos,
+article#creativo {
+  width: 800px;
+  margin: auto;
+}
+article#equipamientos .list_header span.mask,
+article#equipamiento .list_header span.mask,
+article#talleres .list_header span.mask,
+article#taller_base .list_header span.mask,
+article#taller .list_header span.mask,
+article#participante .list_header span.mask,
+article#participantes .list_header span.mask,
+article#creativos .list_header span.mask,
+article#creativo .list_header span.mask {
+  height: 6px;
+  background: #fff;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  display: none;
+}
+article#equipamientos .list_header a,
+article#equipamiento .list_header a,
+article#talleres .list_header a,
+article#taller_base .list_header a,
+article#taller .list_header a,
+article#participante .list_header a,
+article#participantes .list_header a,
+article#creativos .list_header a,
+article#creativo .list_header a {
+  padding: 10px;
+  background-color: #fff;
+  -moz-border-radius-topleft: 15px;
+  -webkit-border-top-left-radius: 15px;
+  border-top-left-radius: 15px;
+  -moz-border-radius-topright: 15px;
+  -webkit-border-top-right-radius: 15px;
+  border-top-right-radius: 15px;
+  -moz-border-radius-bottomleft: 0;
+  -webkit-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+article#equipamientos .list_header a.activo,
+article#equipamiento .list_header a.activo,
+article#talleres .list_header a.activo,
+article#taller_base .list_header a.activo,
+article#taller .list_header a.activo,
+article#participante .list_header a.activo,
+article#participantes .list_header a.activo,
+article#creativos .list_header a.activo,
+article#creativo .list_header a.activo {
+  color: #ed008c;
+  font-weight: 900;
+  box-shadow: 0px 0px 5px #666;
+  position: relative;
+}
+article#equipamientos .list_header a.activo span.mask,
+article#equipamiento .list_header a.activo span.mask,
+article#talleres .list_header a.activo span.mask,
+article#taller_base .list_header a.activo span.mask,
+article#taller .list_header a.activo span.mask,
+article#participante .list_header a.activo span.mask,
+article#participantes .list_header a.activo span.mask,
+article#creativos .list_header a.activo span.mask,
+article#creativo .list_header a.activo span.mask {
+  display: block;
+}
+article#taller.nobase .list_header a#crear {
+  float: right;
+}
+article#taller.nobase .list_header a#crear span.mask {
+  width: 183px;
+}
+article#taller.nobase .list_header a#listar {
+  float: left;
+}
+article#taller.nobase .list_header a#listar span.mask {
+  width: 124px;
+}
+article#equipamientos .list_header a#crear,
+article#equipamiento .list_header a#crear,
+article#consultas .list_header a#crear {
+  float: right;
+}
+article#equipamientos .list_header a#crear span.mask,
+article#equipamiento .list_header a#crear span.mask,
+article#consultas .list_header a#crear span.mask {
+  width: 183px;
+}
+article#equipamientos .list_header a#listar,
+article#equipamiento .list_header a#listar,
+article#consultas .list_header a#listar {
+  float: left;
+}
+article#equipamientos .list_header a#listar span.mask,
+article#equipamiento .list_header a#listar span.mask,
+article#consultas .list_header a#listar span.mask {
+  width: 143px;
+}
+article#equipamientos .equip_item,
+article#equipamiento .equip_item,
+article#consultas .equip_item {
+  margin-left: 10px;
+  margin-top: 10px;
+  border-bottom: 1px solid #eee;
+}
+article#equipamientos .equip_item p,
+article#equipamiento .equip_item p,
+article#consultas .equip_item p {
+  font-size: 12px;
+}
+article#equipamientos .equip_item a.nombre,
+article#equipamiento .equip_item a.nombre,
+article#consultas .equip_item a.nombre {
+  font-size: 14px;
+  font-weight: 900;
+}
+article#taller .list_header a#crear,
+article#talleres .list_header a#crear,
+article#creativo .list_header a#crear,
+article#creativos .list_header a#crear {
+  float: right;
+}
+article#taller .list_header a#crear span.mask,
+article#talleres .list_header a#crear span.mask,
+article#creativo .list_header a#crear span.mask,
+article#creativos .list_header a#crear span.mask {
+  width: 118px;
+}
+article#taller .list_header a#listar,
+article#talleres .list_header a#listar,
+article#creativo .list_header a#listar,
+article#creativos .list_header a#listar {
+  float: left;
+}
+article#taller .list_header a#listar span.mask,
+article#talleres .list_header a#listar span.mask,
+article#creativo .list_header a#listar span.mask,
+article#creativos .list_header a#listar span.mask {
+  width: 86px;
+}
+article#taller .taller_item,
+article#talleres .taller_item,
+article#creativo .taller_item,
+article#creativos .taller_item,
+article#taller .creativo_item,
+article#talleres .creativo_item,
+article#creativo .creativo_item,
+article#creativos .creativo_item {
+  margin-top: 10px;
+  border-bottom: 1px solid #eee;
+}
+article#taller .taller_item p,
+article#talleres .taller_item p,
+article#creativo .taller_item p,
+article#creativos .taller_item p,
+article#taller .creativo_item p,
+article#talleres .creativo_item p,
+article#creativo .creativo_item p,
+article#creativos .creativo_item p,
+article#taller .taller_item .descripcion,
+article#talleres .taller_item .descripcion,
+article#creativo .taller_item .descripcion,
+article#creativos .taller_item .descripcion,
+article#taller .creativo_item .descripcion,
+article#talleres .creativo_item .descripcion,
+article#creativo .creativo_item .descripcion,
+article#creativos .creativo_item .descripcion {
+  font-size: 12px;
+}
+article#taller .taller_item a.nombre,
+article#talleres .taller_item a.nombre,
+article#creativo .taller_item a.nombre,
+article#creativos .taller_item a.nombre,
+article#taller .creativo_item a.nombre,
+article#talleres .creativo_item a.nombre,
+article#creativo .creativo_item a.nombre,
+article#creativos .creativo_item a.nombre {
+  font-size: 14px;
+  font-weight: 900;
+}
+span.mask_detalle {
+  width: 113px;
+  background: #fff;
+  height: 6px;
+  background: #fff;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+article#equipamientos .list_body,
+article#equipamiento .list_body,
+article#taller .list_body,
+article#talleres .list_body,
+article#participantes .list_body,
+article#creativos .list_body {
+  min-height: 60px;
+  width: 100%;
+  float: left;
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-topright: 0;
+  -webkit-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  -moz-border-radius-bottomleft: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  -moz-border-radius-bottomright: 15px;
+  -webkit-border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-shadow: 0px 0px 5px #666;
+  background: #fff;
+}
+article#equipamientos .list_body ul,
+article#equipamiento .list_body ul,
+article#taller .list_body ul,
+article#talleres .list_body ul,
+article#participantes .list_body ul,
+article#creativos .list_body ul {
+  padding: 10px;
+  width: 97.5%;
+  float: left;
+  clear: left;
+}
+article#talleres .list_body ul {
+  padding: 10px 20px;
+  width: 95%;
+}
+article .list_body .item {
+  padding: 20px;
+  display: inline-block;
+}
+article .list_body .item h1 {
+  margin-bottom: 10px;
+}
+article .list_body .item .fecha {
+  font-size: 0.85em;
+}
+article .list_body .item .equipamiento {
+  margin-top: 2px;
+}
+article .list_body .item .metodologias {
+  display: inline-block;
+  margin-top: 20px;
+}
+article .list_body .item .metodologias ul {
+  border: 1px solid #000;
+}
+article .list_body .item .habilidades {
+  margin-top: 20px;
+}
+article .list_body .item .habilidades ul {
+  border: 1px solid #000;
+}
+.navegacion_interna ul {
+  height: 39px;
+  width: 90%;
+  padding: 10px 10px 0 10px !important;
+  display: inline-block;
+}
+.navegacion_interna li {
+  display: inline-block;
+  margin: 0 10px 0 10px;
+}
+.navegacion_interna.list_header a {
+  background-color: #00adef !important;
+  color: #fff;
+}
+.navegacion_interna.list_header a:hover {
+  color: #ed008c;
+}
+.navegacion_interna.list_header a.internal_right_tab {
+  background-color: #ed008c !important;
+  margin-left: 81px;
+}
+.navegacion_interna.list_header a.internal_right_tab:hover {
+  background-color: #ddd !important;
+  color: #ed008c;
+}
+.ejecucion,
+.ejecucion#ejecuta_taller,
+.internal_right_tab {
+  float: right;
+}
+.resultado_area {
+  width: 100%;
+  clear: both;
+  padding-top: 10px;
+}
+.resultado_status {
+  display: none;
+  margin: 10px 30px 0 10px;
+  font-size: 10px;
+  border-top: 1px solid #00adef;
+  padding-top: 10px;
+}
+.listado {
+  margin-left: 10px;
+}
+.listado_participantes,
+.listado_talleres_equipamientos {
+  padding: 0px;
+  width: 756px;
+  display: inline-block;
+  margin: 0 20px 20px 20px;
+  border: 1px solid #00adef;
+  -moz-border-radius-topleft: 3px;
+  -webkit-border-top-left-radius: 3px;
+  border-top-left-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -webkit-border-top-right-radius: 3px;
+  border-top-right-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+.participante_item {
+  width: 100%;
+  display: inline-block;
+}
+.participante_image {
+  margin-right: 10px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.participante_nombre {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.participante_info {
+  vertical-align: middle;
+  height: 100%;
+  display: inline-block;
+}
+.participante_info:hover {
+  background-color: #00adef;
+}
+.participante_edad {
+  font-size: 0.8em;
+}
+#agrega_participantes_dialog {
+  display: none;
+  position: absolute;
+  top: 650px;
+  right: 220px;
+  width: 480px;
+  border: 1px solid #00adef;
+  background-color: #fff;
+  z-index: 999;
+}
+.crea_nuevo_participante {
+  margin: 10px 20px 5px 20px;
+}
+.crea_nuevo_participante #crea_nuevo_part {
+  width: 100%;
+  color: #fff;
+  background-color: #00adef;
+  padding: 10px;
+}
+.participantes_all {
+  padding: 20px;
+}
+#instancia_taller {
+  margin-left: 370px;
+}
+#talleres .list_body li {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+#talleres .equipamientosTaller .list_body {
+  box-shadow: 0px 0px 0px #fff;
+  border: 1px solid #aaa;
+  -moz-border-radius-topleft: 3px;
+  -webkit-border-top-left-radius: 3px;
+  border-top-left-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -webkit-border-top-right-radius: 3px;
+  border-top-right-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+#talleres .equipamientosTaller .list_body .vacio {
+  color: #666;
+  font-style: italic;
+  margin-top: 12px;
+  float: left;
+}
+#talleres a.ver-equipamientos,
+#talleres a.cerrar-equipamientos {
+  font-size: 11px;
+}
+#talleres a.cerrar-equipamientos {
+  color: #ed008c;
+}
+#talleres .submit {
+  float: right;
+  width: auto;
+  cursor: pointer;
+}
+.login form {
+  border: 1px solid #00adef;
+  margin: 150px auto;
+  width: 600px;
+  padding: 25px;
+  float: none;
+}
+.login .element {
+  margin-bottom: 10px;
+}
+#logout {
+  float: right;
+  font-size: 0.8em;
+}
