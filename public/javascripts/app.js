@@ -79,7 +79,7 @@ jQuery(document).ready(function($) {
 		    .show();
 	    });
 
-	    $("button.submit").click(function(e) {
+	    $("button.submit").live('click', function(e) {
 		e.preventDefault();
 		$(this).blur();
 		var id = $(this).closest('.taller_item').attr('id');
@@ -141,7 +141,6 @@ jQuery(document).ready(function($) {
 		var equip = $('select option:selected').val();
 		var fecha = $('#fecha').val().split('/');
 		if (fecha) {
-		    console.log(fecha);
 		    fecha = new Date(parseInt(fecha[2]),
 				     parseInt(fecha[0].replace(/^0/,''))-1,
 				     parseInt(fecha[1].replace(/^0/,'')))
