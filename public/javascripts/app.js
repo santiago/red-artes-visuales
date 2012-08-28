@@ -37,7 +37,32 @@ jQuery(document).ready(function($) {
 
     // Páginas
     var Paginas = {
+	Actividad: function() {
+	},
+
+	TallerBase: function() {
+	},
+
 	Taller: function() {
+	    var $el = $("#taller");
+	    // Tabs
+	    $el.find('.opciones li a').click(function(e) {
+		e.preventDefault();
+		$(this).blur();
+		
+		var opcion = $(this).attr('id');
+		
+		// Active Tab
+		$el.find('.opciones li a').removeClass('activo');
+		$(this).addClass('activo');
+		
+		// Show/Hide content
+		$el.find('.tab_content').hide();
+		$el.find('.tab_content#'+opcion).show();
+		
+		$(this).closest('li').prepend($mask);
+		$mask.css({ width: $(this).closest('li').width() });
+	    });
 	},
 
 	Equipamientos: function() {

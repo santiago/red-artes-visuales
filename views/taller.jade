@@ -57,20 +57,20 @@ article#taller.nobase
             label Videos:
 
     .navegacion_interna.list_header
-      ul
-        li 
-          a(href="#") General
-        li 
-          a(href="#") Participantes
-        li 
-          a(href="#") Evaluacion & Resultados
-        li 
-          a(href="#") Fotos / Videos
-        li
+      ul.opciones
+        li.tab-item 
+          a#general(href="#") General
+        li.tab-item 
+          a.activo#participantes(href="#") Participantes
+        li.tab-item
+          a#resultados(href="#") Evaluacion & Resultados
+        li.tab-item 
+          a#fotos_video(href="#") Fotos / Videos
+        li.tab-item(style='display:none;')
           a(href="#", id="agrega_part", class="internal_right_tab") Agregar participante
 
       .tabs_container
-        .tab_content#general
+        .tab_content#general(style='display:none;')
           ul
             li
               .element
@@ -106,10 +106,14 @@ article#taller.nobase
                         input(name="metod", type="checkbox", value="#{h}", disabled='disabled')
                     label.radio_text #{h}
                     -i++
-        .tab_content#participantes(style='display:none;')
-          .listado_participantes
-            ul
-            // !=partial('partials/lista_participantes',{ participantes: participantes})
+        .tab_content#participantes
+          -if(!participantes.length)
+            p.vacio No se han creado participantes para este taller
+            button.submit Agregar Participante
+          -else
+            .listado_participantes
+              ul
+              // !=partial('partials/lista_participantes',{ participantes: participantes})
         .tab_content#resultados(style='display:none;')
           .listado_participantes
             ul
