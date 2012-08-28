@@ -206,10 +206,13 @@ function Service(app) {
     });
 
     app.get('/talleres/:base_id', filtros.get, function(req, res) {
-        res.render('taller', {
+        console.log("*******************");
+        console.log(req.taller_base);
+        res.render('taller_base', {
             locals: {
                 articulo: 'TallerBase',
-                taller: req.taller_base
+                taller_base: req.taller_base,
+                params: app.params
             }
         });
     });
