@@ -869,3 +869,6 @@ article .list_body .item .habilidades ul {
   float: right;
   margin: 0;
 }
+.error p {
+  text-align: center;
+}
