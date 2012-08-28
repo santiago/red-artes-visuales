@@ -1,37 +1,65 @@
--var participantes = [{_id:1,nombre: 'pablo',edad: '7'},{_id: 2, nombre: 'anita',edad:'8'},{_id: 3, nombre:'rosa',edad:'9'}];
-article#taller
-  .list_header
-    a#listar.activo Detalle taller
-      span.mask_detalle
-  .list_body
-    .item
-       h1.nombre #{taller.nombre}
-       -console.log(taller)
-       .fecha  #{taller.fecha}
-       p En &nbsp;
-       a(href="#") ImaginaLab
-  
-       p #{taller.metodologias}
-       .metodologias Metodologias
-         ul
-           li Sensibilización
-           li Recorrido
-           li Dinámica
-           li Juego
-           li Técnicas creativas
-           li Presentación de referentes
-  
-       .habilidades Habilidades
-         ul
-           li Reflexión
-           li Creatividad
-           li Capacidad de escucha
-           li Compromiso
-           li Pensamiento critico
+// I will fix this name later
+article#taller.nobase
+  input#taller_id(type='hidden', value='#{taller.id}')
 
+  .list_header
+    a.activo#listar(href="/talleres", class='#{articulo == "Talleres" ? "activo" : null }')
+      | #{taller_base.nombre}
+      span.mask
+    a#crear(href='/talleres')
+      | Talleres
+      span.mask
+
+  .content
+    form
+      ul
+        li
+          .element
+            label Nombre actividad: 
+            input(name="nombre", type="text", value='#{taller_base.nombre}', readonly='readonly')
+
+        li
+          .element
+            label Descripción: 
+            textarea(name="desc", readonly='readonly') #{taller_base.descripcion}
+
+        li
+          .element
+            label Equipamiento:
+            input(type='text', value='#{taller.equipamiento_nombre}', readonly='readonly')
+        li
+          .element
+            label Fecha:
+            input#fecha(type='text', value='#{taller.fecha.toDateString()}', readonly='readonly')
+
+      ul(style='display:none;')
+        li
+          .element
+            label Resultados generales: 
+            textarea(name = "resultados")
+
+        li
+          .element
+            label Autoevaluación del creativo: 
+            textarea(name = "autoeval_creativo")
+
+        li
+          .element
+            label Observaciones externas: 
+            textarea(name = "observ_externas")
+
+        li
+          .element
+            label Fotos:
+
+        li
+          .element
+            label Videos:
 
     .navegacion_interna.list_header
       ul
+        li 
+          a(href="#") General
         li 
           a(href="#") Participantes
         li 
@@ -40,11 +68,58 @@ article#taller
           a(href="#") Fotos / Videos
         li
           a(href="#", id="agrega_part", class="internal_right_tab") Agregar participante
-      #agrega_participantes_dialog
-        .crea_nuevo_participante
-          button(id='crea_nuevo_part') Crear participante
-        .participantes_all
- 
-    .listado_participantes
-      ul
-        !=partial('partials/lista_participantes',{ participantes: participantes})
+
+      .tabs_container
+        .tab_content#general
+          ul
+            li
+              .element
+                label Objetivos: 
+                textarea(name="objetivos", readonly='readonly') #{taller_base.objetivos})
+
+            li
+              .element_checkbox_label
+                label Metodolog&iacute;as: 
+                .options
+                  -var i=0
+                  each metod in params.metodologias 
+                    - var checked = undefined; 
+                    .option(class='#{i%3 == 0 ? "row" : "" }')
+                      - if (taller_base.metodologias.indexOf(metod) > -1) 
+                        input(name="metod", type="checkbox", value="#{metod}", checked='#{checked}', disabled='disabled')
+                      - else
+                        input(name="metod", type="checkbox", value="#{metod}", disabled='disabled')
+                    label.radio_text #{metod}
+                    -i++
+
+            li
+              .element_checkbox_label
+                label Habilidades: 
+                .options
+                  -var i=0
+                  each h in params.habilidades 
+                    - var checked = undefined; 
+                    .option(class='#{i%3 == 0 ? "row" : "" }')
+                      - if (taller_base.habilidades.indexOf(h) > -1) 
+                        input(name="metod", type="checkbox", value="#{h}", checked='#{checked}', disabled='disabled')
+                      - else
+                        input(name="metod", type="checkbox", value="#{h}", disabled='disabled')
+                    label.radio_text #{h}
+                    -i++
+        .tab_content#participantes(style='display:none;')
+          .listado_participantes
+            ul
+            // !=partial('partials/lista_participantes',{ participantes: participantes})
+        .tab_content#resultados(style='display:none;')
+          .listado_participantes
+            ul
+            // !=partial('partials/lista_participantes',{ participantes: participantes})
+        .tab_content#fotos_video(style='display:none;')
+          .listado_participantes
+            ul
+            // !=partial('partials/lista_participantes',{ participantes: participantes})
+
+#agrega_participantes_dialog(style='display:none;')
+  .crea_nuevo_participante
+    button(id='crea_nuevo_part') Crear participante
+    .participantes_all

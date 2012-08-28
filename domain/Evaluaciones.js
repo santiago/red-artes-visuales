@@ -111,6 +111,12 @@ function Service(app) {
         var participante_id = req.query['p'];
         //debug
         var participante_id = "503b0a155531839027000001";
+        if (taller_id = null || taller_id == 'undefined') {
+          res.render('error', {
+            locals: {
+              error_text: "taller_id wrong";
+          });
+        }
         Taller.findById(taller_id, function(err, taller) {
           console.log(taller);
           TallerBase.findById(taller.actividad_id, function(err, taller_base) {
