@@ -106,33 +106,53 @@ function Service(app) {
      * HTML
      */
     app.get('/evaluaciones/new', getEvaluaciones, function(req, res) {
+        var error_text = "";
+        var render_error=function(err) {
+            res.render('error', {
+                    locals: {
+                      error_text: err
+                    }
+                  });
+            return;
+        } 
         var taller_id = req.query['taller'];
         console.log(taller_id);
         var participante_id = req.query['p'];
         //debug
         var participante_id = "503b0a155531839027000001";
-        if (taller_id = null || taller_id == 'undefined') {
-          res.render('error', {
-            locals: {
-              error_text: "taller_id wrong";
-          });
+        if (taller_id == null || taller_id == 'undefined') {
+          render_error("taller_id invalido");
+          return;
         }
         Taller.findById(taller_id, function(err, taller) {
+          if (err) {
+            render_error("error finding taller");
+            return;
+          }
           console.log(taller);
+          if (taller.actividad_id == null) {
+            error_text = "taller invalido";
+            render_error(error_text);  
+            return;
+          }
           TallerBase.findById(taller.actividad_id, function(err, taller_base) {
             Creativo.find({email: app.login_email}, function(err, creativo) { 
               console.log(creativo);
               Participante.findOne({_id: participante_id}, function(err, participante) {
-                res.render('forms/eval_participante', {
-                  locals: {
-                    taller_base: taller_base,
-                    params: app.params,
-                    participante: participante,
-                    creativo: creativo[0],
-                    taller: taller,
-                    articulo: 'FormEvaluacion'
-                  }
+                if (err || error_text != "") {
+                  render_error(error_text);
+                } else {
+                  res.render('forms/eval_participante', {
+                    locals: {
+                      taller_base: taller_base,
+                      params: app.params,
+                      participante: participante,
+                      creativo: creativo[0],
+                      taller: taller,
+                      articulo: 'FormEvaluacion'
+                    }
                 });
+               }
               });
             });
           });

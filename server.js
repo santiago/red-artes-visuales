@@ -50,6 +50,18 @@ app.configure(function(){
     this.use(everyauth.middleware());
     // Keep this as last one
     this.use(this.router);
+    this.use(function(req, res, next){
+      res.render('error', { status: 404, error_text: '404', url: req.url });
+    });
+    this.use(function(err, req, res, next){
+      res.render('error', {
+        status: err.status || 500
+      , error_text: '500'
+      ,   error: err
+    });
+});
+
+
 });
 
 app.configure('development', function(){
@@ -73,7 +85,7 @@ app.get('*', function(req, res, next) {
     if (!req.session.auth) {
         res.redirect('/login');
     } else { 
-      console.log("alskdjföalskdfjö");
+//      console.log("alskdjföalskdfjö");
       next();
     }
 });
