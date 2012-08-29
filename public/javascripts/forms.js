@@ -142,6 +142,61 @@ var TallerBaseForm= new FormValidator($("article#taller form"),
 	}
     );
 
+var ParticipanteForm = new FormValidator(
+   $("#participante form"),
+    {
+	'nombre': {
+	    'find': 'input[name=nombre]',
+	    'validate': ['presence']
+	},
+
+	'edad': {
+	    'find': 'select[name=edad] option:selected',
+	    'validate': ['presence']
+	},
+
+	'comuna': {
+	    'find': 'select[name=comuna] option:selected',
+	    'validate': ['presence']
+	},
+
+	'barrio': {
+	    'find': 'select[name=barrio] option:selected',
+	    'validate': ['presence']
+	},
+
+	'estrato': {
+	    'find': 'select[name=estrato] option:selected',
+	    'validate': ['presence']
+	},
+
+	'contacto': {
+	    'find': 'input[name=contacto]',
+	    'validate': ['presence']
+	},
+
+	'situacion': {
+	    'find': 'select[name=situacion] option:selected',
+	    'validate': ['presence']
+	},
+
+	'poblacion': {
+	    'find': 'select[name=poblacion] option:selected',
+	    'validate': ['presence']
+	},
+
+	'padres': {
+	    'find': 'select[name=padres] option:selected',
+	    'validate': ['presence']
+	},
+
+	'observaciones': {
+	    'find': 'textarea[name=observaciones]',
+	    'validate': ['presence']
+	}
+    }
+);
+
 var EquipamientoForm = new FormValidator(
     $("#equipamiento form"),
     {

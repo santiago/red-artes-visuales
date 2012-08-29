@@ -1,12 +1,20 @@
 article#participante
   .list_header
-    a#listar(href="/participantes",class='#{articulo == "Participantes" ? "activo" : null}')
-      | Participantes
-      span.mask
-    a#crear(href="/participantes/new", class='#{articulo == "FormParticipante" ? "activo" : null}')
-      | Crear Participante
+    -if(false)
+      a#listar(href="/participantes",class='#{articulo == "Participantes" ? "activo" : null}')
+        | Participantes
+        span.mask
+      a#crear(href="/participantes/new", class='#{articulo == "FormParticipante" ? "activo" : null}')
+        | Crear Participante
+    -else
+      a#listar(href="/participantes", class='#{articulo == "FormTallerParticipante" ? "activo" : null}')
+        | Registro Participante
+        span.mask
+      a#crear(href="/taller/#{taller._id}", class='#{articulo == "FormParticipante" ? "activo" : null}')
+        | Volver a #{taller_base.nombre}
+        span.mask
 
-    form(action="/participantes",method="post")
+    form
       ul
         li
           .element
@@ -96,6 +104,6 @@ article#participante
     
         li
           .element
-            input(id = "submit", name="submit", type = "submit",value="Envia")
+            button.submit Enviar
 
 

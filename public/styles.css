@@ -538,7 +538,6 @@ article#talleres .list_body,
 article#participantes .list_body,
 article#creativos .list_body,
 article#monitor .list_body,
-article#evaluacion .list_body,
 article#evaluacion .list_body {
   min-height: 60px;
   width: 100%;
@@ -565,7 +564,6 @@ article#talleres .list_body ul,
 article#participantes .list_body ul,
 article#creativos .list_body ul,
 article#monitor .list_body ul,
-article#evaluacion .list_body ul,
 article#evaluacion .list_body ul {
   padding: 10px;
   width: 97.5%;
@@ -836,6 +834,7 @@ article .list_body .item .habilidades ul {
   font-size: 13px;
 }
 #taller .navegacion_interna ul.opciones {
+  margin-top: 30px;
   padding-left: 30px;
 }
 #taller .navegacion_interna li.tab-item {
@@ -868,4 +867,16 @@ article .list_body .item .habilidades ul {
   width: auto;
   float: right;
   margin: 0;
+}
+article#participante .list_header a#crear {
+  float: right;
+}
+article#participante .list_header a#crear span.mask {
+  width: 183px;
+}
+article#participante .list_header a#listar {
+  float: left;
+}
+article#participante .list_header a#listar span.mask {
+  width: 192px;
 }

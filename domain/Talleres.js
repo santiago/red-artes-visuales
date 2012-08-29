@@ -59,9 +59,15 @@ var filtros = {
     },
 
     getTaller: function(req, res, next) {
-	Taller.findOne(req.params.taller_id, function(err, data) {
+	function findTallerBase(base_id) {
+            TallerBase.findById(base_id, function(err, r) {
+		req.taller_base = r;
+		next();
+            });
+	}
+	Taller.findById(req.params.taller_id, function(err, data) {
 	    req.taller = data;
-	    next();
+	    findTallerBase(data.actividad_id);
 	});
     },
 
@@ -96,9 +102,16 @@ var filtros = {
 	});
     },
 
-    postParticipante: function(req, res, next) {
-	var taller = new Taller(req.body);
-	next();	    
+    addParticipante: function(req, res, next) {
+	var taller = req.taller;
+	var participantes = taller.participantes;
+	
+	participantes.push(req.body.participante);
+	req.taller.update({ participantes: participantes }, function(err, record) {
+	    console.log(err);
+	    console.log(record);
+	    next();
+	});
     }
 };
 
@@ -214,11 +227,32 @@ function Service(app) {
         });
     });
 
+    // Debe recibir query con taller_id 
     app.get('/taller/:taller_id/participantes/new', filtros.getTaller, function(req, res) {
         res.render('forms/participante', {
             locals: {
-                articulo: 'FormParticipante',
-                taller: req.taller
+		params: app.params,
+                articulo: 'FormTallerParticipante',
+                taller: req.taller,
+                taller_base: req.taller_base
+            }
+        });
+    });
+
+    // Agregar un participante a un taller.
+    // Si el participante no existe, lo crea
+    app.post('/taller/:taller_id/participantes', filtros.getTaller, filtros.addParticipante, function(req, res) {
+	res.send({ ok: 'ok' });
+    });
+
+    app.get('/taller/:taller_id', filtros.getTaller, function(req, res) {
+        res.render('taller', {
+            locals: {
+		params: app.params,
+                articulo: 'Taller',
+                taller: req.taller,
+                taller_base: req.taller_base,
+		participantes: []
             }
         });
     });

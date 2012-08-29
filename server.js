@@ -54,12 +54,13 @@ app.configure(function(){
       res.render('error', { status: 404, error_text: '404 Pagina no encontrada en el sistema', url: req.url });
     });
     this.use(function(err, req, res, next){
-      res.render('error', {
-        status: err.status || 500
-      , error_text: '500 Error interno en el sistema'
-      ,   error: err
+	console.log(err);
+	res.render('error', {
+            status: err.status || 500
+	    , error_text: '500 Error interno en el sistema'
+	    , error: err
+	});
     });
-});
 
 
 });
@@ -81,11 +82,9 @@ app.get('/login', function(req, res){
 });
 
 app.get('*', function(req, res, next) {
-//  console.log(everyauth);
     if (!req.session.auth) {
         res.redirect('/login');
     } else { 
-//      console.log("alskdjföalskdfjö");
       next();
     }
 });

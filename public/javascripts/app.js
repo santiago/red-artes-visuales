@@ -60,8 +60,15 @@ jQuery(document).ready(function($) {
 		$el.find('.tab_content').hide();
 		$el.find('.tab_content#'+opcion).show();
 		
-		$(this).closest('li').prepend($mask);
+		// $(this).closest('li').prepend($mask);
 		// $mask.css({ width: $(this).closest('li').width() });
+	    });
+
+	    $el.find('.submit').click(function(e) {
+		e.preventDefault();
+		$(this).blur();
+		var taller_id = location.pathname.split('/').pop();
+		location.href = '/taller/'+taller_id+'/participantes/new';
 	    });
 	},
 
@@ -221,6 +228,23 @@ jQuery(document).ready(function($) {
 	},
 
 	FormParticipante: function() {
+	},
+
+	FormTallerParticipante: function() {
+	    var $el = $('#participante');
+	    var taller_id = location.pathname.split('/')[2];
+
+	    $el.find('button.submit').click(function(e) {
+		e.preventDefault();
+		var parti = ParticipanteForm.getValidData();
+		if (parti) {
+		    console.log(parti);
+		    // $.post('/taller/'+taller_id+'/participantes', parti, function(data) {
+		    // 	location.href = '/taller/'+taller_id;
+		    // });
+		}
+	    });
+
 	}
     };
     try {
