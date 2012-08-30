@@ -228,9 +228,24 @@ jQuery(document).ready(function($) {
 	},
 
 	FormParticipante: function() {
+    var $el = $('#participante form');
+    var equip_id=$('#equipamiento_id').val();
+ 
+    $el.find('button.submit').click(function(e) {
+      e.preventDefault();
+      var parti = ParticipanteForm.getValidData();
+      if (parti) {
+          console.log(parti);
+           $.post('/participantes', parti, function(data) {
+            location.href = '/equipamientos/'+equip_id;
+           });
+      }
+    });
+ 
 	},
 
 	FormTallerParticipante: function() {
+  /*
 	    var $el = $('#participante');
 	    var taller_id = location.pathname.split('/')[2];
 
@@ -244,7 +259,7 @@ jQuery(document).ready(function($) {
 		    // });
 		}
 	    });
-
+*/
 	}
     };
     try {

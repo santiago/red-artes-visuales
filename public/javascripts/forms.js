@@ -193,7 +193,11 @@ var ParticipanteForm = new FormValidator(
 	'observaciones': {
 	    'find': 'textarea[name=observaciones]',
 	    'validate': ['presence']
-	}
+	},
+  'equip_id': {
+      'find': 'input[name=equipamiento_id]',
+      'validate': ['presence']
+  }
     }
 );
 

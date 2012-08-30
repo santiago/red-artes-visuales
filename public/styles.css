@@ -343,7 +343,8 @@ equip_barrio {
   margin: 0 30px 10px;
   padding: 10px;
 }
-article#equipamiento header {
+article#equipamiento header,
+article#participante header {
   margin: 10px 0 30px;
   float: left;
   box-shadow: 0px 0px 5px #666;
@@ -361,45 +362,59 @@ article#equipamiento header {
   border-bottom-right-radius: 15px;
   background: #fff;
 }
-article#equipamiento header .header-content {
+article#equipamiento header .header-content,
+article#participante header .header-content {
   padding: 10px;
 }
 article#equipamiento header label,
-article#equipamiento header p {
+article#participante header label,
+article#equipamiento header p,
+article#participante header p {
   font-weight: 900;
 }
-article#equipamiento header label {
+article#equipamiento header label,
+article#participante header label {
   font-size: 11px;
   color: #00adef;
 }
-article#equipamiento header p {
+article#equipamiento header p,
+article#participante header p {
   font-size: 20px;
 }
-article#equipamiento .list_header a {
+article#equipamiento .list_header a,
+article#participante .list_header a {
   margin-right: 2px;
 }
-article#equipamiento .list_header a#tab-talleres {
+article#equipamiento .list_header a#tab-talleres,
+article#participante .list_header a#tab-talleres {
   float: left;
 }
-article#equipamiento .list_header a#tab-talleres span.mask {
+article#equipamiento .list_header a#tab-talleres span.mask,
+article#participante .list_header a#tab-talleres span.mask {
   width: 87px;
 }
-article#equipamiento .list_header a#tab-participantes {
+article#equipamiento .list_header a#tab-participantes,
+article#participante .list_header a#tab-participantes {
   float: left;
 }
-article#equipamiento .list_header a#tab-participantes span.mask {
+article#equipamiento .list_header a#tab-participantes span.mask,
+article#participante .list_header a#tab-participantes span.mask {
   width: 124px;
 }
-article#equipamiento .list_header a#tab-editar {
+article#equipamiento .list_header a#tab-editar,
+article#participante .list_header a#tab-editar {
   float: right;
 }
-article#equipamiento .list_header a#tab-editar span.mask {
+article#equipamiento .list_header a#tab-editar span.mask,
+article#participante .list_header a#tab-editar span.mask {
   width: 124px;
 }
-article#equipamiento .list_header a#tab-general {
+article#equipamiento .list_header a#tab-general,
+article#participante .list_header a#tab-general {
   float: left;
 }
-article#equipamiento .list_header a#tab-general span.mask {
+article#equipamiento .list_header a#tab-general span.mask,
+article#participante .list_header a#tab-general span.mask {
   width: 124px;
 }
 article#equipamiento form,
@@ -986,6 +1001,17 @@ article#participante .list_header a#listar {
 article#participante .list_header a#listar span.mask {
   width: 192px;
 }
+ul#errors {
+  position: absolute;
+  float: left;
+  top: 150px;
+  margin: 0 0 0 200px;
+  color: #ed008c;
+}
 .error p {
   text-align: center;
+}
+p.no_results {
+  font-size: 0.8em;
+  padding: 20px;
 }

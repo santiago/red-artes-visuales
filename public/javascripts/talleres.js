@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
     $('#tab-agregar').addClass('activo');
   });
   $('#crea_nuevo_part').click(function(e) {
-    window.location = '/participantes/new';  
+    window.location = '/participantes/new/equip/'+$('#equipamiento_id').val();  
   });
   $('#instancia_taller').click(function(e) {
     window.location = '/talleres/taller/new';

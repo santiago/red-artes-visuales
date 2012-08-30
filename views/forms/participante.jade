@@ -1,20 +1,31 @@
 article#participante
+  input(type="hidden", id="equipamiento_id", value="#{equipamiento._id}")
+  header
+    .header-content
+      label Equipamiento
+      p.nombre #{equipamiento.nombre}
+
   .list_header
-    -if(false)
-      a#listar(href="/participantes",class='#{articulo == "Participantes" ? "activo" : null}')
-        | Participantes
-        span.mask
-      a#crear(href="/participantes/new", class='#{articulo == "FormParticipante" ? "activo" : null}')
-        | Crear Participante
-    -else
-      a#listar(href="/participantes", class='#{articulo == "FormTallerParticipante" ? "activo" : null}')
-        | Registro Participante
-        span.mask
-      a#crear(href="/taller/#{taller._id}", class='#{articulo == "FormParticipante" ? "activo" : null}')
-        | Volver a #{taller_base.nombre}
-        span.mask
+    ul
+      li
+        a#tab-talleres(href="/equipamientos/#{equipamiento._id}", class='#{articulo == 'Taller' ? "activo" : null }')
+          | Talleres
+          span.mask
+      li
+        a.activo#tab-participantes(href="/equipamientos/#{equipamiento._id}/participantes", class='#{articulo == 'Participantes' ? "activo" : null }')
+          | Participantes
+          span.mask
+      li
+        a#tab-nuevo_part(href="#", class='#{articulo == 'FormParticipante' ? "activo" : null }')
+          | Crear 
+          span.mask
+      li
+        a#tab-general(href="/equipamientos/#{equipamiento._id}/general", class='#{articulo == 'General' ? "activo" : null }')
+          | General
+          span.mask
 
     form
+      input(type="hidden", id="equip_id",name="equip_id", value="#{equipamiento._id}")
       ul
         li
           .element
