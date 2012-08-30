@@ -69,7 +69,10 @@ form li
     clear: left
 
   .options
+    corner(4px)
     border: 1px solid #AAA
+    width: 480px
+    width: 480px
     padding: 10px
     float: left
     .option
@@ -110,6 +113,10 @@ label
   background-color: #00adef
   color: white 
 
+
+input
+  corner(4px)
+
 input[type=radio]
   padding: 5px
 
@@ -134,7 +141,11 @@ label.radio_eval
 input[type=text],input[type=password]
   display: inline-block
   height: 32px
-  border: 1px solid black
+  border: 1px solid #AAA
+  width: 490px
+  padding-left: 10px
+
+.login input
   width: 300px
 
 
@@ -146,13 +157,16 @@ input.radio
 textarea
   display: inline-block
   margin: 10px 0
-  width: 300px
+  border: 1px solid #AAA
+  width: 500px
   height: 80px  
+  corner(4px)
 
 select
   display: inline-block
-  width: 300px
+  width: 500px
   margin: 10px 0 10px;
+  corner(4px)
 
 form, #lista_evaluacion
   box-shadow: 0px 0px 5px #666
@@ -425,7 +439,7 @@ article#monitor,
 article#evaluacion
   .list_body
     min-height: 60px
-    width: 100%
+    width: 800px 
     float: left
     corner-each(0, 0, 15px, 15px)
     box-shadow: 0px 0px 5px #666
