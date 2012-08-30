@@ -154,7 +154,8 @@ form h1 {
   padding-bottom: 25px;
 }
 #main {
-  margin: 4px 0 20px;
+  margin: auto;
+  width: 800px;
   padding: 20px;
 }
 #main header {
@@ -177,9 +178,8 @@ li.menu_item {
   padding: 0.5em 1em;
 }
 .content {
-  padding: 10px 20px 10px 20px;
-  border-radius: 10px;
-  clear: left;
+  float: left;
+  padding-bottom: 100px;
 }
 .list_header {
   margin: 10px 0 10px 0;
@@ -275,6 +275,65 @@ equip_barrio {
   margin: 0 30px 10px;
   padding: 10px;
 }
+article#equipamiento header {
+  margin: 10px 0 30px;
+  float: left;
+  box-shadow: 0px 0px 5px #666;
+  -moz-border-radius-topleft: 15px;
+  -webkit-border-top-left-radius: 15px;
+  border-top-left-radius: 15px;
+  -moz-border-radius-topright: 15px;
+  -webkit-border-top-right-radius: 15px;
+  border-top-right-radius: 15px;
+  -moz-border-radius-bottomleft: 15px;
+  -webkit-border-bottom-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  -moz-border-radius-bottomright: 15px;
+  -webkit-border-bottom-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background: #fff;
+}
+article#equipamiento header .header-content {
+  padding: 10px;
+}
+article#equipamiento header label,
+article#equipamiento header p {
+  font-weight: 900;
+}
+article#equipamiento header label {
+  font-size: 11px;
+  color: #00adef;
+}
+article#equipamiento header p {
+  font-size: 20px;
+}
+article#equipamiento .list_header a {
+  margin-right: 2px;
+}
+article#equipamiento .list_header a#tab-talleres {
+  float: left;
+}
+article#equipamiento .list_header a#tab-talleres span.mask {
+  width: 87px;
+}
+article#equipamiento .list_header a#tab-participantes {
+  float: left;
+}
+article#equipamiento .list_header a#tab-participantes span.mask {
+  width: 124px;
+}
+article#equipamiento .list_header a#tab-editar {
+  float: right;
+}
+article#equipamiento .list_header a#tab-editar span.mask {
+  width: 124px;
+}
+article#equipamiento .list_header a#tab-general {
+  float: left;
+}
+article#equipamiento .list_header a#tab-general span.mask {
+  width: 124px;
+}
 article#equipamiento form,
 article#taller form,
 article#participante form,
@@ -308,20 +367,6 @@ article#evaluacion form li {
   clear: left;
   float: left;
   margin-bottom: 10px;
-}
-article#equipamientos,
-article#equipamiento,
-article#talleres,
-article#taller_base,
-article#taller,
-article#participante,
-article#participantes,
-article#creativos,
-article#creativo,
-article#monitor,
-article#evaluacion {
-  width: 800px;
-  margin: auto;
 }
 article#equipamientos .list_header span.mask,
 article#equipamiento .list_header span.mask,
@@ -409,39 +454,32 @@ article#taller.nobase .list_header a#listar span.mask {
   width: 124px;
 }
 article#equipamientos .list_header a#crear,
-article#equipamiento .list_header a#crear,
 article#consultas .list_header a#crear {
   float: right;
 }
 article#equipamientos .list_header a#crear span.mask,
-article#equipamiento .list_header a#crear span.mask,
 article#consultas .list_header a#crear span.mask {
   width: 183px;
 }
 article#equipamientos .list_header a#listar,
-article#equipamiento .list_header a#listar,
 article#consultas .list_header a#listar {
   float: left;
 }
 article#equipamientos .list_header a#listar span.mask,
-article#equipamiento .list_header a#listar span.mask,
 article#consultas .list_header a#listar span.mask {
   width: 143px;
 }
 article#equipamientos .equip_item,
-article#equipamiento .equip_item,
 article#consultas .equip_item {
   margin-left: 10px;
   margin-top: 10px;
   border-bottom: 1px solid #eee;
 }
 article#equipamientos .equip_item p,
-article#equipamiento .equip_item p,
 article#consultas .equip_item p {
   font-size: 12px;
 }
 article#equipamientos .equip_item a.nombre,
-article#equipamiento .equip_item a.nombre,
 article#consultas .equip_item a.nombre {
   font-size: 14px;
   font-weight: 900;
@@ -879,4 +917,7 @@ article#participante .list_header a#listar {
 }
 article#participante .list_header a#listar span.mask {
   width: 192px;
+}
+.error p {
+  text-align: center;
 }

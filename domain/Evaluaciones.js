@@ -107,9 +107,10 @@ function Service(app) {
      */
     app.get('/evaluaciones/new', getEvaluaciones, function(req, res) {
         var error_text = "";
-        var render_error=function(err) {
+        var render_error=function(err, status_code) {
             res.render('error', {
                     locals: {
+                      status: status_code,
                       error_text: err
                     }
                   });
@@ -121,26 +122,35 @@ function Service(app) {
         //debug
         var participante_id = "503b0a155531839027000001";
         if (taller_id == null || taller_id == 'undefined') {
-          render_error("taller_id invalido");
+          render_error("ID taller invalido! Ese taller no fue encontrado.", 404);
           return;
         }
         Taller.findById(taller_id, function(err, taller) {
           if (err) {
-            render_error("error finding taller");
+            render_error("No fui capable de econtrar el taller deseado.", 404);
             return;
           }
           console.log(taller);
           if (taller.actividad_id == null) {
-            error_text = "taller invalido";
+            error_text = "La ID del taller base es invalido [actividad_id]", 404;
             render_error(error_text);  
             return;
           }
           TallerBase.findById(taller.actividad_id, function(err, taller_base) {
+            if (err) {
+              render_error("No fui capaz de encontrar el Taller base referenciado por [actividad_id]", 404);
+            return;
+            }
             Creativo.find({email: app.login_email}, function(err, creativo) { 
+              if (err) {
+                render_error("No fui capaz de encontrar el Creativo relacionado al usuário en sesión",500);
+                return;
+              }
               console.log(creativo);
               Participante.findOne({_id: participante_id}, function(err, participante) {
-                if (err || error_text != "") {
-                  render_error(error_text);
+                if (err) {
+                  render_error("No fui capaz de encontrar el participante de la evaluación", 500);
+                  return;
                 } else {
                   res.render('forms/eval_participante', {
                     locals: {

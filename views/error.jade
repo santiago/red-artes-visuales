@@ -1,8 +1,16 @@
 article#error
   .error_frame
     .error
-      p
-      |  Ooops. Lo siento. Hemos encontrado un error.
-      |  Si persiste por favor contactese con la administración
-      p
-      |  #{error_text}
+      - var error_header
+      - if (typeof(status) != 'undefined') {
+      -   if (status == 404) {
+      -      error_header = "Oooooops";
+      -    } else if (status == 500) {
+      -      error_header = "Oh oh. Que pena.<br/>"
+      -      error_header += "Algo no funcionó como previsto.<br/>";
+      -      error_header += "Si persiste por favor contactese con la administración. Gracias";
+      -    }
+      - } 
+      p #{error_header}
+      p #{error_text}
+      
