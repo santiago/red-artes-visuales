@@ -4,13 +4,12 @@ article#error
       - var error_header
       - if (typeof(status) != 'undefined') {
       -   if (status == 404) {
-      -      error_header = "Oooooops";
+             p "Oooooops";
       -    } else if (status == 500) {
-      -      error_header = "Oh oh. Que pena.<br/>"
-      -      error_header += "Algo no funcionó como previsto.<br/>";
-      -      error_header += "Si persiste por favor contactese con la administración. Gracias";
+            p Oh oh. Que pena <br /><br />
+            p Algo no funcionó como previsto. <br />
+            p Si persiste por favor contactese con la administración. Gracias <br/><br/>
       -    }
       - } 
-      p #{error_header}
       p #{error_text}
       

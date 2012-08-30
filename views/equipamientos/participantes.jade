@@ -1,0 +1,34 @@
+- var edit = false
+article#equipamiento
+  input(type="hidden", id="equipamiento_id", value="#{equipamiento._id}")
+  header
+    .header-content
+      label Equipamiento
+      p.nombre #{equipamiento.nombre}
+  .list_header
+    ul
+      li
+        a#tab-talleres(href="/equipamientos/#{equipamiento._id}", class='#{articulo == 'Taller' ? "activo" : null }') 
+          | Talleres
+          span.mask
+      li
+        a#tab-participantes(href="/equipamientos/#{equipamiento._id}/participantes", class='#{articulo == 'Participantes' ? "activo" : null }') 
+          | Participantes
+          span.mask
+      li
+        a#tab-agregar(href="#", class='#{articulo == 'Editar' ? "activo" : null }') 
+          | Agrega 
+          span.mask
+      li
+        a#tab-general(href="/equipamientos/#{equipamiento._id}/general", class='#{articulo == 'General' ? "activo" : null }') 
+          | General
+          span.mask
+
+    .list_body
+      ul
+        !=partial('partials/lista_participantes',{participantes: participantes})
+
+#agrega_participantes_dialog(style='display:none;')
+  .crea_nuevo_participante
+    button(id='crea_nuevo_part') Crear participante
+    .participantes_all

@@ -47,7 +47,8 @@ var Equipamiento = new Schema({
 mongoose.model('Equipamiento', Equipamiento);
 
 var Participante = new Schema({
-    nombre          :  { type: String, default: 'Nombre' }
+    equipamiento_id :  { type: String, index: true }
+  , nombre          :  { type: String, default: 'Nombre' }
   , edad            :  { type: String, enum: params.edades }
   , comuna          :  { type: String, enum: params.comunas }
   , barrio          :  { type: String, enum: params.barrios }

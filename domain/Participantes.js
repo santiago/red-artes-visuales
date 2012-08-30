@@ -93,6 +93,21 @@ function Service(app) {
     });
 
 
+    app.get('/consultas/participantes/equipamiento/:id', function(req, res) {
+      Participante.find({'equipamiento_id': req.params.id}, function(err, participantes) {
+        if (err) {
+          console.log(err);
+        }
+        res.render('partials/lista_participantes', {
+            layout: false,
+            locals: {
+                articulo: 'Participantes',
+                participantes: participantes
+            }
+        });
+      });
+    });
+
     app.get('/consultas/participantes', getParticipantes, function(req, res) {
         res.render('partials/lista_participantes', {
             layout: false,

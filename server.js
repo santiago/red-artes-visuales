@@ -91,11 +91,10 @@ app.get('*', function(req, res, next) {
 
 app.get('/', function(req, res) {
     if (req.session.user) {
-      console.log('redirecting..................');
+      console.log('Session found, redirecting..................');
     	res.redirect('/equipamientos');
     } else {
-      console.log('rendering index..................');
-      console.log(everyauth.loggedIn);
+      console.log('No session found, rendering index..................');
 	    res.render('index', {
         locals:{
           articulo: 'None'

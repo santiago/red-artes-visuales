@@ -1,9 +1,20 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function($) { 
+/*
   $('#agrega_part').click(function(e) {
     $.get('/consultas/participantes',function(e) {
       $('#agrega_participantes_dialog').show();
       $('.participantes_all')[0].innerHTML = e;
     });
+  });
+*/
+  $('#tab-agregar').click(function(e) {
+    var equip_id = $('#equipamiento_id').val();
+    var url = "/consultas/participantes/equipamiento/"+ equip_id;
+    $.get(url,function(e) {
+      $('#agrega_participantes_dialog').show();
+      $('.participantes_all')[0].innerHTML = e;
+    });
+    $('#tab-agregar').addClass('activo');
   });
   $('#crea_nuevo_part').click(function(e) {
     window.location = '/participantes/new';  

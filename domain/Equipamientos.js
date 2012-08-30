@@ -123,10 +123,28 @@ function Service(app) {
             locals: {
                 equipamiento: req.equipamiento,
                 params: app.params,
-                articulo: 'Equipamientos'
+                articulo: 'Taller'
             }
         });
     });
+ 
+    app.get('/equipamientos/:id/participantes', filters.get, function(req, res) {
+      console.log(req.equipamiento);
+      Participante = app.db.model('Participante');
+      Participante.find({'equipamiento_id': req.equipamiento.id}, function(err, participantes){
+        console.log("participantes: ");
+        console.log(participantes);
+      
+        res.render('equipamientos/participantes', {
+            locals: {
+                equipamiento: req.equipamiento,
+                participantes: participantes,
+                params: app.params,
+                articulo: 'Participantes'
+            }
+        });
+      });
+   });
 }
 
 module.exports = Service;

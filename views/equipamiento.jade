@@ -1,5 +1,6 @@
 - var edit = false
 article#equipamiento
+  input(type="hidden", id="equipamiento_id", value=#{equipamiento._id})
   header
     .header-content
       label Equipamiento
@@ -8,7 +9,7 @@ article#equipamiento
   .list_header
     ul
       li
-        a.activo#tab-talleres(href="/equipamientos/#{equipamiento._id}/talleres", class='#{articulo == 'Taller' ? "activo" : null }') 
+        a.activo#tab-talleres(href="/equipamientos/#{equipamiento._id}", class='#{articulo == 'Taller' ? "activo" : null }') 
           | Talleres
           span.mask
       li
@@ -111,12 +112,12 @@ article#equipamiento
       li
         .element
           label Baños cerca?:
-          input(name="bano", readonly='readonly',  id="bano", type="text", value='#{equipamiento.bano}')
+          input(name="banos", readonly='readonly',  id="bano", type="text", value='#{equipamiento.banos}')
 
       li
         .element
           label Equipos electrónicos disponibles:
-          input(name="equipos", readonly='readonly',  id="equipos", type="text", value='#{equipamiento.equipos}')
+          input(name="e_equipos", readonly='readonly',  id="equipos", type="text", value='#{equipamiento.e_equipos}')
 
       li
         .element
@@ -131,12 +132,12 @@ article#equipamiento
             each edad in params.edades
               - if (equipamiento.edades.indexOf(edad) > -1 ) {
                 .option(class='#{i%3 == 0 ? "row" : "" }')
-                input(name="edades[]",type="checkbox",value='#{edad}",checked='checked') 
+                  input(name="edades[]",type="checkbox",value='#{edad}",checked='checked') 
               - } else {
                 .option(class='#{i%3 == 0 ? "row" : "" }')
-                input(name="edades[]",type="checkbox",value='#{edad}") 
+                  input(name="edades[]",type="checkbox",value='#{edad}") 
               -}
-                label.radio_text #{edad} 
+                  label.radio_text #{edad} 
               -i++
 
       li

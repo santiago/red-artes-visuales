@@ -1,0 +1,67 @@
+    .navegacion_interna.list_header
+      ul.opciones
+        li.tab-item 
+          a#general(href="#") General
+        li.tab-item 
+          a.activo#participantes(href="#") Participantes
+        li.tab-item
+          a#resultados(href="#") Evaluacion & Resultados
+        li.tab-item 
+          a#fotos_video(href="#") Fotos / Videos
+        li.tab-item(style='display:none;')
+          a(href="#", id="agrega_part", class="internal_right_tab") Agregar participante
+
+      .tabs_container
+        .tab_content#general(style='display:none;')
+          ul
+            li
+              .element
+                label Objetivos: 
+                textarea(name="objetivos", readonly='readonly') #{taller_base.objetivos})
+
+            li
+              .element_checkbox_label
+                label Metodolog&iacute;as: 
+                .options
+                  -var i=0
+                  each metod in params.metodologias 
+                    - var checked = undefined; 
+                    .option(class='#{i%3 == 0 ? "row" : "" }')
+                      - if (taller_base.metodologias.indexOf(metod) > -1) 
+                        input(name="metod", type="checkbox", value="#{metod}", checked='#{checked}', disabled='disabled')
+                      - else
+                        input(name="metod", type="checkbox", value="#{metod}", disabled='disabled')
+                    label.radio_text #{metod}
+                    -i++
+
+            li
+              .element_checkbox_label
+                label Habilidades: 
+                .options
+                  -var i=0
+                  each h in params.habilidades 
+                    - var checked = undefined; 
+                    .option(class='#{i%3 == 0 ? "row" : "" }')
+                      - if (taller_base.habilidades.indexOf(h) > -1) 
+                        input(name="metod", type="checkbox", value="#{h}", checked='#{checked}', disabled='disabled')
+                      - else
+                        input(name="metod", type="checkbox", value="#{h}", disabled='disabled')
+                    label.radio_text #{h}
+                    -i++
+        .tab_content#participantes
+          -if(!participantes.length)
+            p.vacio No se han creado participantes para este taller
+            button.submit Agregar Participante
+          -else
+            .listado_participantes
+              ul
+              // !=partial('partials/lista_participantes',{ participantes: participantes})
+        .tab_content#resultados(style='display:none;')
+          .listado_participantes
+            ul
+            // !=partial('partials/lista_participantes',{ participantes: participantes})
+        .tab_content#fotos_video(style='display:none;')
+          .listado_participantes
+            ul
+            // !=partial('partials/lista_participantes',{ participantes: participantes})
+
