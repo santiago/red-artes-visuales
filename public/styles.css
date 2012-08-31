@@ -601,28 +601,32 @@ article#taller .list_header a#crear,
 article#talleres .list_header a#crear,
 article#creativo .list_header a#crear,
 article#creativos .list_header a#crear,
-article#monitor .list_header a#crear {
+article#monitor .list_header a#crear,
+article#equipamiento .list_header a#crear {
   float: right;
 }
 article#taller .list_header a#crear span.mask,
 article#talleres .list_header a#crear span.mask,
 article#creativo .list_header a#crear span.mask,
 article#creativos .list_header a#crear span.mask,
-article#monitor .list_header a#crear span.mask {
+article#monitor .list_header a#crear span.mask,
+article#equipamiento .list_header a#crear span.mask {
   width: 118px;
 }
 article#taller .list_header a#listar,
 article#talleres .list_header a#listar,
 article#creativo .list_header a#listar,
 article#creativos .list_header a#listar,
-article#monitor .list_header a#listar {
+article#monitor .list_header a#listar,
+article#equipamiento .list_header a#listar {
   float: left;
 }
 article#taller .list_header a#listar span.mask,
 article#talleres .list_header a#listar span.mask,
 article#creativo .list_header a#listar span.mask,
 article#creativos .list_header a#listar span.mask,
-article#monitor .list_header a#listar span.mask {
+article#monitor .list_header a#listar span.mask,
+article#equipamiento .list_header a#listar span.mask {
   width: 86px;
 }
 article#taller .taller_item,
@@ -630,11 +634,13 @@ article#talleres .taller_item,
 article#creativo .taller_item,
 article#creativos .taller_item,
 article#monitor .taller_item,
+article#equipamiento .taller_item,
 article#taller .creativo_item,
 article#talleres .creativo_item,
 article#creativo .creativo_item,
 article#creativos .creativo_item,
-article#monitor .creativo_item {
+article#monitor .creativo_item,
+article#equipamiento .creativo_item {
   margin-top: 10px;
   border-bottom: 1px solid #eee;
 }
@@ -643,21 +649,25 @@ article#talleres .taller_item p,
 article#creativo .taller_item p,
 article#creativos .taller_item p,
 article#monitor .taller_item p,
+article#equipamiento .taller_item p,
 article#taller .creativo_item p,
 article#talleres .creativo_item p,
 article#creativo .creativo_item p,
 article#creativos .creativo_item p,
 article#monitor .creativo_item p,
+article#equipamiento .creativo_item p,
 article#taller .taller_item .descripcion,
 article#talleres .taller_item .descripcion,
 article#creativo .taller_item .descripcion,
 article#creativos .taller_item .descripcion,
 article#monitor .taller_item .descripcion,
+article#equipamiento .taller_item .descripcion,
 article#taller .creativo_item .descripcion,
 article#talleres .creativo_item .descripcion,
 article#creativo .creativo_item .descripcion,
 article#creativos .creativo_item .descripcion,
-article#monitor .creativo_item .descripcion {
+article#monitor .creativo_item .descripcion,
+article#equipamiento .creativo_item .descripcion {
   font-size: 12px;
 }
 article#taller .taller_item a.nombre,
@@ -665,11 +675,13 @@ article#talleres .taller_item a.nombre,
 article#creativo .taller_item a.nombre,
 article#creativos .taller_item a.nombre,
 article#monitor .taller_item a.nombre,
+article#equipamiento .taller_item a.nombre,
 article#taller .creativo_item a.nombre,
 article#talleres .creativo_item a.nombre,
 article#creativo .creativo_item a.nombre,
 article#creativos .creativo_item a.nombre,
-article#monitor .creativo_item a.nombre {
+article#monitor .creativo_item a.nombre,
+article#equipamiento .creativo_item a.nombre {
   font-size: 14px;
   font-weight: 900;
 }

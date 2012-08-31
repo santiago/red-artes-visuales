@@ -19,6 +19,13 @@ FormValidator.prototype.validate= function(opts) {
 	    if(val.match(re)) {
 	    }
 	    return false
+	},
+	'fecha': function(val) {
+	    var re = /\d{4}\/(\d{2})\/(\d{2})/;
+	    if(val.match(re)) {
+		return true
+	    }
+	    return false
 	}
     };
     

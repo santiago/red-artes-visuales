@@ -78,6 +78,19 @@ function Service(app) {
         });
     }
 
+    function getSesion(req, res, next) {
+	var Sesion = app.db.model('Taller');
+	Sesion.findById(req.params.taller_id, function(err, r) {
+	    req.taller = r;
+	    next();
+	});
+    }
+
+    function getParticipante() {
+	var Participante = app.db.model('Participante');
+	Participante.findById(req.params.participante);
+    }
+
     /*
      * JSON
      */
@@ -105,58 +118,71 @@ function Service(app) {
     /*
      * HTML
      */
-    app.get('/evaluaciones/new', getEvaluaciones, function(req, res) {
-        var error_text = "";
-        var render_error=function(err, status_code) {
-            res.render('error', {
-                    locals: {
-                      status: status_code,
-                      error_text: err
-                    }
-                  });
-            return;
-        } 
-        var taller_id = req.query['taller'];
-        console.log(taller_id);
-        var participante_id = req.query['p'];
-        //debug
-        //var participante_id = "503b0a155531839027000001";
-        if (taller_id == null || taller_id == 'undefined') {
-          render_error("ID taller invalido! Ese taller no fue encontrado.", 404);
-          return;
-        }
-        Taller.findById(taller_id, function(err, taller) {
-          if (err) {
-            render_error("No fui capable de econtrar el taller deseado.", 404);
-            return;
-          }
-          console.log(taller);
-          Creativo.find({email: app.login_email}, function(err, creativo) { 
-            if (err) {
-              render_error("No fui capaz de encontrar el Creativo relacionado al usuário en sesión",500);
-              return;
+    app.get('/taller/:taller_id/participante/:participante_id/evaluacion', getSesion, getParticipante, getCreativo, function(req, res) {
+        res.render('forms/eval_participante', {
+            locals: {
+		evaluacion: req.evaluacion || [],
+                params: app.params,
+                participante: req.participante,
+                creativo: req.creativo,
+                taller: req.taller,
+                articulo: 'FormEvaluacion'
             }
-            console.log(creativo);
-            Participante.findOne({_id: participante_id}, function(err, participante) {
-              if (err) {
-                render_error("No fui capaz de encontrar el participante de la evaluación", 500);
-                return;
-              } else {
-                console.log(participante);
-                res.render('forms/eval_participante', {
-                  locals: {
-                    params: app.params,
-                    participante: participante,
-                    creativo: creativo[0],
-                    taller: taller,
-                    articulo: 'FormEvaluacion'
-                  }
-              });
-             }
-            });
-          });
-        });    
+        });
     });
+
+    // app.get('/evaluaciones/new', getEvaluaciones, function(req, res) {
+    //     var error_text = "";
+    //     var render_error=function(err, status_code) {
+    //         res.render('error', {
+    //                 locals: {
+    //                   status: status_code,
+    //                   error_text: err
+    //                 }
+    //               });
+    //         return;
+    //     } 
+    //     var taller_id = req.query['taller'];
+    //     console.log(taller_id);
+    //     var participante_id = req.query['p'];
+    //     //debug
+    //     //var participante_id = "503b0a155531839027000001";
+    //     if (taller_id == null || taller_id == 'undefined') {
+    //       render_error("ID taller invalido! Ese taller no fue encontrado.", 404);
+    //       return;
+    //     }
+    //     Taller.findById(taller_id, function(err, taller) {
+    //       if (err) {
+    //         render_error("No fui capable de econtrar el taller deseado.", 404);
+    //         return;
+    //       }
+    //       console.log(taller);
+    //       Creativo.find({email: app.login_email}, function(err, creativo) { 
+    //         if (err) {
+    //           render_error("No fui capaz de encontrar el Creativo relacionado al usuário en sesión",500);
+    //           return;
+    //         }
+    //         console.log(creativo);
+    //         Participante.findOne({_id: participante_id}, function(err, participante) {
+    //           if (err) {
+    //             render_error("No fui capaz de encontrar el participante de la evaluación", 500);
+    //             return;
+    //           } else {
+    //             console.log(participante);
+    //             res.render('forms/eval_participante', {
+    //               locals: {
+    //                 params: app.params,
+    //                 participante: participante,
+    //                 creativo: creativo[0],
+    //                 taller: taller,
+    //                 articulo: 'FormEvaluacion'
+    //               }
+    //           });
+    //          }
+    //         });
+    //       });
+    //     });    
+    // });
     
     app.get('/evaluaciones/:id', getEvaluaciones, function(req, res) {
         res.render('evaluacion', {
