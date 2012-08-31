@@ -80,8 +80,10 @@ function Service(app) {
 
     function getSesion(req, res, next) {
 	var Sesion = app.db.model('Taller');
+	console.log("\n\n\n\n\n");
+	console.log(req.params.taller_id);
 	Sesion.findById(req.params.taller_id, function(err, r) {
-	    req.taller = r;
+	    req.sesion = r;
 	    next();
 	});
     }
@@ -147,7 +149,7 @@ function Service(app) {
                 params: app.params,
                 participante: req.participante,
                 creativo: req.creativo,
-                sesion: req.sesion,
+                taller: req.sesion,
                 articulo: 'FormEvaluacion'
             }
         });

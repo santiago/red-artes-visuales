@@ -28,9 +28,8 @@ jQuery(document).ready(function($) {
   });
 
     $('.participante_item').click(function(e) {
-	var path = window.location.pathname;
-	var taller_id = path.substring(path.lastIndexOf('/') + 1); 
-	var participante_id = '';
-	window.location = '/evaluaciones/new?taller=' + id +'&p=' + this.id;
+	var taller_id = location.pathname.split('/')[2]; 
+	var participante_id = $(this).attr('id');
+	window.location = '/taller/'+taller_id+'/participante/'+participante_id+'/evaluacion';
     });
 });
