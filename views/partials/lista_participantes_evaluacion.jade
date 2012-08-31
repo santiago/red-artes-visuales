@@ -12,7 +12,7 @@
           .participante_nombre #{participante.nombre}
           .participante_edad #{participante.edad}
         .participante_evaluacion
-          - var tiene_evaluarion = evaluaciones[participante._id];
+          - var tiene_evaluacion = evaluaciones[participante._id];
           - if (tiene_evaluacion) {
             .ok            
               img(src="/images/ok.png")
