@@ -17,6 +17,7 @@ FormValidator.prototype.validate= function(opts) {
 	'email': function(val) {
 	    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	    if(val.match(re)) {
+        return true
 	    }
 	    return false
 	},
@@ -132,40 +133,40 @@ var EvaluacionForm = new FormValidator($("article#evaluacion form"),fields);
 
 var TallerBaseForm= new FormValidator($("article#taller form"),
 	{
-	    'nombre': {
-		'find': 'input[name=nombre]',
-		'validate': ['presence']
-	    },
-	    'descripcion': {
-		'find': 'textarea[name=descripcion]',
-		'validate': ['presence']
-	    },
-	    'objetivos': {
-		'find': 'textarea[name=objetivos]',
-		'validate': ['presence']
-	    },
-	    'metodologias': {
-		'find': '[name="metodologias[]"]',
-		'val': function() {
+	  'nombre': {
+		  'find': 'input[name=nombre]',
+		  'validate': ['presence']
+	  },
+	  'descripcion': {
+		  'find': 'textarea[name=descripcion]',
+		  'validate': ['presence']
+	  },
+	  'objetivos': {
+		  'find': 'textarea[name=objetivos]',
+		  'validate': ['presence']
+	  },
+	  'metodologias': {
+		  'find': '[name="metodologias[]"]',
+		  'val': function() {
 		    var data = [];
 		    $('[name="metodologias[]"]:checked').each(function() {
-			data.push($(this).val());
+			    data.push($(this).val());
 		    });
 		    return data;
-		},
-		'validate': ['presence']
-	    },
-	    'habilidades': {
-		'find': '[name="habilidades[]"]',
-		'val': function() {
+		  },
+        'validate': ['presence']
+	  },
+	  'habilidades': {
+		  'find': '[name="habilidades[]"]',
+		  'val': function() {
 		    var data = [];
 		    $('[name="habilidades[]"]:checked').each(function() {
-			data.push($(this).val());
+			    data.push($(this).val());
 		    });
 		    return data;
-		},
-		'validate': ['presence']
-	    }
+		  },
+		    'validate': ['presence']
+	  }
 	}
     );
 
