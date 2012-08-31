@@ -2,11 +2,12 @@
 article#equipamiento
   .list_header
     a#listar(href="/equipamientos", class='#{articulo == 'Equipamientos' ? "activo" : null }') 
-      | Equipamientos
-      span.mask
+        | Equipamientos
+        span.mask
+    
     a#crear(href="/equipamientos/new", class='#{articulo == 'FormEquipamiento' ? "activo" : null }') 
-      | Crear equipamiento 
-      span.mask
+        | Crear equipamiento 
+        span.mask
 
   form
     ul
@@ -253,4 +254,4 @@ article#equipamiento
 
       li
         .element
-          button Enviar
+          button(class="submit") Enviar
