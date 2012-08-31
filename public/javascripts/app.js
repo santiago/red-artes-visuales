@@ -214,6 +214,7 @@ jQuery(document).ready(function($) {
 		var data= TallerBaseForm.getValidData();
 		if (data) {
 		    $.post('/talleres', data, res);
+        location.href = "/talleres";
 		}
 	    });
 	},
@@ -228,6 +229,7 @@ jQuery(document).ready(function($) {
 		var data = AdminCreativoForm.getValidData();
 		if (data) {
 		    $.post('/admin/creativos', data, res);
+        location.href = "/admin/creativos";
 		}
 	    });  
 	},
