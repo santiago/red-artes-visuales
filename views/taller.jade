@@ -1,57 +1,35 @@
-// I will fix this name later
-article#taller.nobase
-  input#taller_id(type='hidden', value='#{taller.id}')
+- var edit = false
+article#taller
+  input(type="hidden", id="taller_id", value=#{taller._id})
+  header
+    .header-content
+      label Equipamiento
+      p.nombre #{taller.equipamiento.nombre}
+      label Taller
+      p.nombre #{taller.nombre}
+      label Fecha
+      p.nombre #{taller.fecha}
 
   .list_header
-    a.activo#listar(href="/talleres", class='#{articulo == "Talleres" ? "activo" : null }')
-      | #{taller_base.nombre}
-      span.mask
-    a#crear(href='/talleres')
-      | Talleres
-      span.mask
+    ul
+      li
+        a#tab-participantes(href="/talleres/#{taller._id}", class='#{articulo == 'Participantes' ? "activo" : null }') 
+          | Participantes
+          span.mask
+      li
+        //a#tab-fotos(href="/talleres/#{taller._id}/fotos", class='#{articulo == 'Fotos' ? "activo" : null }') 
+        a#tab-fotos(href="#", class='#{articulo == 'Fotos' ? "activo" : null }') 
+          | Fotos / Videos
+          span.mask
+      li
+        //a#tab-seguimiento(href="/talleres/#{taller._id}/seguimiento", class='#{articulo == 'Seguimiento' ? "activo" : null }') 
+        a#tab-seguimiento(href="#", class='#{articulo == 'Seguimiento' ? "activo" : null }') 
+          | Seguimiento
+          span.mask
 
-  .content
-    form
-      ul
-        li
-          .element
-            label Nombre actividad: 
-            input(name="nombre", type="text", value='#{taller_base.nombre}', readonly='readonly')
+  .list_body
+    ul
+      !=partial('partials/lista_participantes_evaluacion',{participantes: participantes})
 
-        li
-          .element
-            label Descripción: 
-            textarea(name="desc", readonly='readonly') #{taller_base.descripcion}
 
-        li
-          .element
-            label Equipamiento:
-            input(type='text', value='#{taller.equipamiento_nombre}', readonly='readonly')
-        li
-          .element
-            label Fecha:
-            input#fecha(type='text', value='#{taller.fecha.toDateString()}', readonly='readonly')
 
-      ul(style='display:none;')
-        li
-          .element
-            label Resultados generales: 
-            textarea(name = "resultados")
-
-        li
-          .element
-            label Autoevaluación del creativo: 
-            textarea(name = "autoeval_creativo")
-
-        li
-          .element
-            label Observaciones externas: 
-            textarea(name = "observ_externas")
-
-        li
-          .element
-            label Fotos:
-
-        li
-          .element
-            label Videos:

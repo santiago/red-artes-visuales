@@ -1,0 +1,25 @@
+- if (participantes.length > 0 ) {
+  each participante in participantes
+    li
+      .participante_item(id='#{participante._id}')
+        .participante_image 
+          - if (! participante.img) {
+          img(src='/images/placeholder.jpg', width='50px')
+          - } else {
+          img(src='#{participante_img}',width='50px')
+          - }
+        .participante_info_short
+          .participante_nombre #{participante.nombre}
+          .participante_edad #{participante.edad}
+        .participante_evaluacion
+          - var tiene_evaluarion = evaluaciones[participante._id];
+          - if (tiene_evaluacion) {
+            .ok            
+              img(src="/images/ok.png")
+          - } else {
+            .nok
+              img(src="/images/nok.png")
+          - }
+- } else {
+  p.no_results No hay participantes en éste equipamiento. 
+- }
