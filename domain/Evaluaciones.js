@@ -86,9 +86,31 @@ function Service(app) {
 	});
     }
 
-    function getParticipante() {
+    function getParticipante(req, res, next) {
 	var Participante = app.db.model('Participante');
-	Participante.findById(req.params.participante);
+	Participante.findById(req.params.participante_id, function(err, r) {
+	    req.participante = r;
+	    next();
+	});
+    }
+
+    function getEvaluacion(req, res, next) {
+	var Evaluacion = app.db.model('Evaluacion');
+	Evaluacion.findOne({
+	    participante_id: req.params.participante_id,
+	    taller_id: req.params.taller_id
+	}, function(err, r) {
+	    req.evaluacion = r;
+	    next();
+	});
+    }
+
+    function getCreativo(req, res, next) {
+	var Creativo = app.db.model('Creativo');
+	Evaluacion.findOne(req.session.creativo_id, function(err, r) {
+	    req.creativo = r;
+	    next();
+	});
     }
 
     /*
@@ -118,14 +140,14 @@ function Service(app) {
     /*
      * HTML
      */
-    app.get('/taller/:taller_id/participante/:participante_id/evaluacion', getSesion, getParticipante, getCreativo, function(req, res) {
+    app.get('/taller/:taller_id/participante/:participante_id/evaluacion', getEvaluacion, getSesion, getParticipante, getCreativo, function(req, res) {
         res.render('forms/eval_participante', {
             locals: {
-		evaluacion: req.evaluacion || [],
+		evaluacion: req.evaluacion,
                 params: app.params,
                 participante: req.participante,
                 creativo: req.creativo,
-                taller: req.taller,
+                sesion: req.sesion,
                 articulo: 'FormEvaluacion'
             }
         });
