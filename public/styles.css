@@ -1095,3 +1095,12 @@ article#equipamiento .taller_item {
 article#equipamiento .taller_item .fecha {
   font-size: 11px;
 }
+#evaluacion .list_header li {
+  float: left;
+}
+#evaluacion .list_header a {
+  float: left;
+}
+#evaluacion .list_header a span.mask {
+  width: 159px;
+}
