@@ -1,13 +1,16 @@
-.list_body
-  ul
-    -if(talleres.length)
-      each taller in talleres
-        li
-          .taller_item(id='#{taller._id}')
-            a.nombre(href='/talleres/#{taller.actividad_id}/taller/#{taller._id}') #{taller.equipamiento_nombre}
-            p.fecha #{taller.fecha.toDateString()}
+ul
+  -if(sesiones.length)
+    each sesion in sesiones
+      li
+        .taller_item(id='#{sesion._id}')
+          a.nombre(href='/talleres/#{sesion.actividad_id}/taller/#{sesion._id}') #{sesion.taller_nombre}
+          p.fecha #{sesion.fecha.toDateString()}
+  -else
+    p.vacio No se han creado talleres para este equipamiento
 
-      button.submit Agregar Equipamiento
-    -else
-      p.vacio No se han creado equipamientos para este taller
-      button.submit Agregar Equipamiento
+#agregar_sesion
+  select(name='taller')
+    each taller in talleres
+      option(value='#{taller._id}') #{taller.nombre}
+  input#fecha(type='text')
+  button.submit Agregar Taller

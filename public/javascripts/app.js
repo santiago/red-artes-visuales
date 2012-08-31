@@ -75,6 +75,42 @@ jQuery(document).ready(function($) {
 	Equipamientos: function() {
 	},
 
+	EquipamientoTalleres: function() {
+	    var $el = $('article#equipamiento');
+	    
+	    $('#fecha').datepicker();
+
+	    $el.find('.submit').click(function(e) {
+		e.preventDefault();
+		$(this).blur();
+
+		var equip = location.pathname.split('/')[2];
+		var taller_id = $('select option:selected').first().text();
+		var fecha = $('#fecha').val().split('/');
+		if (fecha) {
+		    fecha = new Date(parseInt(fecha[2]),
+				     parseInt(fecha[0].replace(/^0/,''))-1,
+				     parseInt(fecha[1].replace(/^0/,'')))
+		    fecha = fecha.getTime();
+		}
+
+		if(!equip) {
+		    $(this).parent().before("<p class='error'>* debe seleccionar un equipamiento</p>");
+		}
+
+		if(!fecha) {
+		    $(this).parent().before("<p class='error'>* debe seleccionar una fecha</p>");
+		}
+
+		if(fecha && taller_id) {
+		    var equip_nombre = $('select option:selected').first().text();
+		    $.post('/talleres/'+taller_id, { equipamiento_id: equip, fecha: fecha, equipamiento_nombre: equip_nombre }, function(taller) {
+			location.href= '/equipamientos/'+equip;
+		    });
+		}
+	    });
+	},
+
 	Talleres: function() {
 	    var $el = $('article#talleres');
 
@@ -163,38 +199,6 @@ jQuery(document).ready(function($) {
 	},
 
 	FormTaller: function() {
-	    var taller_id = $('#taller_id').val();
-
-	    $('#fecha').datepicker();
-
-	    $('button').click(function(e) {
-		e.preventDefault();
-		$(this).blur();
-
-		var equip = $('select option:selected').val();
-		var fecha = $('#fecha').val().split('/');
-		if (fecha) {
-		    fecha = new Date(parseInt(fecha[2]),
-				     parseInt(fecha[0].replace(/^0/,''))-1,
-				     parseInt(fecha[1].replace(/^0/,'')))
-		    fecha = fecha.getTime();
-		}
-
-		if(!equip) {
-		    $(this).parent().before("<p class='error'>* debe seleccionar un equipamiento</p>");
-		}
-
-		if(!fecha) {
-		    $(this).parent().before("<p class='error'>* debe seleccionar una fecha</p>");
-		}
-
-		if(fecha && equip) {
-		    var equip_nombre = $('select option:selected').first().text();
-		    $.post('/talleres/'+taller_id, { equipamiento_id: equip, fecha: fecha, equipamiento_nombre: equip_nombre }, function(taller) {
-			location.href= '/talleres/'+taller_id+'/taller/'+taller._id;
-		    });
-		}
-	    });
 	},
 
 	FormTallerBase: function() {

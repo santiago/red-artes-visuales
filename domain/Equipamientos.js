@@ -1,4 +1,4 @@
-var Equipamiento;
+var Equipamiento, Taller, TallerBase;
 
 var filters = {
     get: function(req, res, next) {
@@ -9,23 +9,33 @@ var filters = {
             if (req.query) {
 		return req.query;
             }
-            return {};
+            return null;
 	})();
         
         // Find by Id
-        if (query._id) {
-            Equipamiento.findOne(query, function(err, r) {
-                req.equipamiento = r;
-                next();
-            });
-        }
-        // Find by All
+        if (query) {
+	    if(query._id) {
+		Equipamiento.findOne(query, function(err, r) {
+                    req.equipamiento = r;
+                    next();
+		});
+            } else {
+		Equipamiento.find(query, function(err, records) {
+		    req.equipamientos = records;
+		    next();
+		});
+	    }
+	}
         else {
-            Equipamiento.find(query, function(err, records) {
-                req.equipamientos = records;
-                next();
-            });
+	    filters.getAll(req, res, next);
         }
+    },
+
+    getAll: function(req, res, next) {
+        Equipamiento.find({}, function(err, records) {
+            req.equipamientos = records;
+            next();
+        });
     },
 
     post: function(req, res, next) {
@@ -56,11 +66,28 @@ var filters = {
         Equipamiento.findByIdAndRemove(id, function(err, r) {
             next();
         });
+    },
+
+    getSesiones: function(req, res, next) {
+        var id = req.params.id;
+	Taller.find({ equipamiento_id: id }, function(err, rs) {
+	    req.sesiones = rs;
+	    next();
+	});
+    },
+
+    getTalleres: function(req, res, next) {
+	TallerBase.find(function(err, rs) {
+	    req.talleres = rs;
+	    next();
+	});
     }
 }
 
 function Service(app) {
     Equipamiento = app.db.model('Equipamiento');
+    Taller = app.db.model('Taller');
+    TallerBase = app.db.model('TallerBase');
 
     /*
      * JSON
@@ -126,24 +153,16 @@ function Service(app) {
         });
     });
     
-    app.get('/equipamientos/:id', filters.get, function(req, res) {
-      Taller = app.db.model("Taller");
-      TallerBase = app.db.model("TallerBase");
-      Taller.find({'equipamiento_id': req.equipamiento.id},function(err,talleres) {
-        var tallerbases_id = new Array();
-        for(var i= 0;i<talleres.length;i++) {
-//            tallerbases_id[i] = talleres[i].actividad  
-        }
-        console.log(req.equipamiento);
+    app.get('/equipamientos/:id', filters.get, filters.getTalleres, filters.getSesiones, function(req, res) {
         res.render('equipamiento', {
             locals: {
-                talleres: talleres,
-                equipamiento: req.equipamiento,
+                articulo: 'EquipamientoTalleres',
                 params: app.params,
-                articulo: 'Taller'
+                equipamiento: req.equipamiento,
+		sesiones: req.sesiones,
+                talleres: req.talleres
             }
         });
-      });
     });
  
     app.get('/equipamientos/:id/participantes', filters.get, function(req, res) {
