@@ -59,8 +59,6 @@ var filtros = {
     },
 
     getParticipantes: function(req, res,next) {
-      Evaluacion = app.db.model("Evaluacion");
-      Participante = app.db.model("Participante");
       Participante.find({'equipamiento_id': req.taller.equipamiento_id}, function(err, participantes) {
         req.participantes = participantes;
         Evaluacion.find({'taller_id':req.taller._id}, function(err,evals) {
@@ -76,7 +74,6 @@ var filtros = {
 
     getSesion: function(req,res,next) {
       Taller.findById(req.params.taller_id, function(err, taller){
-        req.participantes = participantes;
         req.taller = taller;
         next();
       });
@@ -150,6 +147,8 @@ var filtros = {
 };
 
 function Service(app) {
+    Evaluacion = app.db.model("Evaluacion");
+    Participante = app.db.model("Participante");
     Taller = app.db.model('Taller');
     TallerBase = app.db.model('TallerBase');
     

@@ -12,7 +12,7 @@
           .participante_nombre #{participante.nombre}
           .participante_edad #{participante.edad}
         .participante_evaluacion
-          - var tiene_evaluarion = evaluaciones[participante._id];
+          - var tiene_evaluacion = evaluaciones[participante._id];
           - if (tiene_evaluacion) {
             .ok            
               img(src="/images/ok.png")
@@ -20,6 +20,7 @@
             .nok
               img(src="/images/nok.png")
           - }
+            input(type="hidden", id="i_#{participante._id}", value="#{tiene_evaluacion}")
 - } else {
   p.no_results No hay participantes en éste equipamiento. 
 - }

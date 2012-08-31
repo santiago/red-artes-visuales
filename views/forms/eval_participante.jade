@@ -1,23 +1,36 @@
 article#evaluacion 
+  header
+    .header-content
+      label Equipamiento
+      p.nombre #{taller.equipamiento_nombre}
+      label Taller
+      p.nombre #{taller.nombre}
+      label Fecha
+      p.nombre #{taller.fecha}
+      label Participante
+      p.nombre #{participante.nombre}
+      label Evaluación
+      p.nombre por #{creativo.nombre}
+      
+    
   .list_header
-    a#listar(href="/evaluaciones", class='#{articulo == "Evaluaciones" ? "activo" : null}')
-      | Evaluaciones
-      span.mask
-    a#crear(href="/evaluacion/new", class='#{articulo == "FormEvaluacion" ? "activo" : null}')
-      | Crear Evaluación
-      span.mask
+    ul
+      li
+        a#listar(href="/evaluaciones", class='#{articulo == "Evaluaciones" ? "activo" : null}')
+          | Evaluaciones
+          span.mask
+      li
+        a#tab-talleres(href="/evaluacion/new", class='#{articulo == "FormEvaluacion" ? "activo" : null}')
+          | Crear Evaluación
+          span.mask
 
   .list_body
-    form(action="/evaluaciones",method="post")
-      .info
-        h1 Evaluación 
-        p por #{creativo.nombre}
-          input(type="hidden", name="creativo_id", value ="#{creativo._id}")
-        .taller_name #{taller_base.nombre}
-        .taller_fecha #{taller.fecha}
-          input(type="hidden", name="taller_id", value ="#{taller._id}")
-        .participante_name #{participante.nombre}
-          input(type="hidden", name="p_id", value ="#{participante._id}")
+    form
+       
+      input(type="hidden", id="taller_id", name="taller_id", value="#{taller._id}")
+      input(type="hidden", id="creativo_id", name="creativo_id", value="#{creativo._id}")
+      input(type="hidden", id="fecha", name="fecha", value="#{taller.fecha}")
+      input(type="hidden", id="p_id", name="p_id", value="#{participante._id}")
 
       .evaluaciones
         .eval_header
@@ -43,4 +56,4 @@ article#evaluacion
                 input(name="i_#{habilidad}", value="5", type="radio") 
                 label.radio_eval
  
-        button(id="submit") Envia
+        button(class="submit") Envia
