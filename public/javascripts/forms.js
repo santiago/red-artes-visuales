@@ -173,7 +173,7 @@ var ParticipanteForm = new FormValidator(
 
 	'edad': {
 	    'find': 'select[name=edad] option:selected',
-	    'validate': ['presence']
+	    'validate': ['presence','fecha']
 	},
 
 	'comuna': {
