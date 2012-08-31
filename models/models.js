@@ -98,6 +98,7 @@ mongoose.model('Usuario', Usuario);
 
 var Creativo = new Schema({
     nombre          : { type: String },
+    cedula          : { type: String },
     email           : { type: String },
     telefono        : { type: String },
     direccion       : { type: String },

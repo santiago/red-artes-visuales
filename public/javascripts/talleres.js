@@ -26,9 +26,11 @@ jQuery(document).ready(function($) {
   $('#instancia_taller').click(function(e) {
     window.location = '/talleres/taller/new';
   });
-  $('.participante_item').click(function(e) {
-    var path = window.location.pathname;
-    var id = path.substring(path.lastIndexOf('/') + 1); 
-    window.location = '/evaluaciones/new?taller=' + id +'&p=' + this.id;
-  });
+
+    $('.participante_item').click(function(e) {
+	var path = window.location.pathname;
+	var taller_id = path.substring(path.lastIndexOf('/') + 1); 
+	var participante_id = '';
+	window.location = '/evaluaciones/new?taller=' + id +'&p=' + this.id;
+    });
 });

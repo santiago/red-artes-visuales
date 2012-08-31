@@ -75,17 +75,20 @@ app.configure('production', function(){
 
 
 app.get('/login', function(req, res){
-  res.render('login', {
-    badLogin: false,
-    loginError: false
-  });
+    res.render('login', {
+	badLogin: false,
+	loginError: false
+    });
 });
 
 app.get('*', function(req, res, next) {
     if (!req.session.auth) {
         res.redirect('/login');
-    } else { 
-      next();
+    } else {
+	if (typeof req.session.creativo_id == 'undefined') {
+	    req.session.creativo_id = '71381688';
+	}
+	next();
     }
 });
 

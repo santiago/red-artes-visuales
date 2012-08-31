@@ -184,6 +184,7 @@ jQuery(document).ready(function($) {
 	    // Callback par atender el response
 	    function res(data) {
 		console.log(data);
+		location.href = '/equipamientos';
 	    }
 
 	    // Collect and Validate data
@@ -193,8 +194,7 @@ jQuery(document).ready(function($) {
 
 		    var data= EquipamientoForm.getValidData();
 		    if (data) {
-		      $.post('/equipamientos', data, res);
-          location.href = '/equipamientos';
+			$.post('/equipamientos', data, res);
 		    }
 	    });
 	},
@@ -206,6 +206,7 @@ jQuery(document).ready(function($) {
 	    // Callback par atender el response
 	    function res(data) {
 		console.log(data);
+		location.href = "/talleres";
 	    }
 
 	    var $el = $("#taller form");
@@ -214,7 +215,6 @@ jQuery(document).ready(function($) {
 		var data= TallerBaseForm.getValidData();
 		if (data) {
 		    $.post('/talleres', data, res);
-        location.href = "/talleres";
 		}
 	    });
 	},
@@ -222,6 +222,7 @@ jQuery(document).ready(function($) {
 	FormCreativo: function() {
 	    function res(data) {
 		console.log(data);
+		location.href = "/admin/creativos";
 	    }
 	    var $el = $('#creativo form');
 	    $el.find('button').click(function(e) {
@@ -229,7 +230,6 @@ jQuery(document).ready(function($) {
 		var data = AdminCreativoForm.getValidData();
 		if (data) {
 		    $.post('/admin/creativos', data, res);
-        location.href = "/admin/creativos";
 		}
 	    });  
 	},
