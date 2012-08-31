@@ -3,7 +3,7 @@ ul
     each sesion in sesiones
       li
         .taller_item(id='#{sesion._id}')
-          a.nombre(href='/talleres/#{sesion.actividad_id}/taller/#{sesion._id}') #{sesion.nombre}
+          a.nombre(href='/taller/#{sesion._id}') #{sesion.nombre}
           p.fecha #{sesion.fecha.toDateString()}
   -else
     p.vacio No se han creado talleres para este equipamiento
