@@ -17,7 +17,6 @@ FormValidator.prototype.validate= function(opts) {
 	'email': function(val) {
 	    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	    if(val.match(re)) {
-		return true
 	    }
 	    return false
 	}
@@ -102,6 +101,27 @@ var AdminCreativoForm = new FormValidator($("article#creativo form"), {
       'validate': ['presence']
     } 
 });
+
+var habilidades = ['Reflexión', 'Creatividad', 'Capacidad de escucha', 'Compromiso',
+      'Pensamiento critico', 'Tolerancia', 'Honestidad', 'Participación',
+      'Reconocer el contexto social', 'Reconocer el contexto familiar',
+      'Reconocer el context geográfico', 'Respeto', 'Confianza',
+      'Construcción colectiva', 'Aceptación del otro',
+      'Capacidad de expresión', 'Trabajo en equipo'];
+
+
+
+var fields = new Array();
+for (var i=0;i<habilidades.length;i++) {
+    var input_name = "input[name='i_" + habilidades[i] + "']:checked";
+    var field_name = "i_" + habilidades[i];
+    fields[field_name] = {
+      'find': input_name,
+      'validate': ['presence']
+     }
+}
+var EvaluacionForm = new FormValidator($("article#evaluacion form"),fields);
+  
 
 var TallerBaseForm= new FormValidator($("article#taller form"),
 	{

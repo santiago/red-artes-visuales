@@ -20,6 +20,7 @@
             .nok
               img(src="/images/nok.png")
           - }
+            input(type="hidden", id="i_#{participante._id}", value="#{tiene_evaluacion}")
 - } else {
   p.no_results No hay participantes en éste equipamiento. 
 - }

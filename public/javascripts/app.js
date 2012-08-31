@@ -247,6 +247,26 @@ jQuery(document).ready(function($) {
     });
  
 	},
+    
+
+  FormEvaluacion: function() {
+    var $el = $('#evaluacion form');
+    var taller_id = $('#taller_id').val();
+    $el.find('button.submit').click(function(e) {
+      e.preventDefault();
+      var eval = EvaluacionForm.getValidData();
+      if (eval) {
+        eval.taller_id = taller_id;
+        eval.creativo_id = $('#creativo_id').val();
+        eval.fecha = $('#fecha').val();
+        eval.p_id = $('#p_id').val();
+        console.log(eval);
+        $.post('/evaluaciones', eval, function(data) {
+          location.href = "/taller/" + taller_id;
+        });
+      }
+    });
+  },
 
 	FormTallerParticipante: function() {
   /*
