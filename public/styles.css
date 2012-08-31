@@ -1089,14 +1089,14 @@ article#equipamiento #agregar_sesion {
 }
 article#equipamiento #agregar_sesion select {
   float: left;
-  width: 300px;
+  width: 290px;
   margin: 0;
   height: 30px;
   margin-top: 5px;
 }
 article#equipamiento #agregar_sesion #fecha {
   margin: 0 10px;
-  width: 300px;
+  width: 290px;
   margin-top: 5px;
   height: 28px;
 }
@@ -1115,4 +1115,7 @@ article#equipamiento .taller_item .fecha {
 }
 #evaluacion .list_header a span.mask {
   width: 159px;
+}
+article#equipamiento .list_header a#tab-participantes span.mask {
+  width: 128px;
 }
