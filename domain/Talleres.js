@@ -58,7 +58,6 @@ var filtros = {
         });
     },
 
-
     getParticipantes: function(req, res,next) {
       Evaluacion = app.db.model("Evaluacion");
       Participante = app.db.model("Participante");
@@ -82,19 +81,20 @@ var filtros = {
         next();
       });
     },
+
     getTaller: function(req, res, next) {
-	    function findTallerBase(base_id) {
-        TallerBase.findById(base_id, function(err, r) {
-		    req.taller_base = r;
-		    next();
-      });
+	function findTallerBase(base_id) {
+            TallerBase.findById(base_id, function(err, r) {
+		req.taller_base = r;
+		next();
+	    });
 	}
 	Taller.findById(req.params.taller_id, function(err, data) {
 	    req.taller = data;
 	    findTallerBase(data.actividad_id);
 	});
     },
-
+    
     getTalleres: function(req, res, next) {
 	Taller.find({ actividad_id: req.params.base_id }, function(err, data) {
 	    req.talleres = data;
@@ -130,8 +130,8 @@ var filtros = {
 	    });
 	}
 
-	TallerBase.find({ '_id': req.params.base_id }, function(err, tallerbase) {
-	    req.taller_base = tallerbase;
+	TallerBase.findById(req.params.base_id, function(err, r) {
+	    req.taller_base = r;
 	    save();
 	});
     },
