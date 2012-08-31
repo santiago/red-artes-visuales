@@ -16,44 +16,38 @@ article#evaluacion
   .list_header
     ul
       li
-        a#listar(href="/evaluaciones", class='#{articulo == "Evaluaciones" ? "activo" : null}')
-          | Evaluaciones
-          span.mask
-      li
-        a#tab-talleres(href="/evaluacion/new", class='#{articulo == "FormEvaluacion" ? "activo" : null}')
-          | Crear Evaluación
+        a(href="/evaluacion/new", class='#{articulo == "FormEvaluacion" ? "activo" : null}')
+          | #{participante.nombre}
           span.mask
 
-  .list_body
-    form
-       
-      input(type="hidden", id="taller_id", name="taller_id", value="#{taller._id}")
-      input(type="hidden", id="creativo_id", name="creativo_id", value="#{creativo._id}")
-      input(type="hidden", id="fecha", name="fecha", value="#{taller.fecha}")
-      input(type="hidden", id="p_id", name="p_id", value="#{participante._id}")
+  form       
+    input(type="hidden", id="taller_id", name="taller_id", value="#{taller._id}")
+    input(type="hidden", id="creativo_id", name="creativo_id", value="#{creativo._id}")
+    input(type="hidden", id="fecha", name="fecha", value="#{taller.fecha}")
+    input(type="hidden", id="p_id", name="p_id", value="#{participante._id}")
 
-      .evaluaciones
-        .eval_header
-          p Bajo
-          p &nbsp;
-          p Medio
-          p &nbsp;
-          p Alto
+    .evaluaciones
+      .eval_header
+        p Bajo
+        p &nbsp;
+        p Medio
+        p &nbsp;
+        p Alto
  
-        ul
-          each habilidad in params.habilidades
-            li
-              .evaluacion
-                label #{habilidad}
-                input(name="i_#{habilidad}", value="1", type="radio") 
-                label.radio_eval
-                input(name="i_#{habilidad}", value="2", type="radio")
-                label.radio_eval
-                input(name="i_#{habilidad}", value="3", type="radio") 
-                label.radio_eval
-                input(name="i_#{habilidad}", value="4", type="radio")
-                label.radio_eval
-                input(name="i_#{habilidad}", value="5", type="radio") 
-                label.radio_eval
+      ul
+        each habilidad in params.habilidades
+          li
+            .evaluacion
+              label #{habilidad}
+              input(name="i_#{habilidad}", value="1", type="radio") 
+              label.radio_eval
+              input(name="i_#{habilidad}", value="2", type="radio")
+              label.radio_eval
+              input(name="i_#{habilidad}", value="3", type="radio") 
+              label.radio_eval
+              input(name="i_#{habilidad}", value="4", type="radio")
+              label.radio_eval
+              input(name="i_#{habilidad}", value="5", type="radio") 
+              label.radio_eval
  
-        button(class="submit") Envia
+      button(class="submit") Envia
