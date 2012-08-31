@@ -341,8 +341,8 @@ var EquipamientoForm = new FormValidator(
 	    'find': 'input[name=boletin]:checked',
 	    'validate': ['presence']
 	},
-	'medios_comun': {
-	    'find': 'input[name=medios_comun]:checked',
+	'medios_comunit': {
+	    'find': 'input[name=medios_comunit]:checked',
 	    'validate': ['presence']
 	},
 	'emailing': {

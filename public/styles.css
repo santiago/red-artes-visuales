@@ -1053,3 +1053,10 @@ article#equipamiento #agregar_sesion #fecha {
   margin-top: 5px;
   height: 28px;
 }
+article#equipamiento .taller_item {
+  margin: 8px 0;
+  padding: 0 10px;
+}
+article#equipamiento .taller_item .fecha {
+  font-size: 11px;
+}
