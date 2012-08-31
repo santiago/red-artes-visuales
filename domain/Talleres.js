@@ -77,7 +77,6 @@ var filtros = {
 
     getSesion: function(req,res,next) {
       Taller.findById(req.params.taller_id, function(err, taller){
-        req.participantes = participantes;
         req.taller = taller;
         next();
       });
