@@ -189,12 +189,13 @@ jQuery(document).ready(function($) {
 	    // Collect and Validate data
 	    var $el = $("#equipamiento form");
 	    $el.find('button').click(function(e) {
-		e.preventDefault();
+    		e.preventDefault();
 
-		var data= EquipamientoForm.getValidData();
-		if (data) {
-		    $.post('/equipamientos', data, res);
-		}
+		    var data= EquipamientoForm.getValidData();
+		    if (data) {
+		      $.post('/equipamientos', data, res);
+          location.href = '/equipamientos';
+		    }
 	    });
 	},
 
