@@ -34,12 +34,8 @@ article#participante
  
         li
           .element
-            label Edad:
-            select(name="edad")
-              each edad in params.edades
-                - var select=null; 
-                //- if (edad == model.edad) select='selected';
-                option(value='#{edad}', selected='#{select}') #{edad}
+            label Fecha de nacimiento:
+            input#fecha(type='text')
     
         li
           .element

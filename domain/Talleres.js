@@ -58,12 +58,36 @@ var filtros = {
         });
     },
 
+
+    getParticipantes: function(req, res,next) {
+      Evaluacion = app.db.model("Evaluacion");
+      Participante = app.db.model("Participante");
+      Participante.find({'equipamiento_id': req.taller.equipamiento_id}, function(err, participantes) {
+        req.participantes = participantes;
+        Evaluacion.find({'taller_id':req.taller._id}, function(err,evals) {
+          var evaluaciones = new Array();
+          for (var i=0;i<evals.length;i++) {
+            evaluaciones[evals[i].participante_id] =   evals[i];
+          } 
+          req.evaluaciones = evaluaciones;
+          next();
+          });
+      });
+    },
+
+    getSesion: function(req,res,next) {
+      Taller.findById(req.params.taller_id, function(err, taller){
+        req.participantes = participantes;
+        req.taller = taller;
+        next();
+      });
+    },
     getTaller: function(req, res, next) {
-	function findTallerBase(base_id) {
-            TallerBase.findById(base_id, function(err, r) {
-		req.taller_base = r;
-		next();
-            });
+	    function findTallerBase(base_id) {
+        TallerBase.findById(base_id, function(err, r) {
+		    req.taller_base = r;
+		    next();
+      });
 	}
 	Taller.findById(req.params.taller_id, function(err, data) {
 	    req.taller = data;
@@ -87,7 +111,7 @@ var filtros = {
           next();
         }
      	  var taller = new Taller({
-          nombre = tallerbase.nombre,
+          nombre : tallerbase.nombre,
 	        actividad_id: req.params.base_id,
 	        fecha: fecha,
 	        creativos: [],
@@ -255,14 +279,15 @@ function Service(app) {
 	res.send({ ok: 'ok' });
     });
 
-    app.get('/taller/:taller_id', filtros.getTaller, function(req, res) {
+    app.get('/taller/:taller_id', filtros.getSesion, filtros.getParticipantes, function(req, res) {
+      
         res.render('taller', {
             locals: {
-		params: app.params,
+            		params: app.params,
                 articulo: 'Taller',
                 taller: req.taller,
-                taller_base: req.taller_base,
-		participantes: []
+                evaluaciones: req.evaluaciones,
+                participantes: req.participantes 
             }
         });
     });
