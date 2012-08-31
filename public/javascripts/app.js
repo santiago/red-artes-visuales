@@ -85,7 +85,7 @@ jQuery(document).ready(function($) {
 		$(this).blur();
 
 		var equip = location.pathname.split('/')[2];
-		var taller_id = $('select option:selected').first().text();
+		var taller_id = $('select option:selected').val();
 		var fecha = $('#fecha').val().split('/');
 		if (fecha) {
 		    fecha = new Date(parseInt(fecha[2]),

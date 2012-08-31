@@ -79,35 +79,37 @@ var filtros = {
     },
 
     postTaller: function(req, res, next) {
-	    req.creativo = '71381688';
-	    var fecha = parseInt(req.body.fecha);
-      TallerBase.find({'_id':req.params.base_id},function(err, tallerbase) {
-        if (err) {
-          console.log(err);
-          next();
-        }
-     	  var taller = new Taller({
-          nombre = tallerbase.nombre,
-	        actividad_id: req.params.base_id,
-	        fecha: fecha,
-	        creativos: [],
-	        equipamiento_id:  req.body.equipamiento_id,
-	        equipamiento_nombre:  req.body.equipamiento_nombre,
-	        participantes:  [], 
-	        resultados:  '', 
-	        autoeval_creativo: '', 
-	        observ_externas:  '', 
-	        fotos:  [], 
-	        videos:  []
-	      });   
+	req.creativo = '71381688';
+	var fecha = parseInt(req.body.fecha);
+	
+	function save() {
+     	    var taller = new Taller({
+		nombre: req.taller_base.nombre,
+		actividad_id: req.params.base_id,
+		fecha: fecha,
+		creativos: [],
+		equipamiento_id:  req.body.equipamiento_id,
+		equipamiento_nombre:  req.body.equipamiento_nombre,
+		participantes:  [], 
+		resultados:  '', 
+		autoeval_creativo: '', 
+		observ_externas:  '', 
+		fotos:  [], 
+		videos:  []
+	    });   
 	    taller.creativos.push(req.creativo);
 
 	    taller.save(function(err, record) {
-	      req.taller = record;
-	      next();
+		req.taller = record;
+		next();
 	    });
-    });
-  },
+	}
+
+	TallerBase.find({ '_id': req.params.base_id }, function(err, tallerbase) {
+	    req.taller_base = tallerbase;
+	    save();
+	});
+    },
 
     addParticipante: function(req, res, next) {
 	var taller = req.taller;
@@ -213,17 +215,17 @@ function Service(app) {
 	});
     });
     
-    app.get('/talleres/:base_id/taller/:taller_id', filtros.get, filtros.getTaller, function(req, res) {
-	res.render('taller', {
-            locals: {
-		params: app.params,
-                taller: req.taller,
-                taller_base: req.taller_base,
-		articulo: 'Taller',
-		participantes: []
-            }
-	});
-    });
+    // app.get('/talleres/:base_id/taller/:taller_id', filtros.get, filtros.getTaller, function(req, res) {
+    // 	res.render('taller', {
+    //         locals: {
+    // 		params: app.params,
+    //             taller: req.taller,
+    //             taller_base: req.taller_base,
+    // 		articulo: 'Taller',
+    // 		participantes: []
+    //         }
+    // 	});
+    // });
 
     app.get('/talleres/:base_id', filtros.get, function(req, res) {
         console.log("*******************");
