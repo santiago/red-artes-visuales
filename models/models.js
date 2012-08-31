@@ -63,16 +63,16 @@ var Participante = new Schema({
 });
 mongoose.model('Participante', Participante);  
 
-var TallerBase = new Schema({
+var Taller = new Schema({
     nombre          :  { type: String }
   , descripcion     :  { type: String }
   , objetivos       :  { type: String }
   , metodologias    :  { type: Array }
   , habilidades     :  { type: Array }
 });
-mongoose.model('TallerBase', TallerBase);
+mongoose.model('TallerBase', Taller);
 
-var Taller = new Schema({
+var Sesion = new Schema({
     actividad_id    :  { type: String, index: true }
   , fecha           :  { type: Date }
   , creativos       :  { type: Array }
@@ -85,7 +85,7 @@ var Taller = new Schema({
   , fotos           :  { type: Array }
   , videos          :  { type: Array }
 });
-mongoose.model('Taller', Taller);
+mongoose.model('Taller', Sesion);
 
 var Usuario = new Schema({
     email           : { type: String },

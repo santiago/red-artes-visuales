@@ -237,7 +237,7 @@ jQuery(document).ready(function($) {
       if (parti) {
           console.log(parti);
            $.post('/participantes', parti, function(data) {
-            location.href = '/equipamientos/'+equip_id;
+            location.href = '/equipamientos/'+equip_id+"/participantes";
            });
       }
     });

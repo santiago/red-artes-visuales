@@ -98,6 +98,15 @@ function Service(app) {
         });
     });
 
+    app.get('/equipamientos/:id/general', filters.get, function(req, res) {
+        res.render('equipamiento_general', {
+            locals: {
+		            articulo: 'General',
+                equipamiento: req.equipamiento
+            }
+        });
+    });
+
     app.get('/consultas/equipamientos', filters.get, function(req, res) {
         res.render('partials/lista_equipamientos', {
             layout: false,
@@ -118,14 +127,23 @@ function Service(app) {
     });
     
     app.get('/equipamientos/:id', filters.get, function(req, res) {
+      Taller = app.db.model("Taller");
+      TallerBase = app.db.model("TallerBase");
+      Taller.find({'equipamiento_id': req.equipamiento.id},function(err,talleres) {
+        var tallerbases_id = new Array();
+        for(var i= 0;i<talleres.length;i++) {
+//            tallerbases_id[i] = talleres[i].actividad  
+        }
         console.log(req.equipamiento);
         res.render('equipamiento', {
             locals: {
+                talleres: talleres,
                 equipamiento: req.equipamiento,
                 params: app.params,
                 articulo: 'Taller'
             }
         });
+      });
     });
  
     app.get('/equipamientos/:id/participantes', filters.get, function(req, res) {
