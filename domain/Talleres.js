@@ -79,28 +79,35 @@ var filtros = {
     },
 
     postTaller: function(req, res, next) {
-	req.creativo = '71381688';
-	var fecha = parseInt(req.body.fecha);
-	var taller = new Taller({
-	    actividad_id: req.params.taller_id,
-	    fecha: fecha,
-	    creativos: [],
-	    equipamiento_id:  req.body.equipamiento_id,
-	    equipamiento_nombre:  req.body.equipamiento_nombre,
-	    participantes:  [], 
-	    resultados:  '', 
-	    autoeval_creativo: '', 
-	    observ_externas:  '', 
-	    fotos:  [], 
-	    videos:  []
-	});
-	taller.creativos.push(req.creativo);
+	    req.creativo = '71381688';
+	    var fecha = parseInt(req.body.fecha);
+      TallerBase.find({'_id':req.params.base_id},function(err, tallerbase) {
+        if (err) {
+          console.log(err);
+          next();
+        }
+     	  var taller = new Taller({
+          nombre = tallerbase.nombre,
+	        actividad_id: req.params.base_id,
+	        fecha: fecha,
+	        creativos: [],
+	        equipamiento_id:  req.body.equipamiento_id,
+	        equipamiento_nombre:  req.body.equipamiento_nombre,
+	        participantes:  [], 
+	        resultados:  '', 
+	        autoeval_creativo: '', 
+	        observ_externas:  '', 
+	        fotos:  [], 
+	        videos:  []
+	      });   
+	    taller.creativos.push(req.creativo);
 
-	taller.save(function(err, record) {
-	    req.taller = record;
-	    next();
-	});
-    },
+	    taller.save(function(err, record) {
+	      req.taller = record;
+	      next();
+	    });
+    });
+  },
 
     addParticipante: function(req, res, next) {
 	var taller = req.taller;
