@@ -1,6 +1,5 @@
-- var edit = false
 article#equipamiento
-  input(type="hidden", id="equipamiento_id", value=#{equipamiento._id})
+  input(type="hidden", id="equipamiento_id", value="#{equipamiento._id}")
   header
     .header-content
       label Equipamiento
@@ -21,7 +20,7 @@ article#equipamiento
           | Editar
           span.mask
       li
-        a.activo#tab-general(href="/equipamientos/#{equipamiento._id}/general", class='#{articulo == 'General' ? "activo" : null }') 
+        a#tab-general(href="/equipamientos/#{equipamiento._id}/general", class='#{articulo == 'General' ? "activo" : null }') 
           | General
           span.mask
 
@@ -30,42 +29,67 @@ article#equipamiento
       li
         .element
           label Nombre:
-          input(name="nombre", readonly='readonly', type="text", value=' #{equipamiento.nombre}')
+          - if (edit) 
+            input(name="nombre", type="text", value='#{equipamiento.nombre}')
+          - else
+            input(name="nombre", readonly, type="text", value='#{equipamiento.nombre}')
+      
 
       li
         .element
           label Ubicación:
-          input(name="ubicacion", readonly='readonly',type="text",value=' #{equipamiento.ubicacion}')
+          - if (edit) 
+            input(name="ubicacion", type="text",value=' #{equipamiento.ubicacion}')
+          - else
+            input(name="ubicacion", readonly='readonly',type="text",value=' #{equipamiento.ubicacion}')
 
       li
         .element
           label Comuna:
-          input(name="comuna", readonly='readonly',type="text",value='#{equipamiento.comuna}')
+          - if (edit) 
+            input(name="comuna", type="text",value='#{equipamiento.comuna}')
+          - else
+            input(name="comuna", readonly='readonly',type="text",value='#{equipamiento.comuna}')
 
       li
         .element
           label Barrio:
-          input(name="barrio", readonly='readonly',type="text",value='#{equipamiento.barrio}')
+          - if (edit) 
+            input(name="barrio", type="text",value='#{equipamiento.barrio}')
+          - else
+            input(name="barrio", readonly='readonly',type="text",value='#{equipamiento.barrio}')
 
       li
         .element
           label Contacto:
-          input(name="contacto", readonly='readonly', id="contacto", type="text",value='#{equipamiento.contacto}')
+          - if (edit) 
+            input(name="contacto", id="contacto", type="text",value='#{equipamiento.contacto}')
+          - else
+            input(name="contacto", readonly='readonly', id="contacto", type="text",value='#{equipamiento.contacto}')
 
       li
         .element
           label Email:
-          input(name="email", readonly='readonly',  id="email", type="text",value='#{equipamiento.email}')
+          - if (edit) 
+            input(name="email", id="email", type="text",value='#{equipamiento.email}')
+          - else
+            input(name="email", readonly='readonly',  id="email", type="text",value='#{equipamiento.email}')
 
       li
         .element
           label Telefono:
-          input(name="telefono", readonly='readonly',  id="telefono", type="text", value='#{equipamiento.telefono}')
+          - if (edit) 
+            input(name="telefono", id="telefono", type="text", value='#{equipamiento.telefono}')
+          - else
+            input(name="telefono", readonly='readonly',  id="telefono", type="text", value='#{equipamiento.telefono}')
 
       li
         .element
           label Experiencia:
-          input(name="experiencia", readonly='readonly',  id="experiencia", type="text", value='#{equipamiento.experiencia}')
+          - if (edit) 
+            input(name="experiencia", id="experiencia", type="text", value='#{equipamiento.experiencia}')
+          - else
+            input(name="experiencia", readonly='readonly',  id="experiencia", type="text", value='#{equipamiento.experiencia}')
 
       li
         .element_checkbox_label
@@ -75,10 +99,16 @@ article#equipamiento
             each otro in params.otros_talleres
               - if (equipamiento.otros_talleres.indexOf(otro) > -1) { 
                 .option(class='#{i%3 == 0 ? "row" : "" }')
-                  input(name="otros[]", type="checkbox", value='#{otro}", checked='checked') 
+                  -if (edit)
+                    input(name="otros[]", type="checkbox", value="#{otro}", checked='checked') 
+                  -else
+                    input(name="otros[]", disabled="disabled", type="checkbox", value="#{otro}", checked='checked') 
               - } else {
                 .option(class='#{i%3 == 0 ? "row" : "" }')
-                  input(name="otros[]", type="checkbox", value='#{otro}") 
+                  -if (edit)
+                    input(name="otros[]", type="checkbox", value="#{otro}") 
+                  -else
+                    input(name="otros[]", disabled="disabled", type="checkbox", value="#{otro}") 
               -}
                   label.radio_text #{otro}
               -i++
@@ -86,7 +116,10 @@ article#equipamiento
       li
         .element
           label Tipo:
-          input(name="tipo", readonly='readonly',  id="tipo", type="text", value='#{equipamiento.tipo}')
+          - if (edit) 
+            input(name="tipo", id="tipo", type="text", value='#{equipamiento.tipo}')
+          - else
+            input(name="tipo", readonly='readonly',  id="tipo", type="text", value='#{equipamiento.tipo}')
 
       li
         .element_checkbox_label
@@ -96,10 +129,16 @@ article#equipamiento
             each espacio in params.espacios
               - if (equipamiento.espacio.indexOf(espacio) > -1 ) {
                 .option
-                  input(name="espacios[]", type="checkbox", value='#{espacio}", checked='checked') 
+                  -if (edit)
+                    input(name="espacios[]", type="checkbox", value="#{espacio}", checked='checked') 
+                  -else
+                    input(name="espacios[]", disabled="disabled", type="checkbox", value="#{espacio}", checked='checked') 
               - } else {
                 .option
-                  input(name="espacios[]", type="checkbox", value='#{espacio}") 
+                  -if (edit)
+                    input(name="espacios[]", type="checkbox", value="#{espacio}") 
+                  -else
+                    input(name="espacios[]", disabled="disabled", type="checkbox", value="#{espacio}") 
               - }
                   label.radio_text #{espacio} 
               -i++
@@ -107,22 +146,34 @@ article#equipamiento
       li
         .element
           label Tienen locker?:
-          input(name="locker", readonly='readonly',  id="locker", type="text", value='#{equipamiento.locker}')
+          - if (edit) 
+            input(name="locker", id="locker", type="text", value='#{equipamiento.locker}')
+          - else
+            input(name="locker", readonly='readonly',  id="locker", type="text", value='#{equipamiento.locker}')
 
       li
         .element
           label Baños cerca?:
-          input(name="banos", readonly='readonly',  id="bano", type="text", value='#{equipamiento.banos}')
+          - if (edit) 
+            input(name="banos", id="bano", type="text", value='#{equipamiento.banos}')
+          - else
+            input(name="banos", readonly='readonly',  id="bano", type="text", value='#{equipamiento.banos}')
 
       li
         .element
           label Equipos electrónicos disponibles:
-          input(name="e_equipos", readonly='readonly',  id="equipos", type="text", value='#{equipamiento.e_equipos}')
+          - if (edit) 
+            input(name="e_equipos", id="equipos", type="text", value='#{equipamiento.e_equipos}')
+          - else
+            input(name="e_equipos", readonly='readonly',  id="equipos", type="text", value='#{equipamiento.e_equipos}')
 
       li
         .element
           label Horario:
-          input(name="horario", readonly='readonly',  id="horario", type="text" ,value='#{equipamiento.horario}')
+          - if (edit) 
+            input(name="horario", id="horario", type="text" ,value='#{equipamiento.horario}')
+          - else
+            input(name="horario", readonly='readonly',  id="horario", type="text" ,value='#{equipamiento.horario}')
 
       li
         .element_checkbox_label
@@ -132,10 +183,16 @@ article#equipamiento
             each edad in params.edades
               - if (equipamiento.edades.indexOf(edad) > -1 ) {
                 .option(class='#{i%3 == 0 ? "row" : "" }')
-                  input(name="edades[]",type="checkbox",value='#{edad}",checked='checked') 
+                  -if (edit)
+                    input(name="edades[]",type="checkbox",value="#{edad}",checked='checked') 
+                  -else
+                    input(name="edades[]",disabled="disabled", type="checkbox",value="#{edad}",checked='checked') 
               - } else {
                 .option(class='#{i%3 == 0 ? "row" : "" }')
-                  input(name="edades[]",type="checkbox",value='#{edad}") 
+                  -if (edit)
+                    input(name="edades[]",type="checkbox",value="#{edad}") 
+                  -else
+                    input(name="edades[]",disabled="disabled", type="checkbox",value="#{edad}") 
               -}
                   label.radio_text #{edad} 
               -i++
@@ -143,74 +200,124 @@ article#equipamiento
       li
         .element
           label Seguridad:
-          input(name="seguridad", readonly='readonly',  id="seguridad", type="text", value=' #{equipamiento.seguridad}')
+          - if (edit) 
+            input(name="seguridad", id="seguridad", type="text", value=' #{equipamiento.seguridad}')
+          - else
+            input(name="seguridad", readonly='readonly',  id="seguridad", type="text", value=' #{equipamiento.seguridad}')
     
       li
         .element
           label Fronteras invisibles:
-          input(name="fronteras", readonly='readonly',  id="fronteras", type="text", value=' #{equipamiento.fronteras}')
+          - if (edit) 
+            input(name="fronteras", id="fronteras", type="text", value=' #{equipamiento.fronteras}')
+          - else
+            input(name="fronteras", readonly='readonly',  id="fronteras", type="text", value=' #{equipamiento.fronteras}')
       
       li
         .element
           label Zona:
-          input(name="zona", readonly='readonly',  id="zona", type="text", value=' #{equipamiento.zona}')
+          - if (edit) 
+            input(name="zona", id="zona", type="text", value=' #{equipamiento.zona}')
+          - else
+            input(name="zona", readonly='readonly',  id="zona", type="text", value=' #{equipamiento.zona}')
       
       li
         .element
           label C&oacute;mo llegar:
-          textarea(name="como_llegar", readonly='readonly', value='#{equipamiento.como_llegar}')
+          - if (edit) 
+            textarea(name="como_llegar", value='#{equipamiento.como_llegar}')
+          - else
+            textarea(name="como_llegar", readonly='readonly', value='#{equipamiento.como_llegar}')
 
       li
         .element
           label Web:
-          input(name="web", readonly='readonly',  type="text", value='#{equipamiento.web}')
+          - if (edit) 
+            input(name="web", type="text", value='#{equipamiento.web}')
+          - else
+            input(name="web", readonly='readonly',  type="text", value='#{equipamiento.web}')
       
       li
         .element
           label Facebook:
-          input(name="fb", readonly='readonly',  type="text", value='#{equipamiento.fb}')
+          - if (edit) 
+            input(name="fb", type="text", value='#{equipamiento.fb}')
+          - else
+            input(name="fb", readonly='readonly',  type="text", value='#{equipamiento.fb}')
       
       li
         .element
           label Twitter:
-          input(name="twitter", readonly='readonly',  type="text", value='#{equipamiento.twitter}')
+          - if (edit) 
+            input(name="twitter", type="text", value='#{equipamiento.twitter}')
+          - else
+            input(name="twitter", readonly='readonly',  type="text", value='#{equipamiento.twitter}')
       
       li
         .element
           label Blog:
-          input(name="blog", readonly='readonly',  type="text" , value='#{equipamiento.blog}')
+          - if (edit) 
+            input(name="blog", type="text" , value='#{equipamiento.blog}')
+          - else
+            input(name="blog", readonly='readonly',  type="text" , value='#{equipamiento.blog}')
   
       li
         .element
           label Newsletter:
-          input(name="newsletter", readonly='readonly',  id="newsletter", type="text", value='#{equipamiento.newsletter}')
+          - if (edit) 
+            input(name="newsletter", id="newsletter", type="text", value='#{equipamiento.newsletter}')
+          - else
+            input(name="newsletter", readonly='readonly',  id="newsletter", type="text", value='#{equipamiento.newsletter}')
 
       li
         .element
           label Cartelera:
-          input(name="cartelera", readonly='readonly',  id="cartelera", type="text" , value='#{equipamiento.cartelera}')
+          - if (edit) 
+            input(name="cartelera", id="cartelera", type="text" , value='#{equipamiento.cartelera}')
+          - else
+            input(name="cartelera", readonly='readonly',  id="cartelera", type="text" , value='#{equipamiento.cartelera}')
 
       li
         .element
           label Tel&eacute;fono Info:
-          input(name="telefono_info", readonly='readonly',  id="zona", type="text", value='#{equipamiento.telefono_info}')
+          - if (edit) 
+            input(name="telefono_info", id="zona", type="text", value='#{equipamiento.telefono_info}')
+          - else
+            input(name="telefono_info", readonly='readonly',  id="zona", type="text", value='#{equipamiento.telefono_info}')
 
       li
         .element
           label Perifon&iacute;a:
-          input(name="perifonia", readonly='readonly',  id="zona", type="text", value='#{equipamiento.perifonia}')
+          - if (edit) 
+            input(name="perifonia", id="zona", type="text", value='#{equipamiento.perifonia}')
+          - else
+            input(name="perifonia", readonly='readonly',  id="zona", type="text", value='#{equipamiento.perifonia}')
 
       li
         .element
           label Bolet&iacute;n:
-          input(name="boletin", readonly='readonly',  id="zona", type="text", value='#{equipamiento.boletin}')
+          - if (edit) 
+            input(name="boletin", id="zona", type="text", value='#{equipamiento.boletin}')
+          - else
+            input(name="boletin", readonly='readonly',  id="zona", type="text", value='#{equipamiento.boletin}')
 
       li
         .element
           label Medios comunitarios:
-          input(name="medios_comunit", readonly='readonly',  id="zona", type="text", value='#{equipamiento.medios_comunit}')
+          - if (edit) 
+            input(name="medios_comunit", id="zona", type="text", value='#{equipamiento.medios_comunit}')
+          - else
+            input(name="medios_comunit", readonly='readonly',  id="zona", type="text", value='#{equipamiento.medios_comunit}')
 
       li
         .element
           label E-mailing:
-          input(name="emailing", readonly='readonly',  id="zona", type="text", value='#{equipamiento.emailing}')
+          - if (edit) 
+            input(name="emailing", id="zona", type="text", value='#{equipamiento.emailing}')
+          - else
+            input(name="emailing", readonly='readonly',  id="zona", type="text", value='#{equipamiento.emailing}')
+
+      li
+        .element
+          - if (edit)
+            button(class="submit",id="edit") Enviar

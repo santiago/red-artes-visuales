@@ -18,7 +18,7 @@ FormValidator.prototype.validate= function(opts) {
 	    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 	    if(val.match(re)) {
         return true
-	    }
+ 	    }
 	    return false
 	},
 	'fecha': function(val) {
@@ -179,7 +179,7 @@ var ParticipanteForm = new FormValidator(
 	},
 
 	'edad': {
-	    'find': 'select[name=edad] option:selected',
+	    'find': 'input[name=fecha]',
 	    'validate': ['presence','fecha']
 	},
 

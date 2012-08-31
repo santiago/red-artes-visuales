@@ -129,10 +129,24 @@ function Service(app) {
         res.render('equipamiento_general', {
             locals: {
 		            articulo: 'General',
-                equipamiento: req.equipamiento
+                edit: false,
+                equipamiento: req.equipamiento,
+                params: app.params
             }
         });
     });
+
+    app.get('/equipamientos/:id/edit', filters.get, function(req, res) {
+        res.render('equipamiento_general', {
+            locals: {
+		            articulo: 'Editar',
+                edit: true,
+                equipamiento: req.equipamiento,
+                params: app.params
+            }
+        });
+    });
+
 
     app.get('/consultas/equipamientos', filters.get, function(req, res) {
         res.render('partials/lista_equipamientos', {
