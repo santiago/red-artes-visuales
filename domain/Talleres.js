@@ -108,7 +108,7 @@ var filtros = {
 		nombre: req.taller_base.nombre,
 		actividad_id: req.params.base_id,
 		fecha: fecha,
-		creativo_cedula: req.session.user.cedula,
+		creativo_cedula: req.user.cedula,
 		equipamiento_id:  req.body.equipamiento_id,
 		equipamiento_nombre:  req.body.equipamiento_nombre,
 		participantes:  [], 
