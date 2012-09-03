@@ -6,8 +6,6 @@ function Service(app) {
     var Evaluacion = app.db.model('Evaluacion');
     
     function getCreativos(req, res, next) {
-        console.log("************"); 
-        console.log(req.query);
         var query = (function() {
             if (req.params.id) {
                 return { _id: req.params.id }

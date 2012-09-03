@@ -16,11 +16,9 @@ everyauth.debug = true;
 //Intialize authentication with username/password
 require('./lib/Auth')(app)
 
-everyauth.password
-  .findUserById( function (id, callback) {
-    console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%***");
-    Usuario.findById(id, callback);    
-  });
+everyauth.everymodule.findUserById(function (id, callback) {
+    app.db.model('Usuario').findById(id, callback);    
+});
 
 
 // Configuration
@@ -47,9 +45,12 @@ app.configure(function(){
     }));
     this.use(express.favicon(__dirname + '/public/favicon.ico', { maxAge: 2592000000}));
     this.use(express.static(__dirname + '/public'));
+
     this.use(everyauth.middleware());
+
     // Keep this as last one
     this.use(this.router);
+
     this.use(function(req, res, next){
       res.render('error', { status: 404, error_text: '404 Pagina no encontrada en el sistema', url: req.url });
     });
@@ -82,28 +83,17 @@ app.get('/login', function(req, res){
 });
 
 app.get('*', function(req, res, next) {
-    if (!req.session.auth) {
+    var auth = req.session.auth;
+
+    if (!auth || !auth.loggedIn) {
         res.redirect('/login');
     } else {
-	if (typeof req.session.creativo_id == 'undefined') {
-	    req.session.creativo_id = '71381688';
-	}
 	next();
     }
 });
 
 app.get('/', function(req, res) {
-    if (req.session.user) {
-      console.log('Session found, redirecting..................');
-    	res.redirect('/equipamientos');
-    } else {
-      console.log('No session found, rendering index..................');
-	    res.render('index', {
-        locals:{
-          articulo: 'None'
-        }
-      });
-    }
+    res.redirect('/equipamientos');
 });
 
 // Initialize Domain

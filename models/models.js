@@ -102,14 +102,13 @@ var Creativo = new Schema({
     email           : { type: String },
     telefono        : { type: String },
     direccion       : { type: String },
-    titulo          : { type: String },
-    ids_talleres    : { type: Array },
+    titulo          : { type: String }
 });
 mongoose.model('Creativo', Creativo);  
 
 var Evaluacion = new Schema({
     participante_id :  { type: String }
-  , creativo_id     :  { type: String }
+  , creativo_cedula :  { type: String }
   , fecha           :  { type: Date }
   , taller_id       :  { type: String, index: true }
   , habilidades     :  { type: Array }

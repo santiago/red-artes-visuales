@@ -84,6 +84,7 @@ function Service(app) {
 	console.log(req.params.taller_id);
 	Sesion.findById(req.params.taller_id, function(err, r) {
 	    req.sesion = r;
+	    console.log(r);
 	    next();
 	});
     }
