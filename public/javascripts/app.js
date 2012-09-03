@@ -41,6 +41,12 @@ jQuery(document).ready(function($) {
 	},
 
 	TallerBase: function() {
+	    $('.list_header a.activo').each(function() {
+		$(this).closest('li').css({ 'float': 'left' });
+		$(this).find('span.mask').css({
+		    width: $(this).closest('li').width()-2
+		})
+	    });
 	},
 
 	Taller: function() {
@@ -235,20 +241,19 @@ jQuery(document).ready(function($) {
 	},
 
 	FormParticipante: function() {
-    var $el = $('#participante form');
-    var equip_id=$('#equipamiento_id').val();
+	    var $el = $('#participante form');
+	    var equip_id=$('#equipamiento_id').val();
  
-    $el.find('button.submit').click(function(e) {
-      e.preventDefault();
-      var parti = ParticipanteForm.getValidData();
-      if (parti) {
-          console.log(parti);
-           $.post('/participantes', parti, function(data) {
-            location.href = '/equipamientos/'+equip_id+"/participantes";
-           });
-      }
-    });
- 
+	    $el.find('button.submit').click(function(e) {
+		e.preventDefault();
+		var parti = ParticipanteForm.getValidData();
+		if (parti) {
+		    console.log(parti);
+		    $.post('/participantes', parti, function(data) {
+			location.href = '/equipamientos/'+equip_id+"/participantes";
+		    });
+		}
+	    });
 	},
     
 
@@ -256,7 +261,7 @@ jQuery(document).ready(function($) {
 	    var $el = $('#evaluacion');
 	    var taller_id = $('#taller_id').val();
 
-	    $el.find('.list_header a').each(function() {
+	    $el.find('.list_header a.activo').each(function() {
 		$(this).find('span.mask').css({
 		    width: $(this).parent().width()-2
 		})

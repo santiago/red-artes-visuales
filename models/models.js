@@ -76,9 +76,9 @@ var Sesion = new Schema({
     nombre          :  { type: String }
   , actividad_id    :  { type: String, index: true }
   , fecha           :  { type: Date }
-  , creativos       :  { type: Array }
+  , creativo_cedula :  { type: String }
   , equipamiento_id    :  { type: String }
-  , equipamiento_nombre    :  { type: String }
+  , equipamiento_nombre  :  { type: String }
   , participantes   :  { type: Array }
   , resultados      :  { type: String }
   , autoeval_creativo: { type: String }
@@ -108,7 +108,6 @@ mongoose.model('Creativo', Creativo);
 
 var Evaluacion = new Schema({
     participante_id :  { type: String }
-  , creativo_cedula :  { type: String }
   , fecha           :  { type: Date }
   , taller_id       :  { type: String, index: true }
   , habilidades     :  { type: Array }

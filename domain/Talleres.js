@@ -108,7 +108,7 @@ var filtros = {
 		nombre: req.taller_base.nombre,
 		actividad_id: req.params.base_id,
 		fecha: fecha,
-		creativos: [],
+		creativo_cedula: req.session.user.cedula,
 		equipamiento_id:  req.body.equipamiento_id,
 		equipamiento_nombre:  req.body.equipamiento_nombre,
 		participantes:  [], 
@@ -117,9 +117,7 @@ var filtros = {
 		observ_externas:  '', 
 		fotos:  [], 
 		videos:  []
-	    });   
-
-	    taller.creativos.push(req.creativo);
+	    });
 
 	    taller.save(function(err, record) {
 		req.taller = record;
@@ -238,22 +236,8 @@ function Service(app) {
             }
 	});
     });
-    
-    // app.get('/talleres/:base_id/taller/:taller_id', filtros.get, filtros.getTaller, function(req, res) {
-    // 	res.render('taller', {
-    //         locals: {
-    // 		params: app.params,
-    //             taller: req.taller,
-    //             taller_base: req.taller_base,
-    // 		articulo: 'Taller',
-    // 		participantes: []
-    //         }
-    // 	});
-    // });
 
     app.get('/talleres/:base_id', filtros.get, function(req, res) {
-        console.log("*******************");
-        console.log(req.taller_base);
         res.render('taller_base', {
             locals: {
                 articulo: 'TallerBase',

@@ -302,6 +302,8 @@ article#evaluacion
   .list_header
     a
       margin-right: 2px
+      &.last
+        margin-right: 0
       &#tab-talleres
         float: left
         span.mask
@@ -320,7 +322,7 @@ article#evaluacion
       &#tab-general
         float: left
         span.mask
-          width: 124px
+          width: 84px
 
 article#equipamiento, 
 article#taller, 
@@ -749,6 +751,20 @@ p.no_results
 
 
 article#equipamiento
+  .list_header
+    a#crear span.mask
+      width: 183px
+
+    a#tab-editar 
+      font-size: 14px
+      span.mask
+        width: 167px
+
+    a#tab-agregar-participante
+      span.mask
+        width: 53px
+      font-size: 14px
+
   .vacio
     margin-left: 20px
   button.submit

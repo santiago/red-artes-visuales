@@ -79,7 +79,7 @@ function Service(app) {
         var model = new Creativo(data);
         var default_passwd = req.body.cedula;
         var hashed_default_passwd = crypto.createHmac('sha1', crypt_key).update(default_passwd).digest('hex');
-        var user = new Usuario({email: req.body.email,rol:'creativo',cedula: req.body.cedula,contrasena: hashed_default_passwd});
+        var user = new Usuario({email: req.body.email, rol:'creativo', cedula: req.body.cedula, contrasena: hashed_default_passwd});
         user.save(function(err, u) {
           if (err) {
             throw err;

@@ -5,6 +5,7 @@ article#equipamiento
     .header-content
       label Equipamiento
       p.nombre #{equipamiento.nombre}
+
   .list_header
     ul
       li
@@ -16,8 +17,8 @@ article#equipamiento
           | Participantes
           span.mask
       li
-        a#tab-agregar(href="#", class='#{articulo == 'Editar' ? "activo" : null }') 
-          | Agrega 
+        a#tab-agregar-participante.last(href="/equipamientos/#{equipamiento._id}/participantes/new", class='#{articulo == 'Editar' ? "activo" : null }') 
+          | Agregar Participante 
           span.mask
       li
         a#tab-general(href="/equipamientos/#{equipamiento._id}/general", class='#{articulo == 'General' ? "activo" : null }') 
@@ -26,7 +27,7 @@ article#equipamiento
 
     .list_body
       ul
-        !=partial('partials/lista_participantes',{participantes: participantes})
+        !=partial('partials/lista_participantes', { participantes: participantes })
 
 //#agrega_participantes_dialog(style='display:none;')
 //  .crea_nuevo_participante

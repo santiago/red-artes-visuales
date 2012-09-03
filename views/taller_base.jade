@@ -3,12 +3,15 @@ article#taller.base
   input#tallerbase_id(type='hidden', value='#{taller_base.id}')
 
   .list_header
-    a.activo#listar(href="/talleres", class='#{articulo == "TallerBase" ? "activo" : null }')
-      | #{taller_base.nombre}
-      span.mask
-    a#crear(href='/talleres')
-      | Talleres
-      span.mask
+    ul
+      li
+        a.activo#listar(href="/talleres", class='#{articulo == "TallerBase" ? "activo" : null }')
+          | #{taller_base.nombre}
+          span.mask
+      li
+        a#crear.last(href='/talleres')
+          | Talleres
+          span.mask
 
   .content
     form

@@ -12,12 +12,12 @@ article#participante
           | Talleres
           span.mask
       li
-        a.activo#tab-participantes(href="/equipamientos/#{equipamiento._id}/participantes", class='#{articulo == 'Participantes' ? "activo" : null }')
+        a#tab-participantes(href="/equipamientos/#{equipamiento._id}/participantes", class='#{articulo == 'Participantes' ? "activo" : null }')
           | Participantes
           span.mask
       li
-        a#tab-nuevo_part(href="#", class='#{articulo == 'FormParticipante' ? "activo" : null }')
-          | Crear 
+        a#tab-agregar-participante.last(class='#{articulo == 'FormParticipante' ? "activo" : null }')
+          | Agregar Participante
           span.mask
       li
         a#tab-general(href="/equipamientos/#{equipamiento._id}/general", class='#{articulo == 'General' ? "activo" : null }')

@@ -52,6 +52,14 @@ function Service(app) {
         });
     }
 
+    function getEquipamiento(req, res, next) {
+	var Equipamiento = app.db.model('Equipamiento');
+	Equipamiento.findById(req.params.equipamiento_id, function(err, r) {
+	    req.equipamiento = r;
+	    next();
+	});
+    }
+
     /*
      * JSON
      */
@@ -80,32 +88,29 @@ function Service(app) {
     /*
      * HTML
      */
-    app.get('/participantes',getParticipantes, function(req, res) {
-      Participante.find({}, function(err, participantes) {
-        console.log(participantes.length);
+    app.get('/participantes', getParticipantes, function(req, res) {
         res.render('participantes', {
-          locals: {
-            articulo: "Participantes",
-            participantes: participantes
-          }
+	    locals: {
+		articulo: "Participantes",
+		participantes: req.participantes
+	    }
         });
-      });
     });
 
 
     app.get('/consultas/participantes/equipamiento/:id', function(req, res) {
-      Participante.find({'equipamiento_id': req.params.id}, function(err, participantes) {
-        if (err) {
-          console.log(err);
-        }
-        res.render('partials/lista_participantes', {
-            layout: false,
-            locals: {
-                articulo: 'Participantes',
-                participantes: participantes
+	Participante.find({'equipamiento_id': req.params.id}, function(err, participantes) {
+            if (err) {
+		console.log(err);
             }
-        });
-      });
+            res.render('partials/lista_participantes', {
+		layout: false,
+		locals: {
+                    articulo: 'Participantes',
+                    participantes: participantes
+		}
+            });
+	});
     });
 
     app.get('/consultas/participantes', getParticipantes, function(req, res) {
@@ -118,30 +123,15 @@ function Service(app) {
         });
     });
 
-    app.get('/participantes/new/equip/:id', function(req, res) {
-      var Equipamiento = app.db.model("Equipamiento");
-      console.log("------------------------------------------------------------");
-      Equipamiento.findOne({'_id': req.params.id}, function(err,equipamiento) {
-      console.log(equipamiento);
-        if (err) {
-          console.log(err);
-          res.render('error', {
+    // Agregar Participante a Equipamiento
+    app.get('/equipamientos/:equipamiento_id/participantes/new', getEquipamiento, function(req, res) {
+        res.render('forms/participante', {
             locals: {
-              status: 404,
-              error_text: "No pude encontrar el equipamiento que me encargaste: " + req.params.id
-            }
-          });
-        }  else {
-          res.render('forms/participante', {
-              locals: {
-                equipamiento: equipamiento,
+                equipamiento: req.equipamiento,
                 params: app.params,
                 articulo: 'FormParticipante'
-                  // equipamientos: req.equipamientos
-              }
-          });
-        }
-      });
+            }
+        });
     });
     
     app.get('/participantes/:id', getParticipantes, function(req, res) {

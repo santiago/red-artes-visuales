@@ -16,8 +16,8 @@ article#equipamiento
           | Participantes
           span.mask
       li
-        a#tab-editar(href="/equipamientos/#{equipamiento._id}/edit", class='#{articulo == 'Editar' ? "activo" : null }') 
-          | Editar
+        a#tab-editar.last(href="/equipamientos/#{equipamiento._id}/edit", class='#{articulo == 'Editar' ? "activo" : null }') 
+          | Editar Equipamiento
           span.mask
       li
         a#tab-general(href="/equipamientos/#{equipamiento._id}/general", class='#{articulo == 'General' ? "activo" : null }') 
