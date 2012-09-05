@@ -27,9 +27,13 @@ jQuery(document).ready(function($) {
     window.location = '/talleres/taller/new';
   });
 
-    $('.participante_item').click(function(e) {
-	var taller_id = location.pathname.split('/')[2]; 
-	var participante_id = $(this).attr('id');
-	window.location = '/taller/'+taller_id+'/participante/'+participante_id+'/evaluacion';
-    });
+  $('#equipamiento .participante_item').click(function(e) {
+    return false;
+  });
+
+  $('#taller .participante_item').click(function(e) {
+	  var taller_id = location.pathname.split('/')[2]; 
+	  var participante_id = $(this).attr('id');
+	  window.location = '/taller/'+taller_id+'/participante/'+participante_id+'/evaluacion';
+  });
 });

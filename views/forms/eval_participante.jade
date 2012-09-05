@@ -1,4 +1,4 @@
-- var habilidades = evaluacion ? evaluacion.habilidades : tallerbase.habilidades
+- var habilidades =  tallerbase.habilidades
 article#evaluacion 
   header
     .header-content
@@ -17,11 +17,11 @@ article#evaluacion
   .list_header
     ul
       li
-        a(href="/evaluacion/new", class='#{articulo == "FormEvaluacion" ? "activo" : null}')
+        a(href="#", class='#{articulo == "FormEvaluacion" ? "activo" : null}')
           | #{participante.nombre}
           span.mask
 
-  form       
+  form
     input(type="hidden", id="taller_id", name="taller_id", value="#{taller._id}")
     input(type="hidden", id="creativo_id", name="creativo_id", value="#{creativo._id}")
     input(type="hidden", id="fecha", name="fecha", value="#{taller.fecha}")
@@ -160,7 +160,7 @@ article#evaluacion
         label.group_label Habilidades 
         ul
           each habilidad, i in habilidades
-            - var valor = evaluacion ? evaluacion.habilidades[habilidad] : 0
+            - var valor = evaluacion ? evaluacion.habilidades[0][habilidad] : 0
             li
               .evaluacion
                 label #{habilidad}
@@ -213,7 +213,7 @@ article#evaluacion
         ul
           each habilidad, i in params.habilidades
             -if (tallerbase.habilidades.indexOf(params.habilidades[i]) == -1 )
-              - var valor = evaluacion ? evaluacion.habilidades[habilidad] : 0
+              - var valor = evaluacion ? evaluacion.habilidades[0][habilidad] : 0
               li
                 .evaluacion
                    label #{habilidad}

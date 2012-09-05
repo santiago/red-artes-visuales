@@ -41,20 +41,23 @@ function Service(app) {
         model.sensibilidad = data.sensibilidad;
         model.comunicacion = data.comunicacion;
         model.apreciacion = data.apreciacion;
-        var habilidades_cnt = app.params.habilidades.length;
-        model.habilidades = new Array(habilidades_cnt);
+        model.habilidades = new Array();
+        var objeto = new Object();
         var cnt = 0;
         for (var key in data) {
-          console.log("++++++++++++");
-          console.log(key);
-          console.log(key.substring(0,2));
+          //console.log("++++++++++++");
+          //console.log(key);
+          var valor = data[key];
+          if (valor == "") valor = 0;
           if (key.substring(0,2) == 'i_') {
-            console.log("-----------+");
             var hab = key.substring(2);
-            model.habilidades[] = hab;
+            //console.log(hab);
+            //console.log("valor:" + valor); 
+            objeto[hab] = valor;
             cnt++;
           }
         }
+        model.habilidades[0] = objeto;
         model.save(function(err, r) {
             req.evaluacion = r;
             next();

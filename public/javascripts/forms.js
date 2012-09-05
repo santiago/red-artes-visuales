@@ -140,8 +140,7 @@ for (var i=0;i<habilidades.length;i++) {
     var input_name = "input[name='i_" + habilidades[i] + "']:checked";
     var field_name = "i_" + habilidades[i];
     fields[field_name] = {
-      'find': input_name,
-      'validate': ['presence']
+      'find': input_name
      }
 }
 fields['sensibilidad'] = {
