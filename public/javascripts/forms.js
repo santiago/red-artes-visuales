@@ -144,6 +144,22 @@ for (var i=0;i<habilidades.length;i++) {
       'validate': ['presence']
      }
 }
+fields['sensibilidad'] = {
+  'find': 'input[name=sensibilidad]:checked',
+  'validate':['presence']
+  }
+fields['comunicacion']= {
+  'find': 'input[name=comunicacion]:checked',
+  'validate':['presence']
+  }
+fields['apreciacion']= {
+  'find': 'input[name=apreciacion]:checked',
+  'validate':['presence']
+  }
+fields['observaciones']= {
+  'find': 'textarea[name=observaciones]',
+  'validate': ['presence']
+  }
 var EvaluacionForm = new FormValidator($("article#evaluacion form"),fields);
   
 

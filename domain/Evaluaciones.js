@@ -37,6 +37,10 @@ function Service(app) {
         model.creativo_id = data.creativo_id;
         model.fecha = data.fecha;
         model.taller_id = data.taller_id;
+        model.observaciones = data.observaciones;
+        model.sensibilidad = data.sensibilidad;
+        model.comunicacion = data.comunicacion;
+        model.apreciacion = data.apreciacion;
         var habilidades_cnt = app.params.habilidades.length;
         model.habilidades = new Array(habilidades_cnt);
         model.valores = new Array(habilidades_cnt);

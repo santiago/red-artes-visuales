@@ -115,6 +115,9 @@ var Evaluacion = new Schema({
   , habilidades     :  { type: Array }
   , valores         :  { type: Array }
   , observaciones   :  { type: String }
+  , sensibilidad    :  { type: String }
+  , comunicacion    :  { type: String }
+  , apreciacion     :  { type: String }
 });
 mongoose.model('Evaluacion', Evaluacion);  
 

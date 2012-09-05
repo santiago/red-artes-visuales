@@ -35,64 +35,182 @@ article#evaluacion
         p &nbsp;
         p Alto
  
-      ul
-        li
-          label Sensibilidad
-        li
-          label Comunicación
-        li
-          label Apreciación estetica
- 
-        each habilidad, i in habilidades
-          - var valor = evaluacion ? evaluacion.valores[i] : 0
+      .evaluacion_group
+        label.group_label Actitudes artisticas
+        ul
           li
             .evaluacion
-              label #{habilidad}
+              label Sensibilidad
+              - var valor = evaluacion ? evaluacion.sensibilidad : 0
               -if (valor == '1') 
-                input(name="i_#{habilidad}", value="1", type="radio", checked='checked', disabled='disabled') 
+                input(name="sensibilidad", value="1", type="radio", checked='checked', disabled='disabled') 
               -else if(evaluacion)
-                input(name="i_#{habilidad}", value="1", type="radio", disabled='disabled') 
+                input(name="sensibilidad", value="1", type="radio", disabled='disabled') 
               -else
-                input(name="i_#{habilidad}", value="1", type="radio") 
+                input(name="sensibilidad", value="1", type="radio") 
               label.radio_eval
               -if (valor == '2') 
-                input(name="i_#{habilidad}", value="2", type="radio", checked='checked', disabled='disabled') 
+                input(name="sensibilidad", value="2", type="radio", checked='checked', disabled='disabled') 
               -else if(evaluacion)
-                input(name="i_#{habilidad}", value="2", type="radio", disabled='disabled') 
+                input(name="sensibilidad", value="2", type="radio", disabled='disabled') 
               -else
-                input(name="i_#{habilidad}", value="2", type="radio") 
+                input(name="sensibilidad", value="2", type="radio") 
               label.radio_eval
               -if (valor == '3') 
-                input(name="i_#{habilidad}", value="3", type="radio", checked='checked', disabled='disabled') 
+                input(name="sensibilidad", value="3", type="radio", checked='checked', disabled='disabled') 
               -else if(evaluacion)
-                input(name="i_#{habilidad}", value="3", type="radio", disabled='disabled') 
+                input(name="sensibilidad", value="3", type="radio", disabled='disabled') 
               -else
-                input(name="i_#{habilidad}", value="3", type="radio") 
+                input(name="sensibilidad", value="3", type="radio") 
               label.radio_eval
               -if (valor == '4') 
-                input(name="i_#{habilidad}", value="4", type="radio", checked='checked', disabled='disabled') 
+                input(name="sensibilidad", value="4", type="radio", checked='checked', disabled='disabled') 
               -else if(evaluacion)
-                input(name="i_#{habilidad}", value="4", type="radio", disabled='disabled') 
+                input(name="sensibilidad", value="4", type="radio", disabled='disabled') 
               -else
-                input(name="i_#{habilidad}", value="4", type="radio") 
+                input(name="sensibilidad", value="4", type="radio") 
               label.radio_eval
               -if (valor == '5') 
-                input(name="i_#{habilidad}", value="5", type="radio", checked='checked', disabled='disabled') 
+                input(name="sensibilidad", value="5", type="radio", checked='checked', disabled='disabled') 
               -else if(evaluacion)
-                input(name="i_#{habilidad}", value="5", type="radio", disabled='disabled') 
+                input(name="sensibilidad", value="5", type="radio", disabled='disabled') 
               -else
-                input(name="i_#{habilidad}", value="5", type="radio") 
+                input(name="sensibilidad", value="5", type="radio") 
               label.radio_eval
-
-
-        li
-          .evaluacion
-            label Observaciones
-            -if (evaluacion)
-              textarea(name="observaciones") #{evaluacion.observaciones} 
-            -else
-              textarea(name="observaciones")
+          li
+            .evaluacion
+              label Comunicación
+              - var valor = evaluacion ? evaluacion.comunicacion : 0
+              -if (valor == '1') 
+                input(name="comunicacion", value="1", type="radio", checked='checked', disabled='disabled') 
+              -else if(evaluacion)
+                input(name="comunicacion", value="1", type="radio", disabled='disabled') 
+              -else
+                input(name="comunicacion", value="1", type="radio") 
+              label.radio_eval
+              -if (valor == '2') 
+                input(name="comunicacion", value="2", type="radio", checked='checked', disabled='disabled') 
+              -else if(evaluacion)
+                input(name="comunicacion", value="2", type="radio", disabled='disabled') 
+              -else
+                input(name="comunicacion", value="2", type="radio") 
+              label.radio_eval
+              -if (valor == '3') 
+                input(name="comunicacion", value="3", type="radio", checked='checked', disabled='disabled') 
+              -else if(evaluacion)
+                input(name="comunicacion", value="3", type="radio", disabled='disabled') 
+              -else
+                input(name="comunicacion", value="3", type="radio") 
+              label.radio_eval
+              -if (valor == '4') 
+                input(name="comunicacion", value="4", type="radio", checked='checked', disabled='disabled') 
+              -else if(evaluacion)
+                input(name="comunicacion", value="4", type="radio", disabled='disabled') 
+              -else
+                input(name="comunicacion", value="4", type="radio") 
+              label.radio_eval
+              -if (valor == '5') 
+                input(name="comunicacion", value="5", type="radio", checked='checked', disabled='disabled') 
+              -else if(evaluacion)
+                input(name="comunicacion", value="5", type="radio", disabled='disabled') 
+              -else
+                input(name="comunicacion", value="5", type="radio") 
+              label.radio_eval
+          li
+            .evaluacion
+              label Apreciación estetica
+              - var valor = evaluacion ? evaluacion.apreciacion : 0
+              -if (valor == '1') 
+                input(name="apreciacion", value="1", type="radio", checked='checked', disabled='disabled') 
+              -else if(evaluacion)
+                input(name="apreciacion", value="1", type="radio", disabled='disabled') 
+              -else
+                input(name="apreciacion", value="1", type="radio") 
+              label.radio_eval
+              -if (valor == '2') 
+                input(name="apreciacion", value="2", type="radio", checked='checked', disabled='disabled') 
+              -else if(evaluacion)
+                input(name="apreciacion", value="2", type="radio", disabled='disabled') 
+              -else
+                input(name="apreciacion", value="2", type="radio") 
+              label.radio_eval
+              -if (valor == '3') 
+                input(name="apreciacion", value="3", type="radio", checked='checked', disabled='disabled') 
+              -else if(evaluacion)
+                input(name="apreciacion", value="3", type="radio", disabled='disabled') 
+              -else
+                input(name="apreciacion", value="3", type="radio") 
+              label.radio_eval
+              -if (valor == '4') 
+                input(name="apreciacion", value="4", type="radio", checked='checked', disabled='disabled') 
+              -else if(evaluacion)
+                input(name="apreciacion", value="4", type="radio", disabled='disabled') 
+              -else
+                input(name="apreciacion", value="4", type="radio") 
+              label.radio_eval
+              -if (valor == '5') 
+                input(name="apreciacion", value="5", type="radio", checked='checked', disabled='disabled') 
+              -else if(evaluacion)
+                input(name="apreciacion", value="5", type="radio", disabled='disabled') 
+              -else
+                input(name="apreciacion", value="5", type="radio") 
+              label.radio_eval
  
-        li
-          -if(!evaluacion)
-            button(class="submit") Envia
+      .evaluacion_group
+        label.group_label Habilidades 
+        ul
+          each habilidad, i in habilidades
+            - var valor = evaluacion ? evaluacion.valores[i] : 0
+            li
+              .evaluacion
+                label #{habilidad}
+                -if (valor == '1') 
+                  input(name="i_#{habilidad}", value="1", type="radio", checked='checked', disabled='disabled') 
+                -else if(evaluacion)
+                  input(name="i_#{habilidad}", value="1", type="radio", disabled='disabled') 
+                -else
+                  input(name="i_#{habilidad}", value="1", type="radio") 
+                label.radio_eval
+                -if (valor == '2') 
+                  input(name="i_#{habilidad}", value="2", type="radio", checked='checked', disabled='disabled') 
+                -else if(evaluacion)
+                  input(name="i_#{habilidad}", value="2", type="radio", disabled='disabled') 
+                -else
+                  input(name="i_#{habilidad}", value="2", type="radio") 
+                label.radio_eval
+                -if (valor == '3') 
+                  input(name="i_#{habilidad}", value="3", type="radio", checked='checked', disabled='disabled') 
+                -else if(evaluacion)
+                  input(name="i_#{habilidad}", value="3", type="radio", disabled='disabled') 
+                -else
+                  input(name="i_#{habilidad}", value="3", type="radio") 
+                label.radio_eval
+                -if (valor == '4') 
+                  input(name="i_#{habilidad}", value="4", type="radio", checked='checked', disabled='disabled') 
+                -else if(evaluacion)
+                  input(name="i_#{habilidad}", value="4", type="radio", disabled='disabled') 
+                -else
+                  input(name="i_#{habilidad}", value="4", type="radio") 
+                label.radio_eval
+                -if (valor == '5') 
+                  input(name="i_#{habilidad}", value="5", type="radio", checked='checked', disabled='disabled') 
+                -else if(evaluacion)
+                  input(name="i_#{habilidad}", value="5", type="radio", disabled='disabled') 
+                -else
+                  input(name="i_#{habilidad}", value="5", type="radio") 
+                label.radio_eval
+
+
+        ul
+          li
+            .evaluacion
+              label Observaciones
+              -if (evaluacion)
+                textarea(name="observaciones") #{evaluacion.observaciones} 
+              -else
+                textarea(name="observaciones")
+ 
+        ul
+          li
+            -if(!evaluacion)
+              button(class="submit") Envia
