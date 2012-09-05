@@ -42,9 +42,10 @@ var filtros = {
 
     put: function(req, res, next) {
         var data = req.body;
-        var id = req.params.base_id;
+        var id = req.params.taller_id;
         Taller.update({ _id: id }, data, function(err, r) {
             if (err) {
+                console.log(err);
                 res.error = true;
             }
             next();
@@ -175,7 +176,7 @@ function Service(app) {
         res.send(req.taller_base, 201);
     });
 
-    app.put('/talleres/:base_id', filtros.put, function(req, res) {
+    app.put('/taller/:taller_id', filtros.put, function(req, res) {
         if (req.error) res.send({ 'error': true }, 500);
         else res.send({ 'ok': true });
     });
@@ -271,6 +272,18 @@ function Service(app) {
             locals: {
             		params: app.params,
                 articulo: 'Taller',
+                taller: req.taller,
+                evaluaciones: req.evaluaciones,
+                participantes: req.participantes 
+            }
+        });
+    });
+
+    app.get('/taller/:taller_id/evaltaller', filtros.getSesion, filtros.getParticipantes, function(req, res) {
+        res.render('evaltaller', {
+            locals: {
+            		params: app.params,
+                articulo: 'FormEvalTaller',
                 taller: req.taller,
                 evaluaciones: req.evaluaciones,
                 participantes: req.participantes 

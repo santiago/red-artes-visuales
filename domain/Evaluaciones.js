@@ -110,7 +110,7 @@ function Service(app) {
 
     function getCreativo(req, res, next) {
 	var Creativo = app.db.model('Creativo');
-	Evaluacion.findOne(req.session.creativo_id, function(err, r) {
+	Creativo.findOne(req.session.creativo_id, function(err, r) {
 	    req.creativo = r;
 	    next();
 	});

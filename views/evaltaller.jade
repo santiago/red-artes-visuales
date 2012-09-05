@@ -1,6 +1,6 @@
 - var edit = false
 article#taller
-  input(type="hidden", id="taller_id", value=#{taller._id})
+  input(type="hidden", id="taller_id", value="#{taller._id}")
   header
     .header-content
       label Equipamiento
@@ -22,13 +22,29 @@ article#taller
           | Fotos / Videos
           span.mask
       li
-        a#tab-seguimiento(href="/taller/#{taller._id}/evaltaller", class='#{articulo == 'Seguimiento' ? "activo" : null }') 
+        a#tab-seguimiento(href="/taller/#{taller._id}/evaltaller", class='#{articulo == 'FormEvalTaller' ? "activo" : null }') 
           | Evaluación taller 
           span.mask
 
   .list_body
-    ul
-      !=partial('partials/lista_participantes_evaluacion',{participantes: participantes})
+    form
+      ul
+        li
+          .element
+            label Resultados generales:
+            textarea(name='resultados_generales') #{taller.resultados}
+          
+        li
+          .element
+            label Autoevaluación creativo:
+            textarea(name='autoeval_creativo') #{taller.autoeval_creativo}
+            
+        li
+          .element
+            label Observaciones externas:
+            textarea(name='observ_externas') #{taller.observ_externas}
 
-
+        li
+          .element
+            button(class="submit") Enviar
 

@@ -13,11 +13,18 @@ module.exports = {
 	      'Manrique','Popular','Robledo','San Javier','Santa Cruz', 
 	      'Villa Hermosa'],
 
-    barrios: ['Conquistadores','Colores','Laureles','Robledo'],
+    barrios: ['Santo Domingo', 'Granizal', 'Santa Cruz', 'Manrique central', 'Moravia',
+        'Palermo', 'Florencia', 'Pedrega', 'Luis Lopez de Mesa', 'Aures', 'Villatina',
+        'Las Estancias', 'La Milagrosa', 'Boston', 'Jesus Nazareno', 'Los colores',
+        'La Floresta', 'San Javier', 'Belencito', 'El Salado Depósito', 'Los Alcazares',
+        'Santa Maria de Los Angeles','Trinidad', 'San Bernardo', 'La Perla', 'Nuevo Amanecer',
+        'Villa de Guadalupe', 'Vereda El Vergel', 'El Limonar', 'Robledo Pajarito', 'Vereda La Loma',
+        'Sector el Parque', 'Ciudadela Nuevo Occidente', 'Vereda La Aldea', 'Santa Elena Parque Central',
+        'Sector central'],
 
     // equipamientos: ["Casa Tres Patios", "EscuelaX", 'TallerZ','ImaginaLab'],
 
-    estratos: ['1','2','3','4','5','6'],
+    estratos: ['0','1','2','3','4','5','6'],
 
     roles: ['creativo','administrador','participante','colaborador','visitante'],
 
@@ -29,13 +36,13 @@ module.exports = {
 
     espacios:  ['Aulas de clase', 'Espacios Multi-propósitos', 'Otros'],
 
-    familiaridades: ['Padres casados', 'Padres separados', 'Monoparental', 
-		     'Huérfano', 'Vive con otro familiar'],
+    familiaridades: ['Familia nuclear', 'Familia biparental', 'Familia monoparental', 
+		     'Familia extensa', 'Familia reconstituida', 'Familia adoptiva'],
 
-    poblacional: ['En condición de calle', 'LGTBI', 'Indígena', 'Afro-colombiana', 
+    poblacional: ['No aplica', 'En condición de calle', 'LGTBI', 'Indígena', 'Afro-colombiana', 
 		  'Desplazada', 'Con discapacidad', 'ROM'],
 
-    padres: ['Alfabetizados', 'Empleados', 'Ama de casa'],
+    padres: ['Básica primaria', 'Básica secundaria', 'Estudios tecnicos', 'Estudios universitarios' ],
 
     metodologias: ['Sensibilización', 'Recorrido', 'Dinámica', 'Juego', 
 		   'Técnicas creativas', 'Presentación de referentes', 

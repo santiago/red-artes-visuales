@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var url = 'red-artes-visuales';
 url += env == 'development' ? '-dev' : '';
 url += env == 'test' ? '-test' : '';
+console.log("Connecting to DB at: " + url);
 mongoose.connect('mongodb://173.230.141.159/'+url);
 
 var Schema = mongoose.Schema
@@ -43,6 +44,7 @@ var Equipamiento = new Schema({
   , boletin         :  { type: Boolean }
   , medios_comunit  :  { type: Boolean }
   , emailing        :  { type: Boolean }
+  , observaciones   :  { type: String }
 });
 mongoose.model('Equipamiento', Equipamiento);
 
@@ -112,6 +114,7 @@ var Evaluacion = new Schema({
   , taller_id       :  { type: String, index: true }
   , habilidades     :  { type: Array }
   , valores         :  { type: Array }
+  , observaciones   :  { type: String }
 });
 mongoose.model('Evaluacion', Evaluacion);  
 

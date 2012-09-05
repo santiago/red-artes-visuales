@@ -319,5 +319,14 @@ article#equipamiento
 
       li
         .element
+          label Observaciones:
+          - if (edit)
+            textarea(name="observaciones") #{equipamiento.observaciones}
+          - else
+            textarea(name="observaciones", readonly='readonly') #{equipamiento.observaciones}
+          
+
+      li
+        .element
           - if (edit)
             button(class="submit",id="edit") Enviar

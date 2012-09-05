@@ -36,6 +36,13 @@ article#evaluacion
         p Alto
  
       ul
+        li
+          label Sensibilidad
+        li
+          label Comunicación
+        li
+          label Apreciación estetica
+ 
         each habilidad, i in habilidades
           - var valor = evaluacion ? evaluacion.valores[i] : 0
           li
@@ -76,7 +83,16 @@ article#evaluacion
               -else
                 input(name="i_#{habilidad}", value="5", type="radio") 
               label.radio_eval
- 
-      -if(!evaluacion)
-        button(class="submit") Envia
 
+
+        li
+          .evaluacion
+            label Observaciones
+            -if (evaluacion)
+              textarea(name="observaciones") #{evaluacion.observaciones} 
+            -else
+              textarea(name="observaciones")
+ 
+        li
+          -if(!evaluacion)
+            button(class="submit") Envia

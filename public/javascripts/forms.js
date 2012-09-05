@@ -83,6 +83,22 @@ var LoginForm = new FormValidator($("article#login form"), {
 });
 
 
+var EvalTallerForm = new FormValidator($("article#taller form"), {
+  'resultados': {
+    'find': 'textarea[name=resultados_generales]',
+    'validate': ['presence']
+  },
+  'autoeval_creativo': {
+    'find': 'textarea[name=autoeval_creativo]',
+    'validate': ['presence']
+  },
+  'observ_externas': {
+    'find': 'textarea[name=observ_externas]',
+    'validate': ['presence']
+  }
+});
+    
+
 var AdminCreativoForm = new FormValidator($("article#creativo form"), {
     'nombre' : {
       'find': 'input[name=nombre]',
@@ -177,12 +193,14 @@ var ParticipanteForm = new FormValidator(
 	    'find': 'input[name=nombre]',
 	    'validate': ['presence']
 	},
-
+/*
+En la presentacion de la app se dijo que fecha de
+nacimiento no sea obligatoria
 	'edad': {
 	    'find': 'input[name=fecha]',
 	    'validate': ['presence','fecha']
 	},
-
+*/
 	'comuna': {
 	    'find': 'select[name=comuna] option:selected',
 	    'validate': ['presence']

@@ -240,6 +240,26 @@ jQuery(document).ready(function($) {
 	    });  
 	},
 
+  FormEvalTaller: function() {
+    var $el = $('#taller form');
+    $el.find('button.submit').click(function(e) {
+	    var taller_id = $('#taller_id').val();
+      e.preventDefault();
+      var data = EvalTallerForm.getValidData();
+      if (data) {
+        $.ajax({
+          url: '/taller/'+taller_id,
+          type: 'PUT',
+          data: data, 
+          success: function(data) {
+            console.log(data);
+            location.href = "/taller/"+taller_id;
+          }
+        });
+      }
+    });
+  },
+
 	FormParticipante: function() {
 	    var $el = $('#participante form');
 	    var equip_id=$('#equipamiento_id').val();
