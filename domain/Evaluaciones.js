@@ -43,18 +43,15 @@ function Service(app) {
         model.apreciacion = data.apreciacion;
         var habilidades_cnt = app.params.habilidades.length;
         model.habilidades = new Array(habilidades_cnt);
-        model.valores = new Array(habilidades_cnt);
         var cnt = 0;
         for (var key in data) {
-//        console.log("++++++++++++");
-//          console.log(key);
-//          console.log(key.substring(0,2));
+          console.log("++++++++++++");
+          console.log(key);
+          console.log(key.substring(0,2));
           if (key.substring(0,2) == 'i_') {
-//            console.log("-----------+");
-            var obj = data[key];
+            console.log("-----------+");
             var hab = key.substring(2);
-            model.habilidades[cnt] = hab;
-            model.valores[cnt] = obj;
+            model.habilidades[] = hab;
             cnt++;
           }
         }
@@ -101,6 +98,18 @@ function Service(app) {
 	});
     }
 
+  function getTallerBase(req,res,next) {
+    var TallerBase = app.db.model('TallerBase');
+    TallerBase.findById(req.sesion.actividad_id,function(err,r) {
+      if (err) {
+        console.log(err);
+        res.error = true;
+      }
+      req.tallerbase = r;
+      next();
+    });
+  }
+  
     function getEvaluacion(req, res, next) {
 	var Evaluacion = app.db.model('Evaluacion');
 	Evaluacion.findOne({
@@ -147,7 +156,7 @@ function Service(app) {
     /*
      * HTML
      */
-    app.get('/taller/:taller_id/participante/:participante_id/evaluacion', getEvaluacion, getSesion, getParticipante, getCreativo, function(req, res) {
+    app.get('/taller/:taller_id/participante/:participante_id/evaluacion', getEvaluacion, getSesion, getParticipante, getCreativo, getTallerBase, function(req, res) {
         res.render('forms/eval_participante', {
             locals: {
 		evaluacion: req.evaluacion,
@@ -155,6 +164,7 @@ function Service(app) {
                 participante: req.participante,
                 creativo: req.creativo,
                 taller: req.sesion,
+                tallerbase: req.tallerbase,
                 articulo: 'FormEvaluacion'
             }
         });

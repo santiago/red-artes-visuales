@@ -113,7 +113,6 @@ var Evaluacion = new Schema({
   , fecha           :  { type: Date }
   , taller_id       :  { type: String, index: true }
   , habilidades     :  { type: Array }
-  , valores         :  { type: Array }
   , observaciones   :  { type: String }
   , sensibilidad    :  { type: String }
   , comunicacion    :  { type: String }
