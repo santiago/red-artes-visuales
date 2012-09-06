@@ -98,8 +98,6 @@ app.get('/login', function(req, res) {
 	});
 });
 
-require('./domain/Admin')(app);
-
 app.get('*', function(req, res, next) {
 	var auth = req.session.auth;
 
@@ -121,15 +119,18 @@ require('./domain/Participantes')(app)
 require('./domain/Talleres')(app)
 require('./domain/Evaluaciones')(app)
 require('./domain/Consultas')(app)
+require('./domain/Admin')(app);
 
 everyauth.helpExpress(app);
 // App starts here
 // Only listen on $ node app.js
 if (!module.parent) {
-	app.listen(6600);
-	console.log("Express server listening on port %d", 6600)
+	if(env == 'production') port = 6600;
+	if(env == 'development') port = 6601;
+	app.listen(port);
+	console.log("Express server listening on port %d", port)
 	console.log(env)
 }
 else {
-	if (env == 'test') app.listen(6060);
+	if (env == 'test') app.listen(6602);
 }

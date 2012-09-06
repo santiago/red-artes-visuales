@@ -18,7 +18,7 @@ function Service(app) {
         }
         // Find by All
         else {
-            Participante.find(query, function(err, records) {
+            Participante.find(query, { sort: '-nombre' }, function(err, records) {
                 req.participantes = records;
                 next();
             });

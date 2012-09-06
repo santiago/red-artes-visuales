@@ -14,7 +14,7 @@ var params = require('../params');
 
 var Equipamiento = new Schema({
     nombre          :  { type: String }
-  , ubicacion       :  { type: String, default: 'Ubicación' }
+  , ubicacion       :  { type: String }
   , comuna          :  { type: String, enum: params.comunas  }
   , barrio          :  { type: String, enum: params.barrios }
   , contacto        :  { type: String }

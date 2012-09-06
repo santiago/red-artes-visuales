@@ -21,10 +21,11 @@ var filtros = {
         }
         // Find by All
         else {
-            TallerBase.find(query, function(err, records) {
-                req.talleres_base = records;
-                next();
-            });
+			TallerBase.find(query).sort({ nombre: 'asc' })
+				.exec(function(err, records) {
+					req.talleres_base = records;
+					next();
+				});
         }
     },
 

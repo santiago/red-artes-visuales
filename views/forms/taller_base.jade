@@ -3,7 +3,7 @@ article#taller
     a#listar(href="/talleres", class='#{articulo == "Talleres" ? "activo" : null }') 
       | Talleres
       span.mask
-    a#crear(href="/talleres/new", class='#{articulo == "FormTaller" ? "activo" : null }') 
+    a#crear.activo.last(href="/talleres/new", class='#{articulo == "FormTaller" ? "activo" : null }') 
       | Crear Taller 
       span.mask
 

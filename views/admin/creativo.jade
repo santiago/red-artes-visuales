@@ -1,44 +1,14 @@
+-if(typeof creativo == 'undefined') creativo = {}
+- articulo = 'Creativos'
 article#creativo
   .list_header
-    a#listar(href="/admin/creativos",class='#{articulo == "Creativos" ? "activo" : null}')
-      | Creativos
-      span.mask
-    a#crear(href="/admin/creativo/new", class='#{articulo == "FormCreativo" ? "activo" : null}')
-      | Crear Creativo
-      span.mask
-    form
-      ul
-        li
-          .element
-            label Nombre completo:      
-            input(name="nombre",id="nombre", type="text")
- 
-        li
-          .element
-            label Email:      
-            input(name="email",id="email", type="text")
- 
-        li
-          .element
-            label Telefono:      
-            input(name="telefono",id="telefono", type="text")
-
-        li
-          .element
-            label Cedula:      
-            input(name="cedula",id="cedula", type="text")
-
-        li
-          .element
-            label Titulo:      
-            input(name="titulo",id="titulo", type="text")
-
-        li
-          .element
-            label direccion
-            textarea(name = "desc")
-        li
-          .element
-            button(id = "submit") OK
-
-
+    ul
+      li
+        a#listar(href="/admin/creativos")
+          | Creativos
+          span.mask
+      li(style='float: right;')
+        a#crear.activo(href="/admin/creativos")
+          | Crear Creativo
+          span.mask
+    !=partial('admin/form/creativo', { creativo: creativo })

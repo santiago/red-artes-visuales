@@ -1,0 +1,32 @@
+-if(typeof creativo == 'undefined') creativo = {}
+form
+  ul
+    li
+      .element
+        label Nombre completo:
+        input(name="nombre", type="text", value='#{creativo.nombre||''}')
+    li
+      .element
+        label Email:
+        input(name="email", type="text", value='#{creativo.email||''}')
+    li
+      .element
+        label Tel&eacute;fono:
+        input(name="telefono", type="text", value='#{creativo.telefono||''}')
+    li
+      .element
+        label C&eacute;dula:
+        input(name="cedula", type="text", value='#{creativo.cedula||''}')
+    li
+      .element
+        label T&iacute;tulo:
+        input(name="titulo", type="text", value='#{creativo.titulo||''}')
+    li
+      .element
+        label Direcci&oacute;n
+        textarea(name="desc") #{creativo.direccion||''}
+    li
+      .element
+        button(id="submit") Guardar
+
+

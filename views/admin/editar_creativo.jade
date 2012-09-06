@@ -1,0 +1,12 @@
+article#creativo
+  .list_header
+    ul
+      li
+        a#crear(href="/admin/creativos")
+          | Creativos
+          span.mask
+      li
+        a#listar.activo
+          | #{creativo.nombre}
+          span.mask
+    !=partial('admin/form/creativo', { creativo: creativo })

@@ -7,9 +7,9 @@ function Service(app) {
 
 	function getCreativos(req, res, next) {
 		var query = (function() {
-			if (req.params.id) {
+			if (req.params.creativo_id) {
 				return {
-					_id: req.params.id
+					_id: req.params.creativo_id
 				}
 			}
 			if (req.query) {
@@ -27,10 +27,11 @@ function Service(app) {
 		}
 		// Find by All
 		else {
-			Creativo.find(query, function(err, records) {
-				req.creativos = records;
-				next();
-			});
+			Creativo.find(query).sort({ nombre: 'asc' })
+				.exec(function(err, records) {
+					req.creativos = records;
+					next();
+				});
 		}
 	}
 
@@ -110,7 +111,7 @@ function Service(app) {
 
 	function putCreativos(req, res, next) {
 		var data = req.body;
-		var id = req.params.id;
+		var id = req.params.creativo_id;
 		Creativo.update({
 			_id: id
 		}, data, function(err, r) {
@@ -143,7 +144,7 @@ function Service(app) {
 		res.send(req.equipamiento, 201);
 	});
 
-	app.put('/admin/creativos/:id', putCreativos, function(req, res) {
+	app.put('/creativos/:creativo_id', putCreativos, function(req, res) {
 		if (req.error) res.send({
 			'error': true
 		}, 500);
@@ -162,7 +163,6 @@ function Service(app) {
      * HTML
      */
 	app.get('/admin/creativos', getCreativos, function(req, res) {
-		console.log('###########-/admin/creativos-#########');
 		res.render('admin/creativos', {
 			locals: {
 				articulo: 'Creativos',
@@ -182,7 +182,7 @@ function Service(app) {
 	});
 
 
-	app.get('/admin/creativos/new', getCreativos, function(req, res) {
+	app.get('/admin/creativos/new', function(req, res) {
 		res.render('admin/creativo', {
 			locals: {
 				articulo: 'FormCreativo',
@@ -191,14 +191,15 @@ function Service(app) {
 		});
 	});
 
-	app.get('/admin/creativos/:id', getCreativos, function(req, res) {
-		res.render('admin/creativo', {
+	app.get('/creativos/:creativo_id', getCreativos, function(req, res) {
+		res.render('admin/editar_creativo', {
 			locals: {
+				articulo: 'EditarCreativo',
 				creativo: req.creativo
 			}
 		});
 	});
-
+	
 	app.get('/admin/monitor', getTaller_Bases, function(req, res) {
 		res.render('admin/monitor', {
 			locals: {

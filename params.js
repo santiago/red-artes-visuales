@@ -1,23 +1,20 @@
 module.exports = {
     edades: ['7-8', '9-10', '11-12', '13-14', '15-16'],
 
-    habilidades: ['Reflexión', 'Creatividad', 'Capacidad de escucha', 'Compromiso', 
-		  'Pensamiento critico', 'Tolerancia', 'Honestidad', 'Participación', 
-		  'Reconocer el contexto social', 'Reconocer el contexto familiar', 
-		  'Reconocer el context geográfico', 'Respeto', 'Confianza', 
-		  'Construcción colectiva', 'Aceptación del otro', 
-		  'Capacidad de expresión', 'Trabajo en equipo'],
+    habilidades: ['Reflexión', 'Creatividad', 'Capacidad de Escucha', 'Compromiso', 
+		  'Pensamiento Cr&iacute;tico', 'Tolerancia', 'Honestidad', 'Participaci&oacute;n', 
+		  'Reconocer el Contexto Social', 'Reconocer el Contexto Familiar', 
+		  'Reconocer el Contexto Geogr&aacute;fico', 'Respeto', 'Confianza', 
+		  'Construcci&oacute;n Colectiva', 'Aceptaci&oacute;n del Otro', 
+		  'Capacidad de Expresi&oacute;n', 'Trabajo en Equipo'],
 
-    comunas: ['Aranjuez','Belén','Buenos Aires','Castilla','Doce de Octubre',
-	      'El Poblado','Guayabal','La América','La Candelaria','Laureles',
-	      'Manrique','Popular','Robledo','San Javier','Santa Cruz', 
-	      'Villa Hermosa'],
-
-    barrios: ['Santo Domingo', 'Granizal', 'Santa Cruz', 'Manrique central', 'Moravia',
-        'Palermo', 'Florencia', 'Pedrega', 'Luis Lopez de Mesa', 'Aures', 'Villatina',
-        'Las Estancias', 'La Milagrosa', 'Boston', 'Jesus Nazareno', 'Los colores',
-        'La Floresta', 'San Javier', 'Belencito', 'El Salado Depósito', 'Los Alcazares',
-        'Santa Maria de Los Angeles','Trinidad', 'San Bernardo', 'La Perla', 'Nuevo Amanecer',
+	comunas: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,50,60,70,80,90],
+    
+    barrios: ['Santo Domingo', 'Granizal', 'Santa Cruz', 'Manrique Central', 'Moravia',
+        'Palermo', 'Florencia', 'Pedregal', 'Luis L&oacute;pez de Mesa', 'Aures', 'Villatina',
+        'Las Estancias', 'La Milagrosa', 'Boston', 'Jes&uacute;s Nazareno', 'Los colores',
+        'La Floresta', 'San Javier', 'Belencito', 'El Salado Dep&oacute;sito', 'Los Alc&aacute;zares',
+        'Santa Mar&iacute;a de Los Angeles','Trinidad', 'San Bernardo', 'La Perla', 'Nuevo Amanecer',
         'Villa de Guadalupe', 'Vereda El Vergel', 'El Limonar', 'Robledo Pajarito', 'Vereda La Loma',
         'Sector el Parque', 'Ciudadela Nuevo Occidente', 'Vereda La Aldea', 'Santa Elena Parque Central',
         'Sector central'],
@@ -45,8 +42,8 @@ module.exports = {
     padres: ['Básica primaria', 'Básica secundaria', 'Estudios tecnicos', 'Estudios universitarios' ],
 
     metodologias: ['Sensibilización', 'Recorrido', 'Dinámica', 'Juego', 
-		   'Técnicas creativas', 'Presentación de referentes', 
-		   'Experimentación materiales' , 'Visitas', 'Investigación', 
+		   'Técnicas Creativas', 'Presentación de Referentes', 
+		   'Experimentación Materiales' , 'Visitas', 'Investigación', 
 		   'Intercambios', 'Otro'],
 
     zonas: ['Urbano','Rural']
