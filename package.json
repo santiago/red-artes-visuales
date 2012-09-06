@@ -9,6 +9,7 @@
     "node": ">= 0.6.21"
   },
   "dependencies": {
+    "connect-mongo": "0.1.9",
     "express": "2.5.10",
     "jade": "0.26.3",	
     "stylus": "0.28.2",
