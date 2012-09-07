@@ -28,7 +28,10 @@ jQuery(document).ready(function($) {
   });
 
   $('#equipamiento .participante_item').click(function(e) {
-    return false;
+    window.location = '/participantes/'+this.id;
+  });
+  $('#participantes .participante_item').click(function(e) {
+    window.location = '/participantes/'+this.id;
   });
 
   $('#taller .participante_item').click(function(e) {
