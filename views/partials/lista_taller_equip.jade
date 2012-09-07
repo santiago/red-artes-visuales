@@ -12,5 +12,5 @@ ul
   select(name='taller')
     each taller in talleres
       option(value='#{taller._id}') #{taller.nombre}
-  input#fecha(type='text')
+  input#fecha(type='text',placeholder='Seleccionar Fecha')
   button.submit Agregar Taller

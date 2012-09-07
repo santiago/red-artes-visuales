@@ -208,14 +208,9 @@ var ParticipanteForm = new FormValidator(
 	    'find': 'input[name=nombre]',
 	    'validate': ['presence']
 	},
-/*
-En la presentacion de la app se dijo que fecha de
-nacimiento no sea obligatoria
-	'edad': {
-	    'find': 'input[name=fecha]',
-	    'validate': ['presence','fecha']
+	'fecha': {
+	    'find': 'input[name=fecha]'
 	},
-*/
 	'comuna': {
 	    'find': 'select[name=comuna] option:selected',
 	    'validate': ['presence']
@@ -236,7 +231,7 @@ nacimiento no sea obligatoria
 	    'validate': ['presence']
 	},
 
-	'situacion': {
+	'familiar': {
 	    'find': 'select[name=situacion] option:selected',
 	    'validate': ['presence']
 	},
@@ -261,6 +256,8 @@ nacimiento no sea obligatoria
   }
     }
 );
+
+var EditarParticipanteForm= ParticipanteForm;
 
 var EquipamientoForm = new FormValidator(
     $("#equipamiento form"),

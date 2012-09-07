@@ -55,6 +55,7 @@ var Participante = new Schema({
   , comuna          :  { type: String, enum: params.comunas }
   , barrio          :  { type: String, enum: params.barrios }
   , estrato         :  { type: String, enum: params.estratos }
+  , contacto        :  { type: String}
   , fotos           :  { type: Array }
   , videos          :  { type: Array }
   , familiar        :  { type: String, enum: params.familiaridades }

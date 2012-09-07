@@ -85,16 +85,22 @@ Paginas.EquipamientoTalleres = function() {
 	$('#fecha').datepicker();
 
 	$el.find('.submit').click(function(e) {
+    if ($('#fecha').hasClass('border_error')) {
+      $('#fecha').removeClass('border_error');
+    }
 		e.preventDefault();
 		$(this).blur();
 
 		var equip = location.pathname.split('/')[2];
 		var taller_id = $('select option:selected').val();
-		var fecha = $('#fecha').val().split('/');
-		if (fecha) {
-			fecha = new Date(parseInt(fecha[2]), parseInt(fecha[0].replace(/^0/, '')) - 1, parseInt(fecha[1].replace(/^0/, '')))
-			fecha = fecha.getTime();
-		}
+		var fecha_str = $('#fecha').val();
+    if (fecha_str) {
+		  var fecha = fecha_str.split('/');
+		  if (fecha) {
+			  fecha = new Date(parseInt(fecha[2]), parseInt(fecha[0].replace(/^0/, '')) - 1, parseInt(fecha[1].replace(/^0/, '')))
+			  fecha = fecha.getTime();
+		  }
+    } 
 
 		if (!equip) {
 			$(this).parent().before("<p class='error'>* debe seleccionar un equipamiento</p>");
@@ -102,6 +108,7 @@ Paginas.EquipamientoTalleres = function() {
 
 		if (!fecha) {
 			$(this).parent().before("<p class='error'>* debe seleccionar una fecha</p>");
+      $('#fecha').addClass('border_error');
 		}
 
 		if (fecha && taller_id) {
@@ -175,7 +182,7 @@ Paginas.Consultas = function() {
 			width: $(this).closest('li').width()
 		});
 	});
-},
+};
 
 Paginas.FormEquipamiento = function() {
 	// Callback par atender el response
@@ -194,7 +201,7 @@ Paginas.FormEquipamiento = function() {
 			$.post('/equipamientos', data, res);
 		}
 	});
-},
+};
 
 Paginas.FormTaller = function() {};
 
@@ -253,7 +260,27 @@ Paginas.FormCreativo = function() {
 			$.post('/admin/creativos', data, res);
 		}
 	});
-},
+};
+
+Paginas.EditarParticipante = function() {
+  var $el = $('#edit_participante');
+	var participante_id = $('#participante_id').val();
+  $el.find('button.submit').click(function(e) {
+    e.preventDefault();
+    var data = EditarParticipanteForm.getValidData();
+    if (data) {
+			$.ajax({
+				url: '/participantes/' + participante_id,
+				type: 'PUT',
+				data: data,
+				success: function(data) {
+					console.log(data);
+					location.href = "/participantes/" + participante_id;
+				}
+			});
+		}
+	});
+};
 
 Paginas.FormEvalTaller = function() {
 	var $el = $('#taller form');
@@ -273,7 +300,7 @@ Paginas.FormEvalTaller = function() {
 			});
 		}
 	});
-},
+};
 
 Paginas.FormParticipante = function() {
 	var $el = $('#participante form');
