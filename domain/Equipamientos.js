@@ -1,11 +1,11 @@
-var Equipamiento, Taller, TallerBase;
+var Equipamiento, Taller, TallerBase, Participante;
 
 var filters = {
 	get: function(req, res, next) {
 		var query = (function() {
-			if (req.params.id) {
+			if (req.params.equipamiento_id) {
 				return {
-					_id: req.params.id
+					_id: req.params.equipamiento_id
 				}
 			}
 			if (req.query) {
@@ -23,21 +23,23 @@ var filters = {
 				});
 			}
 			else {
-				Equipamiento.find(query).sort({ nombre : 'asc' })
-					.exec(function(err, records) {
-						req.equipamientos = records;
-						next();
-					});
+				Equipamiento.find(query).sort({
+					nombre: 'asc'
+				}).exec(function(err, records) {
+					req.equipamientos = records;
+					next();
+				});
 			}
 		}
 	},
 
 	getAll: function(req, res, next) {
-		Equipamiento.find().sort({ nombre : 'asc' })
-			.exec(function(err, records) {
-				req.equipamientos = records;
-				next();
-			});
+		Equipamiento.find().sort({
+			nombre: 'asc'
+		}).exec(function(err, records) {
+			req.equipamientos = records;
+			next();
+		});
 	},
 
 	post: function(req, res, next) {
@@ -87,10 +89,19 @@ var filters = {
 			req.talleres = rs;
 			next();
 		});
+	},
+	
+	getParticipantes: function(req, res, next) {
+		Participante.find({ 'equipamiento_id': req.params.equipamiento_id }).sort({ nombre: 'asc' })
+			.exec(function(err, records) {
+				req.participantes = records;
+				next();
+			});
 	}
 }
 
 function Service(app) {
+	Participante = app.db.model('Participante');
 	Equipamiento = app.db.model('Equipamiento');
 	Taller = app.db.model('Taller');
 	TallerBase = app.db.model('TallerBase');
@@ -191,23 +202,14 @@ function Service(app) {
 		});
 	});
 
-	app.get('/equipamientos/:id/participantes', filters.get, function(req, res) {
-		console.log(req.equipamiento);
-		Participante = app.db.model('Participante');
-		Participante.find({
-			'equipamiento_id': req.equipamiento.id
-		}, function(err, participantes) {
-			console.log("participantes: ");
-			console.log(participantes);
-
-			res.render('equipamientos/participantes', {
-				locals: {
-					equipamiento: req.equipamiento,
-					participantes: participantes,
-					params: app.params,
-					articulo: 'Participantes'
-				}
-			});
+	app.get('/equipamientos/:equipamiento_id/participantes', filters.get, filters.getParticipantes, function(req, res) {
+		res.render('equipamientos/participantes', {
+			locals: {
+				equipamiento: req.equipamiento,
+				participantes: req.participantes,
+				params: app.params,
+				articulo: 'Participantes'
+			}
 		});
 	});
 }
