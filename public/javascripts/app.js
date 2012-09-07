@@ -33,7 +33,6 @@ var Domain = function() {
 var Equipamiento = Domain.Equipamiento;
 var Taller = Domain.Taller;
 var Participante = Domain.Participante;
-
 // Páginas
 var Paginas = {};
 
@@ -216,6 +215,10 @@ Paginas.FormTallerBase = function() {
 	});
 };
 
+Paginas.EditarEquipamiento = function() {
+	$('input[type="radio"]').removeAttr('disabled');
+};
+	
 Paginas.EditarCreativo = function() {
 	fixMask();
 	

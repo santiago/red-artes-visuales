@@ -75,7 +75,7 @@ var filters = {
 	},
 
 	getSesiones: function(req, res, next) {
-		var id = req.params.id;
+		var id = req.params.equipamiento_id;
 		Taller.find({
 			equipamiento_id: id
 		}, function(err, rs) {
@@ -136,7 +136,7 @@ function Service(app) {
 		});
 	});
 
-/*
+	/*
      * HTML
      */
 	app.get('/equipamientos', filters.get, function(req, res) {
@@ -148,7 +148,7 @@ function Service(app) {
 		});
 	});
 
-	app.get('/equipamientos/:id/general', filters.get, function(req, res) {
+	app.get('/equipamientos/:equipamiento_id/general', filters.get, function(req, res) {
 		res.render('equipamiento_general', {
 			locals: {
 				articulo: 'General',
@@ -159,10 +159,10 @@ function Service(app) {
 		});
 	});
 
-	app.get('/equipamientos/:id/edit', filters.get, function(req, res) {
+	app.get('/equipamientos/:equipamiento_id/edit', filters.get, function(req, res) {
 		res.render('equipamiento_general', {
 			locals: {
-				articulo: 'Editar',
+				articulo: 'EditarEquipamiento',
 				edit: true,
 				equipamiento: req.equipamiento,
 				params: app.params
@@ -181,7 +181,7 @@ function Service(app) {
 		});
 	});
 
-	app.get('/equipamientos/new', filters.get, function(req, res) {
+	app.get('/equipamientos/new', function(req, res) {
 		res.render('forms/equipamiento', {
 			locals: {
 				articulo: 'FormEquipamiento',
@@ -190,7 +190,7 @@ function Service(app) {
 		});
 	});
 
-	app.get('/equipamientos/:id', filters.get, filters.getTalleres, filters.getSesiones, function(req, res) {
+	app.get('/equipamientos/:equipamiento_id', filters.get, filters.getTalleres, filters.getSesiones, function(req, res) {
 		res.render('equipamiento', {
 			locals: {
 				articulo: 'EquipamientoTalleres',

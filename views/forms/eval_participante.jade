@@ -10,8 +10,8 @@ article#evaluacion
       p.nombre #{taller.fecha}
       label Participante
       p.nombre #{participante.nombre}
-      label Evaluación
-      p.nombre por #{creativo.nombre}
+      label Creativo
+      p.nombre #{creativo.nombre}
       
     
   .list_header
@@ -36,7 +36,7 @@ article#evaluacion
         p Alto
  
       .evaluacion_group
-        label.group_label Actitudes artisticas
+        label.group_label Actitudes Art&iacute;sticas
         ul
           li
             .evaluacion
@@ -118,7 +118,7 @@ article#evaluacion
               label.radio_eval
           li
             .evaluacion
-              label Apreciación estetica
+              label Apreciación Estética
               - var valor = evaluacion ? evaluacion.apreciacion : 0
               -if (valor == '1') 
                 input(name="apreciacion", value="1", type="radio", checked='checked', disabled='disabled') 

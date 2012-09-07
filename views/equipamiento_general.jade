@@ -8,15 +8,15 @@ article#equipamiento
   .list_header
     ul
       li
-        a#tab-talleres(href="/equipamientos/#{equipamiento._id}", class='#{articulo == 'Taller' ? "activo" : null }') 
+        a#tab-talleres(href="/equipamientos/#{equipamiento._id}") 
           | Talleres
           span.mask
       li
-        a#tab-participantes(href="/equipamientos/#{equipamiento._id}/participantes", class='#{articulo == 'Participantes' ? "activo" : null }') 
+        a#tab-participantes(href="/equipamientos/#{equipamiento._id}/participantes") 
           | Participantes
           span.mask
       li
-        a#tab-editar.last(href="/equipamientos/#{equipamiento._id}/edit", class='#{articulo == 'Editar' ? "activo" : null }') 
+        a#tab-editar.last(href="/equipamientos/#{equipamiento._id}/edit", class='#{articulo == 'EditarEquipamiento' ? "activo" : null }') 
           | Editar Equipamiento
           span.mask
       li
@@ -260,62 +260,139 @@ article#equipamiento
             input(name="blog", type="text" , value='#{equipamiento.blog}')
           - else
             input(name="blog", readonly='readonly',  type="text" , value='#{equipamiento.blog}')
-  
+          
       li
         .element
           label Newsletter:
-          - if (edit) 
-            input(name="newsletter", id="newsletter", type="text", value='#{equipamiento.newsletter}')
+          - if (equipamiento.newsletter === true)
+            input(name="newsletter", type="radio", value="Si", checked='checked', disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="newsletter", type="radio", value="No", disabled='disabled')
+            label.radio_sino No
+          - else if (equipamiento.newsletter === false)
+            input(name="newsletter", type="radio", value="Si", disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="newsletter", type="radio", value="No", checked='checked', disabled='disabled')
+            label.radio_sino No
           - else
-            input(name="newsletter", readonly='readonly',  id="newsletter", type="text", value='#{equipamiento.newsletter}')
+            input(name="newsletter", type="radio", value="Si")
+            label.radio_sino S&iacute;
+            input(name="newsletter", type="radio", value="No")
+            label.radio_sino No
 
       li
         .element
           label Cartelera:
-          - if (edit) 
-            input(name="cartelera", id="cartelera", type="text" , value='#{equipamiento.cartelera}')
+          - if (equipamiento.cartelera === true)
+            input(name="cartelera", type="radio", value="Si", checked='checked', disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="cartelera", type="radio", value="No", disabled='disabled')
+            label.radio_sino No
+          - else if (equipamiento.cartelera === false)
+            input(name="cartelera", type="radio", value="Si", disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="cartelera", type="radio", value="No", checked='checked', disabled='disabled')
+            label.radio_sino No
           - else
-            input(name="cartelera", readonly='readonly',  id="cartelera", type="text" , value='#{equipamiento.cartelera}')
+            input(name="cartelera", type="radio", value="Si")
+            label.radio_sino S&iacute;
+            input(name="cartelera", type="radio", value="No")
+            label.radio_sino No
 
       li
         .element
           label Tel&eacute;fono Info:
-          - if (edit) 
-            input(name="telefono_info", id="zona", type="text", value='#{equipamiento.telefono_info}')
+          - if (equipamiento.telefono_info === true)
+            input(name="telefono_info", type="radio", value="Si", checked='checked', disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="telefono_info", type="radio", value="No", disabled='disabled')
+            label.radio_sino No
+          - else if(equipamiento.telefono_info === false)
+            input(name="telefono_info", type="radio", value="Si", disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="telefono_info", type="radio", value="No", checked='checked', disabled='disabled')
+            label.radio_sino No
           - else
-            input(name="telefono_info", readonly='readonly',  id="zona", type="text", value='#{equipamiento.telefono_info}')
+            input(name="telefono_info", type="radio", value="Si")
+            label.radio_sino S&iacute;
+            input(name="telefono_info", type="radio", value="No")
+            label.radio_sino No
 
       li
         .element
           label Perifon&iacute;a:
-          - if (edit) 
-            input(name="perifonia", id="zona", type="text", value='#{equipamiento.perifonia}')
+          - if (equipamiento.perifonia === true)
+            input(name="perifonia", type="radio", value="Si", checked='checked', disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="perifonia", type="radio", value="No", disabled='disabled')
+            label.radio_sino No
+          - else if (equipamiento.perifonia === false)
+            input(name="perifonia", type="radio", value="Si", disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="perifonia", type="radio", value="No", checked='checked', disabled='disabled')
+            label.radio_sino No
           - else
-            input(name="perifonia", readonly='readonly',  id="zona", type="text", value='#{equipamiento.perifonia}')
+            input(name="perifonia", type="radio", value="Si")
+            label.radio_sino S&iacute;
+            input(name="perifonia", type="radio", value="No")
+            label.radio_sino No
 
       li
         .element
           label Bolet&iacute;n:
-          - if (edit) 
-            input(name="boletin", id="zona", type="text", value='#{equipamiento.boletin}')
+          - if (equipamiento.boletin === true)
+            input(name="boletin", type="radio", value="Si", checked='checked', disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="boletin", type="radio", value="No", disabled='disabled')
+            label.radio_sino No
+          - else if(equipamiento.boletin === false)
+            input(name="boletin", type="radio", value="Si", disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="boletin", type="radio", value="No", checked='checked', disabled='disabled')
+            label.radio_sino No
           - else
-            input(name="boletin", readonly='readonly',  id="zona", type="text", value='#{equipamiento.boletin}')
+            input(name="boletin", type="radio", value="Si")
+            label.radio_sino S&iacute;
+            input(name="boletin", type="radio", value="No")
+            label.radio_sino No
 
       li
         .element
           label Medios comunitarios:
-          - if (edit) 
-            input(name="medios_comunit", id="zona", type="text", value='#{equipamiento.medios_comunit}')
+          - if (equipamiento.medios_comunit === true)
+            input(name="medios_comunit", type="radio", value="Si", checked='checked', disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="medios_comunit", type="radio", value="No", disabled='disabled')
+            label.radio_sino No
+          - else if (equipamiento.medios_comunit === false)
+            input(name="medios_comunit", type="radio", value="Si", disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="medios_comunit", type="radio", value="No", checked='checked')
+            label.radio_sino No
           - else
-            input(name="medios_comunit", readonly='readonly',  id="zona", type="text", value='#{equipamiento.medios_comunit}')
+            input(name="medios_comunit", type="radio", value="Si")
+            label.radio_sino S&iacute;
+            input(name="medios_comunit", type="radio", value="No")
+            label.radio_sino No
 
       li
         .element
           label E-mailing:
-          - if (edit) 
-            input(name="emailing", id="zona", type="text", value='#{equipamiento.emailing}')
+          - if (equipamiento.emailing === true)
+            input(name="emailing", type="radio", value="Si", checked='checked', disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="emailing", type="radio", value="No", disabled='disabled')
+            label.radio_sino No
+          - else if (equipamiento.emailing === false)
+            input(name="emailing", type="radio", value="Si", disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="emailing", type="radio", value="No", checked='checked', disabled='disabled')
+            label.radio_sino No
           - else
-            input(name="emailing", readonly='readonly',  id="zona", type="text", value='#{equipamiento.emailing}')
+            input(name="emailing", type="radio", value="Si")
+            label.radio_sino S&iacute;
+            input(name="emailing", type="radio", value="No")
+            label.radio_sino No
 
       li
         .element
@@ -324,7 +401,6 @@ article#equipamiento
             textarea(name="observaciones") #{equipamiento.observaciones}
           - else
             textarea(name="observaciones", readonly='readonly') #{equipamiento.observaciones}
-          
 
       li
         .element

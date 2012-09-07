@@ -357,6 +357,9 @@ equip_barrio {
   margin: 0 30px 10px;
   padding: 10px;
 }
+article#participante span.mask {
+  width: 190px;
+}
 article#equipamiento header,
 article#participante header,
 article#taller header,
