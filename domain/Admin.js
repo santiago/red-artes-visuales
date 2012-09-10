@@ -97,11 +97,11 @@ function Service(app) {
 		});
 		user.save(function(err, u) {
 			if (err) {
-				throw err;
+				res.send(500);
 			}
 			model.save(function(err, r) {
 				if (err) {
-					throw err;
+					res.send(500);
 				}
 				req.creativo = r;
 				next();

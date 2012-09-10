@@ -37,7 +37,7 @@ var filtros = {
 		var model = new TallerBase(data);
 		model.save(function(err, r) {
 			if (err) {
-				throw err;
+				res.send(500);
 			}
 			req.taller = r;
 			next();
@@ -51,7 +51,6 @@ var filtros = {
 			_id: id
 		}, data, function(err, r) {
 			if (err) {
-				console.log(err);
 				res.error = true;
 			}
 			next();

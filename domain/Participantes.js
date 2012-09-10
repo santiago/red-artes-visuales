@@ -20,11 +20,12 @@ function Service(app) {
 		}
 		// Find by All
 		else {
-			Participante.find(query).sort({ nombre: 'asc' })
-				.exec(function(err, records) {
-					req.participantes = records;
-					next();
-				});
+			Participante.find(query).sort({
+				nombre: 'asc'
+			}).exec(function(err, records) {
+				req.participantes = records;
+				next();
+			});
 		}
 	}
 
@@ -65,17 +66,17 @@ function Service(app) {
 		});
 	}
 
-  function getEquipFromParticipanteId(req, res, next) {
+	function getEquipFromParticipanteId(req, res, next) {
 		var Equipamiento = app.db.model('Equipamiento');
 		Equipamiento.findById(req.participante.equipamiento_id, function(err, r) {
 			req.equipamiento = r;
 			next();
 		});
-  }
+	}
 
-    
 
-/*
+
+	/*
      * JSON
      */
 	app.get('/participantes.json', getParticipantes, function(req, res) {
@@ -161,9 +162,9 @@ function Service(app) {
 		res.render('view_edit_participante', {
 			locals: {
 				participante: req.participante,
-        equipamiento: req.equipamiento,
-        params: app.params,
-        articulo: 'EditarParticipante',
+				equipamiento: req.equipamiento,
+				params: app.params,
+				articulo: 'EditarParticipante',
 			}
 		});
 	});
@@ -172,9 +173,9 @@ function Service(app) {
 		res.render('view_edit_participante', {
 			locals: {
 				participante: req.participante,
-        equipamiento: req.equipamiento,
-        params: app.params,
-        articulo: 'VerParticipante',
+				equipamiento: req.equipamiento,
+				params: app.params,
+				articulo: 'VerParticipante',
 			}
 		});
 	});

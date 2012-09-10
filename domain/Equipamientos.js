@@ -47,7 +47,7 @@ var filters = {
 		var model = new Equipamiento(data);
 		model.save(function(err, r) {
 			if (err) {
-				throw err;
+				res.send(500);
 			}
 			req.equipamiento = r;
 			next();
@@ -106,7 +106,7 @@ function Service(app) {
 	Taller = app.db.model('Taller');
 	TallerBase = app.db.model('TallerBase');
 
-/*
+	/*
      * JSON
      */
 	app.get('/equipamientos.json', filters.get, function(req, res) {
