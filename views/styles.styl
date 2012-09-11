@@ -32,7 +32,7 @@ corner-right(px)
   corner-each(0,px,px,0)
 
 // ============= UTILS ==============
-§
+
 *
   margin: 0
   padding: 0
@@ -58,7 +58,8 @@ body
   background: url(/images/ajax-loader.gif) 0 0 no-repeat
 
 form li
-  margin-bottom: 10px
+  margin-bottom: 15px
+  position: relative
 
 .element *, .evaluacion *
   vertical-align: middle
@@ -359,7 +360,6 @@ article#evaluacion
     li
       clear: left
       float: left
-      margin-bottom: 10px
 
 article#equipamientos, 
 article#equipamiento, 
@@ -627,6 +627,10 @@ article .list_body .item
   float: left
   font-size: 12px
 
+.list_body
+  li
+    
+
 #talleres
   .list_body
     li
@@ -784,11 +788,10 @@ p.error
   color: red
   font-size: 0.8em
   padding: 5px
-  border-radius: 3px
-  background-color: #FFCD97
-  display: inline-block
-  border: 1px solid
   margin-left: 5px
+  position: absolute
+  bottom: -3px
+  left: 75px
 
 .border_error
   box-shadow: 0px 0px 5px rgb(255,0,0);
@@ -797,7 +800,6 @@ p.error
 p.no_results
   font-size: 0.8em
   padding: 20px
-
 
 article#equipamiento
   .list_header
@@ -856,6 +858,8 @@ article#equipamiento
   .list_header a#tab-participantes
     span.mask
       width: 128px
+
+  
 
 article#creativos
   .creativo_item

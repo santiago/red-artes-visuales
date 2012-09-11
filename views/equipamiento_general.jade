@@ -46,18 +46,30 @@ article#equipamiento
       li
         .element
           label Comuna:
-          - if (edit) 
-            input(name="comuna", type="text",value='#{equipamiento.comuna}')
-          - else
-            input(name="comuna", readonly='readonly',type="text",value='#{equipamiento.comuna}')
+          select(name="comuna")
+            option(value='') -- Elegir comuna --
+            each comuna in params.comunas
+              -if (edit)
+                -if (equipamiento.comuna == comuna)
+                  option(value='#{comuna}', selected='selected') #{comuna}
+                -else
+                  option(value='#{comuna}') #{comuna}
+              -else
+                option(value='#{comuna}') #{comuna}
 
       li
         .element
           label Barrio:
-          - if (edit) 
-            input(name="barrio", type="text",value='#{equipamiento.barrio}')
-          - else
-            input(name="barrio", readonly='readonly',type="text",value='#{equipamiento.barrio}')
+          select(name="barrio")
+            option(value='') -- Elegir barrio --
+            each barrio in params.barrios
+              -if (edit)
+                -if (equipamiento.barrio == barrio)
+                  option(value='#{barrio}', selected='selected') #{barrio}
+                -else
+                  option(value='#{barrio}') #{barrio}
+              -else
+                option(value='#{barrio}') #{barrio}
 
       li
         .element
@@ -77,7 +89,7 @@ article#equipamiento
 
       li
         .element
-          label Telefono:
+          label Tel&eacute;fono:
           - if (edit) 
             input(name="telefono", id="telefono", type="text", value='#{equipamiento.telefono}')
           - else
@@ -86,10 +98,21 @@ article#equipamiento
       li
         .element
           label Experiencia:
-          - if (edit) 
-            input(name="experiencia", id="experiencia", type="text", value='#{equipamiento.experiencia}')
+          - if (equipamiento.experiencia === true)
+            input(name="experiencia", type="radio", value="Si", checked='checked', disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="experiencia", type="radio", value="No", disabled='disabled')
+            label.radio_sino No
+          - else if (equipamiento.experiencia === false)
+            input(name="experiencia", type="radio", value="Si", disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="experiencia", type="radio", value="No", checked='checked', disabled='disabled')
+            label.radio_sino No
           - else
-            input(name="experiencia", readonly='readonly',  id="experiencia", type="text", value='#{equipamiento.experiencia}')
+            input(name="experiencia", type="radio", value="Si" )
+            label.radio_sino S&iacute;
+            input(name="experiencia", type="radio", value="No" )
+            label.radio_sino No
 
       li
         .element_checkbox_label
@@ -116,10 +139,16 @@ article#equipamiento
       li
         .element
           label Tipo:
-          - if (edit) 
-            input(name="tipo", id="tipo", type="text", value='#{equipamiento.tipo}')
-          - else
-            input(name="tipo", readonly='readonly',  id="tipo", type="text", value='#{equipamiento.tipo}')
+          select(name="tipo")
+            option(value='') -- Elegir tipo equipamiento --
+            each tipo in params.tipos
+              -if (edit)
+                -if (equipamiento.tipo == tipo)
+                  option(value='#{tipo}', selected='selected') #{tipo}
+                -else
+                  option(value='#{tipo}') #{tipo}
+              -else
+                option(value='#{tipo}') #{tipo}
 
       li
         .element_checkbox_label
@@ -127,37 +156,60 @@ article#equipamiento
           .options
             -var i = 0
             each espacio in params.espacios
-              - if (equipamiento.espacio.indexOf(espacio) > -1 ) {
+              - if (equipamiento.espacio.indexOf(espacio) > -1 )
                 .option
                   -if (edit)
                     input(name="espacios[]", type="checkbox", value="#{espacio}", checked='checked') 
                   -else
                     input(name="espacios[]", disabled="disabled", type="checkbox", value="#{espacio}", checked='checked') 
-              - } else {
+              - else
                 .option
                   -if (edit)
                     input(name="espacios[]", type="checkbox", value="#{espacio}") 
                   -else
                     input(name="espacios[]", disabled="disabled", type="checkbox", value="#{espacio}") 
-              - }
-                  label.radio_text #{espacio} 
+
+              label.radio_text #{espacio} 
               -i++
 
       li
         .element
-          label Tienen locker?:
-          - if (edit) 
-            input(name="locker", id="locker", type="text", value='#{equipamiento.locker}')
+          label Tienen locker:
+          - if (equipamiento.locker === true)
+            input(name="locker", id="locker", type="radio", value="Si", checked='checked', disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="locker", id="locker", type="radio", value="No", disabled='disabled')
+            label.radio_sino No
+          - else if (equipamiento.locker === false)
+            input(name="locker", id="locker", type="radio", value="Si", disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="locker", id="locker", type="radio", value="No", checked='checked', disabled='disabled')
+            label.radio_sino No
           - else
-            input(name="locker", readonly='readonly',  id="locker", type="text", value='#{equipamiento.locker}')
+            label Tienen locker:
+            input(name="locker", id="locker", type="radio", value="Si")
+            label.radio_sino S&iacute;
+            input(name="locker", id="locker", type="radio", value="No")
+            label.radio_sino No
 
       li
         .element
-          label Baños cerca?:
-          - if (edit) 
-            input(name="banos", id="bano", type="text", value='#{equipamiento.banos}')
+          label Baños cerca:
+          - if (equipamiento.banos === true)
+            input(name="banos", type="radio", value="Si", checked='checked', disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="banos", type="radio", value="No", disabled='disabled')
+            label.radio_sino No
+          - else if (equipamiento.banos === false)
+            input(name="banos", type="radio", value="Si", disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="banos", type="radio", value="No", checked='checked', disabled='disabled')
+            label.radio_sino No
           - else
-            input(name="banos", readonly='readonly',  id="bano", type="text", value='#{equipamiento.banos}')
+            input(name="banos", type="radio", value="Si")
+            label.radio_sino S&iacute;
+            input(name="banos", type="radio", value="No")
+            label.radio_sino No
 
       li
         .element
@@ -200,34 +252,80 @@ article#equipamiento
       li
         .element
           label Seguridad:
-          - if (edit) 
-            input(name="seguridad", id="seguridad", type="text", value=' #{equipamiento.seguridad}')
+          - if (equipamiento.seguridad == 'Alta')
+            input(name="seguridad", type="radio", value="Alta", checked='checked', disabled='disabled')
+            label.radio_text Alta 
+            input(name="seguridad", type="radio", value="Media", disabled='disabled')
+            label.radio_text Media
+            input(name="seguridad", type="radio", value="Baja", disabled='disabled')
+            label.radio_text Baja 
+          - else if (equipamiento.seguridad == 'Media')
+            input(name="seguridad", type="radio", value="Alta", disabled='disabled')
+            label.radio_text Alta 
+            input(name="seguridad", type="radio", value="Media", checked='checked', disabled='disabled')
+            label.radio_text Media
+            input(name="seguridad", type="radio", value="Baja", disabled='disabled')
+            label.radio_text Baja 
+          - else if (equipamiento.seguridad == 'Baja')
+            input(name="seguridad", type="radio", value="Alta", disabled='disabled')
+            label.radio_text Alta 
+            input(name="seguridad", type="radio", value="Media", disabled='disabled')
+            label.radio_text Media
+            input(name="seguridad", type="radio", value="Baja", checked='checked', disabled='disabled')
+            label.radio_text Baja 
           - else
-            input(name="seguridad", readonly='readonly',  id="seguridad", type="text", value=' #{equipamiento.seguridad}')
-    
+            input(name="seguridad", type="radio", value="Alta", disabled='disabled')
+            label.radio_text Alta 
+            input(name="seguridad", type="radio", value="Media", disabled='disabled')
+            label.radio_text Media
+            input(name="seguridad", type="radio", value="Baja", disabled='disabled')
+            label.radio_text Baja 
+
       li
         .element
           label Fronteras invisibles:
-          - if (edit) 
-            input(name="fronteras", id="fronteras", type="text", value=' #{equipamiento.fronteras}')
+          - if (equipamiento.fronteras === true)
+            input(name="fronteras", type="radio", value="Si", checked='checked', disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="fronteras", type="radio", value="No")
+            label.radio_sino No
+          - else if (equipamiento.fronteras === false)
+            input(name="fronteras", type="radio", value="Si")
+            label.radio_sino S&iacute;
+            input(name="fronteras", type="radio", value="No", checked='checked', disabled='disabled')
+            label.radio_sino No
           - else
-            input(name="fronteras", readonly='readonly',  id="fronteras", type="text", value=' #{equipamiento.fronteras}')
+            input(name="fronteras", type="radio", value="Si", disabled='disabled')
+            label.radio_sino S&iacute;
+            input(name="fronteras", type="radio", value="No", disabled='disabled')
+            label.radio_sino No
       
       li
         .element
           label Zona:
-          - if (edit) 
-            input(name="zona", id="zona", type="text", value=' #{equipamiento.zona}')
+          - if (equipamiento.zona == 'Urbana')
+            input(name="zona", type="radio", value="Urbana", checked='checked', disabled='disabled')
+            label.radio_text Urbana 
+            input(name="zona", type="radio", value="Rural", disabled='disabled')
+            label.radio_text Rural
+          - else if (equipamiento.zona == 'Rural')
+            input(name="zona", type="radio", value="Urbana", disabled='disabled')
+            label.radio_text Urbana 
+            input(name="zona", type="radio", value="Rural", checked='checked', disabled='disabled')
+            label.radio_text Rural
           - else
-            input(name="zona", readonly='readonly',  id="zona", type="text", value=' #{equipamiento.zona}')
+            input(name="zona", type="radio", value="Urbana", disabled='disabled')
+            label.radio_text Urbana 
+            input(name="zona", type="radio", value="Rural", disabled='disabled')
+            label.radio_text Rural
       
       li
         .element
           label C&oacute;mo llegar:
           - if (edit) 
-            textarea(name="como_llegar", value='#{equipamiento.como_llegar}')
+            textarea(name="como_llegar") #{equipamiento.como_llegar}
           - else
-            textarea(name="como_llegar", readonly='readonly', value='#{equipamiento.como_llegar}')
+            textarea(name="como_llegar", readonly='readonly') #{equipamiento.como_llegar}
 
       li
         .element
@@ -405,4 +503,4 @@ article#equipamiento
       li
         .element
           - if (edit)
-            button(class="submit",id="edit") Enviar
+            button(class="submit", id="edit") Enviar

@@ -8,7 +8,7 @@ module.exports = {
 		  'Construcci&oacute;n Colectiva', 'Aceptaci&oacute;n del Otro', 
 		  'Capacidad de Expresi&oacute;n', 'Trabajo en Equipo'],
 
-	comunas: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,50,60,70,80,90],
+	comunas: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','50','60','70','80','90'],
     
     barrios: ['Santo Domingo', 'Granizal', 'Santa Cruz', 'Manrique Central', 'Moravia',
         'Palermo', 'Florencia', 'Pedregal', 'Luis López de Mesa', 'Aures', 'Villatina',
