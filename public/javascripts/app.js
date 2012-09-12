@@ -241,7 +241,7 @@ jQuery(document).ready(function($) {
 					type: "PUT",
 					data: data,
 					success: function(data, textStatus, XMLHttpRequest) {
-						location.href = "/equipamientos";
+						location.href = "/equipamientos/" + $('#equipamiento_id').val();
 					}
 				});
 			}
