@@ -1,3 +1,4 @@
+-console.log(equipamiento)
 article#equipamiento
   input(type="hidden", id="equipamiento_id", value="#{equipamiento._id}")
   header
@@ -39,9 +40,9 @@ article#equipamiento
         .element
           label Ubicación:
           - if (edit) 
-            input(name="ubicacion", type="text",value=' #{equipamiento.ubicacion}')
+            input(name="ubicacion", type="text", value='#{equipamiento.ubicacion}')
           - else
-            input(name="ubicacion", readonly='readonly',type="text",value=' #{equipamiento.ubicacion}')
+            input(name="ubicacion", readonly='readonly', type="text", value='#{equipamiento.ubicacion}')
 
       li
         .element
@@ -98,12 +99,12 @@ article#equipamiento
       li
         .element
           label Experiencia:
-          - if (equipamiento.experiencia === true)
+          - if (equipamiento.experiencia == 'Si')
             input(name="experiencia", type="radio", value="Si", checked='checked', disabled='disabled')
             label.radio_sino S&iacute;
             input(name="experiencia", type="radio", value="No", disabled='disabled')
             label.radio_sino No
-          - else if (equipamiento.experiencia === false)
+          - else if (equipamiento.experiencia == 'No')
             input(name="experiencia", type="radio", value="Si", disabled='disabled')
             label.radio_sino S&iacute;
             input(name="experiencia", type="radio", value="No", checked='checked', disabled='disabled')
@@ -175,12 +176,12 @@ article#equipamiento
       li
         .element
           label Tienen locker:
-          - if (equipamiento.locker === true)
+          - if (equipamiento.locker == 'Si')
             input(name="locker", id="locker", type="radio", value="Si", checked='checked', disabled='disabled')
             label.radio_sino S&iacute;
             input(name="locker", id="locker", type="radio", value="No", disabled='disabled')
             label.radio_sino No
-          - else if (equipamiento.locker === false)
+          - else if (equipamiento.locker == 'No')
             input(name="locker", id="locker", type="radio", value="Si", disabled='disabled')
             label.radio_sino S&iacute;
             input(name="locker", id="locker", type="radio", value="No", checked='checked', disabled='disabled')
@@ -195,12 +196,12 @@ article#equipamiento
       li
         .element
           label Baños cerca:
-          - if (equipamiento.banos === true)
+          - if (equipamiento.banos ==  'Si')
             input(name="banos", type="radio", value="Si", checked='checked', disabled='disabled')
             label.radio_sino S&iacute;
             input(name="banos", type="radio", value="No", disabled='disabled')
             label.radio_sino No
-          - else if (equipamiento.banos === false)
+          - else if (equipamiento.banos == 'No')
             input(name="banos", type="radio", value="Si", disabled='disabled')
             label.radio_sino S&iacute;
             input(name="banos", type="radio", value="No", checked='checked', disabled='disabled')
@@ -284,12 +285,12 @@ article#equipamiento
       li
         .element
           label Fronteras invisibles:
-          - if (equipamiento.fronteras === true)
+          - if (equipamiento.fronteras == 'Si')
             input(name="fronteras", type="radio", value="Si", checked='checked', disabled='disabled')
             label.radio_sino S&iacute;
             input(name="fronteras", type="radio", value="No")
             label.radio_sino No
-          - else if (equipamiento.fronteras === false)
+          - else if (equipamiento.fronteras == 'No')
             input(name="fronteras", type="radio", value="Si")
             label.radio_sino S&iacute;
             input(name="fronteras", type="radio", value="No", checked='checked', disabled='disabled')
@@ -362,12 +363,12 @@ article#equipamiento
       li
         .element
           label Newsletter:
-          - if (equipamiento.newsletter === true)
+          - if (equipamiento.newsletter == 'Si')
             input(name="newsletter", type="radio", value="Si", checked='checked', disabled='disabled')
             label.radio_sino S&iacute;
             input(name="newsletter", type="radio", value="No", disabled='disabled')
             label.radio_sino No
-          - else if (equipamiento.newsletter === false)
+          - else if (equipamiento.newsletter == 'No')
             input(name="newsletter", type="radio", value="Si", disabled='disabled')
             label.radio_sino S&iacute;
             input(name="newsletter", type="radio", value="No", checked='checked', disabled='disabled')
@@ -381,12 +382,12 @@ article#equipamiento
       li
         .element
           label Cartelera:
-          - if (equipamiento.cartelera === true)
+          - if (equipamiento.cartelera == 'Si')
             input(name="cartelera", type="radio", value="Si", checked='checked', disabled='disabled')
             label.radio_sino S&iacute;
             input(name="cartelera", type="radio", value="No", disabled='disabled')
             label.radio_sino No
-          - else if (equipamiento.cartelera === false)
+          - else if (equipamiento.cartelera == 'No')
             input(name="cartelera", type="radio", value="Si", disabled='disabled')
             label.radio_sino S&iacute;
             input(name="cartelera", type="radio", value="No", checked='checked', disabled='disabled')
@@ -400,12 +401,12 @@ article#equipamiento
       li
         .element
           label Tel&eacute;fono Info:
-          - if (equipamiento.telefono_info === true)
+          - if (equipamiento.telefono_info == 'Si')
             input(name="telefono_info", type="radio", value="Si", checked='checked', disabled='disabled')
             label.radio_sino S&iacute;
             input(name="telefono_info", type="radio", value="No", disabled='disabled')
             label.radio_sino No
-          - else if(equipamiento.telefono_info === false)
+          - else if(equipamiento.telefono_info == 'No')
             input(name="telefono_info", type="radio", value="Si", disabled='disabled')
             label.radio_sino S&iacute;
             input(name="telefono_info", type="radio", value="No", checked='checked', disabled='disabled')
@@ -419,12 +420,12 @@ article#equipamiento
       li
         .element
           label Perifon&iacute;a:
-          - if (equipamiento.perifonia === true)
+          - if (equipamiento.perifonia == 'Si')
             input(name="perifonia", type="radio", value="Si", checked='checked', disabled='disabled')
             label.radio_sino S&iacute;
             input(name="perifonia", type="radio", value="No", disabled='disabled')
             label.radio_sino No
-          - else if (equipamiento.perifonia === false)
+          - else if (equipamiento.perifonia == 'No')
             input(name="perifonia", type="radio", value="Si", disabled='disabled')
             label.radio_sino S&iacute;
             input(name="perifonia", type="radio", value="No", checked='checked', disabled='disabled')
@@ -438,12 +439,12 @@ article#equipamiento
       li
         .element
           label Bolet&iacute;n:
-          - if (equipamiento.boletin === true)
+          - if (equipamiento.boletin == 'Si')
             input(name="boletin", type="radio", value="Si", checked='checked', disabled='disabled')
             label.radio_sino S&iacute;
             input(name="boletin", type="radio", value="No", disabled='disabled')
             label.radio_sino No
-          - else if(equipamiento.boletin === false)
+          - else if(equipamiento.boletin == 'No')
             input(name="boletin", type="radio", value="Si", disabled='disabled')
             label.radio_sino S&iacute;
             input(name="boletin", type="radio", value="No", checked='checked', disabled='disabled')
@@ -457,12 +458,12 @@ article#equipamiento
       li
         .element
           label Medios comunitarios:
-          - if (equipamiento.medios_comunit === true)
+          - if (equipamiento.medios_comunit == 'Si')
             input(name="medios_comunit", type="radio", value="Si", checked='checked', disabled='disabled')
             label.radio_sino S&iacute;
             input(name="medios_comunit", type="radio", value="No", disabled='disabled')
             label.radio_sino No
-          - else if (equipamiento.medios_comunit === false)
+          - else if (equipamiento.medios_comunit == 'No')
             input(name="medios_comunit", type="radio", value="Si", disabled='disabled')
             label.radio_sino S&iacute;
             input(name="medios_comunit", type="radio", value="No", checked='checked')
@@ -476,12 +477,12 @@ article#equipamiento
       li
         .element
           label E-mailing:
-          - if (equipamiento.emailing === true)
+          - if (equipamiento.emailing == 'Si')
             input(name="emailing", type="radio", value="Si", checked='checked', disabled='disabled')
             label.radio_sino S&iacute;
             input(name="emailing", type="radio", value="No", disabled='disabled')
             label.radio_sino No
-          - else if (equipamiento.emailing === false)
+          - else if (equipamiento.emailing == 'No')
             input(name="emailing", type="radio", value="Si", disabled='disabled')
             label.radio_sino S&iacute;
             input(name="emailing", type="radio", value="No", checked='checked', disabled='disabled')

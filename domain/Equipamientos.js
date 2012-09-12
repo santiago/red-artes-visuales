@@ -57,13 +57,12 @@ var filters = {
 	put: function(req, res, next) {
 		var data = req.body;
 		var id = req.params.id;
-		Equipamiento.update({
-			_id: id
-		}, data, function(err, r) {
-			if (err) {
-				res.error = true;
+		
+		Equipamiento.findById(id, function(err, r) {
+			for(f in data) {
+				r.set(f, data[f]);
 			}
-			next();
+			r.save(next);
 		});
 	},
 
@@ -122,6 +121,7 @@ function Service(app) {
 	});
 
 	app.put('/equipamientos/:id', filters.put, function(req, res) {
+		console.log('y ajá?!');
 		if (req.error) res.send({
 			'error': true
 		}, 500);

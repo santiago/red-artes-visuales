@@ -12,6 +12,23 @@ var Schema = mongoose.Schema
 
 var params = require('../params');
 
+function getSiNo() {
+}
+
+function setSiNo(val) {
+	console.log("setSino:"+val)
+	if (val == 'Si') return true;
+	if (val == 'No') return false;
+	return null;
+}
+
+function getSiNo(val) {
+	console.log("getSino:"+val);
+	if (val === true) return 'Si';
+	if (val === false) return 'No';
+	return null;
+}
+
 var Equipamiento = new Schema({
     nombre          :  { type: String }
   , ubicacion       :  { type: String }
@@ -20,30 +37,30 @@ var Equipamiento = new Schema({
   , contacto        :  { type: String }
   , email           :  { type: String }
   , telefono        :  { type: String }
-  , experiencia     :  { type: Boolean }
+  , experiencia     :  { type: Boolean, get: getSiNo, set: setSiNo }
   , otros_talleres  :  { type: Array }
   , tipo            :  { type: String, enum: params.tipos }
   , espacio         :  { type: Array }
-  , locker          :  { type: Boolean }
-  , banos           :  { type: Boolean }
+  , locker          :  { type: Boolean, get: getSiNo, set: setSiNo }
+  , banos           :  { type: Boolean, get: getSiNo, set: setSiNo }
   , e_equipos       :  { type: String }
   , horario         :  { type: String }
   , edades          :  { type: Array }
   , seguridad       :  { type: String, enum: ['Alta', 'Media', 'Baja'] }
-  , fronteras       :  { type: Boolean }
+  , fronteras       :  { type: Boolean, get: getSiNo, set: setSiNo }
   , zona            :  { type: String, enum: ['Urbana', 'Rural'] }
   , como_llegar     :  { type: String }
   , web             :  { type: String }
   , fb              :  { type: String }
   , twitter         :  { type: String }
   , blog            :  { type: String }
-  , newsletter      :  { type: Boolean }
-  , cartelera       :  { type: Boolean }
-  , telefono_info   :  { type: Boolean }
-  , perifonia       :  { type: Boolean }
-  , boletin         :  { type: Boolean }
-  , medios_comunit  :  { type: Boolean }
-  , emailing        :  { type: Boolean }
+  , newsletter      :  { type: Boolean, get: getSiNo, set: setSiNo }
+  , cartelera       :  { type: Boolean, get: getSiNo, set: setSiNo }
+  , telefono_info   :  { type: Boolean, get: getSiNo, set: setSiNo }
+  , perifonia       :  { type: Boolean, get: getSiNo, set: setSiNo }
+  , boletin         :  { type: Boolean, get: getSiNo, set: setSiNo }
+  , medios_comunit  :  { type: Boolean, get: getSiNo, set: setSiNo }
+  , emailing        :  { type: Boolean, get: getSiNo, set: setSiNo }
   , observaciones   :  { type: String }
 });
 mongoose.model('Equipamiento', Equipamiento);
