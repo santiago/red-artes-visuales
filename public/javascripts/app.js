@@ -2,39 +2,12 @@ jQuery(document).ready(function($) {
 
 	var articulo = $('input[name=articulo]').val();
 
-	var Domain = function() {
-			var models = {
-				Equipamiento: {
-					resource: '/equipamientos'
-				},
-				Taller: {
-					resource: '/talleres'
-				},
-				Participante: {
-					resource: '/participante'
-				}
-			};
-
-			for (var model in models) {
-				Domain[model] = {
-					find: function() {
-						$.get(models[model].resource);
-					},
-					create: function(data, callback) {
-						$.post(models[model].resource, data, callback);
-					},
-					remove: function() {},
-					update: function() {}
-				}
-			}
-		};
-
-	// Modelos
-	var Equipamiento = Domain.Equipamiento;
-	var Taller = Domain.Taller;
-	var Participante = Domain.Participante;
 	// Páginas
 	var Paginas = {};
+
+	Paginas.SeguimientoCreativo = function() {
+		
+	};
 
 	Paginas.TallerBase = function() {
 		$('.list_header a.activo').each(function() {
@@ -356,14 +329,12 @@ jQuery(document).ready(function($) {
 
 		$el.find('button.submit').click(function(e) {
 			e.preventDefault();
-			var eval = EvaluacionForm.getValidData();
-			if (eval) {
-				eval.taller_id = taller_id;
-				eval.creativo_id = $('#creativo_id').val();
-				eval.fecha = $('#fecha').val();
-				eval.p_id = $('#p_id').val();
-				console.log(eval);
-				$.post('/evaluaciones', eval, function(data) {
+			var evaluacion = EvaluacionForm.getValidData();
+			if (evaluacion) {
+				evaluacion.taller_id = taller_id;
+				evaluacion.creativo_id = $('#creativo_id').val();
+				evaluacion.p_id = $('#p_id').val();
+				$.post('/evaluaciones', evaluacion, function(data) {
 					location.href = "/taller/" + taller_id;
 				});
 			}

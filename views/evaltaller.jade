@@ -4,26 +4,26 @@ article#taller
   header
     .header-content
       label Equipamiento
-      p.nombre #{taller.equipamiento_nombre}
+      a.nombre(href='/equipamientos/#{equipamiento._id}') #{equipamiento.nombre}
       label Taller
       p.nombre #{taller.nombre}
       label Fecha
-      p.nombre #{taller.fecha}
+      - var regex = new RegExp("^.{3}\\s");
+      p.nombre #{taller.fecha.toDateString().replace(regex, '')}
 
   .list_header
     ul
       li
         a#tab-participantes(href="/taller/#{taller._id}", class='#{articulo == 'Taller' ? "activo" : null }') 
-          | Participantes
-          span.mask
-      li
-        //a#tab-fotos(href="/talleres/#{taller._id}/fotos", class='#{articulo == 'Fotos' ? "activo" : null }') 
-        a#tab-fotos(href="#", class='#{articulo == 'Fotos' ? "activo" : null }') 
-          | Fotos / Videos
+          | Evaluaci&oacute;n Participantes
           span.mask
       li
         a#tab-seguimiento(href="/taller/#{taller._id}/evaltaller", class='#{articulo == 'FormEvalTaller' ? "activo" : null }') 
-          | Evaluación taller 
+          | Evaluaci&oacute;n Taller 
+          span.mask
+      li
+        a#tab-fotos(href="#", class='#{articulo == 'Fotos' ? "activo" : null }') 
+          | Fotos / Videos
           span.mask
 
   .list_body

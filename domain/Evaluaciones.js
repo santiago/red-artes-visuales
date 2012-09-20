@@ -32,7 +32,7 @@ function Service(app) {
 		var model = new Evaluacion();
 		model.participante_id = data.p_id;
 		model.creativo_id = data.creativo_id;
-		model.fecha = data.fecha;
+		// model.fecha = data.fecha;
 		model.taller_id = data.taller_id;
 		model.observaciones = data.observaciones;
 		model.sensibilidad = data.sensibilidad;
@@ -83,8 +83,8 @@ function Service(app) {
 		var Sesion = app.db.model('Taller');
 		Sesion.findById(req.params.taller_id, function(err, r) {
 			req.sesion = r;
-            req.creativo_id = r.creativo_id;
-            req.params.equipamiento_id = r.equipamiento_id;
+            req.creativo_cedula = r.creativo_cedula;
+            req.equipamiento_id = r.equipamiento_id;
 			next();
 		});
 	}
@@ -122,7 +122,7 @@ function Service(app) {
 
 	function getCreativo(req, res, next) {
 		var Creativo = app.db.model('Creativo');
-		Creativo.findOne(req.creativo_id, function(err, r) {
+		Creativo.findOne({ cedula: req.creativo_cedula }, function(err, r) {
 			req.creativo = r;
 			next();
 		});
@@ -130,7 +130,7 @@ function Service(app) {
     
     function getEquipamiento(req, res, next) {
     	var Equipamiento = app.db.model('Equipamiento');
-		Equipamiento.findOne(req.equipamiento_id, function(err, r) {
+		Equipamiento.findById(req.equipamiento_id, function(err, r) {
 			req.equipamiento = r;
 			next();
 		});

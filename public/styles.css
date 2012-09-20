@@ -444,7 +444,7 @@ article#equipamiento .list_header a#tab-participantes span.mask,
 article#participante .list_header a#tab-participantes span.mask,
 article#taller .list_header a#tab-participantes span.mask,
 article#evaluacion .list_header a#tab-participantes span.mask {
-  width: 124px;
+  width: 221px;
 }
 article#equipamiento .list_header a#tab-participante,
 article#participante .list_header a#tab-participante,
@@ -457,6 +457,30 @@ article#participante .list_header a#tab-participante span.mask,
 article#taller .list_header a#tab-participante span.mask,
 article#evaluacion .list_header a#tab-participante span.mask {
   width: 100%;
+}
+article#equipamiento .list_header a#tab-seguimiento,
+article#participante .list_header a#tab-seguimiento,
+article#taller .list_header a#tab-seguimiento,
+article#evaluacion .list_header a#tab-seguimiento {
+  float: left;
+}
+article#equipamiento .list_header a#tab-seguimiento span.mask,
+article#participante .list_header a#tab-seguimiento span.mask,
+article#taller .list_header a#tab-seguimiento span.mask,
+article#evaluacion .list_header a#tab-seguimiento span.mask {
+  width: 161px;
+}
+article#equipamiento .list_header a#tab-fotos,
+article#participante .list_header a#tab-fotos,
+article#taller .list_header a#tab-fotos,
+article#evaluacion .list_header a#tab-fotos {
+  float: left;
+}
+article#equipamiento .list_header a#tab-fotos span.mask,
+article#participante .list_header a#tab-fotos span.mask,
+article#taller .list_header a#tab-fotos span.mask,
+article#evaluacion .list_header a#tab-fotos span.mask {
+  width: 100px;
 }
 article#equipamiento .list_header a#tab-editar,
 article#participante .list_header a#tab-editar,
@@ -1180,4 +1204,19 @@ article#creativos .creativo_item {
 }
 .first {
   float: left !important;
+}
+article#creativo a.seguimiento {
+  float: left;
+}
+article#taller form {
+  box-shadow: none;
+}
+article#taller a.nombre {
+  display: block;
+  color: #000;
+  font-weight: 900;
+  text-decoration: underline;
+}
+article#taller .participante_item {
+  margin-bottom: 5px;
 }

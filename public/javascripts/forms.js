@@ -124,35 +124,40 @@ var AdminCreativoForm = new FormValidator($("article#creativo form"), {
 	}
 });
 
-var habilidades = ['Reflexión', 'Creatividad', 'Capacidad de escucha', 'Compromiso', 'Pensamiento critico', 'Tolerancia', 'Honestidad', 'Participación', 'Reconocer el contexto social', 'Reconocer el contexto familiar', 'Reconocer el context geográfico', 'Respeto', 'Confianza', 'Construcción colectiva', 'Aceptación del otro', 'Capacidad de expresión', 'Trabajo en equipo'];
-
-
-
-var fields = new Array();
-for (var i = 0; i < habilidades.length; i++) {
-	var input_name = "input[name='i_" + habilidades[i] + "']:checked";
-	var field_name = "i_" + habilidades[i];
-	fields[field_name] = {
-		'find': input_name
-	}
-}
-fields['sensibilidad'] = {
-	'find': 'input[name=sensibilidad]:checked',
-	'validate': ['presence']
-}
-fields['comunicacion'] = {
-	'find': 'input[name=comunicacion]:checked',
-	'validate': ['presence']
-}
-fields['apreciacion'] = {
-	'find': 'input[name=apreciacion]:checked',
-	'validate': ['presence']
-}
-fields['observaciones'] = {
-	'find': 'textarea[name=observaciones]',
-	'validate': ['presence']
-}
-var EvaluacionForm = new FormValidator($("article#evaluacion form"), fields);
+if(typeof habilidades != 'undefined') {
+    var fields = new Array();
+    for (var i = 0; i < habilidades.length; i++) {
+	    var input_name = "input[name='i_" + habilidades[i] + "']:checked";
+	    var field_name = "i_" + habilidades[i];
+	    fields[field_name] = {
+		    'find': input_name
+	    }
+    }
+    for (var i = 0; i < habilidadesTaller.length; i++) {
+        var input_name = "input[name='i_" + habilidadesTaller[i] + "']:checked";
+	    var field_name = "i_" + habilidadesTaller[i];
+	    fields[field_name] = {
+		    'find': input_name
+	    }
+    }
+    fields['sensibilidad'] = {
+	    'find': 'input[name=sensibilidad]:checked',
+	    'validate': ['presence']
+    }
+    fields['comunicacion'] = {
+	    'find': 'input[name=comunicacion]:checked',
+	    'validate': ['presence']
+    }
+    fields['apreciacion'] = {
+	    'find': 'input[name=apreciacion]:checked',
+	    'validate': ['presence']
+    }
+    fields['observaciones'] = {
+	    'find': 'textarea[name=observaciones]',
+	    'validate': ['presence']
+    }
+    var EvaluacionForm = new FormValidator($("article#evaluacion form"), fields);
+}    
 
 
 var TallerBaseForm = new FormValidator($("article#taller form"), {

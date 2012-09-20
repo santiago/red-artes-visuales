@@ -85,6 +85,7 @@ var filtros = {
 	getSesion: function(req, res, next) {
 		Taller.findById(req.params.taller_id, function(err, taller) {
 			req.taller = taller;
+            req.params.equipamiento_id = taller.equipamiento_id;
 			next();
 		});
 	},
@@ -112,7 +113,6 @@ var filtros = {
 	},
 
 	postTaller: function(req, res, next) {
-		req.creativo = '71381688';
 		var fecha = parseInt(req.body.fecha);
 
 		function save() {
@@ -288,27 +288,29 @@ function Service(app) {
 		});
 	});
 
-	app.get('/taller/:taller_id', filtros.getSesion, filtros.getParticipantes, function(req, res) {
+	app.get('/taller/:taller_id', filtros.getSesion, Equipamientos.get, filtros.getParticipantes, function(req, res) {
 		res.render('taller', {
 			locals: {
 				params: app.params,
 				articulo: 'Taller',
 				taller: req.taller,
 				evaluaciones: req.evaluaciones,
-				participantes: req.participantes
+				participantes: req.participantes,
+                equipamiento: req.equipamiento
 			}
 		});
 	});
 
-	app.get('/taller/:taller_id/evaltaller', filtros.getSesion, filtros.getParticipantes, function(req, res) {
+	app.get('/taller/:taller_id/evaltaller', filtros.getSesion, Equipamientos.get, filtros.getParticipantes, function(req, res) {
 		res.render('evaltaller', {
 			locals: {
 				params: app.params,
 				articulo: 'FormEvalTaller',
 				taller: req.taller,
 				evaluaciones: req.evaluaciones,
-				participantes: req.participantes
-			}
+				participantes: req.participantes,
+                equipamiento: req.equipamiento
+            }
 		});
 	});
 }

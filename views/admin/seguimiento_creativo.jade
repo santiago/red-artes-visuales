@@ -1,0 +1,14 @@
+-if(typeof creativo == 'undefined') creativo = {}
+- articulo = 'Creativos'
+article#creativo
+  .list_header
+    ul
+      li
+        a#listar(href="/admin/creativos")
+          | Creativos
+          span.mask
+      li(style='float: right;')
+        a#crear.activo(href="/admin/creativos")
+          | Crear Creativo
+          span.mask
+  

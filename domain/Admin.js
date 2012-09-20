@@ -5,6 +5,15 @@ function Service(app) {
 	var Taller = app.db.model('Taller');
 	var Evaluacion = app.db.model('Evaluacion');
 
+	function generarSeguimiento(req, res, next) {
+		Evaluacion.find({ creativo_id: req.creativo_id }, { sort: { actualizado: -1 } }, function(err, records) {
+			for (var obj in records) {
+				console.log(obj.actualizado);
+				console.log(typeof obj.actualizado);
+			}
+		});
+	}
+
 	function getCreativos(req, res, next) {
 		var query = (function() {
 			if (req.params.creativo_id) {
@@ -129,7 +138,7 @@ function Service(app) {
 		});
 	}
 
-/*
+	/*
      * JSON
      */
 	app.get('/admin/creativos.json', getCreativos, function(req, res) {
@@ -196,6 +205,16 @@ function Service(app) {
 			locals: {
 				articulo: 'EditarCreativo',
 				creativo: req.creativo
+			}
+		});
+	});
+	
+	app.get('/creativos/:creativo_id/seguimiento', getCreativos, generarSeguimiento, function(req, res) {
+		req.render('admin/seguimiento_creativo', {
+			locals: {
+				articulo: 'SeguimientoCreativo',
+				creativo: req.creativo,
+				seguimiento: req.seguimiento
 			}
 		});
 	});

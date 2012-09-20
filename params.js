@@ -2,11 +2,11 @@ module.exports = {
     edades: ['7-8', '9-10', '11-12', '13-14', '15-16'],
 
     habilidades: ['Reflexión', 'Creatividad', 'Capacidad de Escucha', 'Compromiso', 
-		  'Pensamiento Cr&iacute;tico', 'Tolerancia', 'Honestidad', 'Participaci&oacute;n', 
+		  'Pensamiento Crítico', 'Tolerancia', 'Honestidad', 'Participación', 
 		  'Reconocer el Contexto Social', 'Reconocer el Contexto Familiar', 
-		  'Reconocer el Contexto Geogr&aacute;fico', 'Respeto', 'Confianza', 
-		  'Construcci&oacute;n Colectiva', 'Aceptaci&oacute;n del Otro', 
-		  'Capacidad de Expresi&oacute;n', 'Trabajo en Equipo'],
+		  'Reconocer el Contexto Geográfico', 'Respeto', 'Confianza', 
+		  'Construcción Colectiva', 'Aceptación del Otro', 
+		  'Capacidad de Expresión', 'Trabajo en Equipo'],
 
 	comunas: ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','50','60','70','80','90'],
     

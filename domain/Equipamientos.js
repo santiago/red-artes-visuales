@@ -121,7 +121,6 @@ function Service(app) {
 	});
 
 	app.put('/equipamientos/:id', filters.put, function(req, res) {
-		console.log('y ajá?!');
 		if (req.error) res.send({
 			'error': true
 		}, 500);

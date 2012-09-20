@@ -1,5 +1,8 @@
 - var habilidades =  tallerbase.habilidades
 article#evaluacion 
+  script
+    var habilidadesTaller = ["!{habilidades.join('","')}"];
+    var habilidades = ["!{params.habilidades.join('","')}"];
   header
     .header-content
       label Equipamiento

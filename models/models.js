@@ -16,14 +16,12 @@ function getSiNo() {
 }
 
 function setSiNo(val) {
-	console.log("setSino:"+val)
 	if (val == 'Si') return true;
 	if (val == 'No') return false;
 	return null;
 }
 
 function getSiNo(val) {
-	console.log("getSino:"+val);
 	if (val === true) return 'Si';
 	if (val === false) return 'No';
 	return null;
@@ -128,13 +126,15 @@ mongoose.model('Creativo', Creativo);
 
 var Evaluacion = new Schema({
     participante_id :  { type: String }
-  , fecha           :  { type: Date }
+  , fecha           :  { type: Date, default: Date.now }
   , taller_id       :  { type: String, index: true }
+  , creativo_id     :  { type: String, index: true }
   , habilidades     :  { type: Array }
   , observaciones   :  { type: String }
   , sensibilidad    :  { type: String }
   , comunicacion    :  { type: String }
   , apreciacion     :  { type: String }
+  , actualizado		:  { type: Date }
 });
 mongoose.model('Evaluacion', Evaluacion);  
 
