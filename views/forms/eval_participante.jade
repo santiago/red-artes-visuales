@@ -3,11 +3,12 @@ article#evaluacion
   header
     .header-content
       label Equipamiento
-      p.nombre #{taller.equipamiento_nombre}
+      p.nombre #{equipamiento.nombre}
       label Taller
       p.nombre #{taller.nombre}
       label Fecha
-      p.nombre #{taller.fecha}
+      - var regex = new RegExp("^.{3}\\s");
+      p.nombre #{taller.fecha.toDateString().replace(regex, '')}
       label Participante
       p.nombre #{participante.nombre}
       label Creativo
