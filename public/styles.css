@@ -88,11 +88,8 @@ label {
   display: inline-block;
   width: 300px;
 }
-.evaluacion input {
-  display: inline-block;
-  width: 20px;
-}
 .evaluacion_group {
+  width: 97%;
   display: inline-block;
   border: 1px solid #00adef;
   border-radius: 3px;
@@ -157,7 +154,7 @@ label.radio_text {
 label.radio_eval {
   margin-right: 10px;
   margin-left: 2px;
-  width: 50px;
+  width: 0px;
 }
 input[type=text],
 input[type=password] {
@@ -874,9 +871,9 @@ article .list_body .item .habilidades ul {
   height: 100%;
   display: inline-block;
 }
-.participante_item:hover {
-  cursor: pointer;
-  background-color: #00adef;
+.participante_item a:hover {
+  color: #00adef;
+  text-decoration: underline;
 }
 .participante_info_short {
   width: 75%;
@@ -885,8 +882,24 @@ article .list_body .item .habilidades ul {
   display: inline-block;
 }
 .participante_evaluacion {
-  width: 50px;
+  width: 80px;
   display: inline-block;
+}
+.participante_evaluacion .ok,
+.participante_evaluacion .nok {
+  margin-left: 20px;
+}
+.participante_evaluacion p.si,
+.participante_evaluacion p.no,
+.participante_evaluacion input[type=radio] {
+  float: left;
+  margin-left: 3px;
+}
+.participante_evaluacion input[type=radio] {
+  float: left;
+  margin-top: 2px;
+  margin-left: 3px;
+  margin-right: 3px;
 }
 .participante_edad {
   font-size: 0.8em;
@@ -1012,9 +1025,7 @@ article .list_body .item .habilidades ul {
 .eval_header p {
   float: left;
   text-align: center;
-  width: 45px;
-  margin-right: 48px;
-  margin-left: 16px;
+  margin-left: 30px;
   font-size: 12px;
   color: #ed008c;
   font-weight: bold;

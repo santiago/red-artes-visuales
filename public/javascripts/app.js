@@ -36,10 +36,19 @@ jQuery(document).ready(function($) {
 			// Show/Hide content
 			$el.find('.tab_content').hide();
 			$el.find('.tab_content#' + opcion).show();
-
-			// $(this).closest('li').prepend($mask);
-			// $mask.css({ width: $(this).closest('li').width() });
 		});
+        
+        $el.find('[type="radio"]').live('click', function(e) {
+            var asistencia = $(this).val();
+            var participante_id = $(this).attr('name').split('_').pop();
+            var taller_id = location.pathname.split('/').pop();
+            var data = {
+                asistencia: asistencia
+            };
+            $.post('/taller/' + taller_id + '/participantes/' + participante_id, data, function(res) {
+                console.log(res)
+            });
+        });
 
 		$el.find('.submit').click(function(e) {
 			e.preventDefault();
@@ -340,6 +349,9 @@ jQuery(document).ready(function($) {
 			}
 		});
 	};
+
+    Paginas.Asistencia = function() {
+    };
 
 	// Util functions
 	var fixMask = function() {

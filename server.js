@@ -41,7 +41,7 @@ app.configure(function() {
 	this.use(express.logger());
 	this.use(express.methodOverride());
 	this.use(express.cookieParser());
-	this.use(express.session({ store: new MongoStore({ url: 'mongodb://173.230.141.159/red-artes-visuales' }), secret: 'Eah4tfzGAKhr' }));
+	this.use(express.session({ store: new MongoStore({ url: 'mongodb://localhost/red-artes-visuales' }), secret: 'Eah4tfzGAKhr' }));
     /*this.use(express.session({
 		secret: 'Eah4tfzGAKhr'
 	}));*/

@@ -5,19 +5,19 @@ var url = 'red-artes-visuales';
 url += env == 'development' ? '-dev' : '';
 url += env == 'test' ? '-test' : '';
 console.log("Connecting to DB at: " + url);
-mongoose.connect('mongodb://173.230.141.159/'+url);
+//mongoose.connect('mongodb://173.230.141.159/'+url);
+mongoose.connect('mongodb://localhost/'+url);
 
 var Schema = mongoose.Schema
   , ObjectId = Schema.ObjectId;
 
 var params = require('../params');
 
-function getSiNo() {
-}
-
 function setSiNo(val) {
-	if (val == 'Si') return true;
-	if (val == 'No') return false;
+    console.log('\n\n\n\nsetting ...')
+    console.log(val)
+	if (val.toLowerCase() == 'si') return true;
+	if (val.toLowerCase() == 'no') return false;
 	return null;
 }
 
@@ -124,6 +124,14 @@ var Creativo = new Schema({
 });
 mongoose.model('Creativo', Creativo);  
 
+/*var Asistencia = new Schema({
+    participante_id :  { type: String }, 
+    fecha           :  { type: Date, default: Date.now },
+    taller_id       :  { type: String, index: true },
+    creativo_cedula :  { type: String, index: true }
+});
+mongoose.model('Asistencia', Asistencia);  */
+
 var Evaluacion = new Schema({
     participante_id :  { type: String }
   , fecha           :  { type: Date, default: Date.now }
@@ -137,5 +145,16 @@ var Evaluacion = new Schema({
   , actualizado		:  { type: Date }
 });
 mongoose.model('Evaluacion', Evaluacion);  
+
+var Asistencia = new Schema({
+    participante_id :  { type: String, index: true }
+  , fecha           :  { type: Date, default: Date.now }
+  , taller_id       :  { type: String, index: true }
+  , creativo_cedula     :  { type: String }
+  , observaciones   :  { type: String }
+  , asistencia         :  { type: Boolean, get: getSiNo, set: setSiNo }
+  , actualizado    	:  { type: Date, default: Date.now }
+});
+mongoose.model('Asistencia', Asistencia);
 
 module.exports= mongoose;

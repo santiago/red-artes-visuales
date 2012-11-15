@@ -1,4 +1,4 @@
-var Taller, TallerBase;
+var Taller, TallerBase, Asistencia;
 
 var filtros = {
 	get: function(req, res, next) {
@@ -69,16 +69,7 @@ var filtros = {
 			'equipamiento_id': req.taller.equipamiento_id
 		}, function(err, participantes) {
 			req.participantes = participantes;
-			Evaluacion.find({
-				'taller_id': req.taller._id
-			}, function(err, evals) {
-				var evaluaciones = new Array();
-				for (var i = 0; i < evals.length; i++) {
-					evaluaciones[evals[i].participante_id] = evals[i];
-				}
-				req.evaluaciones = evaluaciones;
-				next();
-			});
+			next();
 		});
 	},
 
@@ -153,18 +144,66 @@ var filtros = {
 		req.taller.update({
 			participantes: participantes
 		}, function(err, record) {
-			console.log(err);
-			console.log(record);
 			next();
 		});
-	}
+	},
+    
+    getAsistencia: function(req, res, next) {
+        Asistencia.find({ taller_id: req.params.taller_id }, function(err, docs) {
+            req.asistencia = {};
+            docs.forEach(function(doc) {
+                req.asistencia[doc.participante_id] = doc.get('asistencia')
+            });
+            console.log(req.asistencia)
+            next();
+        });
+    },
+    
+    postAsistencia: function(req, res, next) {
+        var asistencia = req.body.asistencia;
+        var observaciones = req.body.observaciones;
+
+        // var Asistencia = app.db.model('Asistencia');
+        
+        var query = {
+            participante_id: req.params.participante_id,
+            taller_id: req.params.taller_id
+        };
+        
+        Asistencia.findOne(query, function(err, r) {
+            if(err) { 
+                res.send(err, 500)
+                return
+            }
+            
+            if(!err && !r) {
+                if(asistencia) query.asistencia = asistencia;
+                if(observaciones) query.observaciones = observaciones;
+                crearAsistencia(query);
+            } else {
+                if(asistencia) r.set('asistencia', asistencia);
+                if(observaciones) r.set('observaciones', observaciones);
+                r.save(next)
+            }
+        });
+
+        function crearAsistencia(data) {
+            data.creativo_cedula = req.user.cedula;
+            var obj = new Asistencia(data)
+            obj.save(function(err, r) {
+                req.asistencia = r.toObject();
+                next();
+            });
+        }
+    }
 };
 
 function Service(app) {
-	Evaluacion = app.db.model("Evaluacion");
-	Participante = app.db.model("Participante");
+	Evaluacion = app.db.model('Evaluacion');
+	Participante = app.db.model('Participante');
 	Taller = app.db.model('Taller');
 	TallerBase = app.db.model('TallerBase');
+    Asistencia = app.db.model('Asistencia');
 
 	var Equipamientos = require('./Equipamientos').filters;
 
@@ -185,6 +224,10 @@ function Service(app) {
 	});
 
 	app.post('/talleres/:taller_id/participantes', filtros.postParticipante, function(req, res) {});
+    
+    app.post('/taller/:taller_id/participantes/:participante_id', filtros.postAsistencia, function(req, res) {
+        res.send({ ok: true }, 200);
+    });
 
 	app.post('/talleres', filtros.post, function(req, res) {
 		res.send(req.taller_base, 201);
@@ -288,13 +331,13 @@ function Service(app) {
 		});
 	});
 
-	app.get('/taller/:taller_id', filtros.getSesion, Equipamientos.get, filtros.getParticipantes, function(req, res) {
+	app.get('/taller/:taller_id', filtros.getSesion, Equipamientos.get, filtros.getParticipantes, filtros.getAsistencia, function(req, res) {
 		res.render('taller', {
 			locals: {
 				params: app.params,
 				articulo: 'Taller',
 				taller: req.taller,
-				evaluaciones: req.evaluaciones,
+                asistencia: req.asistencia,
 				participantes: req.participantes,
                 equipamiento: req.equipamiento
 			}

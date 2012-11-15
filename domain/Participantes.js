@@ -74,8 +74,6 @@ function Service(app) {
 		});
 	}
 
-
-
 	/*
      * JSON
      */
@@ -91,7 +89,7 @@ function Service(app) {
 		res.send(req.participante, 201);
 	});
 
-	app.put('/participantes/:id', putParticipantes, function(req, res) {
+    app.put('/participantes/:id', putParticipantes, function(req, res) {
 		if (req.error) res.send({
 			'error': true
 		}, 500);
@@ -107,7 +105,7 @@ function Service(app) {
 	});
 
 
-/*
+    /*
      * HTML
      */
 	app.get('/participantes', getParticipantes, function(req, res) {

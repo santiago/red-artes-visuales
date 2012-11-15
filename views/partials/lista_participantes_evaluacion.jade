@@ -1,26 +1,34 @@
-- if (participantes.length > 0 ) {
-  each participante in participantes
-    li
-      .participante_item(id='#{participante._id}')
-        .participante_image 
-          - if (! participante.img) {
-          img(src='/images/Anonymous.gif', width='50px')
-          - } else {
-          img(src='#{participante_img}',width='50px')
-          - }
-        .participante_info_short
-          .participante_nombre #{participante.nombre}
-          .participante_edad #{participante.edad}
-        .participante_evaluacion
-          - var tiene_evaluacion = evaluaciones[participante._id];
-          - if (tiene_evaluacion) {
-            .ok            
-              img(src="/images/ok.png")
-          - } else {
-            .nok
-              img(src="/images/nok.png")
-          - }
-            input(type="hidden", id="i_#{participante._id}", value="#{tiene_evaluacion}")
-- } else {
-  p.no_results No hay participantes en éste equipamiento. 
-- }
+-if (participantes.length > 0 )
+  p.asistencia Asistencia
+  ul
+    each participante in participantes
+      li
+        .participante_item(id='#{participante._id}')
+          .participante_image
+            if (! participante.img)
+              img(src='/images/Anonymous.gif', width='50px')
+            else
+              img(src='#{participante_img}', width='50px')
+          .participante_info_short
+            .participante_nombre #{participante.nombre}
+            .participante_edad #{participante.edad}
+          .participante_evaluacion
+            -if (asistencia[participante._id] == 'Si')
+              p.si Sí
+              input(type='radio', name='asistio_#{participante._id}', value='si', checked='checked')
+              p.no No
+              input(type='radio', name='asistio_#{participante._id}', value='no')
+            -else if(asistencia[participante._id] === 'No')
+              p.si Sí
+              input(type='radio', name='asistio_#{participante._id}', value='si')
+              p.no No
+              input(type='radio', name='asistio_#{participante._id}', value='no', checked='checked')
+            -else
+              p.si Sí
+              input(type='radio', name='asistio_#{participante._id}', value='si')
+              p.no No
+              input(type='radio', name='asistio_#{participante._id}', value='no')
+
+-else
+  p.no_results No hay participantes en este equipamiento. 
+
