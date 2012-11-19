@@ -1,3 +1,5 @@
+require('date-utils')
+
 function Service(app) {
 	var Creativo = app.db.model('Creativo');
 	var Usuario = app.db.model('Usuario');
@@ -137,20 +139,75 @@ function Service(app) {
 			next();
 		});
 	}
+    
+    function getAllCreativos(req, res, next) {
+        Creativo.find(function(err, data) {
+            req.creativos = data;
+            next()
+        })
+    }
+    
+    function getControl(req, res, next) {
+        var start = req.query.f ? new Date(parseInt(req.query.f)) : new Date;
+        
+        start.setHours(0);
+        start.setMinutes(0);
+        start.setSeconds(0);
+        start.setMilliseconds(0);
 
+        var weekday = Date.getDayNumberFromName(start.toString().split(' ')[0]);
+        var sunday = start.add({ days: -weekday });
+        var saturday = start.clone().add({ weeks: 1 });
+         
+        Taller.find({ fecha: { "$gte": sunday , "$lte": saturday } }, function(err, data) {
+            var talleresByCreativo = {}
+            
+            data.forEach(function(taller) {
+                // Record to plain JS object
+                taller = taller.toObject();
+                
+                if (!talleresByCreativo[taller.creativo_cedula]) 
+                    talleresByCreativo[taller.creativo_cedula] = [0,0,0,0,0,0,0];
+                    
+                var day = Date.getDayNumberFromName(taller.fecha.toString().split(' ')[0]);
+                talleresByCreativo[taller.creativo_cedula][day] = taller;
+            });
+            
+            req.control = generateControl(talleresByCreativo);
+            
+            console.log(req.control)
+            
+            next()
+        });
+        
+        function generateControl(talleres) {
+            console.log('\n\n\n\nreq.creativos')
+            console.log(req.creativos)
+            return req.creativos.map(function(creativo) {
+                var week = talleres[creativo.cedula] ? talleres[creativo.cedula].slice(1,7) : [0,0,0,0,0,0];
+                return {
+                    creativo_cedula: creativo.cedula,
+                    creativo_nombre: creativo.nombre,
+                    talleres: week
+                }
+            });
+        }
+
+    }
+    
 	/*
      * JSON
      */
 	app.get('/admin/creativos.json', getCreativos, function(req, res) {
-		res.send(req.equipamientos);
+		res.send(req.equipamientos)
 	});
 
 	app.get('/admin/creativo/:id.json', getCreativos, function(req, res) {
-		res.send(req.equipamiento);
+		res.send(req.equipamiento)
 	});
 
 	app.post('/admin/creativos', postCreativos, function(req, res) {
-		res.send(req.equipamiento, 201);
+		res.send(req.equipamiento, 201)
 	});
 
 	app.put('/creativos/:creativo_id', putCreativos, function(req, res) {
@@ -165,7 +222,7 @@ function Service(app) {
 	app.del('/admin/creativo/:id', delCreativos, function(req, res) {
 		res.send({
 			'ok': true
-		});
+		})
 	});
 
 	/*
@@ -177,7 +234,7 @@ function Service(app) {
 				articulo: 'Creativos',
 				creativos: req.creativos
 			}
-		});
+		})
 	});
 
 	app.get('/consultas/creativos', getCreativos, function(req, res) {
@@ -187,7 +244,7 @@ function Service(app) {
 				articulo: 'Creativos',
 				creativos: req.creativos
 			}
-		});
+		})
 	});
 
 
@@ -206,7 +263,7 @@ function Service(app) {
 				articulo: 'EditarCreativo',
 				creativo: req.creativo
 			}
-		});
+		})
 	});
 	
 	app.get('/creativos/:creativo_id/seguimiento', getCreativos, generarSeguimiento, function(req, res) {
@@ -216,17 +273,19 @@ function Service(app) {
 				creativo: req.creativo,
 				seguimiento: req.seguimiento
 			}
-		});
+		})
 	});
 	
-	app.get('/admin/monitor', getTaller_Bases, function(req, res) {
-		res.render('admin/monitor', {
-			locals: {
-				taller_bases: req.taller_bases,
-				talleres_info_provided: req.talleres_info_provided
-			}
-		});
-	});
+    app.get('/admin/control', getAllCreativos, getControl, function(req, res) {
+        res.render('admin/control', {
+            locals: {
+                articulo: 'Control',
+                creativos: req.creativos,
+                control: req.control
+            }
+        })
+    });
+    
 }
 
 module.exports = Service;

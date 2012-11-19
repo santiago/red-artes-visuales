@@ -22,6 +22,8 @@ jQuery(document).ready(function($) {
 
 	Paginas.Taller = function() {
 		var $el = $("#taller");
+        var taller_id = location.pathname.split('/').pop();
+        
 		// Tabs
 		$el.find('.opciones li a').click(function(e) {
 			e.preventDefault();
@@ -41,13 +43,48 @@ jQuery(document).ready(function($) {
         $el.find('[type="radio"]').live('click', function(e) {
             var asistencia = $(this).val();
             var participante_id = $(this).attr('name').split('_').pop();
-            var taller_id = location.pathname.split('/').pop();
+
             var data = {
                 asistencia: asistencia
             };
             $.post('/taller/' + taller_id + '/participantes/' + participante_id, data, function(res) {
-                console.log(res)
             });
+        });
+
+        $('a.observaciones').click(function(e) {
+            e.preventDefault();
+            $(this).blur()
+                
+            var $participante = $(this).closest('.participante_item');
+            var participante_id = $participante.attr('id');
+            var $observaciones = $participante.find('.observaciones-item');
+            
+            if($participante.has('.observaciones-item:visible').length > 0) {
+                $observaciones.slideUp('fast');
+                return;
+            }
+            
+            $observaciones.slideDown();
+            $observaciones.find('button').one('click', function(e) {
+                $(this).blur();
+                var data = {
+                    observaciones: $observaciones.find('textarea').val()
+                };
+                $.post('/taller/' + taller_id + '/participantes/' + participante_id, data, function(res) {
+                    $observaciones.slideUp('fast');
+                });
+            });
+            
+        });
+        
+        // Consolidar asistencia
+        $("button#consolidar").click(function(e) {
+            if(confirm("Después de consolidar, la información no podrá ser modificada. ¿Desea continuar?")) {
+                $.post("/taller/" + taller_id + "/consolida", function(data) {
+                    location.reload()
+                });
+            }
+            
         });
 
 		$el.find('.submit').click(function(e) {
@@ -102,7 +139,7 @@ jQuery(document).ready(function($) {
 					location.href = '/equipamientos/' + equip;
 				});
 			}
-		});
+        });
 	};
 
 	Paginas.Talleres = function() {
@@ -349,8 +386,111 @@ jQuery(document).ready(function($) {
 			}
 		});
 	};
+    
+    function startProgressBar() {
+        $('.meter > span').width(0);
+        $('.meter > span').removeClass('stop')
 
-    Paginas.Asistencia = function() {
+        var view = this;
+        function go() {
+            var w = view.__progress + '%';
+            console.log('si')
+            console.log(view)
+            if (/*view.__progress == 100 || */!view.__uploading) { return }
+            console.log('no')
+            $(".meter > span").animate({
+                width: w
+            }, 100, go);
+        }
+        go()
+    }
+    
+    function uploadTallerMedia() {
+        var view = this;
+            
+        $('.image-upload .control a').click(function(e) {
+            e.preventDefault();
+            $(this).blur();
+                
+            if ($(this).hasClass('cancel')) {
+                // view.cancelUpload();
+            }
+            if ($(this).hasClass('skip')) {
+                // view.skipCurrentUpload();
+            }
+        });
+
+        $("#upload").html5_upload({
+            url: '/taller/'+this.taller_id+'/media',
+            sendBoundary: window.FormData || $.browser.mozilla,
+            onStart: function(event, total) {
+                // view.__progress = 0;
+                //$('.meter > span').width(0);
+                //$('.meter > span').removeClass('stop')
+                    
+                var check = confirm("Está subiendo un total de " + total + " imágenes. ¿Desea continuar?");
+                if (check) {
+                    $('.image-upload').find('.control p span.index').text(' 1');
+                    $('.image-upload').find('.control p span.total').text(total);
+                    $('#addphoto').fadeOut(function() {
+                       $('.image-upload').slideDown();
+                    });
+                }
+                return check;
+            },
+            onStartOne: function(event, name, number, total) {
+                view.__progress = 0;
+                view.__uploading = true;
+                
+                console.log('hereee')
+                
+                $('.meter > span').removeClass('stop');
+                $('.image-upload').find('.control p span.index').text(' ' + (number + 1));
+                startProgressBar.call(view);
+                return true;
+            },
+            onProgress: function(event, progress, name, number, total) {                
+                view.__progress = parseFloat((progress*100).toString().slice(0,5));
+                console.log(view.__progress)
+            },
+            onFinish: function(event, response, name, number, total) {
+                $('#addphoto').fadeIn();
+                $('.image-upload').slideUp(function() {
+                    // view.refresh()
+                });
+                view.__uploading = false;
+            },
+            onError: function(event, name, error) {
+                alert('error while uploading file ' + name);
+            }
+        })
+    };
+    
+    Paginas.TallerMedia = function() {
+        this.taller_id = location.pathname.split('/')[2]
+        uploadTallerMedia.call(this)
+        
+        $("#upload-btn").click(function() {
+            $('#upload').click();
+        })
+        
+        // Hide file input
+        var wrapper = $('<div/>').css({height:0,width:0,'overflow':'hidden'});
+        var fileInput = $(':file').wrap(wrapper);
+        fileInput.change(function(){
+            var $this = $(this);
+            $('#file').text($this.val());
+        });
+    };
+
+    Paginas.Control = function() {
+        $('#fecha').datepicker();
+        $('#fecha').on('change', function() {
+            if (!$(this).val()) return
+            var fecha = $(this).val().split('/');
+            var date = new Date(fecha[2], fecha[0]-1, fecha[1])
+            location.href= '/admin/control?f='+date.getTime();
+        });
     };
 
 	// Util functions

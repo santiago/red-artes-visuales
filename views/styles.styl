@@ -31,6 +31,12 @@ corner-left(px)
 corner-right(px)
   corner-each(0,px,px,0)
 
+blue-button()
+  font-size: 12px
+  padding: 8px
+  float: right
+  cursor: pointer
+
 // ============= UTILS ==============
 
 *
@@ -332,7 +338,7 @@ article#evaluacion
       &#tab-participantes
         float: left
         span.mask
-          width: 221px
+          width: 217px
 
       &#tab-participante
         float: left
@@ -347,7 +353,7 @@ article#evaluacion
       &#tab-fotos
         float: left
         span.mask
-          width: 100px
+          width: 140px
 
       &#tab-editar
         float: right
@@ -381,7 +387,7 @@ article#participante,
 article#participantes,
 article#creativos,
 article#creativo,
-article#monitor,
+article#control,
 article#evaluacion
   .list_header
     span.mask
@@ -444,7 +450,8 @@ article#consultas
 
 
 article#creativo,
-article#creativos
+article#creativos,
+article#control
   .list_header
     a
       &#crear
@@ -499,7 +506,8 @@ article#talleres,
 article#participantes,
 article#creativos,
 article#monitor,
-article#evaluacion
+article#evaluacion,
+article#control
   .list_body
     min-height: 60px
     width: 800px 
@@ -569,18 +577,36 @@ article .list_body .item
   border: 1px solid #00adef
   corner(3px)
 
+button#consolidar
+  blue-button()
+  float: right
+  margin-right: 10px
+  margin-bottom: 10px
+  font-size: 14px
+
 .participante_item
+  margin-bottom: 10px
   width: 100%
-  display: inline-block
+  float: left
+  border-bottom: 1px solid #D1D3D4
+  padding-bottom: 10px
+  .observaciones-item
+    button
+      blue-button()
+      float: right
+      margin-right: -10px
+  a.observaciones
+    font-size: 12px
+  textarea
+    width: 100%
+    margin: 0
+    font-size: 14px
+    padding: 5px
 
 .participante_image
   margin-right: 10px
-  vertical-align: middle
-  display: inline-block
+  float: left
 
-.participante_image img
-  vertical-align: middle
-  
 .participante_nombre
   margin-right: 10px
   vertical-align: middle
@@ -595,16 +621,13 @@ article .list_body .item
   text-decoration: underline
 
 .participante_info_short
+  float: left
   width: 75%
-  vertical-align: middle
-  height: 100%
-  display: inline-block
 
 .participante_evaluacion
   width: 80px
-  display: inline-block
-  .ok, .nok
-    margin-left: 20px
+  float: right
+ 
   p.si, p.no, input[type=radio]
     float: left
     margin-left: 3px
@@ -780,6 +803,21 @@ article .list_body .item
       float: right
       margin: 0
 
+  .indicador-asistencia
+    span
+      width: 80px
+      corner(6px)
+      border: 1px dashed #d1d2d3
+      float: right
+      margin-top: 8px
+      &.Si
+        background-color: green
+        border: none
+        opacity: 0.7
+      &.No
+        background-color: red
+        border: none
+
 article#participante
   .list_header
     a
@@ -899,5 +937,99 @@ article#taller
     color: black
     font-weight: 900
     text-decoration: underline
-  .participante_item
-    margin-bottom: 5px
+
+article#control
+  .list_body
+    padding-bottom: 20px
+  ul.listado
+    margin: 0
+    padding-top: 30px
+  .control-item
+    padding: 15px 0 5px 0
+    float: left
+    width: 100%
+    p
+      float: left
+      margin-top: 7px
+      margin-left: 10px
+      font-size: 14px
+    border-bottom: 1px solid #d1d3d4
+  .control
+    float: right
+    margin-right: 30px
+    li
+      margin-right: 5px
+      float: left
+      border: 1px solid #d1d3d4
+      corner(6px)
+      padding: 2px 8px
+      a
+        font-size: 13px
+        color: #d1d3d4
+        &:hover
+          text-decoration: underline
+          &.null
+            text-decoration: none
+      &.verde
+        background-color: green
+      &.rojo
+        background-color: red
+  a.control-tab
+    .mask
+      width: 82px
+  .control ul
+    padding: 0
+    margin: 0
+    width: auto
+  .fecha
+    float: right
+    background-color: #ECECEC
+    corner-each(0, 0, 0, 6px)
+    padding: 8px 20px
+    width: 260px
+    p
+      float: left
+      margin-top: 8px
+      margin-right: 10px
+      font-size: 14px
+    input#fecha
+      float: right
+      width: auto
+
+article#taller.media
+  ul
+    width: auto
+  .fotos p
+    float: left
+    margin-top: 15px
+    font-size: 14px
+    font-style: italic
+  button#upload-btn
+    blue-button()
+    float: right
+    margin: 20px
+
+  .media-wrapper
+    padding: 0 5px
+
+  .image-upload
+    float: left
+    width: 100%
+    margin-top: 10px
+    font-size: 11px
+    p.cancel-info
+      color: red
+      margin-bottom: 3px
+    .control
+      margin-bottom: 3px
+      p
+        float: left
+        margin-left: 5px
+        font-weight: bold
+    a
+      color: blue
+    .skip
+      margin-left: 5px
+    .cancel
+      float: right
+      margin-right: 5px

@@ -1,5 +1,5 @@
 -if (participantes.length > 0 )
-  p.asistencia Asistencia
+  // p.asistencia Asistencia
   ul
     each participante in participantes
       li
@@ -12,23 +12,32 @@
           .participante_info_short
             .participante_nombre #{participante.nombre}
             .participante_edad #{participante.edad}
-          .participante_evaluacion
-            -if (asistencia[participante._id] == 'Si')
-              p.si Sí
-              input(type='radio', name='asistio_#{participante._id}', value='si', checked='checked')
-              p.no No
-              input(type='radio', name='asistio_#{participante._id}', value='no')
-            -else if(asistencia[participante._id] === 'No')
-              p.si Sí
-              input(type='radio', name='asistio_#{participante._id}', value='si')
-              p.no No
-              input(type='radio', name='asistio_#{participante._id}', value='no', checked='checked')
-            -else
-              p.si Sí
-              input(type='radio', name='asistio_#{participante._id}', value='si')
-              p.no No
-              input(type='radio', name='asistio_#{participante._id}', value='no')
+            a.observaciones(href='#') Observaciones
+            .observaciones-item(style='display:none;')
+              textarea(name='observaciones', rows='4') #{observaciones[participante._id]}
+              button.css3button.blue-1 Guardar
+
+          if(!taller.consolidado)
+            .participante_evaluacion
+              -if (asistencia[participante._id] == 'Si')
+                p.si Sí
+                input(type='radio', name='asistio_#{participante._id}', value='si', checked='checked')
+                p.no No
+                input(type='radio', name='asistio_#{participante._id}', value='no')
+              -else if(asistencia[participante._id] === 'No')
+                p.si Sí
+                input(type='radio', name='asistio_#{participante._id}', value='si')
+                p.no No
+                input(type='radio', name='asistio_#{participante._id}', value='no', checked='checked')
+              -else
+                p.si Sí
+                input(type='radio', name='asistio_#{participante._id}', value='si')
+                p.no No
+                input(type='radio', name='asistio_#{participante._id}', value='no')
+          .indicador-asistencia
+            span(class="#{asistencia[participante._id]}") &nbsp;
+  if(!taller.consolidado)
+    button.css3button.blue-1#consolidar Consolidar Asistencia
 
 -else
-  p.no_results No hay participantes en este equipamiento. 
-
+  p.no_results No hay participantes en este equipamiento

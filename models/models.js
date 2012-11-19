@@ -101,8 +101,10 @@ var Sesion = new Schema({
   , resultados      :  { type: String }
   , autoeval_creativo: { type: String }
   , observ_externas :  { type: String }
+  , consolidado     :  { type: Boolean, default: false, index: true }
   , fotos           :  { type: Array }
   , videos          :  { type: Array }
+  , media           :  { type: Array }
 });
 mongoose.model('Taller', Sesion);
 

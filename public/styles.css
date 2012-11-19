@@ -441,7 +441,7 @@ article#equipamiento .list_header a#tab-participantes span.mask,
 article#participante .list_header a#tab-participantes span.mask,
 article#taller .list_header a#tab-participantes span.mask,
 article#evaluacion .list_header a#tab-participantes span.mask {
-  width: 221px;
+  width: 217px;
 }
 article#equipamiento .list_header a#tab-participante,
 article#participante .list_header a#tab-participante,
@@ -477,7 +477,7 @@ article#equipamiento .list_header a#tab-fotos span.mask,
 article#participante .list_header a#tab-fotos span.mask,
 article#taller .list_header a#tab-fotos span.mask,
 article#evaluacion .list_header a#tab-fotos span.mask {
-  width: 100px;
+  width: 140px;
 }
 article#equipamiento .list_header a#tab-editar,
 article#participante .list_header a#tab-editar,
@@ -545,7 +545,7 @@ article#participante .list_header span.mask,
 article#participantes .list_header span.mask,
 article#creativos .list_header span.mask,
 article#creativo .list_header span.mask,
-article#monitor .list_header span.mask,
+article#control .list_header span.mask,
 article#evaluacion .list_header span.mask {
   height: 6px;
   background: #fff;
@@ -563,7 +563,7 @@ article#participante .list_header a,
 article#participantes .list_header a,
 article#creativos .list_header a,
 article#creativo .list_header a,
-article#monitor .list_header a,
+article#control .list_header a,
 article#evaluacion .list_header a {
   padding: 10px;
   background-color: #fff;
@@ -589,7 +589,7 @@ article#participante .list_header a.activo,
 article#participantes .list_header a.activo,
 article#creativos .list_header a.activo,
 article#creativo .list_header a.activo,
-article#monitor .list_header a.activo,
+article#control .list_header a.activo,
 article#evaluacion .list_header a.activo {
   color: #ed008c;
   font-weight: 900;
@@ -605,7 +605,7 @@ article#participante .list_header a.activo span.mask,
 article#participantes .list_header a.activo span.mask,
 article#creativos .list_header a.activo span.mask,
 article#creativo .list_header a.activo span.mask,
-article#monitor .list_header a.activo span.mask,
+article#control .list_header a.activo span.mask,
 article#evaluacion .list_header a.activo span.mask {
   display: block;
 }
@@ -653,19 +653,23 @@ article#consultas .equip_item a.nombre {
   font-weight: 900;
 }
 article#creativo .list_header a#crear,
-article#creativos .list_header a#crear {
+article#creativos .list_header a#crear,
+article#control .list_header a#crear {
   float: right;
 }
 article#creativo .list_header a#crear span.mask,
-article#creativos .list_header a#crear span.mask {
+article#creativos .list_header a#crear span.mask,
+article#control .list_header a#crear span.mask {
   width: 139px;
 }
 article#creativo .list_header a#listar,
-article#creativos .list_header a#listar {
+article#creativos .list_header a#listar,
+article#control .list_header a#listar {
   float: left;
 }
 article#creativo .list_header a#listar span.mask,
-article#creativos .list_header a#listar span.mask {
+article#creativos .list_header a#listar span.mask,
+article#control .list_header a#listar span.mask {
   width: 98px;
 }
 article#taller .list_header a#crear,
@@ -748,7 +752,8 @@ article#talleres .list_body,
 article#participantes .list_body,
 article#creativos .list_body,
 article#monitor .list_body,
-article#evaluacion .list_body {
+article#evaluacion .list_body,
+article#control .list_body {
   min-height: 60px;
   width: 800px;
   float: left;
@@ -774,7 +779,8 @@ article#talleres .list_body ul,
 article#participantes .list_body ul,
 article#creativos .list_body ul,
 article#monitor .list_body ul,
-article#evaluacion .list_body ul {
+article#evaluacion .list_body ul,
+article#control .list_body ul {
   padding: 10px;
   width: 97.5%;
   float: left;
@@ -850,17 +856,43 @@ article .list_body .item .habilidades ul {
   -webkit-border-bottom-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
+button#consolidar {
+  font-size: 12px;
+  padding: 8px;
+  float: right;
+  cursor: pointer;
+  float: right;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
 .participante_item {
+  margin-bottom: 10px;
   width: 100%;
-  display: inline-block;
+  float: left;
+  border-bottom: 1px solid #d1d3d4;
+  padding-bottom: 10px;
+}
+.participante_item .observaciones-item button {
+  font-size: 12px;
+  padding: 8px;
+  float: right;
+  cursor: pointer;
+  float: right;
+  margin-right: -10px;
+}
+.participante_item a.observaciones {
+  font-size: 12px;
+}
+.participante_item textarea {
+  width: 100%;
+  margin: 0;
+  font-size: 14px;
+  padding: 5px;
 }
 .participante_image {
   margin-right: 10px;
-  vertical-align: middle;
-  display: inline-block;
-}
-.participante_image img {
-  vertical-align: middle;
+  float: left;
 }
 .participante_nombre {
   margin-right: 10px;
@@ -876,18 +908,12 @@ article .list_body .item .habilidades ul {
   text-decoration: underline;
 }
 .participante_info_short {
+  float: left;
   width: 75%;
-  vertical-align: middle;
-  height: 100%;
-  display: inline-block;
 }
 .participante_evaluacion {
   width: 80px;
-  display: inline-block;
-}
-.participante_evaluacion .ok,
-.participante_evaluacion .nok {
-  margin-left: 20px;
+  float: right;
 }
 .participante_evaluacion p.si,
 .participante_evaluacion p.no,
@@ -1108,6 +1134,33 @@ article .list_body .item .habilidades ul {
   float: right;
   margin: 0;
 }
+#taller .indicador-asistencia span {
+  width: 80px;
+  -moz-border-radius-topleft: 6px;
+  -webkit-border-top-left-radius: 6px;
+  border-top-left-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -webkit-border-top-right-radius: 6px;
+  border-top-right-radius: 6px;
+  -moz-border-radius-bottomleft: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: 1px dashed #d1d2d3;
+  float: right;
+  margin-top: 8px;
+}
+#taller .indicador-asistencia span.Si {
+  background-color: #008000;
+  border: none;
+  opacity: 0.7;
+}
+#taller .indicador-asistencia span.No {
+  background-color: #f00;
+  border: none;
+}
 article#participante .list_header a#crear {
   float: right;
 }
@@ -1228,6 +1281,144 @@ article#taller a.nombre {
   font-weight: 900;
   text-decoration: underline;
 }
-article#taller .participante_item {
-  margin-bottom: 5px;
+article#control .list_body {
+  padding-bottom: 20px;
+}
+article#control ul.listado {
+  margin: 0;
+  padding-top: 30px;
+}
+article#control .control-item {
+  padding: 15px 0 5px 0;
+  float: left;
+  width: 100%;
+  border-bottom: 1px solid #d1d3d4;
+}
+article#control .control-item p {
+  float: left;
+  margin-top: 7px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+article#control .control {
+  float: right;
+  margin-right: 30px;
+}
+article#control .control li {
+  margin-right: 5px;
+  float: left;
+  border: 1px solid #d1d3d4;
+  -moz-border-radius-topleft: 6px;
+  -webkit-border-top-left-radius: 6px;
+  border-top-left-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -webkit-border-top-right-radius: 6px;
+  border-top-right-radius: 6px;
+  -moz-border-radius-bottomleft: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  padding: 2px 8px;
+}
+article#control .control li a {
+  font-size: 13px;
+  color: #d1d3d4;
+}
+article#control .control li a:hover {
+  text-decoration: underline;
+}
+article#control .control li a:hover.null {
+  text-decoration: none;
+}
+article#control .control li.verde {
+  background-color: #008000;
+}
+article#control .control li.rojo {
+  background-color: #f00;
+}
+article#control a.control-tab .mask {
+  width: 82px;
+}
+article#control .control ul {
+  padding: 0;
+  margin: 0;
+  width: auto;
+}
+article#control .fecha {
+  float: right;
+  background-color: #ececec;
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-topright: 0;
+  -webkit-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  -moz-border-radius-bottomleft: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 8px 20px;
+  width: 260px;
+}
+article#control .fecha p {
+  float: left;
+  margin-top: 8px;
+  margin-right: 10px;
+  font-size: 14px;
+}
+article#control .fecha input#fecha {
+  float: right;
+  width: auto;
+}
+article#taller.media ul {
+  width: auto;
+}
+article#taller.media .fotos p {
+  float: left;
+  margin-top: 15px;
+  font-size: 14px;
+  font-style: italic;
+}
+article#taller.media button#upload-btn {
+  font-size: 12px;
+  padding: 8px;
+  float: right;
+  cursor: pointer;
+  float: right;
+  margin: 20px;
+}
+article#taller.media .media-wrapper {
+  padding: 0 5px;
+}
+article#taller.media .image-upload {
+  float: left;
+  width: 100%;
+  margin-top: 10px;
+  font-size: 11px;
+}
+article#taller.media .image-upload p.cancel-info {
+  color: #f00;
+  margin-bottom: 3px;
+}
+article#taller.media .image-upload .control {
+  margin-bottom: 3px;
+}
+article#taller.media .image-upload .control p {
+  float: left;
+  margin-left: 5px;
+  font-weight: bold;
+}
+article#taller.media .image-upload a {
+  color: #00f;
+}
+article#taller.media .image-upload .skip {
+  margin-left: 5px;
+}
+article#taller.media .image-upload .cancel {
+  float: right;
+  margin-right: 5px;
 }

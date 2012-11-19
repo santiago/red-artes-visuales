@@ -37,7 +37,10 @@ app.configure(function() {
 	this.set('view options', {
 		layout: 'layout'
 	})
-	this.use(express.bodyParser());
+	
+    this.use(express.bodyParser());
+    delete express.bodyParser.parse['multipart/form-data'];
+     
 	this.use(express.logger());
 	this.use(express.methodOverride());
 	this.use(express.cookieParser());

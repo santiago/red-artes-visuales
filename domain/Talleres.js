@@ -151,10 +151,16 @@ var filtros = {
     getAsistencia: function(req, res, next) {
         Asistencia.find({ taller_id: req.params.taller_id }, function(err, docs) {
             req.asistencia = {};
+            req.observaciones = {};
+            
             docs.forEach(function(doc) {
-                req.asistencia[doc.participante_id] = doc.get('asistencia')
+                req.asistencia[doc.participante_id] = doc.get('asistencia');
+                req.observaciones[doc.participante_id] = doc.get('observaciones');
             });
-            console.log(req.asistencia)
+
+            console.log('\n\n\n\n')
+            console.log(req)
+
             next();
         });
     },
@@ -232,6 +238,15 @@ function Service(app) {
 	app.post('/talleres', filtros.post, function(req, res) {
 		res.send(req.taller_base, 201);
 	});
+
+    app.post('/taller/:taller_id/consolida', function(req, res) {
+        Taller.findById(req.params.taller_id, function(err, taller) {
+            taller.set('consolidado', true)
+            taller.save(function() {
+                res.send({ ok: true })
+            })
+        })
+    });
 
 	app.put('/taller/:taller_id', filtros.put, function(req, res) {
 		if (req.error) res.send({
@@ -339,10 +354,26 @@ function Service(app) {
 				taller: req.taller,
                 asistencia: req.asistencia,
 				participantes: req.participantes,
+                observaciones: req.observaciones,
                 equipamiento: req.equipamiento
 			}
 		});
 	});
+
+    app.get('/taller/:taller_id/media', filtros.getSesion, Equipamientos.get, function(req, res) {
+    	res.render('taller_media', {
+			locals: {
+                articulo: 'TallerMedia',
+                taller: req.taller,
+                equipamiento: req.equipamiento
+			}
+    	});
+    })
+    
+    var upload = require('../lib/Upload')();
+    app.post('/taller/:taller_id/media', filtros.getSesion, upload, function(req, res) {
+        res.send({ ok: true })
+    });
 
 	app.get('/taller/:taller_id/evaltaller', filtros.getSesion, Equipamientos.get, filtros.getParticipantes, function(req, res) {
 		res.render('evaltaller', {

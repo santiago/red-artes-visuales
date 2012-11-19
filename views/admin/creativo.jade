@@ -7,6 +7,10 @@ article#creativo
         a#listar(href="/admin/creativos")
           | Creativos
           span.mask
+      li(style='float:left;margin-left: 2px')
+        a#listar(href="/admin/control", class='#{articulo == 'Control' ? "activo" : null }')
+          | Control
+          span.mask
       li(style='float: right;')
         a#crear.activo(href="/admin/creativos")
           | Crear Creativo
