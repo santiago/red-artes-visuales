@@ -1,0 +1,36 @@
+article#control
+  ul.list_header
+    li
+      a#listar(href="/admin/creativos", class='#{articulo == 'Creativos' ? "activo" : null }')
+        | Creativos
+        span.mask
+    li(style='float:left;margin-left: 2px')
+      a.control-tab(href="/admin/control", class='#{articulo == 'Control' ? "activo" : null }')
+        | Control
+        span.mask
+    li
+      a#crear(href="/admin/creativos/new", class='#{articulo == 'FormCreativo' ? "activo" : null }')
+        | Crear Creativo
+        span.mask
+
+  .list_body
+    .fecha
+      p Seleccionar fecha
+      input#fecha(type='text', placeholder='Seleccionar Fecha')
+    ul.listado
+      -each creativo in control
+        li
+          .control-item
+            p #{creativo.creativo_nombre}
+            .control
+              ul
+                -var days = ['Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab']
+                -each taller, i in creativo.talleres
+                  -var estado = taller ? (taller.consolidado ? 'verde' : 'rojo') : null
+                  li(class="#{estado}")
+                    -var href = estado ? "/taller/" + taller._id.toString() : null
+                    -if(href)
+                      a(href=" #{href}") #{days[i]}
+                    -else
+                      a.null #{days[i]}
+

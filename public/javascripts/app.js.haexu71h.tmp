@@ -1,0 +1,98 @@
+jQuery(document).ready(function($) {
+
+	var articulo = $('input[name=articulo]').val();
+
+	// Páginas
+	var Paginas = {};
+
+	Paginas.SeguimientoCreativo = function() {
+		
+	};
+
+	Paginas.TallerBase = function() {
+		$('.list_header a.activo').each(function() {
+			$(this).closest('li').css({
+				'float': 'left'
+			});
+			$(this).find('span.mask').css({
+				width: $(this).closest('li').width() - 2
+			})
+		});
+	};
+
+	Paginas.Taller = function() {
+		var $el = $("#taller");
+        var taller_id = location.pathname.split('/').pop();
+        
+		// Tabs
+		$el.find('.opciones li a').click(function(e) {
+			e.preventDefault();
+			$(this).blur();
+
+			var opcion = $(this).attr('id');
+
+			// Active Tab
+			$el.find('.opciones li a').removeClass('activo');
+			$(this).addClass('activo');
+
+			// Show/Hide content
+			$el.find('.tab_content').hide();
+			$el.find('.tab_content#' + opcion).show();
+		});
+        
+        $el.find('[type="radio"]').live('click', function(e) {
+            var asistencia = $(this).val();
+            var participante_id = $(this).attr('name').split('_').pop();
+
+            var data = {
+                asistencia: asistencia
+            };
+            $.post('/taller/' + taller_id + '/participantes/' + participante_id, data, function(res) {
+            });
+        });
+
+        $('a.observaciones').click(function(e) {
+            e.preventDefault();
+            $(this).blur()
+                
+            var $participante = $(this).closest('.participante_item');
+            var participante_id = $participante.attr('id');
+            var $observaciones = $participante.find('.observaciones-item');
+            
+            if($participante.has('.observaciones-item:visible').length > 0) {
+                $observaciones.slideUp('fast');
+                return;
+            }
+            
+            $observaciones.slideDown();
+            $observaciones.find('button').one('click', function(e) {
+                $(this).blur();
+                var data = {
+                    observaciones: $observaciones.find('textarea').val()
+                };
+                $.post('/taller/' + taller_id + '/participantes/' + participante_id, data, function(res) {
+                    $observaciones.slideUp('fast');
+                });
+            });
+            
+        });
+        
+        // Consolidar asistencia
+        $("button#consolidar").click(function(e) {
+            if(confirm("Después de consolidar, la información no podrá ser modificada. ¿Desea continuar?")) {
+                $.post("/taller/" + taller_id + "/consolida", function(data) {
+                    location.reload()
+                });
+            }
+            
+        });
+
+		$el.find('.submit').click(function(e) {
+			e.preventDefault();
+			$(this).blur();
+			var taller_id = location.pathname.split('/').pop();
+			location.href = '/taller/' + taller_id + '/participantes/new';
+		});
+	};
+
+	P

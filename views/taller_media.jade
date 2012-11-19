@@ -1,0 +1,53 @@
+- var edit = false
+article#taller.media
+  input(type="hidden", id="taller_id", value=#{taller._id})
+  header
+    .header-content
+      label Equipamiento
+      a.nombre(href='/equipamientos/#{equipamiento._id}') #{equipamiento.nombre}
+      label Taller
+      p.nombre #{taller.nombre}
+      label Fecha
+      - var regex = new RegExp("^.{3}\\s");
+      p.nombre #{taller.fecha.toDateString().replace(regex, '')}
+
+
+  .list_header
+    ul
+      li
+        a#tab-participantes(href="/taller/#{taller._id}", class='#{articulo == 'Taller' ? "activo" : null }') 
+          | Asistencia Participantes
+          span.mask
+      li
+        a#tab-seguimiento(href="/taller/#{taller._id}/evaltaller", class='#{articulo == 'Seguimiento' ? "activo" : null }') 
+          | Evaluaci&oacute;n Taller 
+          span.mask
+      li
+        a#tab-fotos(href="/taller/#{taller._id}/media", class='#{articulo == 'TallerMedia' ? "activo" : null }') 
+          | Fotos / Videos
+          span.mask
+
+  .list_body
+    span.add
+      button.css3button.blue-1#upload-btn Subir Fotos o Videos
+      input#upload(type="file", multiple="multiple")
+    .image-upload
+      p.cancel-info(style='display:none;') Se cancel&oacute; la transferencia
+        .control
+          p Subiendo
+            span.index  0
+            span /
+            span.total 0
+          a.cancel(href='#') Cancelar
+          span &nbsp;&nbsp;|&nbsp;
+          a.skip(href='#') Omitir
+        .meter
+          span(style='width: 25%')
+    ul.fotos
+      -if (taller.media && taller.media.length)
+        label Galer&iacute;a
+        -each m in taller.media
+          li
+            .media-item
+      -else
+        p No se han subido fotos o videos para este taller
