@@ -207,7 +207,7 @@ jQuery(document).ready(function($) {
 
 
 		function res(data) {
-			console.log(data);
+			// console.log(data);
 			location.href = '/equipamientos';
 		}
 
@@ -229,7 +229,7 @@ jQuery(document).ready(function($) {
 		// Callback par atender el response
 
 		function res(data) {
-			console.log(data);
+			// console.log(data);
 			location.href = "/talleres";
 		}
 
@@ -293,7 +293,7 @@ jQuery(document).ready(function($) {
 		fixMask();
 
 		function res(data) {
-			console.log(data);
+			// console.log(data);
 			location.href = "/admin/creativos";
 		}
 		var $el = $('#creativo form');
@@ -318,7 +318,7 @@ jQuery(document).ready(function($) {
 					type: 'PUT',
 					data: data,
 					success: function(data) {
-						console.log(data);
+						// console.log(data);
 						location.href = "/participantes/" + participante_id;
 					}
 				});
@@ -338,7 +338,7 @@ jQuery(document).ready(function($) {
 					type: 'PUT',
 					data: data,
 					success: function(data) {
-						console.log(data);
+						// console.log(data);
 						location.href = "/taller/" + taller_id;
 					}
 				});
@@ -354,7 +354,7 @@ jQuery(document).ready(function($) {
 			e.preventDefault();
 			var parti = ParticipanteForm.getValidData();
 			if (parti) {
-				console.log(parti);
+				// console.log(parti);
 				$.post('/participantes', parti, function(data) {
 					location.href = '/equipamientos/' + equip_id + "/participantes";
 				});
@@ -394,10 +394,8 @@ jQuery(document).ready(function($) {
         var view = this;
         function go() {
             var w = view.__progress + '%';
-            console.log('si')
-            console.log(view)
             if (/*view.__progress == 100 || */!view.__uploading) { return }
-            console.log('no')
+            console.log
             $(".meter > span").animate({
                 width: w
             }, 100, go);
@@ -451,18 +449,18 @@ jQuery(document).ready(function($) {
                 
                 $('.meter > span').removeClass('stop');
                 $('.image-upload').find('.control p span.index').text(' ' + (number + 1));
-                startProgressBar.call(view);
+                // startProgressBar.call(view);
                 return true;
             },
             onProgress: function(event, progress, name, number, total) {                
                 view.__progress = parseFloat((progress*100).toString().slice(0,5));
-                console.log(view.__progress)
+                // console.log(view.__progress)
             },
             onFinish: function(event, response, name, number, total) {
                 $('#addphoto').fadeIn();
-                $('.image-upload').slideUp(function() {
+                //$('.image-upload').slideUp(function() {
                     // view.refresh()
-                });
+                //});
                 view.__uploading = false;
             },
             onError: function(event, name, error) {
