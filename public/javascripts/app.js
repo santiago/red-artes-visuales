@@ -443,6 +443,11 @@ jQuery(document).ready(function($) {
                 view.__uploading = true;
                 
                 console.log('hereee')
+                var ext = name.split('.').pop().toLowerCase();
+                var regex = /jpg|jpeg|gif|png/;
+                if(!ext.match(regex)) {
+                    return false
+                }
                 
                 $('.meter > span').removeClass('stop');
                 $('.image-upload').find('.control p span.index').text(' ' + (number + 1));
