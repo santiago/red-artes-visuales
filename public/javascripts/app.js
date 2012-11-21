@@ -395,7 +395,7 @@ jQuery(document).ready(function($) {
         function go() {
             var w = view.__progress + '%';
             if (/*view.__progress == 100 || */!view.__uploading) { return }
-            console.log
+            console.log(w)
             $(".meter > span").animate({
                 width: w
             }, 100, go);
@@ -430,8 +430,8 @@ jQuery(document).ready(function($) {
                 if (check) {
                     $('.image-upload').find('.control p span.index').text(' 1');
                     $('.image-upload').find('.control p span.total').text(total);
-                    $('#addphoto').fadeOut(function() {
-                       $('.image-upload').slideDown();
+                    $('button#upload-btn').fadeOut(function() {
+                       $('.image-upload').fadeIn();
                     });
                 }
                 return check;
@@ -449,7 +449,7 @@ jQuery(document).ready(function($) {
                 
                 $('.meter > span').removeClass('stop');
                 $('.image-upload').find('.control p span.index').text(' ' + (number + 1));
-                // startProgressBar.call(view);
+                startProgressBar.call(view);
                 return true;
             },
             onProgress: function(event, progress, name, number, total) {                
@@ -457,11 +457,10 @@ jQuery(document).ready(function($) {
                 // console.log(view.__progress)
             },
             onFinish: function(event, response, name, number, total) {
-                $('#addphoto').fadeIn();
-                //$('.image-upload').slideUp(function() {
-                    // view.refresh()
-                //});
                 view.__uploading = false;
+                setTimeout(function() {
+                    location.reload()
+                }, 100);
             },
             onError: function(event, name, error) {
                 alert('error while uploading file ' + name);

@@ -65,7 +65,9 @@ blue-button()
   -moz-border-radius-bottomleft: 20px
   border-top-left-radius: 20px
   border-bottom-left-radius: 20px
-  background-color: rgb(43,194,83)
+  //background-color: rgb(43,194,83)
+  // 649CE2
+  background-color: rgb(100,156,226)
 
   position: relative
   overflow: hidden
@@ -1055,13 +1057,31 @@ article#control
       width: auto
 
 article#taller.media
-  ul
-    width: auto
-  .fotos p
+  ul.fotos
+    padding-left: 35px
+    padding-bottom: 50px
+    width: 100%
+    li
+      float: left
+      padding: 10px
+      background: #EEE
+      border: 1px solid #CCC
+      margin-right: 15px
+      margin-top: 10px
+      corner(6px)
+      &.first
+        clear: left
+    label
+      float: left
+  ul.empty
     float: left
-    margin-top: 15px
-    font-size: 14px
-    font-style: italic
+    padding-left: 25px
+    width: auto
+    p
+      float: left
+      margin-top: 15px
+      font-size: 14px
+      font-style: italic
   button#upload-btn
     blue-button()
     float: right

@@ -371,7 +371,7 @@ function Service(app) {
     })
     
     var upload = require('../lib/Upload')();
-    app.post('/taller/:taller_id/media', filtros.getSesion, upload, function(req, res) {
+    app.post('/taller/:taller_id/media', upload, function(req, res) {
         res.send({ ok: true })
     });
 

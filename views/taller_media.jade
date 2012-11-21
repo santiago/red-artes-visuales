@@ -31,7 +31,7 @@ article#taller.media
     span.add
       button.css3button.blue-1#upload-btn Subir Fotos o Videos
       input#upload(type="file", multiple="multiple")
-    .image-upload
+    .image-upload(style='display:none;')
       p.cancel-info(style='display:none;') Se cancel&oacute; la transferencia
         .control
           p Subiendo
@@ -43,11 +43,14 @@ article#taller.media
           a.skip(href='#') Omitir
         .meter
           span(style='width: 25%')
-    ul.fotos
-      -if (taller.media && taller.media.length)
-        label Galer&iacute;a
-        -each m in taller.media
-          li
+    -if (taller.media && taller.media.length)
+      ul.fotos
+        // label Galer&iacute;a
+        -each m, i in taller.media
+          -var klass = i % 4 == 0 ? 'first' : null
+          li(class="#{klass}")
             .media-item
-      -else
+              img(src="http://s3.amazonaws.com/red-artes-visuales/150-#{m.name}")
+    -else
+      ul.empty
         p No se han subido fotos o videos para este taller
