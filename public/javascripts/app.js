@@ -37,8 +37,6 @@ jQuery(document).ready(function($) {
             })
         });
             
-        console.log(data)
-
         if (!this.showing) {
             this.showing = true;
             $('#galleria-wrapper').css({ 'z-index': 1 });
@@ -233,27 +231,88 @@ jQuery(document).ready(function($) {
 	Paginas.Consultas = function() {
 		var $el = $('article#consultas');
 		var $mask = $el.find('.opciones .mask');
+        
+        // Activate current tab
+        var $li = $el.find('.opciones li a.activo').closest('li');
+        $li.prepend($mask.css({
+    		width: $li.width()
+		}));
+        
+        var $current_tab = $('.tab_content:visible');
+        setCurrent()
 
 		// Tabs
 		$el.find('.opciones li a').click(function(e) {
 			e.preventDefault();
 			$(this).blur();
 
-			var opcion = $(this).attr('id');
+			var opcion = $(this).attr('id').split('-')[0];
 
 			// Active Tab
 			$el.find('.opciones li a').removeClass('activo');
 			$(this).addClass('activo');
 
-			// Show/Hide content
+            $current_tab = $el.find('.tab_content#' + opcion);
+            
+            // Show/Hide content
 			$el.find('.tab_content').hide();
-			$el.find('.tab_content#' + opcion).show();
+			$current_tab.show();
+            setCurrent();
+
 
 			$(this).closest('li').prepend($mask);
 			$mask.css({
 				width: $(this).closest('li').width()
 			});
 		});
+        
+        $("button#buscar").click(function() {
+            var $tab = $(".tab_content:visible");
+            var resource = $tab.attr('id');
+            
+            if(resource == 'talleres') q = "Taller";
+            if(resource == 'equipamientos') q = "Equipamiento";
+            if(resource == 'participantes') q = "Participante";
+            
+            var query = '/consultas?q='+q;
+            
+            $tab.find('select :selected')
+            
+            $tab.find('select :selected').each(function() {
+                var $select = $(this).closest('select');
+                var value = $select.val();
+                var field = $select.attr('name');
+                console.log([field, value])
+                if($.trim(value)) {
+                    query += "&"+field+"="+value;
+                }
+            })
+            
+            location.href = query;
+        });
+        
+        function setCurrent() {
+            $current_tab.find('select[name=comuna]').off('change')
+            $current_tab.find('select[name=barrio]').off('change')
+            
+            $current_tab.find('select[name=comuna]').change(function() {
+                if($(this).val())
+                    $current_tab.find('select[name=barrio]').attr('disabled', 'disabled')
+                else
+                    $current_tab.find('select[name=barrio]').removeAttr('disabled')
+            });
+            
+            $current_tab.find('select[name=barrio]').change(function() {
+                if($(this).val())
+                    $current_tab.find('select[name=comuna]').attr('disabled', 'disabled')
+                else
+                    $current_tab.find('select[name=comuna]').removeAttr('disabled')
+
+            });
+	    }
+        
+        // If it's a query, show selected options
+        
 	};
 
 	Paginas.FormEquipamiento = function() {
@@ -449,7 +508,6 @@ jQuery(document).ready(function($) {
         function go() {
             var w = view.__progress + '%';
             if (/*view.__progress == 100 || */!view.__uploading) { return }
-            console.log(w)
             $(".meter > span").animate({
                 width: w
             }, 100, go);
@@ -493,8 +551,7 @@ jQuery(document).ready(function($) {
             onStartOne: function(event, name, number, total) {
                 view.__progress = 0;
                 view.__uploading = true;
-                
-                console.log('hereee')
+
                 var ext = name.split('.').pop().toLowerCase();
                 var regex = /jpg|jpeg|gif|png/;
                 if(!ext.match(regex)) {

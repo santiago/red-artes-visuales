@@ -75,12 +75,11 @@ var filters = {
 
 	getSesiones: function(req, res, next) {
 		var id = req.params.equipamiento_id;
-		Taller.find({
-			equipamiento_id: id
-		}, function(err, rs) {
-			req.sesiones = rs;
-			next();
-		});
+		Taller.find({ 'equipamiento_id': id }).sort({ fecha: 'desc' })
+            .exec(function(err, rs) {
+			    req.sesiones = rs;
+			    next();
+            });
 	},
 
 	getTalleres: function(req, res, next) {

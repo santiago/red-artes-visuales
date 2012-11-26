@@ -1,4 +1,4 @@
 select(name='#{name}')
-  option(value='') 
+  option(value='') #{label}
   each option in options
-    option(value='#{option}') #{option}
+    option(value='#{option.value}') #{option.label}

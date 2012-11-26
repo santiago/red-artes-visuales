@@ -1,0 +1,9 @@
+ul
+  -if(data.length)
+    each taller in data
+      li
+        .taller_item(id='#{taller._id}')
+          a.nombre(href='/taller/#{taller._id}') #{taller.nombre}
+          p.fecha #{taller.fecha.toDateString()}
+  -else
+    p.vacio No se han encontraron talleres para esta b&uacute;squeda

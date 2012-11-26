@@ -92,7 +92,7 @@ mongoose.model('TallerBase', Taller);
 
 var Sesion = new Schema({
     nombre          :  { type: String }
-  , actividad_id    :  { type: String, index: true }
+  , actividad_id    :  { type: String, index: true } // TallerBase Id
   , fecha           :  { type: Date }
   , creativo_cedula :  { type: String }
   , equipamiento_id    :  { type: String }

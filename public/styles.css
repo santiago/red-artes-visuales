@@ -420,6 +420,41 @@ equip_barrio {
   margin: 0 30px 10px;
   padding: 10px;
 }
+#consultas .taller_item,
+#consultas .creativo_item {
+  margin-top: 10px;
+  border-bottom: 1px solid #eee;
+  margin: 8px 0;
+  padding: 0 10px;
+}
+#consultas .taller_item p,
+#consultas .creativo_item p,
+#consultas .taller_item .descripcion,
+#consultas .creativo_item .descripcion {
+  font-size: 12px;
+  clear: left;
+}
+#consultas .taller_item a,
+#consultas .creativo_item a {
+  padding: 0;
+}
+#consultas .taller_item a.nombre,
+#consultas .creativo_item a.nombre {
+  font-size: 14px;
+  font-weight: 900;
+}
+#consultas .taller_item .fecha,
+#consultas .creativo_item .fecha {
+  font-size: 11px;
+}
+#consultas .resultado ul {
+  width: 97.5%;
+  clear: left;
+  padding: 10px;
+}
+#consultas .resultado ul li {
+  float: none;
+}
 article#participante span.mask {
   width: 190px;
 }
@@ -893,8 +928,7 @@ article .list_body .item .habilidades ul {
   padding-top: 10px;
 }
 .resultado_status {
-  display: none;
-  margin: 10px 30px 0 10px;
+  margin: 10px 30px 0 20px;
   font-size: 10px;
   border-top: 1px solid #00adef;
   padding-top: 10px;

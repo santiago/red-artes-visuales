@@ -1,83 +1,80 @@
+-var label;
 article#consultas
   ul.opciones
     li
       span.mask
-      a.activo#talleres(href='#') Talleres
+      a#talleres-btn(href='#', class="#{recurso == 'talleres' ? 'activo' : '' }") Talleres
     li
-      a#equipamientos(href='#') Equipamientos
+      a#equipamientos-btn(href='#', class="#{recurso == 'equipamientos' ? 'activo' : '' }") Equipamientos
     li
-      a#participantes(href='#') Participantes
+      a#participantes-btn(href='#', class="#{recurso == 'participantes' ? 'activo' : '' }") Participantes
 
   .tabs_container
-    .tab_content#talleres
+    .tab_content#talleres(style="#{recurso == 'talleres' ? '' : 'display:none;' }")
       .filtro
         label Equipamiento
-        select(name='f_equipamientos_tall')
-          option(value='')
-          each equip in equipamientos
-            option(value='#{equip._id}') #{equip.nombre}
+        !=partial('partials/select', { name: 'equipamiento_id', options: _equipamientos, label: "-- Seleccionar Equipamiento --" })
 
       .filtro
         label Comuna
-        !=partial('partials/select', { name: 'f_comunas_tall', options: params.comunas })
+        !=partial('partials/select', { name: 'comuna', options: params.comunas, label: "-- Seleccionar Comuna --" })
 
       .filtro
         label Creativo
-        // !=partial('partials/select_id', { name: 'f_creativos_tall', options: params.creativos })
+        !=partial('partials/select', { name: 'creativo_cedula', options: creativos, label: "-- Seleccionar Creativo --" })
 
       .filtro
         label Barrio
-        !=partial('partials/select', { name: 'f_barrios_tall', options: params.barrios })
+        !=partial('partials/select', { name: 'barrio', options: params.barrios, label: "-- Seleccionar Barrio --" })
 
-      .filtro
-        label Metodologia 
-        !=partial('partials/select', { name: 'f_metodos_tall', options: params.metodologias })
 
-      .filtro
-        label Habilidades 
-        !=partial('partials/select', { name: 'f_habilidades_tall', options: params.habilidades})
-
-    .tab_content#equipamientos(style='display:none;')
+    .tab_content#equipamientos(style="#{recurso == 'equipamientos' ? '' : 'display:none;' }")
       .filtro
         label Comuna
-        !=partial('partials/select', { name: 'f_comunas_equip', options: params.comunas })
+        !=partial('partials/select', { name: 'comuna', options: params.comunas, label: "-- Seleccionar Comuna --" })
 
       .filtro
         label Barrio
-        !=partial('partials/select', { name: 'f_barrios_equip', options: params.barrios })
+        !=partial('partials/select', { name: 'barrio', options: params.barrios, label: "-- Seleccionar Barrio --" })
 
       .filtro
         label Creativo
-        // !=partial('partials/select_id', { name: 'f_creativos_equip', options: params.creativos })
+        !=partial('partials/select', { name: 'creativo', options: creativos, label: "-- Seleccionar Creativo --" })
 
       .filtro
         label Tipo
-        !=partial('partials/select', { name: 'f_tipos_equip', options: params.tipos })
+        !=partial('partials/select', { name: 'tipo', options: params.tipos, label: "-- Seleccionar Tipo --" })
 
       .filtro
         label Zonas
-        !=partial('partials/select', { name: 'f_zonas_equip', options: params.zonas })
+        !=partial('partials/select', { name: 'zona', options: params.zonas, label: "-- Seleccionar Zona --" })
 
-    .tab_content#participantes(style='display:none;')
+    .tab_content#participantes(style="#{recurso == 'participantes' ? '' : 'display:none;' }")
       .filtro
         label Edad
-        !=partial('partials/select', { name: 'f_edades_part', options: params.edades })
+        !=partial('partials/select', { name: 'edad', options: params.edades, label: "-- Seleccionar Edad --" })
 
       .filtro
         label Barrio
-        !=partial('partials/select', { name: 'f_barrios_part', options: params.barrios })
+        !=partial('partials/select', { name: 'barrio', options: params.barrios, label: "-- Seleccionar Barrio --" })
 
       .filtro
         label Estrato
-        !=partial('partials/select', { name: 'f_estratos_part', options: params.estratos })
+        !=partial('partials/select', { name: 'estrato', options: params.estratos, label: "-- Seleccionar Estrato --" })
 
       .filtro
         label Comuna
-        !=partial('partials/select', { name: 'f_comunas_part', options: params.comunas })
+        !=partial('partials/select', { name: 'comuna', options: params.comunas, label: "-- Seleccionar Comuna --" })
 
     button#buscar Buscar
+    
+    if(resultado.length)
+      .resultado_area
+        .resultado_status
+          p Se encontraron 
+            b #{resultado.length} 
+            | #{recurso}
+        .resultado
+          - var resultados = 'consultas/'+recurso
+          !=partial(resultados, { data: resultado })
 
-    .resultado_area
-      .resultado_status
-
-      .resultado

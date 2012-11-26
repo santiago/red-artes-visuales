@@ -17,7 +17,7 @@ module.exports = {
         'Santa María de Los Angeles','Trinidad', 'San Bernardo', 'La Perla', 'Nuevo Amanecer',
         'Villa de Guadalupe', 'Vereda El Vergel', 'El Limonar', 'Robledo Pajarito', 'Vereda La Loma',
         'Sector el Parque', 'Ciudadela Nuevo Occidente', 'Vereda La Aldea', 'Santa Elena Parque Central',
-        'Sector central'],
+        'Sector central'].sort(),
 
     // equipamientos: ["Casa Tres Patios", "EscuelaX", 'TallerZ','ImaginaLab'],
 
