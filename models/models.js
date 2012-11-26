@@ -14,8 +14,6 @@ var Schema = mongoose.Schema
 var params = require('../params');
 
 function setSiNo(val) {
-    console.log('\n\n\n\nsetting ...')
-    console.log(val)
 	if (val.toLowerCase() == 'si') return true;
 	if (val.toLowerCase() == 'no') return false;
 	return null;

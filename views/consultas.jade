@@ -38,10 +38,6 @@ article#consultas
         !=partial('partials/select', { name: 'barrio', options: params.barrios, label: "-- Seleccionar Barrio --" })
 
       .filtro
-        label Creativo
-        !=partial('partials/select', { name: 'creativo', options: creativos, label: "-- Seleccionar Creativo --" })
-
-      .filtro
         label Tipo
         !=partial('partials/select', { name: 'tipo', options: params.tipos, label: "-- Seleccionar Tipo --" })
 
@@ -69,7 +65,7 @@ article#consultas
     button#buscar Buscar
     
     if(resultado.length)
-      .resultado_area
+      .resultado_area(class='#{recurso}')
         .resultado_status
           p Se encontraron 
             b #{resultado.length} 

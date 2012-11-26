@@ -1,4 +1,4 @@
--var edit = articulo == "EditarParticipante"
+-var edit = true
 article#participante
   header
     .header-content
@@ -8,16 +8,12 @@ article#participante
   .list_header
     ul
       li
-        a#tab-editar.last(href="/participantes/#{participante._id}/edit", class='#{articulo == 'EditarParticipante' ? "activo" : null }')
-          | Editar Participante
-          span.mask
-      li
-        a#tab-todos-participantes(href="/participantes", class='#{articulo == 'Participantes' ? "activo" : null }')
-          | Todos Participantes
-          span.mask
-      li
         a#tab-participante.first(href="/participantes/#{participante._id}", class='#{articulo == 'VerParticipante' ? "activo" : null }')
           | #{participante.nombre}
+          span.mask
+      li
+        a#tab-todos-participantes.last(href="/equipamientos/"+equipamiento._id+'/participantes', class='#{articulo == 'Participantes' ? "activo" : null }')
+          | Volver a Participantes
           span.mask
 
   .list_body

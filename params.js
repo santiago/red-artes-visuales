@@ -46,5 +46,5 @@ module.exports = {
 		   'Experimentación Materiales' , 'Visitas', 'Investigación', 
 		   'Intercambios', 'Otro'],
 
-    zonas: ['Urbano','Rural']
+    zonas: ['Urbana','Rural']
 }

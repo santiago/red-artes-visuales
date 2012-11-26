@@ -391,13 +391,29 @@ li.menu_item
     padding: 0 10px
     .fecha 
       font-size: 11px
+
+  .equip_item
+    margin-right: 10px
+    a
+      padding: 0
+    p
+      clear: left
   
+  .participante_item
+    margin-left: 10px
+    width: 97.5%
+    padding: 10px 0
+    a
+      padding: 0
+
   .resultado ul
     width: 97.5%
     clear: left
     padding: 10px
     li
       float: none
+    &.listado
+      margin: 0
 
 article#participante
   span.mask
@@ -658,7 +674,7 @@ article .list_body .item
   padding-top: 10px
   
 .resultado_status
-  margin: 10px 30px 0 20px
+  margin: 10px 20px 0 20px
   font-size: 10px
   border-top: 1px solid #00adef
   padding-top: 10px
@@ -1187,3 +1203,9 @@ article#taller.media
   .galleria-container
     background: none
 
+article#equipamiento
+  ul.participantes
+    .participante_item
+      a
+        padding: 0
+        float: left

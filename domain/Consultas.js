@@ -45,11 +45,9 @@ function Service(app) {
     function findByComuna(req, res, next) {
         if(req.query.comuna) {
             Equipamiento.find({ comuna: req.query.comuna }, function(err, data) {
-                if(err || data.length == 0) {
+                if(err) {
                     next();
                 } else {
-                    console.log('\n\n\n\n\n')
-                    console.log(data)
                     req.equipamientos = data;
                     req.by_comuna = data.map(function(v) {
                         return v._id.toString();
@@ -66,11 +64,17 @@ function Service(app) {
     function findByBarrio(req, res, next) {
         if(req.query.barrio) {
             Equipamiento.find({ barrio: req.query.barrio }, function(err, data) {
-                if(err || data.length == 0) {
+                if(err) {
                     next();
                     return
                 } else {
                     req.equipamientos = data;
+                    
+                    if(!data.length) {
+                        next()
+                        return
+                    }
+                    
                     req.by_barrio = data.map(function(v) {
                         return v._id.toString();
                     });
@@ -101,19 +105,22 @@ function Service(app) {
             return
         }
         
-        if(req.by_barrio || req.by_comuna && q != 'Equipamiento') {
-            req.query['equipamiento_id'] = { '$in': req.by_barrio||req.by_comuna }
-            delete req.query['barrio'];
-            delete req.query['comuna'];
-        }
+        if((req.by_barrio || req.by_comuna) && q != 'Equipamiento') {
+            if(q == 'Taller') {
+                req.query['equipamiento_id'] = { '$in': req.by_barrio||req.by_comuna }
 
+                delete req.query['barrio'];
+                delete req.query['comuna'];
+            }
+        } else if(q == 'Equipamiento') {
+            req.resultado = req.equipamientos
+            next();
+            return;
+        }
+        
         delete req.query['q'];
 
-        console.log(req.query)
-
         Model.find(req.query, function(err, data) {
-            console.log('\n\n\n\n\n\n\n')
-            console.log(data)
             req.resultado = data;
             next()
         });

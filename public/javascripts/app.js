@@ -239,6 +239,7 @@ jQuery(document).ready(function($) {
 		}));
         
         var $current_tab = $('.tab_content:visible');
+        var current = $current_tab.attr('id');
         setCurrent()
 
 		// Tabs
@@ -259,6 +260,11 @@ jQuery(document).ready(function($) {
 			$current_tab.show();
             setCurrent();
 
+            if(current == opcion) {
+                $('.resultado_area.'+current).show();
+            } else {
+                $('.resultado_area').hide();
+            }
 
 			$(this).closest('li').prepend($mask);
 			$mask.css({
@@ -312,6 +318,15 @@ jQuery(document).ready(function($) {
 	    }
         
         // If it's a query, show selected options
+        var query = decodeURI(location.search).replace(/\?/, '').split('&');
+        console.log(query)
+        for(var field in query) {
+            var data = query[field].split('=');
+            console.log('select[name='+data[0]+'] option[value="'+data[1]+'"]')
+            $current_tab
+                .find('select[name='+data[0]+'] option[value="'+data[1]+'"]')
+                .attr('selected', 'selected');
+        }
         
 	};
 

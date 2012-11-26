@@ -447,6 +447,23 @@ equip_barrio {
 #consultas .creativo_item .fecha {
   font-size: 11px;
 }
+#consultas .equip_item {
+  margin-right: 10px;
+}
+#consultas .equip_item a {
+  padding: 0;
+}
+#consultas .equip_item p {
+  clear: left;
+}
+#consultas .participante_item {
+  margin-left: 10px;
+  width: 97.5%;
+  padding: 10px 0;
+}
+#consultas .participante_item a {
+  padding: 0;
+}
 #consultas .resultado ul {
   width: 97.5%;
   clear: left;
@@ -454,6 +471,9 @@ equip_barrio {
 }
 #consultas .resultado ul li {
   float: none;
+}
+#consultas .resultado ul.listado {
+  margin: 0;
 }
 article#participante span.mask {
   width: 190px;
@@ -928,7 +948,7 @@ article .list_body .item .habilidades ul {
   padding-top: 10px;
 }
 .resultado_status {
-  margin: 10px 30px 0 20px;
+  margin: 10px 20px 0 20px;
   font-size: 10px;
   border-top: 1px solid #00adef;
   padding-top: 10px;
@@ -1617,4 +1637,8 @@ article#taller.media .image-upload .cancel {
 }
 #galleria .galleria-container {
   background: none;
+}
+article#equipamiento ul.participantes .participante_item a {
+  padding: 0;
+  float: left;
 }

@@ -26,10 +26,15 @@ article#equipamiento
           span.mask
 
     .list_body
-      ul
-        !=partial('partials/lista_participantes', { participantes: participantes })
-
-//#agrega_participantes_dialog(style='display:none;')
-//  .crea_nuevo_participante
-//    button(id='crea_nuevo_part') Crear participante
-//    .participantes_all
+      ul.participantes
+        each participante in participantes
+          li
+            .participante_item(id='#{participante._id}')
+              .participante_image
+                -if (! participante.img)
+                  img(src='/images/Anonymous.gif', width='50px')
+                -else
+                  img(src='#{participante_img}', width='50px')
+              .participante_info_short
+                a(href='/participantes/'+participante._id).participante_nombre #{participante.nombre}
+                .participante_edad #{participante.edad}

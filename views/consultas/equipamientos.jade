@@ -1,0 +1,5 @@
+ul.listado
+  -if(data.length)
+    !=partial('../partials/lista_equipamientos', { equipamientos: data })
+  -else
+    p No se encontraron equipamientos para esta b&uacute;squeda
