@@ -1,3 +1,14 @@
+.background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: #ddd;
+  z-index: -1;
+}
 .meter {
   height: 10px;
   position: relative;
@@ -76,6 +87,7 @@ body {
   height: 16px;
   background: url("/images/ajax-loader.gif") 0 0 no-repeat;
 }
+.root-wrapper,
 form li {
   margin-bottom: 15px;
   position: relative;
@@ -1206,12 +1218,14 @@ button#consolidar {
   float: right;
   margin-top: 8px;
 }
-#taller .indicador-asistencia span.Si {
+#taller .indicador-asistencia span.Si,
+#taller .indicador-asistencia span.si {
   background-color: #008000;
   border: none;
   opacity: 0.7;
 }
-#taller .indicador-asistencia span.No {
+#taller .indicador-asistencia span.No,
+#taller .indicador-asistencia span.no {
   background-color: #f00;
   border: none;
 }
@@ -1261,7 +1275,7 @@ article#equipamiento .list_header a#tab-editar {
   font-size: 14px;
 }
 article#equipamiento .list_header a#tab-editar span.mask {
-  width: 167px;
+  width: 166px;
 }
 article#equipamiento .list_header a#tab-agregar-participante {
   font-size: 14px;
@@ -1524,4 +1538,49 @@ article#taller.media .image-upload .skip {
 article#taller.media .image-upload .cancel {
   float: right;
   margin-right: 5px;
+}
+#galleria-wrapper {
+  width: 100%;
+  height: 600px;
+  position: absolute;
+  z-index: -2;
+}
+#galleria-wrapper a.close {
+  background: url("/images/overlay/close.png") no-repeat 0 0;
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  z-index: 20;
+  left: 60.5%;
+}
+#galleria-bg-overlay,
+#galleria-overlay {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  width: 60%;
+  height: 90%;
+}
+#galleria-bg-overlay {
+  background: #333;
+  opacity: 0.9;
+  -moz-border-radius-topleft: 4px;
+  -webkit-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -webkit-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+#galleria {
+  width: 100%;
+  height: 100%;
+}
+#galleria .galleria-container {
+  background: none;
 }

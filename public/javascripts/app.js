@@ -1,6 +1,55 @@
 jQuery(document).ready(function($) {
 
-	var articulo = $('input[name=articulo]').val();
+    var MediaGallery = function() {
+        var view = this;
+
+        console.log($("#galleria-wrapper").height())
+    
+        Galleria.loadTheme('/javascripts/thirdparty/galleria-classic-theme/galleria.classic.min.js');
+        Galleria.ready(function() {
+            console.log('ready')
+            $('#galleria-wrapper').overlay({
+                fixed: false,
+                top: 32
+            })
+            $('#galleria-wrapper').overlay().onClose(function() {
+                view.showing = false;
+            });
+            view.galleria = Galleria.get(0);
+        });
+        Galleria.run('#galleria', { dataSource: [{image:'/images/ajax-loader-big.gif'}] });
+    };
+        
+    MediaGallery.prototype.load = function(data) {
+        $('#galleria-wrapper').fadeIn(function() {
+            this.galleria.load(data);
+        }.bind(this))
+    };
+    
+    MediaGallery.prototype.open = function() {
+        var data = []
+        
+        $('ul.fotos li img').each(function() {
+            var img = $(this).attr('src').split('150-')[1];
+            data.push({
+                thumb: 'https://s3.amazonaws.com/red-artes-visuales/150-'+img,
+                image: 'https://s3.amazonaws.com/red-artes-visuales/'+img
+            })
+        });
+            
+        console.log(data)
+
+        if (!this.showing) {
+            this.showing = true;
+            $('#galleria-wrapper').css({ 'z-index': 1 });
+            this.load(data);
+            if(!$('#galleria-wrapper').overlay().isOpened()) {
+                $('#galleria-wrapper').overlay().load();
+            }
+        }
+    };
+    
+    var articulo = $('input[name=articulo]').val();
 
 	// Páginas
 	var Paginas = {};
@@ -41,6 +90,7 @@ jQuery(document).ready(function($) {
 		});
         
         $el.find('[type="radio"]').live('click', function(e) {
+            var $radio = $(this);
             var asistencia = $(this).val();
             var participante_id = $(this).attr('name').split('_').pop();
 
@@ -48,6 +98,10 @@ jQuery(document).ready(function($) {
                 asistencia: asistencia
             };
             $.post('/taller/' + taller_id + '/participantes/' + participante_id, data, function(res) {
+               $radio.closest('.participante_item')
+                    .find('.indicador-asistencia span')
+                    .removeClass('Si si No no')
+                    .addClass(asistencia);
             });
         });
 
@@ -472,6 +526,8 @@ jQuery(document).ready(function($) {
         this.taller_id = location.pathname.split('/')[2]
         uploadTallerMedia.call(this)
         
+        var gallery = new MediaGallery()
+        
         $("#upload-btn").click(function() {
             $('#upload').click();
         })
@@ -483,6 +539,12 @@ jQuery(document).ready(function($) {
             var $this = $(this);
             $('#file').text($this.val());
         });
+        
+        $("ul.fotos li")
+            .hover(function() { $(this).css({ cursor: 'pointer'}) })
+            .click(function(e) {
+                gallery.open()
+            })
     };
 
     Paginas.Control = function() {

@@ -37,6 +37,17 @@ blue-button()
   float: right
   cursor: pointer
 
+.background
+  width: 100%
+  height: 100%
+  position: absolute
+  left: 0
+  right: 0
+  bottom: 0
+  top: 0
+  background-color: #DDD
+  z-index: -1
+
 .meter
   height: 10px
   position: relative
@@ -122,6 +133,8 @@ body
   width: 16px
   height: 16px
   background: url(/images/ajax-loader.gif) 0 0 no-repeat
+
+.root-wrapper
 
 form li
   margin-bottom: 15px
@@ -870,11 +883,11 @@ button#consolidar
       border: 1px dashed #d1d2d3
       float: right
       margin-top: 8px
-      &.Si
+      &.Si, &.si
         background-color: green
         border: none
         opacity: 0.7
-      &.No
+      &.No, &.no
         background-color: red
         border: none
 
@@ -926,7 +939,7 @@ article#equipamiento
     a#tab-editar 
       font-size: 14px
       span.mask
-        width: 167px
+        width: 166px
 
     a#tab-agregar-participante
       span.mask
@@ -1116,3 +1129,37 @@ article#taller.media
     .cancel
       float: right
       margin-right: 5px
+
+#galleria-wrapper
+  width: 100%
+  height: 600px
+  position: absolute
+  z-index: -2
+
+  a.close
+    background: url('/images/overlay/close.png') no-repeat 0 0
+    width: 36px
+    height: 36px
+    position: absolute
+    z-index: 20
+    left: 60.5%
+
+
+#galleria-bg-overlay, #galleria-overlay
+  position: absolute
+  top: 15px
+  left: 30px
+  width: 60%
+  height: 90%
+
+#galleria-bg-overlay
+  background: #333
+  opacity: 0.9
+  corner(4px)
+
+#galleria
+  width: 100%
+  height: 100%
+  .galleria-container
+    background: none
+
