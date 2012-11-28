@@ -23,7 +23,8 @@
     "qs": "0.5.2",
     "gm": "1.6.1",
     "awssum": "0.12.0",
-    "date-utils": "1.2.12"
+    "date-utils": "1.2.12",
+    "ya-csv": "0.9.2"
   },
   "devDependencies": {
     "mocha": "1.4.0",

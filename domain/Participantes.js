@@ -20,6 +20,8 @@ function Service(app) {
 		}
 		// Find by All
 		else {
+            query.fecha = app.getPeriodoQuery();
+            
 			Participante.find(query).sort({
 				nombre: 'asc'
 			}).exec(function(err, records) {

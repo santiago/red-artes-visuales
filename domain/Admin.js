@@ -1,4 +1,6 @@
 require('date-utils')
+var fs = require('fs');
+var csv = require('ya-csv');
 
 function Service(app) {
 	var Creativo = app.db.model('Creativo');
@@ -6,6 +8,9 @@ function Service(app) {
 	var TallerBase = app.db.model('TallerBase');
 	var Taller = app.db.model('Taller');
 	var Evaluacion = app.db.model('Evaluacion');
+    var Equipamiento = app.db.model('Equipamiento');
+    var Participante = app.db.model('Participante');
+    var Asistencia = app.db.model('Asistencia');
 
 	function generarSeguimiento(req, res, next) {
 		Evaluacion.find({ creativo_id: req.creativo_id }, { sort: { actualizado: -1 } }, function(err, records) {
@@ -181,8 +186,6 @@ function Service(app) {
         });
         
         function generateControl(talleres) {
-            console.log('\n\n\n\nreq.creativos')
-            console.log(req.creativos)
             return req.creativos.map(function(creativo) {
                 var week = talleres[creativo.cedula] ? talleres[creativo.cedula].slice(1,7) : [0,0,0,0,0,0];
                 return {
@@ -194,7 +197,84 @@ function Service(app) {
         }
 
     }
-    
+
+    function generateExcelReport(req, res, next) {
+        var fields = {
+            participantes: [
+                ['nombre', 'Nombre Completo'], ['DOCUMENTO', 'No. de Documento'], ['TIPO_DOC', 'Tipo Doc'], ['GRADO', 'Grado'], 
+                ['FECHA_NACIMIENTO', 'Fecha de Nacimiento'], ['DIRECCION', 'Dirección'], ['comuna', 'Comuna'], ['barrio', 'Barrio'],
+                ['estrato', 'Estrato'], ['TELEFONO', 'Teléfono'], ['contacto', 'Contacto'], ['DOC_ACUDIENTE', 'Doc. Identidad Acudiente'], 
+                ['familiar', 'Situación familiar'], ['poblacion', 'Población'], ['padres', 'Nivel estudio padres'], ['observaciones', 'Observaciones']
+            ],
+            equipamientos: [
+                ['nombre', 'Nombre Completo'], ['ubicacion', 'Dirección'], ['comuna', 'Comuna'], ['barrio', 'Barrio'],
+                ['email', 'Email'], ['telefono', 'Teléfono'], ['otros_talleres', 'Otros talleres'], ['contacto', 'Contacto'], 
+                ['tipo', 'Clase de equipamiento'], ['e_equipos', 'Equipos disponibles'], ['locker', 'Tiene locker'], 
+                ['banos', 'Baños cerca'], ['e_equipos', 'Equipos electrónicos'], ['horario', 'Horario'], 
+                ['seguridad', 'Situación de la zona'], ['zona', 'Zona'], ['como_llegar', 'Cómo llegar'], ['web', 'Web'], 
+                ['fb', 'Facebook'], ['twitter', 'Twitter'], ['blog', 'Blog'], ['newsletter', 'Newsletter'], 
+                ['cartelera', 'Cartelera'], ['telefono_info', 'Teléfono Info'], ['perifonia', 'Perifonía'], ['boletin', 'Boletín'],
+                ['medios_comunit', 'Medios Comunitarios'], ['emailing', 'E-mailing'], ['observaciones', 'Comentarios']
+            ],
+            talleres: [
+                ['nombre', 'Nombre actividad'], ['descripcion', 'Descripción'], ['objetivos', 'Objetivos'], 
+                ['sensibilizacion', 'Sensibilización'], ['recorrido', 'Recorrido'], ['dinamica', 'Dinámica'], 
+                ['juego', 'Juego'], ['tecnicas_creativas', 'Técnicas Creativas'], 
+                ['referentes', 'Presentación de referentes'], ['experimentacion', 'Experimentación materiales'], 
+                ['visitas', 'Visitas'], ['investigacion', 'Investigación'], ['otro', 'Otro'], ['comentarios', 'Comentarios']
+            ],
+            asistencia: []
+        };
+
+        function getCsvWriter(resource) {
+            // Open File
+            var file = fs.createWriteStream('./public/reportes/'+resource+'.csv', { flags: 'w', mode: '0666' });
+            var writer = new csv.CsvWriter(file);
+            writer.writeRecord( fields[resource].map( function(f) { return f[1] } ) );
+            return writer;
+        }
+            
+        function writeRecord(resource, data, writer) {
+            var record = [];
+            fields[resource].forEach(function(f) {
+                record.push(data.get(f[0]))
+            });
+            writer.writeRecord(record);
+        }
+
+        TallerBase.find({ periodo: '2012' }, function(err, talleres) {
+            if(err) { return }
+            // Generate participantes.csv
+            var tallerWriter = getCsvWriter('talleres');
+            talleres.forEach(function(taller) {
+                writeRecord('talleres', taller, tallerWriter);
+            })
+        })
+        
+        // Participantes
+        Equipamiento.find(function(err, equipamientos) {
+            // Generate equipamientos.csv
+            var equipWriter = getCsvWriter('equipamientos');
+            var partiWriter = getCsvWriter('participantes');
+            var partiWriter = getCsvWriter('asistencia');
+
+            equipamientos.forEach(function(equip) {
+                writeRecord('equipamientos', equip, equipWriter);
+                
+                Participante.find({ equipamiento_id: equip._id.toString() }, function(err, participantes) {
+                    if(err) { return }
+                    // Generate participantes.csv
+                    participantes.forEach(function(parti) {
+                        writeRecord('participantes', parti, partiWriter);                        
+                    });
+                })
+            });
+        });
+        
+        next()
+    }
+
+
 	/*
      * JSON
      */
@@ -237,16 +317,13 @@ function Service(app) {
 		})
 	});
 
-	app.get('/consultas/creativos', getCreativos, function(req, res) {
-		res.render('admin/creativos', {
-			layout: false,
+    app.get('/admin/reportes', generateExcelReport, function(req, res) {
+		res.render('admin/reportes', {
 			locals: {
-				articulo: 'Creativos',
-				creativos: req.creativos
+				articulo: 'Reportes'
 			}
 		})
 	});
-
 
 	app.get('/admin/creativos/new', function(req, res) {
 		res.render('admin/creativo', {

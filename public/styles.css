@@ -478,6 +478,10 @@ equip_barrio {
 article#participante span.mask {
   width: 190px;
 }
+article#participante #tab-participante,
+article#participante #tab-todos-participantes {
+  font-size: 15px;
+}
 article#equipamiento header,
 article#participante header,
 article#taller header,
@@ -665,6 +669,7 @@ article#taller .list_header span.mask,
 article#participante .list_header span.mask,
 article#participantes .list_header span.mask,
 article#creativos .list_header span.mask,
+article#reportes .list_header span.mask,
 article#creativo .list_header span.mask,
 article#control .list_header span.mask,
 article#evaluacion .list_header span.mask {
@@ -683,6 +688,7 @@ article#taller .list_header a,
 article#participante .list_header a,
 article#participantes .list_header a,
 article#creativos .list_header a,
+article#reportes .list_header a,
 article#creativo .list_header a,
 article#control .list_header a,
 article#evaluacion .list_header a {
@@ -709,6 +715,7 @@ article#taller .list_header a.activo,
 article#participante .list_header a.activo,
 article#participantes .list_header a.activo,
 article#creativos .list_header a.activo,
+article#reportes .list_header a.activo,
 article#creativo .list_header a.activo,
 article#control .list_header a.activo,
 article#evaluacion .list_header a.activo {
@@ -725,6 +732,7 @@ article#taller .list_header a.activo span.mask,
 article#participante .list_header a.activo span.mask,
 article#participantes .list_header a.activo span.mask,
 article#creativos .list_header a.activo span.mask,
+article#reportes .list_header a.activo span.mask,
 article#creativo .list_header a.activo span.mask,
 article#control .list_header a.activo span.mask,
 article#evaluacion .list_header a.activo span.mask {
@@ -775,21 +783,25 @@ article#consultas .equip_item a.nombre {
 }
 article#creativo .list_header a#crear,
 article#creativos .list_header a#crear,
+article#reportes .list_header a#crear,
 article#control .list_header a#crear {
   float: right;
 }
 article#creativo .list_header a#crear span.mask,
 article#creativos .list_header a#crear span.mask,
+article#reportes .list_header a#crear span.mask,
 article#control .list_header a#crear span.mask {
   width: 139px;
 }
 article#creativo .list_header a#listar,
 article#creativos .list_header a#listar,
+article#reportes .list_header a#listar,
 article#control .list_header a#listar {
   float: left;
 }
 article#creativo .list_header a#listar span.mask,
 article#creativos .list_header a#listar span.mask,
+article#reportes .list_header a#listar span.mask,
 article#control .list_header a#listar span.mask {
   width: 98px;
 }
@@ -872,6 +884,7 @@ article#taller .list_body,
 article#talleres .list_body,
 article#participantes .list_body,
 article#creativos .list_body,
+article#reportes .list_body,
 article#monitor .list_body,
 article#evaluacion .list_body,
 article#control .list_body {
@@ -899,6 +912,7 @@ article#taller .list_body ul,
 article#talleres .list_body ul,
 article#participantes .list_body ul,
 article#creativos .list_body ul,
+article#reportes .list_body ul,
 article#monitor .list_body ul,
 article#evaluacion .list_body ul,
 article#control .list_body ul {
@@ -1640,5 +1654,17 @@ article#taller.media .image-upload .cancel {
 }
 article#equipamiento ul.participantes .participante_item a {
   padding: 0;
+  float: left;
+}
+article#reportes ul.listado li {
+  float: left;
+  clear: left;
+  margin-bottom: 5px;
+}
+article#reportes ul.listado li a {
+  float: left;
+  padding: 5px;
+}
+article#reportes ul.listado li img {
   float: left;
 }

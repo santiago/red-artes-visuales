@@ -85,6 +85,7 @@ var Taller = new Schema({
   , objetivos       :  { type: String }
   , metodologias    :  { type: Array }
   , habilidades     :  { type: Array }
+  , periodo         :  { type: String }
 });
 mongoose.model('TallerBase', Taller);
 
@@ -120,17 +121,10 @@ var Creativo = new Schema({
     email           : { type: String },
     telefono        : { type: String },
     direccion       : { type: String },
-    titulo          : { type: String }
+    titulo          : { type: String },
+    periodo          : { type: String }
 });
 mongoose.model('Creativo', Creativo);  
-
-/*var Asistencia = new Schema({
-    participante_id :  { type: String }, 
-    fecha           :  { type: Date, default: Date.now },
-    taller_id       :  { type: String, index: true },
-    creativo_cedula :  { type: String, index: true }
-});
-mongoose.model('Asistencia', Asistencia);  */
 
 var Evaluacion = new Schema({
     participante_id :  { type: String }
@@ -150,9 +144,9 @@ var Asistencia = new Schema({
     participante_id :  { type: String, index: true }
   , fecha           :  { type: Date, default: Date.now }
   , taller_id       :  { type: String, index: true }
-  , creativo_cedula     :  { type: String }
+  , creativo_cedula :  { type: String }
   , observaciones   :  { type: String }
-  , asistencia         :  { type: Boolean, get: getSiNo, set: setSiNo }
+  , asistencia      :  { type: Boolean, get: getSiNo, set: setSiNo }
   , actualizado    	:  { type: Date, default: Date.now }
 });
 mongoose.model('Asistencia', Asistencia);

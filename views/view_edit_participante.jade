@@ -30,20 +30,20 @@ article#participante
               input(name="nombre",id="nombre", readonly="readonly", type="text", value="#{participante.nombre}")
 
  
+    
         li
           .element
-            label Fecha de nacimiento:
-            -var fecha =""
-            -if (participante.fecha === 'undefined')
-              -var ano = participante.fecha.getFullYear()
-              -var mes = participante.fecha.getMonth()+1
-              -var dia = participante.fecha.getDate()
-              -fecha = ano+"/"+mes+"/"+dia;
+            label Edad:
             -if (edit)
-              input#fecha(type='text', name="fecha", value="#{fecha}")
+              select(name="edad")
+                each edad in params.edades
+                  - if (edad == participante.edad)
+                    option(value='#{edad}', selected='selected') #{edad}
+                  - else
+                    option(value='#{edad}') #{edad}
             -else
-              input#fecha(type='text', readonly="readonly", name="fecha", value="#{fecha}")
-    
+              | #{participante.edad}
+
         li
           .element
             label Comuna:
@@ -82,15 +82,7 @@ article#participante
                     option(value='#{estrato}') #{estrato}
             -else
               | #{participante.estrato}
-    
-        li
-          .element
-            label Fotos:
-    
-        li
-          .element
-            label Videos:
-    
+        
         li
           .element
             label Contacto:
@@ -150,6 +142,6 @@ article#participante
         -if (edit)
           li
             .element
-              button.submit Enviar
+              button.submit Actualizar
 
 

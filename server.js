@@ -23,8 +23,6 @@ everyauth.everymodule.findUserById(function(id, callback) {
 
 
 // Configuration
-
-
 function compile(str, path) {
 	return stylus(str).set('filename', path)
 	// .set('compress', true);
@@ -112,9 +110,41 @@ app.get('*', function(req, res, next) {
 	}
 });
 
+app.get('*', function(req, res, next) {
+    if(req.session && !req.session.periodo) {
+        req.session.periodo = (new Date).getFullYear();
+    }
+    next()
+});
+
+
 app.get('/', function(req, res) {
 	res.redirect('/equipamientos');
 });
+
+app.post('/admin/periodo', function(req, res) {
+    if (!req.body.periodo) req.body.periodo = req.session.periodo;
+    req.session.periodo = req.body.periodo;
+});
+
+app.getPeriodoQuery = function(req) {
+    var periodo = req.session.periodo;
+    console.log('\n\n\n\n\n\nperiodo')
+    console.log(periodo)
+    var january = new Date();
+    january.setFullYear(periodo);
+    january.setMonth(0);
+    january.setDate(1);
+    january.setHours(0);
+    
+    var december = new Date();
+    december.setFullYear(periodo);
+    december.setMonth(11);
+    december.setDate(31);
+    december.setHours(23);
+    
+    return { "$gte": january , "$lte": december };
+}
 
 // Initialize Domain
 require('./domain/Equipamientos')(app)

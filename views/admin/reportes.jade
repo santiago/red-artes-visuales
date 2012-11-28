@@ -1,4 +1,4 @@
-article#creativos
+article#reportes
   ul.list_header
     li
       a#listar(href="/admin/creativos", class='#{articulo == 'Creativos' ? "activo" : null }')
@@ -19,5 +19,15 @@ article#creativos
 
   .list_body
     ul.listado
-      !=partial('admin/lista_creativos', { creativos: creativos })
-
+      li
+        img(src='/images/excel-logo.jpg', width=30)
+        a(href='/reportes/talleres.csv') Talleres
+      li
+        img(src='/images/excel-logo.jpg', width=30)
+        a(href='/reportes/equipamientos.csv') Equipamientos
+      li
+        img(src='/images/excel-logo.jpg', width=30)
+        a(href='/reportes/participantes.csv') Participantes
+      li
+        img(src='/images/excel-logo.jpg', width=30)
+        a(href='/reportes/asistencia.csv') Asistencia

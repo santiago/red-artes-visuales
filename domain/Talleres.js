@@ -1,4 +1,5 @@
-var Taller, TallerBase, Asistencia;
+var Evaluacion, Participante, Taller, TallerBase, Asistencia;
+var getPeriodoQuery;
 
 var filtros = {
 	get: function(req, res, next) {
@@ -96,7 +97,8 @@ var filtros = {
 
 	getTalleres: function(req, res, next) {
 		Taller.find({
-			actividad_id: req.params.base_id
+			actividad_id: req.params.base_id,
+            fecha: getPeriodoQuery()
 		}, function(err, data) {
 			req.talleres = data;
 			next();
@@ -210,6 +212,8 @@ function Service(app) {
 	Taller = app.db.model('Taller');
 	TallerBase = app.db.model('TallerBase');
     Asistencia = app.db.model('Asistencia');
+    
+    getPeriodoQuery = app.getPeriodoQuery;
 
 	var Equipamientos = require('./Equipamientos').filters;
 
