@@ -1,4 +1,5 @@
 - var edit = false
+-console.log(creativo)
 article#taller
   input(type="hidden", id="taller_id", value=#{taller._id})
   header
@@ -7,6 +8,8 @@ article#taller
       a.nombre(href='/equipamientos/#{equipamiento._id}') #{equipamiento.nombre}
       label Taller
       p.nombre #{taller.nombre}
+      label Creativo
+      p.nombre #{creativo.nombre}
       label Fecha
       - var regex = new RegExp("^.{3}\\s");
       p.nombre #{taller.fecha.toDateString().replace(regex, '')}

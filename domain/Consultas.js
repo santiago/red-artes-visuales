@@ -99,7 +99,6 @@ function Service(app) {
                              'Equipamiento':'equipamientos',
                              'Participante': 'participantes'
                             }[q];
-                            
         } catch(e) {
             next()
             return
@@ -107,19 +106,22 @@ function Service(app) {
         
         if((req.by_barrio || req.by_comuna) && q != 'Equipamiento') {
             if(q == 'Taller') {
-                req.query['equipamiento_id'] = { '$in': req.by_barrio||req.by_comuna }
+                req.query['equipamiento_id'] = { '$in': req.by_barrio||req.by_comuna };
 
                 delete req.query['barrio'];
                 delete req.query['comuna'];
             }
-        } else if(q == 'Equipamiento') {
+        } /*else if(q == 'Equipamiento') {
+            Equipamiento.find(req.query, function(err, data) {
+            });
+            
             req.resultado = req.equipamientos
             next();
             return;
-        }
+        }*/
         
         delete req.query['q'];
-
+        
         Model.find(req.query, function(err, data) {
             req.resultado = data;
             next()

@@ -1,4 +1,4 @@
-var Evaluacion, Participante, Taller, TallerBase, Asistencia;
+var Evaluacion, Participante, Taller, TallerBase, Asistencia, Creativo;
 var getPeriodoQuery;
 
 var filtros = {
@@ -75,10 +75,17 @@ var filtros = {
 	},
 
 	getSesion: function(req, res, next) {
+        function getCreativo(cedula) {
+            Creativo.findOne({ cedula: cedula }, function(err, creativo) {
+                req.creativo = creativo;
+                next();
+            });
+        }
+        
 		Taller.findById(req.params.taller_id, function(err, taller) {
 			req.taller = taller;
             req.params.equipamiento_id = taller.equipamiento_id;
-			next();
+            getCreativo(taller.creativo_cedula);
 		});
 	},
 
@@ -212,6 +219,7 @@ function Service(app) {
 	Taller = app.db.model('Taller');
 	TallerBase = app.db.model('TallerBase');
     Asistencia = app.db.model('Asistencia');
+    Creativo = app.db.model('Creativo');
     
     getPeriodoQuery = app.getPeriodoQuery;
 
@@ -359,7 +367,8 @@ function Service(app) {
                 asistencia: req.asistencia,
 				participantes: req.participantes,
                 observaciones: req.observaciones,
-                equipamiento: req.equipamiento
+                equipamiento: req.equipamiento,
+                creativo: req.creativo
 			}
 		});
 	});
