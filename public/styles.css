@@ -426,6 +426,7 @@ equip_barrio {
   border-bottom: 1px solid #eee;
   margin: 8px 0;
   padding: 0 10px;
+  padding-bottom: 10px;
 }
 #consultas .taller_item p,
 #consultas .creativo_item p,
@@ -445,7 +446,7 @@ equip_barrio {
 }
 #consultas .taller_item .fecha,
 #consultas .creativo_item .fecha {
-  font-size: 11px;
+  font-size: 12px;
 }
 #consultas .equip_item {
   margin-right: 10px;
@@ -1416,6 +1417,13 @@ article#taller a.nombre {
   color: #000;
   font-weight: 900;
   text-decoration: underline;
+}
+article#control .intervalo {
+  float: left;
+  margin: 20px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 900;
 }
 article#control .list_body {
   padding-bottom: 20px;

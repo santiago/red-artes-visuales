@@ -10,13 +10,10 @@ function Service(app) {
 	var Evaluacion = app.db.model('Evaluacion');
     var Equipamiento = app.db.model('Equipamiento');
     var Participante = app.db.model('Participante');
-    var Asistencia = app.db.model('Asistencia');
 
 	function generarSeguimiento(req, res, next) {
 		Evaluacion.find({ creativo_id: req.creativo_id }, { sort: { actualizado: -1 } }, function(err, records) {
 			for (var obj in records) {
-				console.log(obj.actualizado);
-				console.log(typeof obj.actualizado);
 			}
 		});
 	}
@@ -162,7 +159,9 @@ function Service(app) {
 
         var weekday = Date.getDayNumberFromName(start.toString().split(' ')[0]);
         var sunday = start.add({ days: -weekday });
-        var saturday = start.clone().add({ weeks: 1 });
+        var saturday = start.clone().add({ weeks: 1, minutes: -1 });
+        
+        req.date_string = sunday.toDateString().slice(4) + " - " + saturday.toDateString().slice(4);
          
         Taller.find({ fecha: { "$gte": sunday , "$lte": saturday } }, function(err, data) {
             var talleresByCreativo = {}
@@ -179,8 +178,6 @@ function Service(app) {
             });
             
             req.control = generateControl(talleresByCreativo);
-            
-            console.log(req.control)
             
             next()
         });
@@ -358,7 +355,8 @@ function Service(app) {
             locals: {
                 articulo: 'Control',
                 creativos: req.creativos,
-                control: req.control
+                control: req.control,
+                date_string: req.date_string
             }
         })
     });

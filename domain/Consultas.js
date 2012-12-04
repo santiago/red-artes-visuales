@@ -111,18 +111,17 @@ function Service(app) {
                 delete req.query['barrio'];
                 delete req.query['comuna'];
             }
-        } /*else if(q == 'Equipamiento') {
-            Equipamiento.find(req.query, function(err, data) {
-            });
-            
-            req.resultado = req.equipamientos
-            next();
-            return;
-        }*/
+        }
         
         delete req.query['q'];
         
         Model.find(req.query, function(err, data) {
+            if(q == 'Taller') {
+                req.creativosByCedula = {};
+                req.creativos.forEach(function(c) {
+                    req.creativosByCedula[c.value] = c.label;
+                });
+            }
             req.resultado = data;
             next()
         });
@@ -138,6 +137,7 @@ function Service(app) {
 		        params: req.params,
 		        _equipamientos: req._equipamientos,
                 creativos: req.creativos,
+                creativosByCedula: req.creativosByCedula,
                 recurso: req.recurso || 'talleres',
                 resultado: req.resultado || []
 	        }

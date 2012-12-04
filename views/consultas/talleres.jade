@@ -4,6 +4,7 @@ ul
       li
         .taller_item(id='#{taller._id}')
           a.nombre(href='/taller/#{taller._id}') #{taller.nombre}
-          p.fecha #{taller.fecha.toDateString()}
+          p.fecha Fecha: #{taller.fecha.toDateString()}
+          p.creativo Creativo: #{creativosByCedula[taller.creativo_cedula]}
   -else
     p.vacio No se han encontraron talleres para esta b&uacute;squeda
