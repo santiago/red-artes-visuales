@@ -183,7 +183,7 @@ var TallerBaseForm = new FormValidator($("article#taller form"), {
 			return data;
 		},
 		'validate': ['presence']
-	},
+	}/*,
 	'habilidades': {
 		'find': '[name="habilidades[]"]',
 		'val': function() {
@@ -194,7 +194,7 @@ var TallerBaseForm = new FormValidator($("article#taller form"), {
 			return data;
 		},
 		'validate': ['presence']
-	}
+	}*/
 });
 
 var ParticipanteForm = new FormValidator(
