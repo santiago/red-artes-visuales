@@ -56,10 +56,10 @@ article#taller.base
               each habilidad in params.habilidades
                  - if (taller_base.habilidades.indexOf(habilidad) > -1) {
                   .option(class='#{i%3 == 0 ? "row" : "" }')
-                    input(name="habilidades[]", type="checkbox",disabled='disabled', value="#{habilidad}", checked='checked')
+                    input(name="habilidades[]", type="checkbox", disabled='disabled', value="#{habilidad}", checked='checked')
                  - } else {
                   .option(class='#{i%3 == 0 ? "row" : "" }')
-                    input(name="habilidades[]", type="checkbox",disabled='disabled', value="#{habilidad}")
+                    input(name="habilidades[]", type="checkbox", disabled='disabled', value="#{habilidad}")
                  - }
                     label.radio_text #{habilidad}
                  -i++

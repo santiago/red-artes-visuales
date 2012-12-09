@@ -253,7 +253,7 @@ function Service(app) {
             // Generate equipamientos.csv
             var equipWriter = getCsvWriter('equipamientos');
             var partiWriter = getCsvWriter('participantes');
-            var partiWriter = getCsvWriter('asistencia');
+            var asistWriter = getCsvWriter('asistencia');
 
             equipamientos.forEach(function(equip) {
                 writeRecord('equipamientos', equip, equipWriter);
