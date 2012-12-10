@@ -22,7 +22,7 @@ var filtros = {
 				next();
 			});
 		}
-		// Find by All
+		// Find All
 		else {
 			TallerBase.find(query).sort({
 				nombre: 'asc'
@@ -132,8 +132,6 @@ var filtros = {
 			});
 
 			taller.save(function(err, record) {
-				console.log(err);
-				console.log(record);
 				req.taller = record;
 				next();
 			});

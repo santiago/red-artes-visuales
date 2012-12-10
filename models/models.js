@@ -25,6 +25,13 @@ function getSiNo(val) {
 	return null;
 }
 
+var Periodo = new Schema({
+    periodo: { type: String },
+    inicio: { type: Date },
+    fin: { type: Date }
+});
+mongoose.model('Periodo', Periodo);
+
 var Equipamiento = new Schema({
     nombre          :  { type: String }
   , ubicacion       :  { type: String }

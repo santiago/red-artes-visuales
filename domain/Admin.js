@@ -11,7 +11,17 @@ function Service(app) {
     var Equipamiento = app.db.model('Equipamiento');
     var Participante = app.db.model('Participante');
 
-	function generarSeguimiento(req, res, next) {
+    function getPeriodo(req, res, next) {
+        var Periodo = app.db.model('Periodo');
+        var periodo = req.session.periodo;
+        Periodo.findOne({ periodo: periodo }, function(err, p) {
+            req.session.inicioPeriodo = p.get('inicio');
+            req.session.finPeriodo = p.get('fin');
+            next();
+        });
+    }
+    
+    function generarSeguimiento(req, res, next) {
 		Evaluacion.find({ creativo_id: req.creativo_id }, { sort: { actualizado: -1 } }, function(err, records) {
 			for (var obj in records) {
 			}
@@ -63,7 +73,7 @@ function Service(app) {
 
 		if (query._id) {
 			TallerBase.findOne(query, function(err, r) {
-				req.taller_base = record;
+				req.taller_base = r;
 				next();
 			});
 		}
@@ -195,7 +205,10 @@ function Service(app) {
 
     }
 
-    function generateExcelReport(req, res, next) {
+    function generateExcelReport(req, res, next) {    
+        var Asistencia = app.db.model('Asistencia');
+        var metodologias = require('../params').metodologias;
+
         var fields = {
             participantes: [
                 ['nombre', 'Nombre Completo'], ['DOCUMENTO', 'No. de Documento'], ['TIPO_DOC', 'Tipo Doc'], ['GRADO', 'Grado'], 
@@ -215,26 +228,85 @@ function Service(app) {
             ],
             talleres: [
                 ['nombre', 'Nombre actividad'], ['descripcion', 'Descripción'], ['objetivos', 'Objetivos'], 
-                ['sensibilizacion', 'Sensibilización'], ['recorrido', 'Recorrido'], ['dinamica', 'Dinámica'], 
-                ['juego', 'Juego'], ['tecnicas_creativas', 'Técnicas Creativas'], 
-                ['referentes', 'Presentación de referentes'], ['experimentacion', 'Experimentación materiales'], 
-                ['visitas', 'Visitas'], ['investigacion', 'Investigación'], ['otro', 'Otro'], ['comentarios', 'Comentarios']
+                ['metodologias', metodologias], ['comentarios', 'Comentarios']
             ],
             asistencia: []
         };
 
+        function generarHeaderAsistencia(writer) {
+            var inicioPeriodo = req.session.inicioPeriodo, finPeriodo = req.session.finPeriodo;
+            var today = Date.today();
+            var atWeek = inicioPeriodo.clone();
+            var weekHeaders = [];            
+            
+            var between = today.isBefore(finPeriodo) ?
+                inicioPeriodo.getDaysBetween(today) :
+                inicioPeriodo.getDaysBetween(finPeriodo);
+
+            var weeks = parseInt(between / 7);
+            for(var i=0; i < weeks; i++) {
+                weekHeaders.push(atWeek.toDateString().slice(4, 10).replace(' ', '.'));
+                atWeek.add({ weeks: 1 });
+            }
+            var header = ['Equipamiento', 'Participante'].concat(weekHeaders);
+            writer.writeRecord(header);
+        }
+        
+        function generarAsistencia(participante, equipamiento, writer) {
+            var inicioPeriodo = req.session.inicioPeriodo;
+            
+            Asistencia.find({ participante_id: participante._id.toString() }, 
+                function(err, data) {
+                    var week = 0;
+                    var asistencia = [];
+                    data.forEach(function(asist) {
+                        var fecha = asist.get('fecha');
+                        var between = inicioPeriodo.getDaysBetween(fecha);
+                        var atWeek = parseInt(between / 7);
+                        for(var i = week; i < atWeek; i++) {
+                            asistencia.push('N/D');
+                        }
+                        asistencia.push(asist.get('asistencia'));
+                        week = ++atWeek;
+                    });
+                    var row = [equipamiento.nombre, participante.nombre].concat(asistencia);
+                    writer.writeRecord(row);
+                });
+        }
+        
         function getCsvWriter(resource) {
             // Open File
             var file = fs.createWriteStream('./public/reportes/'+resource+'.csv', { flags: 'w', mode: '0666' });
             var writer = new csv.CsvWriter(file);
-            writer.writeRecord( fields[resource].map( function(f) { return f[1] } ) );
+            // Write headers corresponding to this writer's file
+            if(fields[resource].length ) {
+                var header = [];
+                fields[resource].forEach( function(f) {
+                    if (typeof f[1] == 'string') header.push(f[1])
+                    else if(f[1].length) { // Let's just assume it's an Array if it's got length
+                        f[1].forEach(function(n) {
+                            header.push(n);
+                        });
+                    }
+                } );
+                writer.writeRecord(header);
+            }
             return writer;
         }
-            
+
         function writeRecord(resource, data, writer) {
             var record = [];
             fields[resource].forEach(function(f) {
-                record.push(data.get(f[0]))
+                var _data = data.get(f[0]);
+                if(typeof f[1] == 'string')
+                    record.push(_data)
+                else if(f[1].length) { // Let's just assume it's an Array if it's got length
+                    f[1].forEach(function(n) {
+                        _data.indexOf(n) > -1 ?
+                            record.push('Sí') :
+                            record.push('No')
+                    });
+                }
             });
             writer.writeRecord(record);
         }
@@ -244,33 +316,37 @@ function Service(app) {
             // Generate participantes.csv
             var tallerWriter = getCsvWriter('talleres');
             talleres.forEach(function(taller) {
+                console.log(taller.get('metodologias'));
                 writeRecord('talleres', taller, tallerWriter);
             })
         })
-        
+
         // Participantes
         Equipamiento.find(function(err, equipamientos) {
             // Generate equipamientos.csv
             var equipWriter = getCsvWriter('equipamientos');
             var partiWriter = getCsvWriter('participantes');
             var asistWriter = getCsvWriter('asistencia');
+            
+            generarHeaderAsistencia(asistWriter);
 
             equipamientos.forEach(function(equip) {
                 writeRecord('equipamientos', equip, equipWriter);
-                
+
                 Participante.find({ equipamiento_id: equip._id.toString() }, function(err, participantes) {
                     if(err) { return }
                     // Generate participantes.csv
                     participantes.forEach(function(parti) {
-                        writeRecord('participantes', parti, partiWriter);                        
+                        // Generar Asistencia para este Participante
+                        generarAsistencia(parti, equip, asistWriter);
+                        writeRecord('participantes', parti, partiWriter);
                     });
                 })
             });
         });
-        
-        next()
-    }
 
+        next()
+    } // End of generateExcelReport()
 
 	/*
      * JSON
@@ -314,7 +390,7 @@ function Service(app) {
 		})
 	});
 
-    app.get('/admin/reportes', generateExcelReport, function(req, res) {
+    app.get('/admin/reportes', getPeriodo, generateExcelReport, function(req, res) {
 		res.render('admin/reportes', {
 			locals: {
 				articulo: 'Reportes'
@@ -339,7 +415,7 @@ function Service(app) {
 			}
 		})
 	});
-	
+
 	app.get('/creativos/:creativo_id/seguimiento', getCreativos, generarSeguimiento, function(req, res) {
 		req.render('admin/seguimiento_creativo', {
 			locals: {
@@ -349,7 +425,7 @@ function Service(app) {
 			}
 		})
 	});
-	
+
     app.get('/admin/control', getAllCreativos, getControl, function(req, res) {
         res.render('admin/control', {
             locals: {
@@ -361,6 +437,27 @@ function Service(app) {
         })
     });
     
+    /*app.get('/reportes/:reporte', function(req, res) {
+        if(['talleres','equipamientos', 'participantes', 'asistencia']
+            .indexOf(req.params['reporte'])) {
+            sendFile();
+        } else {
+            res.send(404);
+        }
+        
+        function sendFile() {
+            // Note: should use a stream here, instead of fs.readFile
+            fs.readFile('./public/reportes/' + req.params['reporte'], function(err, data) {
+                if(err) {
+                    res.send("Oops! Couldn't find that file.");
+                } else {
+                    // set the content type based on the file
+                    res.contentType('application/octet-stream');
+                    res.send(data);
+                }   
+                res.end();
+            }); 
+        }
+    });*/
 }
-
 module.exports = Service;
