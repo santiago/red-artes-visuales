@@ -164,10 +164,6 @@ var filtros = {
                 req.asistencia[doc.participante_id] = doc.get('asistencia');
                 req.observaciones[doc.participante_id] = doc.get('observaciones');
             });
-
-            console.log('\n\n\n\n')
-            console.log(req)
-
             next();
         });
     },
@@ -176,8 +172,6 @@ var filtros = {
         var asistencia = req.body.asistencia;
         var observaciones = req.body.observaciones;
 
-        // var Asistencia = app.db.model('Asistencia');
-        
         var query = {
             participante_id: req.params.participante_id,
             taller_id: req.params.taller_id
@@ -222,6 +216,30 @@ function Service(app) {
     getPeriodoQuery = app.getPeriodoQuery;
 
 	var Equipamientos = require('./Equipamientos').filters;
+    
+    function setupUpload(req, res, next) {
+        req.upload = {};
+        req.upload.resize = [150];        
+        next();
+    }
+    
+    function afterUpload(req, res, next) {
+        var taller_id = req.params.taller_id;
+        Taller.findById(taller_id, function(err, taller) {
+            var media = {
+                type: '',
+                format: '',
+                name: req.file,
+                creativo_cedula: req.user.cedula,
+                fecha: new Date
+            }
+            taller.get('media').push(media);
+            taller.save(function(err, obj) {
+                console.log(obj)
+            });
+        })
+        next();
+    }
 
 	/*
      * JSON
@@ -382,7 +400,7 @@ function Service(app) {
     })
     
     var upload = require('../lib/Upload')();
-    app.post('/taller/:taller_id/media', upload, function(req, res) {
+    app.post('/taller/:taller_id/media', setupUpload, upload, afterUpload, function(req, res) {
         res.send({ ok: true })
     });
 

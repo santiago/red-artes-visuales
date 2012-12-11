@@ -2,8 +2,6 @@ jQuery(document).ready(function($) {
 
     var MediaGallery = function() {
         var view = this;
-
-        console.log($("#galleria-wrapper").height())
     
         Galleria.loadTheme('/javascripts/thirdparty/galleria-classic-theme/galleria.classic.min.js');
         Galleria.ready(function() {
@@ -98,7 +96,7 @@ jQuery(document).ready(function($) {
             $.post('/taller/' + taller_id + '/participantes/' + participante_id, data, function(res) {
                $radio.closest('.participante_item')
                     .find('.indicador-asistencia span')
-                    .removeClass('Si si No no')
+                    .removeClass('undefined Si si No no')
                     .addClass(asistencia);
             });
         });
@@ -131,6 +129,10 @@ jQuery(document).ready(function($) {
         
         // Consolidar asistencia
         $("button#consolidar").click(function(e) {
+            if($('.undefined').length) {
+                alert("Debe completar la asistencia para todos los participantes antes de consolidar");
+                return;
+            }
             if(confirm("Después de consolidar, la información no podrá ser modificada. ¿Desea continuar?")) {
                 $.post("/taller/" + taller_id + "/consolida", function(data) {
                     location.reload()
@@ -437,6 +439,22 @@ jQuery(document).ready(function($) {
 	Paginas.EditarParticipante = function() {
 		var $el = $('#edit_participante');
 		var participante_id = $('#participante_id').val();
+        
+        setupUpload.call(this, '/participantes/'+participante_id+'/foto');
+        
+        $("#upload-btn").click(function(e) {
+            e.preventDefault();
+            $('#upload').click();
+        })
+        
+        // Hide file input
+        var wrapper = $('<div/>').css({height:0,width:0,'overflow':'hidden'});
+        var fileInput = $(':file').wrap(wrapper);
+        fileInput.change(function(){
+            var $this = $(this);
+            $('#file').text($this.val());
+        });
+        
 		$el.find('button.submit').click(function(e) {
 			e.preventDefault();
 			var data = EditarParticipanteForm.getValidData();
@@ -446,7 +464,6 @@ jQuery(document).ready(function($) {
 					type: 'PUT',
 					data: data,
 					success: function(data) {
-						// console.log(data);
 						location.href = "/participantes/" + participante_id;
 					}
 				});
@@ -466,7 +483,6 @@ jQuery(document).ready(function($) {
 					type: 'PUT',
 					data: data,
 					success: function(data) {
-						// console.log(data);
 						location.href = "/taller/" + taller_id;
 					}
 				});
@@ -482,7 +498,6 @@ jQuery(document).ready(function($) {
 			e.preventDefault();
 			var parti = ParticipanteForm.getValidData();
 			if (parti) {
-				// console.log(parti);
 				$.post('/participantes', parti, function(data) {
 					location.href = '/equipamientos/' + equip_id + "/participantes";
 				});
@@ -530,7 +545,7 @@ jQuery(document).ready(function($) {
         go()
     }
     
-    function uploadTallerMedia() {
+    function setupUpload(url) {
         var view = this;
             
         $('.image-upload .control a').click(function(e) {
@@ -546,7 +561,7 @@ jQuery(document).ready(function($) {
         });
 
         $("#upload").html5_upload({
-            url: '/taller/'+this.taller_id+'/media',
+            url: url,
             sendBoundary: window.FormData || $.browser.mozilla,
             onStart: function(event, total) {
                 // view.__progress = 0;
@@ -596,7 +611,7 @@ jQuery(document).ready(function($) {
     
     Paginas.TallerMedia = function() {
         this.taller_id = location.pathname.split('/')[2]
-        uploadTallerMedia.call(this)
+        setupUpload.call(this, '/taller/'+this.taller_id+'/media')
         
         var gallery = new MediaGallery()
         

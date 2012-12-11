@@ -31,10 +31,11 @@ article#equipamiento
           li
             .participante_item(id='#{participante._id}')
               .participante_image
-                -if (! participante.img)
-                  img(src='/images/Anonymous.gif', width='50px')
+                -if (!participante.foto)
+                  img(src='/images/Anonymous.gif', width='50')
                 -else
-                  img(src='#{participante_img}', width='50px')
+                  -var foto_thumb = 'https://s3.amazonaws.com/red-artes-visuales/participantes/50-'+participante.foto
+                  img(src='#{foto_thumb}', width='50')
               .participante_info_short
                 a(href='/participantes/'+participante._id).participante_nombre #{participante.nombre}
                 .participante_edad #{participante.edad}

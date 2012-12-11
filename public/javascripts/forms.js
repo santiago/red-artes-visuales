@@ -37,6 +37,8 @@ FormValidator.prototype.validate = function(opts) {
 			if (typeof fields[f].val == 'function') return fields[f].val();
 			else return self.$ctx.find(fields[f].find).val() || '';
 		})();
+        
+        console.log([f, val])
 
 		if (fields[f].validate && fields[f].validate.length) {
 			for (var i in fields[f].validate) {
@@ -203,9 +205,28 @@ $("#participante form"), {
 		'find': 'input[name=nombre]',
 		'validate': ['presence']
 	},
-	'fecha': {
+	/*'fecha': {
 		'find': 'input[name=fecha]'
+	},*/
+    'edad': {
+        'find': 'select[name=edad] option:selected',
+        'validate': ['presence']
+    },
+    'tipo_documento': {
+    	'find': 'select[name=tipo_doc] option:selected',
+		'validate': ['presence']
 	},
+    
+    'documento': {
+    	'find': 'input[name=documento]',
+		'validate': ['presence']
+    },
+
+    'grado': {
+        'find': 'select[name=grado] option:selected',
+        'validate': ['presence']
+    },
+    
 	'comuna': {
 		'find': 'select[name=comuna] option:selected',
 		'validate': ['presence']
@@ -215,8 +236,16 @@ $("#participante form"), {
 		'find': 'select[name=barrio] option:selected',
 		'validate': ['presence']
 	},
+    
+    'direccion': {
+		'find': 'input[name=direccion]'
+	},
 
-	'estrato': {
+    'telefono': {
+    	'find': 'input[name=telefono]'
+	},
+
+    'estrato': {
 		'find': 'select[name=estrato] option:selected',
 		'validate': ['presence']
 	},
@@ -242,8 +271,7 @@ $("#participante form"), {
 	},
 
 	'observaciones': {
-		'find': 'textarea[name=observaciones]',
-		'validate': ['presence']
+		'find': 'textarea[name=observaciones]'
 	},
 	'equipamiento_id': {
 		'find': 'input[name=equip_id]',
@@ -399,5 +427,8 @@ $("#equipamiento form"), {
 	'emailing': {
 		'find': 'input[name=emailing]:checked',
 		'validate': ['presence']
+	},
+    'observaciones': {
+		'find': 'textarea[name=observaciones]'
 	}
 });

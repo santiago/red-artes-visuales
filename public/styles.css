@@ -1046,6 +1046,14 @@ button#consolidar {
   float: left;
   width: 75%;
 }
+.participante_info_short a.observaciones,
+.participante_info_short .observaciones-item {
+  clear: left;
+  float: left;
+}
+.participante_info_short .observaciones-item {
+  width: 100%;
+}
 .participante_evaluacion {
   width: 80px;
   float: right;
@@ -1064,6 +1072,31 @@ button#consolidar {
 }
 .participante_edad {
   font-size: 0.8em;
+  clear: left;
+  float: left;
+}
+#edit_participante .element.documento input {
+  width: 360px;
+  margin-left: 10px;
+}
+#edit_participante .element.documento select {
+  width: 120px;
+}
+#edit_participante li {
+  width: 100%;
+}
+#edit_participante .element.foto .foto,
+#edit_participante .element.foto label {
+  float: left;
+}
+#edit_participante .element.foto button {
+  display: block;
+  font-size: 12px;
+  padding: 8px;
+  float: right;
+  cursor: pointer;
+  margin-top: 36px;
+  margin-left: 15px;
 }
 #agrega_participantes_dialog {
   display: none;
@@ -1362,22 +1395,44 @@ article#equipamiento button.submit {
   margin-right: 30px;
 }
 article#equipamiento #agregar_sesion {
+  -moz-border-radius-topleft: 6px;
+  -webkit-border-top-left-radius: 6px;
+  border-top-left-radius: 6px;
+  -moz-border-radius-topright: 6px;
+  -webkit-border-top-right-radius: 6px;
+  border-top-right-radius: 6px;
+  -moz-border-radius-bottomleft: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomright: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  border-bottom-right-radius: 6px;
   float: left;
-  padding-bottom: 20px;
-  padding-left: 30px;
+  padding: 10px 20px;
+  background-color: #eee;
+  margin-top: 6px;
+  margin-left: 20px;
+}
+article#equipamiento #agregar_sesion label {
+  float: left;
+  font-size: 13px;
+  font-weight: 900;
+  text-align: left;
 }
 article#equipamiento #agregar_sesion select {
+  clear: left;
   float: left;
   width: 290px;
   margin: 0;
-  height: 30px;
-  margin-top: 5px;
+  height: 27px;
+  margin-top: 6px;
 }
 article#equipamiento #agregar_sesion #fecha {
   margin: 0 10px;
-  width: 290px;
+  width: 200px;
   margin-top: 5px;
   height: 28px;
+  float: left;
 }
 article#equipamiento .taller_item {
   margin: 8px 0;
@@ -1571,7 +1626,7 @@ article#taller.media button#upload-btn {
 article#taller.media .media-wrapper {
   padding: 0 5px;
 }
-article#taller.media .image-upload {
+.image-upload {
   width: 250px;
   float: right;
   padding: 12px;
@@ -1593,25 +1648,25 @@ article#taller.media .image-upload {
   margin-right: 10px;
   margin-bottom: 10px;
 }
-article#taller.media .image-upload p.cancel-info {
+.image-upload p.cancel-info {
   color: #f00;
   margin-bottom: 3px;
 }
-article#taller.media .image-upload .control {
+.image-upload .control {
   margin-bottom: 3px;
 }
-article#taller.media .image-upload .control p {
+.image-upload .control p {
   float: left;
   margin-left: 5px;
   font-weight: bold;
 }
-article#taller.media .image-upload a {
+.image-upload a {
   color: #00f;
 }
-article#taller.media .image-upload .skip {
+.image-upload .skip {
   margin-left: 5px;
 }
-article#taller.media .image-upload .cancel {
+.image-upload .cancel {
   float: right;
   margin-right: 5px;
 }

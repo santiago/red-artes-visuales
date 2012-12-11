@@ -1,116 +1,180 @@
-article#participante
-  input(type="hidden", id="equipamiento_id", value="#{equipamiento._id}")
-  header
-    .header-content
-      label Equipamiento
-      p.nombre #{equipamiento.nombre}
-
-  .list_header
-    ul
+form#edit_participante
+  input(type="hidden", id="equip_id", name="equip_id", value="#{equipamiento._id}")
+  input(type="hidden", id="participante_id",name="participante_id", value="#{participante._id}")
+  ul
+    -if(edit)
       li
-        a#tab-talleres(href="/equipamientos/#{equipamiento._id}", class='#{articulo == 'Taller' ? "activo" : null }')
-          | Talleres
-          span.mask
-      li
-        a#tab-participantes(href="/equipamientos/#{equipamiento._id}/participantes", class='#{articulo == 'Participantes' ? "activo" : null }')
-          | Participantes
-          span.mask
-      li
-        a#tab-agregar-participante.last(class='#{articulo == 'FormParticipante' ? "activo" : null }')
-          | Agregar Participante
-          span.mask
-      li
-        a#tab-general(href="/equipamientos/#{equipamiento._id}/general", class='#{articulo == 'General' ? "activo" : null }')
-          | General
-          span.mask
-
-    form
-      input(type="hidden", id="equip_id",name="equip_id", value="#{equipamiento._id}")
-      ul
-        li
-          .element
-            label Nombre completo:      
-            input(name="nombre",id="nombre", type="text")
- 
-        li
-          .element
-            label Fecha de nacimiento:
-            input#fecha(type='text', name="fecha")
-    
-        li
-          .element
-            label Comuna:
-            select(name="comuna")
-              each comuna in params.comunas
-                - var select=null; 
-                //- if (comuna == model.comuna) select='selected';
-                option(value='#{comuna}', selected='#{select}') #{comuna}
-    
-        li
-          .element
-            label Barrio:
-            select(name="barrio")
-              each barrio in params.barrios
-                - var select=null; 
-                //- if (barrio == model.barrio) select='selected';
-                option(value='#{barrio}', selected='#{select}') #{barrio}
-    
-        li
-          .element
-            label Estrato:
-            select(name="estrato")
-              each estrato in params.estratos
-                - var select=null; 
-                //- if (estrato == model.estrato) select='selected';
-                option(value='#{estrato}', selected='#{select}') #{estrato}
-    
-        li
-          .element
-            label Fotos:
-    
-        li
-          .element
-            label Videos:
-    
-        li
-          .element
-            label Contacto:
-            input(name="contacto", id="contacto", type="text" )
-    
-        li
-          .element
-            label Situación familiar:
-            select(name="situacion")
-              each familiar in params.familiaridades
-                - var select=null; 
-                //- if (familiar == model.familiar) select='selected';
-                option(value='#{familiar}', selected='#{select}') #{familiar}
-    
-        li
-          .element
-            label Población:
-            select(name="poblacion")
-              each poblacion in params.poblacional
-                - var select=null; 
-                //- if (poblacion == model.poblacion) select='selected';
-                option(value='#{poblacion}', selected='#{select}') #{poblacion}
-    
-        li
-          .element
-            label Nivel de estudios padres:
-            select(name="padres")
-              each p in params.padres
-                - var select=null; 
-                //- if (p == model.padres) select='selected';
-                option(value='#{p}', selected='#{select}') #{p}
-    
-        li
-          .element
-            label Observaciones:
-            textarea(name="observaciones")
-    
-        li
-          .element
-            button.submit Enviar
+        .element.foto
+          label Foto:
+          .foto
+            -if(participante.foto)
+              -var foto_thumb = 'https://s3.amazonaws.com/red-artes-visuales/participantes/100-'+participante.foto
+            -else
+              -var foto_thumb = '/images/Anonymous.gif'
+            img(src="#{foto_thumb}", width="100")
+            span.add
+              button.css3button.blue-1#upload-btn Subir Foto
+              input#upload(type="file")
+        .image-upload(style='display:none;')
+          p.cancel-info(style='display:none;') Se cancel&oacute; la transferencia
+            .control
+              p Subiendo
+                span.index  0
+                span /
+                span.total 0
+              a.cancel(href='#') Cancelar
+              span &nbsp;&nbsp;|&nbsp;
+              a.skip(href='#') Omitir
+            .meter
+              span(style='width: 25%')
 
 
+    li
+      .element
+        label Nombre completo:
+        -if (edit)
+          input(name="nombre",id="nombre", type="text", value="#{participante.nombre}")
+        -else
+          input(name="nombre",id="nombre", type="text")
+
+    li
+      .element.documento
+        label Documento:
+        select(name="tipo_doc")
+          option(value='', selected='selected') -- Tipo Doc --
+          each tipo in params.tipos_documento
+            - if (tipo == participante.tipo_documento)
+              option(value='#{tipo}', selected='selected') #{tipo}
+            - else
+              option(value='#{tipo}') #{tipo}
+        -if (edit)
+          input(name="documento", type="text", value="#{participante.documento||''}")
+        -else
+          input(name="documento", type="text")
+        
+
+    
+    li
+      .element
+        label Edad:
+        select(name="edad")
+          option(value='', selected='selected') -- Seleccionar Edad --
+          each edad in params.edades
+            - if (edad == participante.edad)
+              option(value='#{edad}', selected='selected') #{edad}
+            - else
+              option(value='#{edad}') #{edad}
+
+    li
+      .element
+        label Grado:
+        select(name="grado")
+          option(value='', selected='selected') -- Seleccionar Grado --
+          each grado in params.grados
+            - if (grado == participante.grado)
+              option(value='#{grado}', selected='selected') #{grado}
+            - else
+              option(value='#{grado}') #{grado}
+
+    li
+      .element
+        label Comuna:
+        select(name="comuna")
+          option(value='', selected='selected') -- Seleccionar Comuna --
+          each comuna in params.comunas
+            - if (comuna == participante.comuna)
+              option(value='#{comuna}', selected='selected') #{comuna}
+            - else
+              option(value='#{comuna}') #{comuna}
+    
+    li
+      .element
+        label Barrio:
+        select(name="barrio")
+          option(value='', selected='selected') -- Seleccionar Barrio --
+          each barrio in params.barrios
+            - if (barrio == participante.barrio)
+              option(value='#{barrio}', selected='selected') #{barrio}
+            - else
+              option(value='#{barrio}') #{barrio}    
+    li
+      .element
+        label Direcci&oacute;n:
+        -if (edit)
+          input(name="direccion", type="text", value="#{participante.direccion||''}")
+        -else
+          input(name="direccion", type="text")
+
+    li
+      .element
+        label Tel&eacute;fono:
+        -if (edit)
+          input(name="telefono", type="text", value="#{participante.telefono||''}")
+        -else
+          input(name="telefono", type="text")
+
+    li
+      .element
+        label Estrato:
+        select(name="estrato")
+          option(value='', selected='selected') -- Seleccionar Estrato --
+          each estrato in params.estratos
+            - if (estrato == participante.estrato)
+              option(value='#{estrato}', selected='selected') #{estrato}
+            - else
+              option(value='#{estrato}') #{estrato}      
+    li
+      .element
+        label Contacto:
+        -if (edit)
+          input(name="contacto", id="contacto", type="text", value="#{participante.contacto}")
+        -else
+          input(name="contacto", id="contacto", type="text")
+    li
+      .element
+        label Situación familiar:
+        select(name="situacion")
+          option(value='', selected='selected') -- Seleccionar Situación Familiar --
+          each familiar in params.familiaridades
+            - if (familiar == participante.familiar)
+              option(value='#{familiar}', selected='selected') #{familiar}
+            - else
+              option(value='#{familiar}') #{familiar}
+    li
+      .element
+        label Población:
+        select(name="poblacion")
+          option(value='', selected='selected') -- Seleccionar Población --
+          each poblacion in params.poblacional
+            - if (poblacion == participante.poblacion)
+              option(value='#{poblacion}', selected='selected') #{poblacion}
+            - else
+              option(value='#{poblacion}') #{poblacion}
+    li
+      .element
+        label Nivel de estudios padres:
+        select(name="padres")
+          option(value='', selected='selected') -- Seleccionar Nivel de Estudios Padres de Familia --
+          each p in params.padres
+            - if (p == participante.padres)
+              option(value='#{p}', selected='selected') #{p}
+            - else
+              option(value='#{p}') #{p}
+    
+    li
+      .element
+        label Observaciones:
+        -if (edit)
+         textarea(name="observaciones") #{participante.observaciones}
+        -else
+         textarea(name="observaciones")
+        
+    
+    -if (edit)
+      li
+        .element
+          button.submit Actualizar
+    -else
+      li
+        .element
+          button.submit Guardar

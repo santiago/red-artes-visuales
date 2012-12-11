@@ -211,9 +211,9 @@ function Service(app) {
 
         var fields = {
             participantes: [
-                ['nombre', 'Nombre Completo'], ['DOCUMENTO', 'No. de Documento'], ['TIPO_DOC', 'Tipo Doc'], ['GRADO', 'Grado'], 
-                ['FECHA_NACIMIENTO', 'Fecha de Nacimiento'], ['DIRECCION', 'Dirección'], ['comuna', 'Comuna'], ['barrio', 'Barrio'],
-                ['estrato', 'Estrato'], ['TELEFONO', 'Teléfono'], ['contacto', 'Contacto'], ['DOC_ACUDIENTE', 'Doc. Identidad Acudiente'], 
+                ['nombre', 'Nombre Completo'], ['documento', 'No. de Documento'], ['tipo_documento', 'Tipo Doc'], ['grado', 'Grado'], 
+                ['edad', 'Edad'], ['direccion', 'Dirección'], ['comuna', 'Comuna'], ['barrio', 'Barrio'],
+                ['estrato', 'Estrato'], ['telefono', 'Teléfono'], ['contacto', 'Contacto'], ['DOC_ACUDIENTE', 'Doc. Identidad Acudiente'], 
                 ['familiar', 'Situación familiar'], ['poblacion', 'Población'], ['padres', 'Nivel estudio padres'], ['observaciones', 'Observaciones']
             ],
             equipamientos: [

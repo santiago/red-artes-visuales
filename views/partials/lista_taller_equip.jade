@@ -1,3 +1,11 @@
+#agregar_sesion
+  label Agregar Sesi&oacute;n
+  select(name='taller')
+    each taller in talleres
+      option(value='#{taller._id}') #{taller.nombre}
+  input#fecha(type='text',placeholder='Seleccionar Fecha')
+  button.submit Agregar Taller
+
 ul
   -if(sesiones.length)
     each sesion in sesiones
@@ -8,9 +16,3 @@ ul
   -else
     p.vacio No se han creado talleres para este equipamiento
 
-#agregar_sesion
-  select(name='taller')
-    each taller in talleres
-      option(value='#{taller._id}') #{taller.nombre}
-  input#fecha(type='text',placeholder='Seleccionar Fecha')
-  button.submit Agregar Taller

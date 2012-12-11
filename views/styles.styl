@@ -742,6 +742,11 @@ button#consolidar
 .participante_info_short
   float: left
   width: 75%
+  a.observaciones, .observaciones-item
+    clear: left
+    float: left
+  .observaciones-item
+    width: 100%
 
 .participante_evaluacion
   width: 80px
@@ -758,6 +763,26 @@ button#consolidar
 
 .participante_edad
   font-size: 0.8em
+  clear: left
+  float: left
+
+#edit_participante
+  .element.documento
+    input
+      width: 360px
+      margin-left: 10px
+    select
+      width: 120px
+  li
+    width: 100%
+  .element.foto
+    .foto, label
+      float: left
+    button
+      display: block
+      blue-button()
+      margin-top: 36px
+      margin-left: 15px
 
 #agrega_participantes_dialog
   display: none
@@ -1000,20 +1025,30 @@ article#equipamiento
     float: right
     margin-right: 30px
   #agregar_sesion
+    corner(6px)
     float: left
-    padding-bottom: 20px
-    padding-left: 30px
+    padding: 10px 20px
+    background-color: #EEE
+    margin-top: 6px
+    margin-left: 20px
+    label
+      float: left
+      font-size: 13px
+      font-weight: 900
+      text-align: left
     select
+      clear: left
       float: left
       width: 290px
       margin: 0
-      height: 30px
-      margin-top: 5px
+      height: 27px
+      margin-top: 6px
     #fecha
       margin: 0 10px
-      width: 290px
+      width: 200px
       margin-top: 5px
       height: 28px
+      float: left
   .taller_item
     margin: 8px 0
     padding: 0 10px
@@ -1155,32 +1190,32 @@ article#taller.media
   .media-wrapper
     padding: 0 5px
 
-  .image-upload
-    width: 250px
-    float: right
-    padding: 12px
-    background: #EEE
-    font-size: 11px
-    corner(6px)
-    margin-top: 10px
-    margin-right: 10px
-    margin-bottom: 10px
-    p.cancel-info
-      color: red
-      margin-bottom: 3px
-    .control
-      margin-bottom: 3px
-      p
-        float: left
-        margin-left: 5px
-        font-weight: bold
-    a
-      color: blue
-    .skip
+.image-upload
+  width: 250px
+  float: right
+  padding: 12px
+  background: #EEE
+  font-size: 11px
+  corner(6px)
+  margin-top: 10px
+  margin-right: 10px
+  margin-bottom: 10px
+  p.cancel-info
+    color: red
+    margin-bottom: 3px
+  .control
+    margin-bottom: 3px
+    p
+      float: left
       margin-left: 5px
-    .cancel
-      float: right
-      margin-right: 5px
+      font-weight: bold
+  a
+    color: blue
+  .skip
+    margin-left: 5px
+  .cancel
+    float: right
+    margin-right: 5px
 
 #galleria-wrapper
   width: 100%

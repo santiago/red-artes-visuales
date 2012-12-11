@@ -19,6 +19,11 @@ function setSiNo(val) {
 	return null;
 }
 
+function setObservaciones(val) {
+    this.get('revisions').push(val);
+	return val;
+}
+
 function getSiNo(val) {
 	if (val === true) return 'Si';
 	if (val === false) return 'No';
@@ -70,19 +75,27 @@ mongoose.model('Equipamiento', Equipamiento);
 
 var Participante = new Schema({
     equipamiento_id :  { type: String, index: true }
-  , fecha           :  { type: Date }
+  , fecha_nacimiento:  { type: Date }
+  , tipo_documento  :  { type: String, enum: params.tipos_documentos }
+  , documento       :  { type: String }
+  , grado           :  { type: Number }
+  , edad            :  { type: String }
   , nombre          :  { type: String, default: 'Nombre' }
   , comuna          :  { type: String, enum: params.comunas }
   , barrio          :  { type: String, enum: params.barrios }
+  , direccion       :  { type: String }
+  , telefono       :   { type: String }
   , estrato         :  { type: String, enum: params.estratos }
-  , contacto        :  { type: String}
+  , contacto        :  { type: String }
+  , foto            :  { type: String }
   , fotos           :  { type: Array }
   , videos          :  { type: Array }
   , familiar        :  { type: String, enum: params.familiaridades }
   , vive_con_otro   :  { type: String }
   , poblacion       :  { type: String, enum: params.poblacional }
   , padres          :  { type: String, enum: params.padres }
-  , observaciones   :  { type: String }
+  , observaciones   :  { type: String, set: setObservaciones }
+  , revisions       :  { type: Array }
 });
 mongoose.model('Participante', Participante);  
 

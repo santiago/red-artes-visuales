@@ -45,6 +45,10 @@ module.exports = {
 		   'Técnicas Creativas', 'Presentación de Referentes', 
 		   'Experimentación Materiales' , 'Visitas', 'Investigación', 
 		   'Intercambios', 'Otro'],
+    
+    grados: [1,2,3,4,5,6,7,8,9,10,11],
+    
+    tipos_documento: ['TI', 'CC'],
 
     zonas: ['Urbana','Rural']
 }

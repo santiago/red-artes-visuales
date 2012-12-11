@@ -43,13 +43,11 @@ function Service(app) {
 	function putParticipantes(req, res, next) {
 		var data = req.body;
 		var id = req.params.id;
-		Participante.update({
-			_id: id
-		}, data, function(err, r) {
-			if (err) {
-				res.error = true;
+    	Participante.findById(id, function(err, r) {
+			for(f in data) {
+				r.set(f, data[f]);
 			}
-			next();
+			r.save(next);
 		});
 	}
 
@@ -121,22 +119,11 @@ function Service(app) {
 
 	// Agregar Participante a Equipamiento
 	app.get('/equipamientos/:equipamiento_id/participantes/new', getEquipamiento, function(req, res) {
-		res.render('forms/participante', {
+		res.render('participante', {
 			locals: {
 				equipamiento: req.equipamiento,
 				params: app.params,
 				articulo: 'FormParticipante'
-			}
-		});
-	});
-
-	app.get('/participantes/:id/edit', getParticipantes, getEquipFromParticipanteId, function(req, res) {
-		res.render('view_edit_participante', {
-			locals: {
-				participante: req.participante,
-				equipamiento: req.equipamiento,
-				params: app.params,
-				articulo: 'EditarParticipante',
 			}
 		});
 	});
@@ -147,10 +134,39 @@ function Service(app) {
 				participante: req.participante,
 				equipamiento: req.equipamiento,
 				params: app.params,
-				articulo: 'VerParticipante',
+				articulo: 'EditarParticipante',
 			}
 		});
 	});
+    
+    var upload = require('../lib/Upload')();
+    function setupUpload(req, res, next) {
+        req.upload = {};
+        req.upload.resize = [50, 100];
+        req.upload.filename = req.params.id;
+        req.upload.path = 'participantes';
+        next();
+    }
+    function afterUpload(req, res, next) {
+        req.participante.set('foto', req.file);
+        req.participante.save(function(err, r) {
+            next();
+        });
+    }
+    app.post('/participantes/:id/foto', getParticipantes, setupUpload, upload, afterUpload, function(req, res) {
+        res.send({ ok: true })
+    });
+
+	/*app.get('/participantes/:id', getParticipantes, getEquipFromParticipanteId, function(req, res) {
+		res.render('view_edit_participante', {
+			locals: {
+				participante: req.participante,
+				equipamiento: req.equipamiento,
+				params: app.params,
+				articulo: 'VerParticipante',
+			}
+		});
+	});*/
 }
 
 module.exports = Service;
