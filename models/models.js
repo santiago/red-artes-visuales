@@ -131,9 +131,9 @@ var Usuario = new Schema({
     email           : { type: String },
     cedula          : { type: String },
     contrasena      : { type: String },
-    rol             : { type: String, enum: params.roles }
+    perfil          : { type: String, enum: ['admin', 'creativo'], default: 'creativo' }
 });
-mongoose.model('Usuario', Usuario); 
+mongoose.model('Usuario', Usuario);
 
 var Creativo = new Schema({
     nombre          : { type: String },
@@ -142,7 +142,7 @@ var Creativo = new Schema({
     telefono        : { type: String },
     direccion       : { type: String },
     titulo          : { type: String },
-    periodo          : { type: String }
+    periodo         : { type: String }
 });
 mongoose.model('Creativo', Creativo);  
 

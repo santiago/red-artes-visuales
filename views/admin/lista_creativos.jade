@@ -1,6 +1,8 @@
 each creativo in creativos 
+  -var usuario = usuarios[creativo.cedula]||{}
   li
     .creativo_item
       .creativo(id='#{creativo._id}')
       a.creativo_nombre(href='/creativos/#{creativo._id}') #{creativo.nombre}
+      span.perfil(class="#{usuario.perfil}") [ #{usuario.perfil} ]
       .creativo_titulo #{creativo.titulo}

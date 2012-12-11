@@ -403,6 +403,14 @@ jQuery(document).ready(function($) {
 		function res(data) {
 			location.href = location.pathname;
 		}
+        
+        var creativo_id = location.href.split('/').pop();
+        
+        $('.perfil input[type=radio]').click(function() {
+            $.post('/creativo/'+creativo_id+'/perfil', { perfil: $(this).val() }, function() {
+                alert('Se actualizó el perfil de este usuario!')
+            });
+        });
 
 		var $el = $('#creativo form');
 		$el.find('button').click(function(e) {
@@ -648,7 +656,7 @@ jQuery(document).ready(function($) {
 	var fixMask = function() {
 			$('.list_header a.activo').each(function() {
 				$(this).find('span.mask').css({
-					width: $(this).closest('li').width()
+					width: $(this).closest('a').width()+20
 				})
 			});
 		}

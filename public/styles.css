@@ -1458,11 +1458,67 @@ article#creativos .creativo_item {
   width: 100%;
   padding: 10px;
 }
+article#creativos span.perfil {
+  font-size: 12px;
+  font-weight: 900;
+  margin-left: 5px;
+}
+article#creativos span.perfil.admin {
+  color: #f00;
+}
 .first {
   float: left !important;
 }
 article#creativo a.seguimiento {
   float: left;
+}
+article#creativo form {
+  position: relative;
+}
+article#creativo form ul {
+  float: left;
+  padding-top: 60px;
+}
+article#creativo .list_header span.mask {
+  z-index: 30;
+  bottom: 0;
+}
+article#creativo .perfil {
+  min-width: 330px;
+  position: absolute;
+  z-index: 20;
+  right: 0;
+  margin-left: 50px;
+  padding: 15px 20px;
+  background-color: #eee;
+  -moz-border-radius-topleft: 0;
+  -webkit-border-top-left-radius: 0;
+  border-top-left-radius: 0;
+  -moz-border-radius-topright: 0;
+  -webkit-border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  -moz-border-radius-bottomleft: 6px;
+  -webkit-border-bottom-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  -moz-border-radius-bottomright: 0;
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+article#creativo .perfil p {
+  float: left;
+  font-weight: 900;
+  margin-right: 20px;
+  margin-top: -2px;
+  font-size: 14px;
+}
+article#creativo .perfil input[type=radio],
+article#creativo .perfil label {
+  float: left;
+  margin-right: 10px;
+}
+article#creativo .perfil label {
+  text-align: left;
+  width: auto;
 }
 article#taller form {
   box-shadow: none;

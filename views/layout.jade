@@ -24,8 +24,9 @@ html
               a#talleres(href='/talleres') Talleres 
             li.menu_item
               a#consultas(href='/consultas') Consultas 
-            li.menu_item
-              a#consultas(href='/admin/creativos') Admin
+            -if(user && user.perfil == 'admin')
+              li.menu_item
+                a#consultas(href='/admin/creativos') Admin
             - if (everyauth.loggedIn)
               li.menu_item
                 a#logout(href='/logout') Logout

@@ -1,5 +1,19 @@
 -if(typeof creativo == 'undefined') creativo = {}
+-var perfil = usuario.perfil
 form
+  -if(articulo == "EditarCreativo")
+    .perfil
+      p Perfil
+      -if(perfil == 'admin')
+        input(type='radio', name='perfil', value='admin', checked='checked')
+      -else
+        input(type='radio', name='perfil', value='admin') 
+      label Administrador
+      -if(perfil == 'creativo')
+        input(type='radio', name='perfil', value='creativo', checked='checked') Creativo
+      -else
+        input(type='radio', name='perfil', value='creativo') Creativo
+      label Creativo
   ul
     li
       .element

@@ -1076,12 +1076,50 @@ article#creativos
     width: 100%
     padding: 10px
 
+  span.perfil
+    font-size: 12px
+    font-weight: 900
+    margin-left: 5px
+    &.admin
+      color: red
+
 .first
   float: left !important
 
 article#creativo
   a.seguimiento
     float: left
+  form
+    position: relative
+    ul
+      float: left
+      padding-top: 60px
+
+  .list_header span.mask
+    z-index: 30
+    bottom: 0
+  .perfil
+    min-width: 330px
+    position: absolute
+    z-index: 20
+    right: 0
+    margin-left: 50px
+    padding: 15px 20px
+    background-color: #eee
+    corner-each(0,0,0,6px)
+    p
+      float: left
+      font-weight: 900
+      margin-right: 20px
+      margin-top: -2px
+      font-size: 14px
+
+    input[type=radio], label
+      float: left
+      margin-right: 10px
+    label
+      text-align: left
+      width: auto
 
 article#taller
   form

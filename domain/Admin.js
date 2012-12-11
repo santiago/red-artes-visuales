@@ -11,6 +11,14 @@ function Service(app) {
     var Equipamiento = app.db.model('Equipamiento');
     var Participante = app.db.model('Participante');
 
+    function isAdmin(req, res, next) {
+        if(req.user.perfil == 'admin') {
+            next();
+            return;
+        }
+        res.send(403); // Access Forbidden
+    }
+    
     function getPeriodo(req, res, next) {
         var Periodo = app.db.model('Periodo');
         var periodo = req.session.periodo;
@@ -43,17 +51,32 @@ function Service(app) {
 
 		// Find by Id
 		if (query._id) {
+            function findUser(cedula) {
+                Usuario.findOne({ cedula: cedula }, function(err, r) {
+                    req.usuario = r;
+                    next()  
+                })
+            }
 			Creativo.findOne(query, function(err, r) {
 				req.creativo = r;
-				next();
+                findUser(r.cedula);
 			});
 		}
 		// Find by All
 		else {
+            function findUsuarios() {
+                req.usuarios = {};
+                Usuario.find(function(err, records) {
+                    records.forEach(function(u) {
+                        req.usuarios[u.cedula] = u;
+                    });
+                    next();
+                });
+            }
 			Creativo.find(query).sort({ nombre: 'asc' })
 				.exec(function(err, records) {
 					req.creativos = records;
-					next();
+                    findUsuarios();
 				});
 		}
 	}
@@ -378,6 +401,11 @@ function Service(app) {
 		})
 	});
 
+    app.all('/admin/*', isAdmin);
+    app.all('/creativo/*', isAdmin);
+    app.all('/creativos/*', isAdmin);
+
+
 	/*
      * HTML
      */
@@ -385,7 +413,8 @@ function Service(app) {
 		res.render('admin/creativos', {
 			locals: {
 				articulo: 'Creativos',
-				creativos: req.creativos
+				creativos: req.creativos,
+                usuarios: req.usuarios
 			}
 		})
 	});
@@ -411,7 +440,8 @@ function Service(app) {
 		res.render('admin/editar_creativo', {
 			locals: {
 				articulo: 'EditarCreativo',
-				creativo: req.creativo
+				creativo: req.creativo,
+                usuario: req.usuario
 			}
 		})
 	});
@@ -435,6 +465,14 @@ function Service(app) {
                 date_string: req.date_string
             }
         })
+    });
+    
+    app.post('/creativo/:creativo_id/perfil', getCreativos, /*isAdmin,*/ function(req, res) {
+        req.usuario.set('perfil', req.body.perfil); 
+        req.usuario.save(function(err, r) {
+            console.log(r);
+        });
+        res.send({ ok: true })
     });
     
     /*app.get('/reportes/:reporte', function(req, res) {
