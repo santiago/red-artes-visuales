@@ -105,7 +105,7 @@ var filtros = {
 	getTalleres: function(req, res, next) {
 		Taller.find({
 			actividad_id: req.params.base_id,
-            fecha: getPeriodoQuery()
+            fecha: getPeriodoQuery(req)
 		}, function(err, data) {
 			req.talleres = data;
 			next();
@@ -156,7 +156,7 @@ var filtros = {
 	},
     
     getAsistencia: function(req, res, next) {
-        Asistencia.find({ taller_id: req.params.taller_id }, function(err, docs) {
+        Asistencia.find({ taller_id: req.params.taller_id, fecha: getPeriodoQuery(req) }, function(err, docs) {
             req.asistencia = {};
             req.observaciones = {};
             

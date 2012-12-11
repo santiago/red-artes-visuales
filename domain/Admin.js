@@ -81,45 +81,6 @@ function Service(app) {
 		}
 	}
 
-	function getTaller_Bases(req, res, next) {
-		var query = (function() {
-			if (req.params.id) {
-				return {
-					_id: req.params.id
-				}
-			}
-			if (req.query) {
-				return req.query;
-			}
-			return {};
-		})();
-
-		if (query._id) {
-			TallerBase.findOne(query, function(err, r) {
-				req.taller_base = r;
-				next();
-			});
-		}
-		else {
-			Taller.find(query, function(err, talleres) {
-				req.talleres = talleres;
-				var id_array = new Array();
-				req.talleres.forEach(function(item, index) {
-					id_array[index] = item.actividad_id;
-				});
-				TallerBase.find({
-					'_id': {
-						$in: id_array
-					}
-				}, function(err, records) {
-					req.taller_bases = records;
-					checkInfoProvided(req.taller_bases, req);
-					next();
-				});
-			});
-		}
-	}
-
 	function checkInfoProvided(taller_bases, req) {
 		var info_provided = new Array();
 		for (var i = 0; i < taller_bases.length; i++) {

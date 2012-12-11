@@ -106,15 +106,14 @@ app.get('*', function(req, res, next) {
 		res.redirect('/login');
 	}
 	else {
+        if(req.session && !req.session.periodo) {
+            req.session.periodo = (new Date).getFullYear();
+        }
+        if(req.session.periodo != req.user.periodo) {
+            req.user.periodo = req.session.periodo
+        }
 		next();
 	}
-});
-
-app.get('*', function(req, res, next) {
-    if(req.session && !req.session.periodo) {
-        req.session.periodo = (new Date).getFullYear();
-    }
-    next()
 });
 
 
@@ -125,12 +124,11 @@ app.get('/', function(req, res) {
 app.post('/admin/periodo', function(req, res) {
     if (!req.body.periodo) req.body.periodo = req.session.periodo;
     req.session.periodo = req.body.periodo;
+    res.send({ ok: true })
 });
 
 app.getPeriodoQuery = function(req) {
     var periodo = req.session.periodo;
-    console.log('\n\n\n\n\n\nperiodo')
-    console.log(periodo)
     var january = new Date();
     january.setFullYear(periodo);
     january.setMonth(0);

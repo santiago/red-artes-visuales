@@ -1,4 +1,5 @@
 var Equipamiento, Taller, TallerBase, Participante;
+var getPeriodoQuery;
 
 var filters = {
 	get: function(req, res, next) {
@@ -13,6 +14,11 @@ var filters = {
 			}
 			return null;
 		})();
+        
+        /*if(req.user.perfil == 'admin') {
+            // Agregar Periodo al query
+            query.periodo = req.session.periodo
+        }*/
 
 		// Find by Id
 		if (query) {
@@ -75,7 +81,8 @@ var filters = {
 
 	getSesiones: function(req, res, next) {
 		var id = req.params.equipamiento_id;
-		Taller.find({ 'equipamiento_id': id }).sort({ fecha: 'desc' })
+        var fecha = getPeriodoQuery(req);
+		Taller.find({ 'equipamiento_id': id, fecha: fecha }).sort({ fecha: 'desc' })
             .exec(function(err, rs) {
 			    req.sesiones = rs;
 			    next();
@@ -88,7 +95,7 @@ var filters = {
 			next();
 		});
 	},
-	
+
 	getParticipantes: function(req, res, next) {
 		Participante.find({ 'equipamiento_id': req.params.equipamiento_id }).sort({ nombre: 'asc' })
 			.exec(function(err, records) {
@@ -103,6 +110,8 @@ function Service(app) {
 	Equipamiento = app.db.model('Equipamiento');
 	Taller = app.db.model('Taller');
 	TallerBase = app.db.model('TallerBase');
+    
+    getPeriodoQuery = app.getPeriodoQuery;
 
 	/*
      * JSON

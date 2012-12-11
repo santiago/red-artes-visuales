@@ -666,5 +666,11 @@ jQuery(document).ready(function($) {
 	}
 	catch (err) {}
 
-
+    $('#periodo select').on('change', function() {
+        var periodo = $(this).val()
+        $.post('/admin/periodo', { periodo: periodo }, function() {
+             alert("Se ha cambiado el Periodo a "+periodo);
+             location.href = location.pathname;
+        })
+    })
 }) // endonready

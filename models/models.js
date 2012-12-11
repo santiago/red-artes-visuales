@@ -70,6 +70,7 @@ var Equipamiento = new Schema({
   , medios_comunit  :  { type: Boolean, get: getSiNo, set: setSiNo }
   , emailing        :  { type: Boolean, get: getSiNo, set: setSiNo }
   , observaciones   :  { type: String }
+  , periodo         :  { type: String }
 });
 mongoose.model('Equipamiento', Equipamiento);
 
