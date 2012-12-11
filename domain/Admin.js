@@ -401,9 +401,9 @@ function Service(app) {
 		})
 	});
 
-    app.all('/admin/*', isAdmin);
+    /*app.all('/admin/*', isAdmin);
     app.all('/creativo/*', isAdmin);
-    app.all('/creativos/*', isAdmin);
+    app.all('/creativos/*', isAdmin);*/
 
 
 	/*
