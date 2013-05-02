@@ -186,7 +186,6 @@ function Service(app) {
                 }
             });
         }
-
     }
 
     function generateExcelReport(req, res, next) {    
@@ -392,7 +391,8 @@ function Service(app) {
 		res.render('admin/creativo', {
 			locals: {
 				articulo: 'FormCreativo',
-				params: app.params
+				params: app.params,
+                usuario: {}
 			}
 		});
 	});
