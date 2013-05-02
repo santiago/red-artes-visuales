@@ -1520,6 +1520,14 @@ article#creativo .perfil label {
   text-align: left;
   width: auto;
 }
+article#creativo #save {
+  margin-left: 200px;
+  padding: 8px;
+  font-size: 12px;
+}
+article#creativo #delete {
+  float: right;
+}
 article#taller form {
   box-shadow: none;
 }

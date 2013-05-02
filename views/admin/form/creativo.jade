@@ -41,6 +41,8 @@ form
         textarea(name="desc") #{creativo.direccion||''}
     li
       .element
-        button(id="submit") Guardar
+        button.css3button.blue-1#save Guardar
 
-
+    -if(articulo == "EditarCreativo")
+      .element
+        button.css3button.red-1#delete Eliminar

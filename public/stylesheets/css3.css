@@ -28,3 +28,34 @@ button.css3button.blue-1 {
 		0px -1px 0px rgba(000,000,000,0.2),
 		0px 1px 0px rgba(255,255,255,0.3);
 }
+
+button.css3button.red-1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #ffffff;
+	padding: 8px;
+	background: -moz-linear-gradient(
+		top,
+		rgb(222, 61, 61) 0%,
+		rgb(231, 38, 38));
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(rgb(222, 61, 61)),
+		to(rgb(231, 38, 38)));
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 1px solid rgb(222, 61, 61);
+	-moz-box-shadow:
+		0px 3px 11px rgba(122,122,122,0.5),
+		inset 0px -1px 1px rgba(038,100,128,1);
+	-webkit-box-shadow:
+		0px 3px 11px rgba(122,122,122,0.5),
+		inset 0px -1px 1px rgba(038,100,128,1);
+	box-shadow:
+		0px 3px 11px rgba(122,122,122,0.5),
+		inset 0px -1px 1px rgba(128, 38, 38, 0.68);
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,0.3);
+}
