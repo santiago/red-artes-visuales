@@ -1,5 +1,15 @@
 jQuery(document).ready(function($) {
 
+    // Quick & dirty UI fixes
+    $('#tab-general').hide();
+
+    $('button').css({ cursor: 'pointer' });
+
+    // What's this content
+    var articulo = $('input[name=articulo]').val();
+
+    
+    // Media Gallery
     var MediaGallery = function() {
         var view = this;
     
@@ -17,7 +27,7 @@ jQuery(document).ready(function($) {
         });
         Galleria.run('#galleria', { dataSource: [{image:'/images/ajax-loader-big.gif'}] });
     };
-        
+    
     MediaGallery.prototype.load = function(data) {
         $('#galleria-wrapper').fadeIn(function() {
             this.galleria.load(data);
@@ -45,28 +55,63 @@ jQuery(document).ready(function($) {
         }
     };
     
-    var articulo = $('input[name=articulo]').val();
 
 	// Páginas
 	var Paginas = {};
 
-	Paginas.SeguimientoCreativo = function() {
+    Paginas.Equipamientos = function() {};
+
+	Paginas.EquipamientoTalleres = function() {
+		var $el = $('article#equipamiento');
+
+		$('#fecha').datepicker();
+
+		$el.find('.submit').click(function(e) {
+			if ($('#fecha').hasClass('border_error')) {
+				$('#fecha').removeClass('border_error');
+			}
+			e.preventDefault();
+			$(this).blur();
+
+			var equip = location.pathname.split('/')[2];
+			var taller_id = $('select option:selected').val();
+			var fecha_str = $('#fecha').val();
+			if (fecha_str) {
+				var fecha = fecha_str.split('/');
+				if (fecha) {
+					fecha = new Date(parseInt(fecha[2]), parseInt(fecha[0].replace(/^0/, '')) - 1, parseInt(fecha[1].replace(/^0/, '')))
+					fecha = fecha.getTime();
+				}
+			}
+
+			if (!equip) {
+				$(this).parent().before("<p class='error'>* debe seleccionar un equipamiento</p>");
+			}
+
+			if (!fecha) {
+				$(this).parent().before("<p class='error'>* debe seleccionar una fecha</p>");
+				$('#fecha').addClass('border_error');
+			}
+
+			if (fecha && taller_id) {
+				var equip_nombre = $('select option:selected').first().text();
+				$.post('/talleres/' + taller_id, {
+					equipamiento_id: equip,
+					fecha: fecha,
+					equipamiento_nombre: equip_nombre
+				}, function(taller) {
+					location.href = '/equipamientos/' + equip;
+				});
+			}
+        });
+	};
+
+    Paginas.SeguimientoCreativo = function() {
 		
 	};
 
-	Paginas.TallerBase = function() {
-		$('.list_header a.activo').each(function() {
-			$(this).closest('li').css({
-				'float': 'left'
-			});
-			$(this).find('span.mask').css({
-				width: $(this).closest('li').width() - 2
-			})
-		});
-	};
-
 	Paginas.Taller = function() {
-		var $el = $("#taller");
+    	var $el = $("#taller");
         var taller_id = location.pathname.split('/').pop();
         
 		// Tabs
@@ -148,52 +193,16 @@ jQuery(document).ready(function($) {
 			location.href = '/taller/' + taller_id + '/participantes/new';
 		});
 	};
-
-	Paginas.Equipamientos = function() {};
-
-	Paginas.EquipamientoTalleres = function() {
-		var $el = $('article#equipamiento');
-
-		$('#fecha').datepicker();
-
-		$el.find('.submit').click(function(e) {
-			if ($('#fecha').hasClass('border_error')) {
-				$('#fecha').removeClass('border_error');
-			}
-			e.preventDefault();
-			$(this).blur();
-
-			var equip = location.pathname.split('/')[2];
-			var taller_id = $('select option:selected').val();
-			var fecha_str = $('#fecha').val();
-			if (fecha_str) {
-				var fecha = fecha_str.split('/');
-				if (fecha) {
-					fecha = new Date(parseInt(fecha[2]), parseInt(fecha[0].replace(/^0/, '')) - 1, parseInt(fecha[1].replace(/^0/, '')))
-					fecha = fecha.getTime();
-				}
-			}
-
-			if (!equip) {
-				$(this).parent().before("<p class='error'>* debe seleccionar un equipamiento</p>");
-			}
-
-			if (!fecha) {
-				$(this).parent().before("<p class='error'>* debe seleccionar una fecha</p>");
-				$('#fecha').addClass('border_error');
-			}
-
-			if (fecha && taller_id) {
-				var equip_nombre = $('select option:selected').first().text();
-				$.post('/talleres/' + taller_id, {
-					equipamiento_id: equip,
-					fecha: fecha,
-					equipamiento_nombre: equip_nombre
-				}, function(taller) {
-					location.href = '/equipamientos/' + equip;
-				});
-			}
-        });
+    
+    Paginas.TallerBase = function() {
+		$('.list_header a.activo').each(function() {
+			$(this).closest('li').css({
+				'float': 'left'
+			});
+			$(this).find('span.mask').css({
+				width: $(this).closest('li').width() - 2
+			})
+		});
 	};
 
 	Paginas.Talleres = function() {
@@ -377,8 +386,33 @@ jQuery(document).ready(function($) {
 		});
 	};
 
+    Paginas.EditarTallerBase = function() {
+        var taller_id = $('#tallerbase_id').val();
+        var $el = $("#taller form");
+    	
+        $el.find('button#save').click(function(e) {
+            e.preventDefault();
+            $(this).blur();
+            
+            var data = TallerBaseForm.getValidData();
+
+		    if (data) {
+			    $.ajax({
+				    url: "/talleres/" + taller_id,
+				    type: "PUT",
+				    data: data,
+				    success: function(data, textStatus, XMLHttpRequest) {
+					    location.href = "/talleres/" + taller_id;
+				    }
+			    });
+		    }        
+    	});
+    };
+
 	Paginas.EditarEquipamiento = function() {
-		$('input[type="radio"]').removeAttr('disabled');
+		var equipamiento_id = $('#equipamiento_id').val();
+        
+        $('input[type="radio"]').removeAttr('disabled');
 		
 		$('.submit').click(function(e) {
 			e.preventDefault();
@@ -390,11 +424,11 @@ jQuery(document).ready(function($) {
 
 			if (data) {
 				$.ajax({
-					url: "/equipamientos/" + $('#equipamiento_id').val(),
+					url: "/equipamientos/" + equipamiento_id,
 					type: "PUT",
 					data: data,
 					success: function(data, textStatus, XMLHttpRequest) {
-						location.href = "/equipamientos/" + $('#equipamiento_id').val();
+						location.href = "/equipamientos/" + equipamiento_id;
 					}
 				});
 			}
@@ -406,6 +440,25 @@ jQuery(document).ready(function($) {
             var $options = $('select[comuna='+comuna+'] option');
             $('select[name=barrio]').empty().append($options);
         });
+        $('select[name=comuna]').change();
+        
+        // Delete equipamiento
+        $('#delete').click(function(e) {
+            e.preventDefault();
+            $(this).blur();
+
+            var eliminar = confirm('Está seguro que desea eliminar este equipamiento? Esta operación no puede deshacerse.');
+            if(eliminar) {
+                $.ajax({
+                    url: '/equipamientos/'+equipamiento_id,
+                    type: 'delete',
+                    success: function() {
+                        location.href = '/equipamientos'
+                    }
+                });
+            } else {
+            }
+        });        
 	};
 
 	Paginas.EditarCreativo = function() {
@@ -476,6 +529,7 @@ jQuery(document).ready(function($) {
 	Paginas.EditarParticipante = function() {
 		var $el = $('#edit_participante');
 		var participante_id = $('#participante_id').val();
+        var equipamiento_id = $('#equip_id').val();
         
         setupUpload.call(this, '/participantes/'+participante_id+'/foto');
         
@@ -506,6 +560,25 @@ jQuery(document).ready(function($) {
 				});
 			}
 		});
+        
+        // Delete participante
+        $('#delete').click(function(e) {
+            e.preventDefault();
+            $(this).blur();
+
+            var eliminar = confirm('Está seguro que desea eliminar este participante? Esta operación no puede deshacerse.');
+            if(eliminar) {
+                $.ajax({
+                    url: '/participantes/'+participante_id,
+                    type: 'delete',
+                    success: function() {
+                        location.href = '/equipamientos/'+equipamiento_id+'/participantes'
+                    }
+                });
+            } else {
+            }
+        });
+
 	};
 
 	Paginas.FormEvalTaller = function() {
@@ -542,7 +615,6 @@ jQuery(document).ready(function($) {
 		});
 	};
 
-
 	Paginas.FormEvaluacion = function() {
 		var $el = $('#evaluacion');
 		var taller_id = $('#taller_id').val();
@@ -567,7 +639,42 @@ jQuery(document).ready(function($) {
 		});
 	};
     
-    function startProgressBar() {
+    Paginas.TallerMedia = function() {
+        this.taller_id = location.pathname.split('/')[2]
+        setupUpload.call(this, '/taller/'+this.taller_id+'/media')
+        
+        var gallery = new MediaGallery()
+        
+        $("#upload-btn").click(function() {
+            $('#upload').click();
+        })
+        
+        // Hide file input
+        var wrapper = $('<div/>').css({height:0,width:0,'overflow':'hidden'});
+        var fileInput = $(':file').wrap(wrapper);
+        fileInput.change(function(){
+            var $this = $(this);
+            $('#file').text($this.val());
+        });
+        
+        $("ul.fotos li")
+            .hover(function() { $(this).css({ cursor: 'pointer'}) })
+            .click(function(e) {
+                gallery.open()
+            })
+    };
+
+    Paginas.Control = function() {
+        $('#fecha').datepicker();
+        $('#fecha').on('change', function() {
+            if (!$(this).val()) return
+            var fecha = $(this).val().split('/');
+            var date = new Date(fecha[2], fecha[0]-1, fecha[1])
+            location.href= '/admin/control?f='+date.getTime();
+        });
+    };
+
+	function startProgressBar() {
         $('.meter > span').width(0);
         $('.meter > span').removeClass('stop')
 
@@ -646,42 +753,8 @@ jQuery(document).ready(function($) {
         })
     };
     
-    Paginas.TallerMedia = function() {
-        this.taller_id = location.pathname.split('/')[2]
-        setupUpload.call(this, '/taller/'+this.taller_id+'/media')
-        
-        var gallery = new MediaGallery()
-        
-        $("#upload-btn").click(function() {
-            $('#upload').click();
-        })
-        
-        // Hide file input
-        var wrapper = $('<div/>').css({height:0,width:0,'overflow':'hidden'});
-        var fileInput = $(':file').wrap(wrapper);
-        fileInput.change(function(){
-            var $this = $(this);
-            $('#file').text($this.val());
-        });
-        
-        $("ul.fotos li")
-            .hover(function() { $(this).css({ cursor: 'pointer'}) })
-            .click(function(e) {
-                gallery.open()
-            })
-    };
-
-    Paginas.Control = function() {
-        $('#fecha').datepicker();
-        $('#fecha').on('change', function() {
-            if (!$(this).val()) return
-            var fecha = $(this).val().split('/');
-            var date = new Date(fecha[2], fecha[0]-1, fecha[1])
-            location.href= '/admin/control?f='+date.getTime();
-        });
-    };
-
-	// Util functions
+    
+    // Util functions
 	var fixMask = function() {
 			$('.list_header a.activo').each(function() {
 				$(this).find('span.mask').css({
@@ -690,16 +763,21 @@ jQuery(document).ready(function($) {
 			});
 		}
 
+    
+    // Start App
 	try {
 		Paginas[articulo]();
 	}
 	catch (err) {}
 
+    
+    // Select Periodo
     $('#periodo select').on('change', function() {
         var periodo = $(this).val()
         $.post('/admin/periodo', { periodo: periodo }, function() {
              alert("Se ha cambiado el Periodo a "+periodo);
              location.href = location.pathname;
         })
-    })
+    })    
+    
 }) // endonready

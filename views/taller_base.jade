@@ -5,7 +5,7 @@ article#taller.base
   .list_header
     ul
       li
-        a.activo#listar(href="/talleres", class='#{articulo == "TallerBase" ? "activo" : null }')
+        a.activo#listar(href="/talleres", class='#{articulo == "EditarTallerBase" ? "activo" : null }')
           | #{taller_base.nombre}
           span.mask
       li
@@ -19,17 +19,17 @@ article#taller.base
         li
           .element
             label Nombre actividad: 
-            input(name="nombre", type="text", value='#{taller_base.nombre}', readonly='readonly')
+            input(name="nombre", type="text", value='#{taller_base.nombre}')
 
         li
           .element
             label Descripción: 
-            textarea(name="desc", readonly='readonly') #{taller_base.descripcion}
+            textarea(name="descripcion") #{taller_base.descripcion}
 
         li
           .element
             label Objetivos:
-            textarea(name="objetivos", readonly='readonly') #{taller_base.objetivos}
+            textarea(name="objetivos") #{taller_base.objetivos}
 
         li
           .element_checkbox_label
@@ -39,10 +39,10 @@ article#taller.base
               each metod in params.metodologias
                 - if (taller_base.metodologias.indexOf(metod) > -1 ) {
                   .option(class='#{i%3 == 0 ? "row" : "" }')
-                    input(name="metodologias[]", type="checkbox", disabled='disabled', value="#{metod}", checked='checked')
+                    input(name="metodologias[]", type="checkbox", value="#{metod}", checked='checked')
                 - } else {
                   .option(class='#{i%3 == 0 ? "row" : "" }')
-                    input(name="metodologias[]", type="checkbox", disabled='disabled', value="#{metod}")
+                    input(name="metodologias[]", type="checkbox",  value="#{metod}")
                   
                 -}
                     label.radio_text #{metod}
@@ -63,3 +63,9 @@ article#taller.base
                  - }
                     label.radio_text #{habilidad}
                  -i++
+        li
+          .element
+            button#save.css3button.blue-1 Guardar
+        li#delete
+          .element
+            button.css3button.red-1 Eliminar

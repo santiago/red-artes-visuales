@@ -144,6 +144,9 @@ label {
   padding-right: 25px;
   text-align: right;
 }
+.header-content {
+  float: left;
+}
 .header-content label {
   text-align: left;
 }
@@ -312,11 +315,9 @@ form h1 {
   margin: 0;
 }
 ul.main_menu {
-  list-style-type: none;
-  text-align: center;
-  display: inline-block;
-  margin-left: 80px;
-  margin-top: 25px;
+  padding-top: 25px;
+  padding-left: 130px;
+  padding-right: 50px;
 }
 li.menu_item {
   display: inline;
@@ -1089,7 +1090,7 @@ button#consolidar {
 #edit_participante .element.foto label {
   float: left;
 }
-#edit_participante .element.foto button {
+#edit_participante .element.foto button.blue-1 {
   display: block;
   font-size: 12px;
   padding: 8px;
@@ -1097,6 +1098,21 @@ button#consolidar {
   cursor: pointer;
   margin-top: 36px;
   margin-left: 15px;
+}
+#edit_participante button#save {
+  display: block;
+  font-size: 12px;
+  padding: 8px;
+  float: right;
+  cursor: pointer;
+  float: left;
+  margin-left: 200px;
+}
+#edit_participante button#delete {
+  display: block;
+  float: right;
+  margin-right: 75px;
+  margin-top: -45px;
 }
 #agrega_participantes_dialog {
   display: none;
@@ -1331,6 +1347,21 @@ button#consolidar {
   background-color: #f00;
   border: none;
 }
+#taller #save {
+  font-size: 12px;
+  padding: 8px;
+  float: right;
+  cursor: pointer;
+  margin-left: 200px;
+}
+#taller #delete {
+  float: right;
+  clear: none;
+  margin-right: 75px;
+}
+#taller #delete button {
+  cursor: pointer;
+}
 article#participante .list_header a#crear {
   float: right;
 }
@@ -1440,6 +1471,11 @@ article#equipamiento .taller_item {
 }
 article#equipamiento .taller_item .fecha {
   font-size: 11px;
+}
+article#equipamiento .delete {
+  float: right;
+  margin-top: 11px;
+  margin-right: 22px;
 }
 #evaluacion .list_header li {
   float: left;

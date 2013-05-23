@@ -4,6 +4,9 @@ article#equipamiento
     .header-content
       label Equipamiento
       p.nombre #{equipamiento.nombre}
+    -if(user && user.perfil == 'admin')    
+      .delete
+        button.css3button.red-1#delete Eliminar
 
   .list_header
     ul
@@ -15,11 +18,12 @@ article#equipamiento
         a#tab-participantes(href="/equipamientos/#{equipamiento._id}/participantes") 
           | Participantes
           span.mask
+      
       li
         a#tab-editar.last(href="/equipamientos/#{equipamiento._id}/edit", class='#{articulo == 'EditarEquipamiento' ? "activo" : null }') 
           | Editar Equipamiento
           span.mask
-      li
+      li(style="display:none;")
         a#tab-general(href="/equipamientos/#{equipamiento._id}/general", class='#{articulo == 'General' ? "activo" : null }') 
           | General
           span.mask
@@ -61,8 +65,8 @@ article#equipamiento
             option(disabled='disabled') -- Elegir Barrio --
           each bc in params.barriosComuna
             select(comuna="#{bc.comuna}", style="display:none;")
+              option -- Elegir Barrio --
               each barrio in bc.barrios
-                option -- Elegir Barrio --
                 -if (equipamiento.barrio == barrio)
                   option(value='#{barrio}', selected='selected') #{barrio}
                 -else

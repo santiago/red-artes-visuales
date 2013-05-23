@@ -53,7 +53,9 @@ var filters = {
 		var model = new Equipamiento(data);
 		model.save(function(err, r) {
 			if (err) {
+                console.log(err);
 				res.send(500);
+                return;
 			}
 			req.equipamiento = r;
 			next();

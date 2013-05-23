@@ -40,8 +40,8 @@ mongoose.model('Periodo', Periodo);
 var Equipamiento = new Schema({
     nombre          :  { type: String }
   , ubicacion       :  { type: String }
-  , comuna          :  { type: String, enum: params.comunas  }
-  , barrio          :  { type: String, enum: params.barrios }
+  , comuna          :  { type: String /*, enum: params.comunas*/  }
+  , barrio          :  { type: String /*, enum: params.barrios*/ }
   , contacto        :  { type: String }
   , email           :  { type: String }
   , telefono        :  { type: String }
@@ -107,6 +107,7 @@ var Taller = new Schema({
   , metodologias    :  { type: Array }
   , habilidades     :  { type: Array }
   , periodo         :  { type: String }
+  , deleted         :  { type: Boolean, default: false, index: true }
 });
 mongoose.model('TallerBase', Taller);
 
@@ -125,6 +126,8 @@ var Sesion = new Schema({
   , fotos           :  { type: Array }
   , videos          :  { type: Array }
   , media           :  { type: Array }
+  
+  , deleted         : { type: Boolean, default: false, index: true }
 });
 mongoose.model('Taller', Sesion);
 

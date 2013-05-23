@@ -294,12 +294,11 @@ function Service(app) {
             writer.writeRecord(record);
         }
 
-        TallerBase.find({ periodo: '2012' }, function(err, talleres) {
+        TallerBase.find({ periodo: '2013', deleted: { $ne: true } }, function(err, talleres) {
             if(err) { return }
             // Generate participantes.csv
             var tallerWriter = getCsvWriter('talleres');
             talleres.forEach(function(taller) {
-                console.log(taller.get('metodologias'));
                 writeRecord('talleres', taller, tallerWriter);
             })
         })

@@ -65,6 +65,28 @@ var filtros = {
 		});
 	},
 
+    delTallerBase: function(req, res, next) {
+    	var id = req.params.base_id;
+		TallerBase.findByIdAndRemove(id, function(err, r) {
+            Taller.remove({ actividad_id: id }, function() {
+                next();
+            });
+		});
+	},
+
+    putTallerBase: function(req, res, next) {
+        var data = req.body;
+		var id = req.params.taller_id;
+		TallerBase.update({
+			_id: id
+		}, data, function(err, r) {
+			if (err) {
+				res.error = true;
+			}
+			next();
+		});
+    },
+
 	getParticipantes: function(req, res, next) {
 		Participante.find({
 			'equipamiento_id': req.taller.equipamiento_id
@@ -267,6 +289,15 @@ function Service(app) {
 		res.send(req.taller_base, 201);
 	});
 
+    app.put('/talleres/:taller_id', filtros.putTallerBase, function(req, res) {
+    	if (req.error) res.send({
+			'error': true
+		}, 500);
+		else res.send({
+			'ok': true
+		});
+	});
+
     app.post('/taller/:taller_id/consolida', function(req, res) {
         Taller.findById(req.params.taller_id, function(err, taller) {
             taller.set('consolidado', true)
@@ -347,7 +378,7 @@ function Service(app) {
 	app.get('/talleres/:base_id', filtros.get, function(req, res) {
 		res.render('taller_base', {
 			locals: {
-				articulo: 'TallerBase',
+				articulo: 'EditarTallerBase',
 				taller_base: req.taller_base,
 				params: app.params
 			}
