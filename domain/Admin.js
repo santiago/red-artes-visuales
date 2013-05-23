@@ -355,7 +355,7 @@ function Service(app) {
 		});
 	});
 
-	app.del('/admin/creativo/:id', delCreativos, function(req, res) {
+	app.del('/admin/creativos/:id', delCreativos, function(req, res) {
 		res.send({
 			'ok': true
 		})

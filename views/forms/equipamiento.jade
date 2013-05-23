@@ -34,19 +34,20 @@ article#equipamiento
         .element
           label Comuna:
           select(name="comuna")
+            option -- Elegir Comuna --
             each comuna in params.comunas
-              - var select=null; 
-              // - if (comuna == model.comuna) select='selected';
-              option(value='#{comuna}', selected='#{select}') #{comuna}
+              option(value='#{comuna}') #{comuna}
 
       li
         .element
           label Barrio:
           select(name="barrio")
-            each barrio in params.barrios
-              - var select=null; 
-              // - if (barrio == model.barrio) select='selected';
-              option(value='#{barrio}', selected='#{select}') #{barrio}
+            option(disabled='disabled') -- Elegir Barrio --
+          each bc in params.barriosComuna
+            select(comuna="#{bc.comuna}", style="display:none;")
+              option -- Elegir Barrio --
+              each barrio in bc.barrios
+                option(value='#{barrio}') #{barrio}
 
       li
         .element

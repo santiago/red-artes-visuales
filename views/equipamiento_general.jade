@@ -1,4 +1,3 @@
--console.log(equipamiento)
 article#equipamiento
   input(type="hidden", id="equipamiento_id", value="#{equipamiento._id}")
   header
@@ -50,11 +49,8 @@ article#equipamiento
           select(name="comuna")
             option(value='') -- Elegir comuna --
             each comuna in params.comunas
-              -if (edit)
-                -if (equipamiento.comuna == comuna)
-                  option(value='#{comuna}', selected='selected') #{comuna}
-                -else
-                  option(value='#{comuna}') #{comuna}
+              -if (equipamiento.comuna == comuna)
+                option(value='#{comuna}', selected='selected') #{comuna}
               -else
                 option(value='#{comuna}') #{comuna}
 
@@ -62,15 +58,15 @@ article#equipamiento
         .element
           label Barrio:
           select(name="barrio")
-            option(value='') -- Elegir barrio --
-            each barrio in params.barrios
-              -if (edit)
+            option(disabled='disabled') -- Elegir Barrio --
+          each bc in params.barriosComuna
+            select(comuna="#{bc.comuna}", style="display:none;")
+              each barrio in bc.barrios
+                option -- Elegir Barrio --
                 -if (equipamiento.barrio == barrio)
                   option(value='#{barrio}', selected='selected') #{barrio}
                 -else
                   option(value='#{barrio}') #{barrio}
-              -else
-                option(value='#{barrio}') #{barrio}
 
       li
         .element

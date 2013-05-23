@@ -333,10 +333,7 @@ jQuery(document).ready(function($) {
 	};
 
 	Paginas.FormEquipamiento = function() {
-		// Callback par atender el response
-
-
-		function res(data) {
+        function res(data) {
 			// console.log(data);
 			location.href = '/equipamientos';
 		}
@@ -351,6 +348,13 @@ jQuery(document).ready(function($) {
 				$.post('/equipamientos', data, res);
 			}
 		});
+        
+        // Select for barrios according to comuna
+        $('select[name=comuna]').change(function() {
+            var comuna = $(this).val();
+            var $options = $('select[comuna='+comuna+'] option');
+            $('select[name=barrio]').empty().append($options);
+        });
 	};
 
 	Paginas.FormTaller = function() {};
@@ -395,6 +399,13 @@ jQuery(document).ready(function($) {
 				});
 			}
 		});
+        
+        // Select for barrios according to comuna
+        $('select[name=comuna]').change(function() {
+            var comuna = $(this).val();
+            var $options = $('select[comuna='+comuna+'] option');
+            $('select[name=barrio]').empty().append($options);
+        });
 	};
 
 	Paginas.EditarCreativo = function() {
@@ -413,7 +424,7 @@ jQuery(document).ready(function($) {
         });
 
 		var $el = $('#creativo form');
-		$el.find('button').click(function(e) {
+		$el.find('button#save').click(function(e) {
 			e.preventDefault();
 			var data = AdminCreativoForm.getValidData();
 			if (data) {
@@ -425,6 +436,24 @@ jQuery(document).ready(function($) {
 				});
 			}
 		});
+        
+        // Delete creativo
+        $('#delete').click(function(e) {
+            e.preventDefault();
+            $(this).blur();
+
+            var eliminar = confirm('Está seguro que desea eliminar este creativo? Esta operación no puede deshacerse.');
+            if(eliminar) {
+                $.ajax({
+                    url: '/admin/creativos/'+creativo_id,
+                    type: 'delete',
+                    success: function() {
+                        location.href = '/admin/creativos'
+                    }
+                });
+            } else {
+            }
+        });
 	};
 
 	Paginas.FormCreativo = function() {
