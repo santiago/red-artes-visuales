@@ -80,23 +80,27 @@ form#edit_participante
       .element
         label Comuna:
         select(name="comuna")
-          option(value='', selected='selected') -- Seleccionar Comuna --
+          option(value='') -- Elegir comuna --
           each comuna in params.comunas
-            - if (comuna == participante.comuna)
+            -if (participante.comuna == comuna)
               option(value='#{comuna}', selected='selected') #{comuna}
-            - else
+            -else
               option(value='#{comuna}') #{comuna}
-    
+
     li
       .element
         label Barrio:
         select(name="barrio")
-          option(value='', selected='selected') -- Seleccionar Barrio --
-          each barrio in params.barrios
-            - if (barrio == participante.barrio)
-              option(value='#{barrio}', selected='selected') #{barrio}
-            - else
-              option(value='#{barrio}') #{barrio}    
+          option(disabled='disabled') -- Elegir Barrio --
+        each bc in params.barriosComuna
+          select(comuna="#{bc.comuna}", style="display:none;")
+            option -- Elegir Barrio --
+            each barrio in bc.barrios
+              -if (participante.barrio == barrio)
+                option(value='#{barrio}', selected='selected') #{barrio}
+              -else
+                option(value='#{barrio}') #{barrio}
+
     li
       .element
         label Direcci&oacute;n:

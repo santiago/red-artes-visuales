@@ -82,8 +82,8 @@ var Participante = new Schema({
   , grado           :  { type: Number }
   , edad            :  { type: String }
   , nombre          :  { type: String, default: 'Nombre' }
-  , comuna          :  { type: String, enum: params.comunas }
-  , barrio          :  { type: String, enum: params.barrios }
+  , comuna          :  { type: String /*, enum: params.comunas */ }
+  , barrio          :  { type: String /*, enum: params.barrios */ }
   , direccion       :  { type: String }
   , telefono       :   { type: String }
   , estrato         :  { type: String, enum: params.estratos }

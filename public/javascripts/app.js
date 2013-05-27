@@ -546,7 +546,8 @@ jQuery(document).ready(function($) {
             $('#file').text($this.val());
         });
         
-		$el.find('button.submit').click(function(e) {
+        // Click to Save
+		$el.find('button#save').click(function(e) {
 			e.preventDefault();
 			var data = EditarParticipanteForm.getValidData();
 			if (data) {
@@ -560,6 +561,15 @@ jQuery(document).ready(function($) {
 				});
 			}
 		});
+        
+        // Select for barrios according to comuna
+        $('select[name=comuna]').change(function() {
+            var comuna = $(this).val();
+            var $options = $('select[comuna='+comuna+'] option');
+            $('select[name=barrio]').empty().append($options);
+        });
+        $('select[name=comuna]').change();
+
         
         // Delete participante
         $('#delete').click(function(e) {

@@ -1,10 +1,10 @@
 article#participantes
   .list_header
-    a#listar(href="/participantes", class='#{articulo == 'Participantes' ? "activo" : null }')
+    a#listar(href="/participantes", class='#{ articulo == 'Participantes' ? "activo" : null }')
       | Participantes
       span.mask
 
   .list_body
     ul.listado
-      !=partial('partials/lista_participantes',{participantes: participantes})
+      !=partial('partials/lista_participantes',{ participantes: participantes })
 
