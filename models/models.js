@@ -47,7 +47,7 @@ var Equipamiento = new Schema({
   , telefono        :  { type: String }
   , experiencia     :  { type: Boolean, get: getSiNo, set: setSiNo }
   , otros_talleres  :  { type: Array }
-  , tipo            :  { type: String, enum: params.tipos }
+  , tipo            :  { type: String /*, enum: params.tipos*/ }
   , espacio         :  { type: Array }
   , locker          :  { type: Boolean, get: getSiNo, set: setSiNo }
   , banos           :  { type: Boolean, get: getSiNo, set: setSiNo }
@@ -77,7 +77,7 @@ mongoose.model('Equipamiento', Equipamiento);
 var Participante = new Schema({
     equipamiento_id :  { type: String, index: true }
   , fecha_nacimiento:  { type: Date }
-  , tipo_documento  :  { type: String, enum: params.tipos_documentos }
+  , tipo_documento  :  { type: String/*, enum: params.tipos_documentos*/ }
   , documento       :  { type: String }
   , grado           :  { type: Number }
   , edad            :  { type: String }
@@ -86,16 +86,16 @@ var Participante = new Schema({
   , barrio          :  { type: String /*, enum: params.barrios */ }
   , direccion       :  { type: String }
   , telefono       :   { type: String }
-  , estrato         :  { type: String, enum: params.estratos }
+  , estrato         :  { type: String/*, enum: params.estratos */ }
   , contacto        :  { type: String }
   , foto            :  { type: String }
   , fotos           :  { type: Array }
   , videos          :  { type: Array }
-  , familiar        :  { type: String, enum: params.familiaridades }
+  , familiar        :  { type: String/*, enum: params.familiaridades*/ }
   , vive_con_otro   :  { type: String }
-  , poblacion       :  { type: String, enum: params.poblacional }
-  , padres          :  { type: String, enum: params.padres }
-  , observaciones   :  { type: String, set: setObservaciones }
+  , poblacion       :  { type: String/*, enum: params.poblacional*/ }
+  , padres          :  { type: String/*, enum: params.padres*/ }
+  , observaciones   :  { type: String/*, set: setObservaciones*/ }
   , revisions       :  { type: Array }
 });
 mongoose.model('Participante', Participante);  
