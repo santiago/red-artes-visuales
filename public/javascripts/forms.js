@@ -212,7 +212,7 @@ $("#participante form"), {
         'find': 'select[name=edad] option:selected',
         'validate': ['presence']
     },
-    'tipo_documento': {
+    /*'tipo_documento': {
     	'find': 'select[name=tipo_doc] option:selected',
 		'validate': ['presence']
 	},
@@ -225,7 +225,7 @@ $("#participante form"), {
     'grado': {
         'find': 'select[name=grado] option:selected',
         'validate': ['presence']
-    },
+    },*/
     
 	'comuna': {
 		'find': 'select[name=comuna] option:selected',
@@ -237,42 +237,42 @@ $("#participante form"), {
 		'validate': ['presence']
 	},
     
-    'direccion': {
+    /*'direccion': {
 		'find': 'input[name=direccion]'
-	},
+	},*/
 
-    'telefono': {
+    /*'telefono': {
     	'find': 'input[name=telefono]'
-	},
+	},*/
 
-    'estrato': {
+    /*'estrato': {
 		'find': 'select[name=estrato] option:selected',
 		'validate': ['presence']
-	},
+	},*/
 
-	'contacto': {
+	/*'contacto': {
 		'find': 'input[name=contacto]',
 		'validate': ['presence']
-	},
+	},*/
 
-	'familiar': {
+	/*'familiar': {
 		'find': 'select[name=situacion] option:selected',
 		'validate': ['presence']
-	},
+	},*/
 
-	'poblacion': {
+	/*'poblacion': {
 		'find': 'select[name=poblacion] option:selected',
 		'validate': ['presence']
-	},
+	},*/
 
-	'padres': {
+	/*'padres': {
 		'find': 'select[name=padres] option:selected',
 		'validate': ['presence']
-	},
+	},*/
 
-	'observaciones': {
+	/*'observaciones': {
 		'find': 'textarea[name=observaciones]'
-	},
+	},*/
 	'equipamiento_id': {
 		'find': 'input[name=equip_id]',
 		'validate': ['presence']
@@ -287,10 +287,10 @@ $("#equipamiento form"), {
 		'find': 'input[name=nombre]',
 		'validate': ['presence']
 	},
-	'ubicacion': {
+	/*'ubicacion': {
 		'find': 'input[name=ubicacion]',
 		'validate': ['presence']
-	},
+	},*/
 	'comuna': {
 		'find': 'select[name=comuna]',
 		'validate': ['presence']
@@ -298,7 +298,7 @@ $("#equipamiento form"), {
 	'barrio': {
 		'find': 'select[name=barrio]',
 		'validate': ['presence']
-	},
+	}/*,
 	'contacto': {
 		'find': 'input[name=contacto]',
 		'validate': ['presence']
@@ -430,5 +430,5 @@ $("#equipamiento form"), {
 	},
     'observaciones': {
 		'find': 'textarea[name=observaciones]'
-	}
+	}*/
 });
