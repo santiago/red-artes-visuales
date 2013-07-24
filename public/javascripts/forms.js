@@ -287,10 +287,10 @@ $("#equipamiento form"), {
 		'find': 'input[name=nombre]',
 		'validate': ['presence']
 	},
-	/*'ubicacion': {
+	'ubicacion': {
 		'find': 'input[name=ubicacion]',
 		'validate': ['presence']
-	},*/
+	},
 	'comuna': {
 		'find': 'select[name=comuna]',
 		'validate': ['presence']
@@ -298,22 +298,22 @@ $("#equipamiento form"), {
 	'barrio': {
 		'find': 'select[name=barrio]',
 		'validate': ['presence']
-	}/*,
+	},
 	'contacto': {
 		'find': 'input[name=contacto]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'email': {
 		'find': 'input[name=email]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'telefono': {
 		'find': 'input[name=telefono]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'experiencia': {
 		'find': 'input[name=experiencia]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'otros_talleres': {
 		'find': '[name="otros[]"]',
@@ -324,11 +324,11 @@ $("#equipamiento form"), {
 			});
 			return data;
 		},
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'tipo': {
 		'find': 'select[name=tipo] option:selected',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'espacio': {
 		'find': '[name="espacios[]"]',
@@ -339,23 +339,23 @@ $("#equipamiento form"), {
 			});
 			return data;
 		},
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'locker': {
 		'find': 'input[name=locker]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'banos': {
 		'find': 'input[name=banos]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'e_equipos': {
 		'find': 'input[name=e_equipos]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'horario': {
 		'find': 'input[name=horario]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'edades': {
 		'find': '[name="edades[]"]',
@@ -366,69 +366,69 @@ $("#equipamiento form"), {
 			});
 			return data;
 		},
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'seguridad': {
 		'find': 'input[name=seguridad]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'fronteras': {
 		'find': 'input[name=fronteras]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'zona': {
 		'find': 'input[name=zona]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'como_llegar': {
 		'find': 'textarea[name=como_llegar]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'web': {
 		'find': 'input[name=web]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'fb': {
 		'find': 'input[name=fb]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'twitter': {
 		'find': 'input[name=twitter]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'blog': {
 		'find': 'input[name=blog]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'newsletter': {
 		'find': 'input[name=newsletter]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'cartelera': {
 		'find': 'input[name=cartelera]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'telefono_info': {
 		'find': 'input[name=telefono_info]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'perifonia': {
 		'find': 'input[name=perifonia]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'boletin': {
 		'find': 'input[name=boletin]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'medios_comunit': {
 		'find': 'input[name=medios_comunit]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'emailing': {
 		'find': 'input[name=emailing]:checked',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
     'observaciones': {
 		'find': 'textarea[name=observaciones]'
-	}*/
+	}
 });
