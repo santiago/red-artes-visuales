@@ -205,74 +205,74 @@ $("#participante form"), {
 		'find': 'input[name=nombre]',
 		'validate': ['presence']
 	},
-	/*'fecha': {
+	'fecha': {
 		'find': 'input[name=fecha]'
-	},*/
+	},
     'edad': {
         'find': 'select[name=edad] option:selected',
-        'validate': ['presence']
+//        'validate': ['presence']
     },
-    /*'tipo_documento': {
+    'tipo_documento': {
     	'find': 'select[name=tipo_doc] option:selected',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
     
     'documento': {
     	'find': 'input[name=documento]',
-		'validate': ['presence']
+//		'validate': ['presence']
     },
 
     'grado': {
         'find': 'select[name=grado] option:selected',
-        'validate': ['presence']
-    },*/
+//        'validate': ['presence']
+    },
     
 	'comuna': {
 		'find': 'select[name=comuna] option:selected',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 
 	'barrio': {
 		'find': 'select[name=barrio] option:selected',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
     
-    /*'direccion': {
+    'direccion': {
 		'find': 'input[name=direccion]'
-	},*/
+	},
 
-    /*'telefono': {
+    'telefono': {
     	'find': 'input[name=telefono]'
-	},*/
+	},
 
-    /*'estrato': {
+    'estrato': {
 		'find': 'select[name=estrato] option:selected',
-		'validate': ['presence']
-	},*/
+//		'validate': ['presence']
+	},
 
-	/*'contacto': {
+	'contacto': {
 		'find': 'input[name=contacto]',
-		'validate': ['presence']
-	},*/
+//		'validate': ['presence']
+	},
 
-	/*'familiar': {
+	'familiar': {
 		'find': 'select[name=situacion] option:selected',
-		'validate': ['presence']
-	},*/
+//		'validate': ['presence']
+	},
 
-	/*'poblacion': {
+	'poblacion': {
 		'find': 'select[name=poblacion] option:selected',
-		'validate': ['presence']
-	},*/
+//		'validate': ['presence']
+	},
 
-	/*'padres': {
+	'padres': {
 		'find': 'select[name=padres] option:selected',
-		'validate': ['presence']
-	},*/
+//		'validate': ['presence']
+	},
 
-	/*'observaciones': {
+	'observaciones': {
 		'find': 'textarea[name=observaciones]'
-	},*/
+	},
 	'equipamiento_id': {
 		'find': 'input[name=equip_id]',
 		'validate': ['presence']
@@ -289,15 +289,15 @@ $("#equipamiento form"), {
 	},
 	'ubicacion': {
 		'find': 'input[name=ubicacion]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'comuna': {
 		'find': 'select[name=comuna]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'barrio': {
 		'find': 'select[name=barrio]',
-		'validate': ['presence']
+//		'validate': ['presence']
 	},
 	'contacto': {
 		'find': 'input[name=contacto]',

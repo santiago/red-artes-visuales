@@ -42,7 +42,7 @@ function Service(app) {
 		var data = req.body;
 		var id = req.params.id;
     	Participante.findById(id, function(err, r) {
-			for(f in data) {
+			for(var f in data) {
 				r.set(f, data[f]);
 			}
 			r.save(next);

@@ -34,7 +34,7 @@ article#equipamiento
         .element
           label Comuna:
           select(name="comuna")
-            option -- Elegir Comuna --
+            option(value='') -- Elegir Comuna --
             each comuna in params.comunas
               option(value='#{comuna}') #{comuna}
 
@@ -42,10 +42,10 @@ article#equipamiento
         .element
           label Barrio:
           select(name="barrio")
-            option(disabled='disabled') -- Elegir Barrio --
+            option(value='', disabled='disabled') -- Elegir Barrio --
           each bc in params.barriosComuna
             select(comuna="#{bc.comuna}", style="display:none;")
-              option -- Elegir Barrio --
+              option(value='') -- Elegir Barrio --
               each barrio in bc.barrios
                 option(value='#{barrio}') #{barrio}
 

@@ -54,9 +54,9 @@ var Equipamiento = new Schema({
   , e_equipos       :  { type: String }
   , horario         :  { type: String }
   , edades          :  { type: Array }
-  , seguridad       :  { type: String, enum: ['Alta', 'Media', 'Baja'] }
+  , seguridad       :  { type: String /*, enum: ['Alta', 'Media', 'Baja']*/ }
   , fronteras       :  { type: Boolean, get: getSiNo, set: setSiNo }
-  , zona            :  { type: String, enum: ['Urbana', 'Rural'] }
+  , zona            :  { type: String /*, enum: ['Urbana', 'Rural']*/ }
   , como_llegar     :  { type: String }
   , web             :  { type: String }
   , fb              :  { type: String }
@@ -81,7 +81,7 @@ var Participante = new Schema({
   , documento       :  { type: String }
   , grado           :  { type: Number }
   , edad            :  { type: String }
-  , nombre          :  { type: String, default: 'Nombre' }
+  , nombre          :  { type: String /*, default: 'Nombre'*/ }
   , comuna          :  { type: String /*, enum: params.comunas */ }
   , barrio          :  { type: String /*, enum: params.barrios */ }
   , direccion       :  { type: String }

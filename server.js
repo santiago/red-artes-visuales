@@ -159,8 +159,8 @@ if (!module.parent) {
 	if(env == 'production') port = 6600;
 	if(env == 'development') port = 6601;
 	app.listen(port);
-	console.log("Express server listening on port %d", port)
-	console.log(env)
+	console.log("Express server listening on port %d", port);
+	console.log(env);
 }
 else {
 	if (env == 'test') app.listen(6602);

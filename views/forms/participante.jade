@@ -2,7 +2,7 @@ form#edit_participante
   input(type="hidden", id="equip_id", name="equip_id", value="#{equipamiento._id}")
   input(type="hidden", id="participante_id",name="participante_id", value="#{participante._id}")
   ul
-    -if(edit)
+    -if(false)
       li
         .element.foto
           label Foto:
@@ -91,10 +91,10 @@ form#edit_participante
       .element
         label Barrio:
         select(name="barrio")
-          option(disabled='disabled') -- Elegir Barrio --
+          option(value='', disabled='disabled') -- Elegir Barrio --
         each bc in params.barriosComuna
           select(comuna="#{bc.comuna}", style="display:none;")
-            option -- Elegir Barrio --
+            option(value='') -- Elegir Barrio --
             each barrio in bc.barrios
               -if (participante.barrio == barrio)
                 option(value='#{barrio}', selected='selected') #{barrio}
