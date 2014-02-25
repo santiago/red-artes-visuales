@@ -23,9 +23,9 @@ html
             li.menu_item
               a#equipamientos(href='/equipamientos') Equipamientos
             li.menu_item
-              a#talleres(href='/talleres') Talleres 
+              a#talleres(href='/talleres') Talleres
             li.menu_item
-              a#consultas(href='/consultas') Consultas 
+              a#consultas(href='/consultas') Consultas
             -if(user && user.perfil == 'admin')
               li.menu_item
                 a#consultas(href='/admin/creativos') Admin
@@ -39,14 +39,10 @@ html
           #periodo
             label Seleccionar Periodo
             select(name='periodo')
-              -if(user.periodo == '2012')
-                option(value='2012', selected='selected') 2012
+              -if(user.periodo == '2014')
+                option(value='2014', selected='selected') 2014
               -else
-                option(value='2012') 2012
-              -if(user.periodo == '2013')
-                option(value='2013', selected='selected') 2013
-              -else
-                option(value='2013') 2013
+                option(value='2014') 2014
 
     script(type="text/javascript", src="/javascripts/thirdparty/jquery/jquery-1.8.min.js")
 
